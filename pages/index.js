@@ -187,4 +187,9 @@ export default function Home() {
                   Envoyer
                 </button>
                 {status === "ok" && (
-                  <p style={{ color: "#4ade80", marginTop: "0.5rem
+  <p style={{ color: "#4ade80", marginTop: "0.5rem" }}>
+    Merci, votre message a bien été envoyé.
+  </p>
+)}
+
+
