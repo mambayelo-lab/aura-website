@@ -1,3 +1,6 @@
+// Aura Premium v1 – Grid Glow Hero (Pigment-Style)
+// Full Next.js page – index.js
+
 import Head from "next/head";
 import { useState } from "react";
 
@@ -29,37 +32,31 @@ export default function Home() {
     <>
       <Head>
         <title>Aura – Architecte de la connaissance</title>
-        <meta
-          name="description"
-          content="Aura – L’intelligence qui révèle votre architecture : schémas directeurs, data, GenAI, dette technique."
+        <meta name="description" content="Aura – Architecture, Data & GenAI" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
         />
       </Head>
 
       <main className="page">
+        {/* GRID BACKGROUND */}
+        <div className="grid-bg" />
+
         {/* HERO */}
         <header className="hero">
           <div className="container">
             <div className="pill">Aura · Architecture, Data & GenAI</div>
-
-            <h1 className="hero-title">
-              Aura, l’architecte
-              <br />
-              de la connaissance.
-            </h1>
-
+            <h1 className="hero-title">Aura, l’architecte de la connaissance.</h1>
             <p className="hero-subtitle">
-              Une nouvelle génération de schéma directeur SI : IA, DDD, data,
-              logs et GenAI réunis pour révéler la vraie architecture de votre
-              entreprise – en moins de 30 jours.
+              Une plateforme d’architecture augmentée pour révéler les flux, les capacités,
+              les dépendances, et poser un schéma directeur clair en 30 jours.
             </p>
-
             <div className="hero-cta">
-              <a href="#contact" className="btn-primary">
-                Demander un échange
-              </a>
-              <a href="#offre" className="link-secondary">
-                Découvrir les offres →
-              </a>
+              <a href="#contact" className="btn-primary">Demander un échange</a>
+              <a href="#offre" className="link-secondary">Découvrir les offres →</a>
             </div>
           </div>
         </header>
@@ -70,77 +67,35 @@ export default function Home() {
             <a href="#offre">Offre</a>
             <a href="#method">Méthode 30 jours</a>
             <a href="#expertise">Expertises</a>
-            <a href="#tech">Dette technique & coûts IT</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
 
-        {/* OFFRE */}
+        {/* OFFER SECTION */}
         <section id="offre" className="section">
           <div className="container">
             <h2 className="section-title">Offres Aura</h2>
             <p className="section-subtitle">
-              Aura est un agent d’architecture qui combine stratégie, data,
-              observabilité et GenAI pour produire des schémas directeurs
-              clairs, factuels et exécutables.
+              Stratégie, data, observabilité et GenAI combinées pour produire des schémas directeurs
+              exécutables.
             </p>
 
             <div className="grid">
               <div className="card">
-                <h3>Schéma Directeur SI – 30 jours</h3>
-                <p>
-                  Un schéma directeur complet, orienté valeur et action, livré
-                  en 30 jours : vision, architecture cible, roadmap, budget,
-                  risques.
-                </p>
-                <ul>
-                  <li>• Vision métier & capabilities</li>
-                  <li>• Architecture applicative cible</li>
-                  <li>• Architecture data & ontologie</li>
-                  <li>• Roadmap 3 ans & quick wins</li>
-                </ul>
+                <h3>Schéma Directeur – 30 jours</h3>
+                <p>Vision, architecture cible, roadmap et décisions structurantes en moins d’un mois.</p>
               </div>
-
               <div className="card">
                 <h3>Audit SI & Observabilité</h3>
-                <p>
-                  Analyse des logs, des performances, des flux et des incidents
-                  pour comprendre comment votre SI vit réellement.
-                </p>
-                <ul>
-                  <li>• Analyse des logs par application</li>
-                  <li>• Cartographie des points de friction</li>
-                  <li>• Proposition d’observabilité (OpenTelemetry)</li>
-                  <li>• Indicateurs SLO / SLI / erreurs</li>
-                </ul>
+                <p>Analyse des logs, des flux, des incidents et des performances réelles du SI.</p>
               </div>
-
               <div className="card">
-                <h3>Cadrage GenAI à l’échelle</h3>
-                <p>
-                  Poser les fondations d’un usage maîtrisé de la GenAI :
-                  architecture d’agents, gouvernance, use cases, risques.
-                </p>
-                <ul>
-                  <li>• Cas d’usage prioritaires</li>
-                  <li>• Architecture d’agents & intégration SI</li>
-                  <li>• Gouvernance, sécurité, conformité</li>
-                  <li>• Plan de déploiement & ROI</li>
-                </ul>
+                <h3>Cadrage GenAI</h3>
+                <p>Architecture d’agents, gouvernance, sécurité et cas d’usage priorisés.</p>
               </div>
-
               <div className="card">
-                <h3>Data & Ontologie d’entreprise</h3>
-                <p>
-                  Une vision structurée de vos données, de leurs usages et de
-                  leur gouvernance, pour rendre votre SI vraiment data-driven.
-                </p>
-                <ul>
-                  <li>• Domains & data products</li>
-                  <li>• Ontologie d’entreprise</li>
-                  <li>• Rôles & responsabilité data</li>
-                  <li>• Plan de montée en maturité</li>
-                </ul>
+                <h3>Ontologie & Data</h3>
+                <p>Unification des données métiers, capacité data products et data governance.</p>
               </div>
             </div>
           </div>
@@ -150,9 +105,7 @@ export default function Home() {
         <section id="contact" className="section">
           <div className="container">
             <h2 className="section-title">Contact</h2>
-            <p className="section-subtitle">
-              Un échange de 30 minutes pour comprendre vos enjeux.
-            </p>
+            <p className="section-subtitle">Un échange de 30 minutes pour comprendre vos enjeux.</p>
 
             <div className="card">
               <form onSubmit={handleSubmit} className="form">
@@ -161,38 +114,28 @@ export default function Home() {
                   placeholder="Nom"
                   required
                   value={form.name}
-                  onChange={(e) =>
-                    setForm({ ...form, name: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
                 <input
                   type="email"
                   placeholder="Email professionnel"
                   required
                   value={form.email}
-                  onChange={(e) =>
-                    setForm({ ...form, email: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
                 <textarea
                   placeholder="Votre message"
                   required
                   value={form.message}
-                  onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
                 />
-
-                <button type="submit" className="btn-primary">
-                  Envoyer
-                </button>
+                <button type="submit" className="btn-primary">Envoyer</button>
 
                 {status === "ok" && (
                   <p style={{ color: "#4ade80", marginTop: "0.5rem" }}>
                     Merci, votre message a bien été envoyé.
                   </p>
                 )}
-
                 {status === "error" && (
                   <p style={{ color: "#f87171", marginTop: "0.5rem" }}>
                     Une erreur est survenue.
@@ -203,22 +146,31 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="footer">
-          Aura © 2025 – Architecture, Data & GenAI
-        </footer>
+        <footer className="footer">Aura © 2025 – Architecture, Data & GenAI</footer>
       </main>
 
       {/* STYLES */}
       <style jsx>{`
         body {
           margin: 0;
-          background: #060b16;
+          font-family: 'Inter', sans-serif;
+        }
+        .page {
+          background: #01040d;
           color: white;
-          font-family: Arial, sans-serif;
+          position: relative;
+          overflow-x: hidden;
         }
 
-        .page {
-          width: 100%;
+        /* GRID BACKGROUND */
+        .grid-bg {
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(#0a1223 1px, transparent 1px),
+            linear-gradient(90deg, #0a1223 1px, transparent 1px);
+          background-size: 40px 40px;
+          opacity: 0.12;
+          pointer-events: none;
         }
 
         .container {
@@ -228,8 +180,9 @@ export default function Home() {
         }
 
         .hero {
-          padding: 6rem 0;
+          padding: 6rem 0 5rem;
           text-align: center;
+          position: relative;
         }
 
         .pill {
@@ -238,30 +191,31 @@ export default function Home() {
           padding: 0.4rem 1rem;
           border-radius: 999px;
           margin-bottom: 1rem;
+          font-size: 0.9rem;
         }
 
         .hero-title {
-          font-size: 3rem;
-          font-weight: bold;
+          font-size: 3.2rem;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 1rem;
         }
 
         .hero-subtitle {
-          margin-top: 1rem;
           font-size: 1.3rem;
-          opacity: 0.8;
-        }
-
-        .hero-cta {
-          margin-top: 2rem;
+          opacity: 0.7;
+          max-width: 700px;
+          margin: 0 auto 2rem;
         }
 
         .btn-primary {
-          background: #3b82f6;
+          background: #2563eb;
           padding: 0.8rem 1.5rem;
           border-radius: 10px;
           color: white;
           text-decoration: none;
           margin-right: 1rem;
+          display: inline-block;
         }
 
         .link-secondary {
@@ -270,63 +224,19 @@ export default function Home() {
         }
 
         .nav {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.04);
           padding: 1rem;
-          backdrop-filter: blur(12px);
           position: sticky;
           top: 0;
-          z-index: 10;
+          backdrop-filter: blur(10px);
+          z-index: 20;
         }
 
         .nav-inner {
           display: flex;
           justify-content: center;
-          gap: 2rem;
+          gap: 2.5rem;
         }
 
         .section {
-          padding: 4rem 0;
-        }
-
-        .section-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-          text-align: center;
-        }
-
-        .section-subtitle {
-          margin-bottom: 2rem;
-          text-align: center;
-          opacity: 0.8;
-        }
-
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2rem;
-        }
-
-        .card {
-          background: rgba(255, 255, 255, 0.05);
-          padding: 2rem;
-          border-radius: 12px;
-        }
-
-        .form input,
-        .form textarea {
-          width: 100%;
-          padding: 0.8rem;
-          border-radius: 8px;
-          margin-bottom: 1rem;
-          border: none;
-        }
-
-        .footer {
-          text-align: center;
-          padding: 2rem;
-          opacity: 0.6;
-        }
-      `}</style>
-    </>
-  );
-}
+          padding:
