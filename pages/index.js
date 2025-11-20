@@ -39,15 +39,14 @@ export default function Home() {
         {/* HERO */}
         <header className="hero">
           <div className="container">
-            <div className="pill">
-              Aura · Architecture, Data & GenAI
-            </div>
+            <div className="pill">Aura · Architecture, Data & GenAI</div>
 
             <h1 className="hero-title">
               Aura, l’architecte
               <br />
               de la connaissance.
             </h1>
+
             <p className="hero-subtitle">
               Une nouvelle génération de schéma directeur SI : IA, DDD, data,
               logs et GenAI réunis pour révéler la vraie architecture de votre
@@ -183,13 +182,151 @@ export default function Home() {
                     setForm({ ...form, message: e.target.value })
                   }
                 />
+
                 <button type="submit" className="btn-primary">
                   Envoyer
                 </button>
+
                 {status === "ok" && (
-  <p style={{ color: "#4ade80", marginTop: "0.5rem" }}>
-    Merci, votre message a bien été envoyé.
-  </p>
-)}
+                  <p style={{ color: "#4ade80", marginTop: "0.5rem" }}>
+                    Merci, votre message a bien été envoyé.
+                  </p>
+                )}
 
+                {status === "error" && (
+                  <p style={{ color: "#f87171", marginTop: "0.5rem" }}>
+                    Une erreur est survenue.
+                  </p>
+                )}
+              </form>
+            </div>
+          </div>
+        </section>
 
+        <footer className="footer">
+          Aura © 2025 – Architecture, Data & GenAI
+        </footer>
+      </main>
+
+      {/* STYLES */}
+      <style jsx>{`
+        body {
+          margin: 0;
+          background: #060b16;
+          color: white;
+          font-family: Arial, sans-serif;
+        }
+
+        .page {
+          width: 100%;
+        }
+
+        .container {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+
+        .hero {
+          padding: 6rem 0;
+          text-align: center;
+        }
+
+        .pill {
+          background: rgba(255, 255, 255, 0.1);
+          display: inline-block;
+          padding: 0.4rem 1rem;
+          border-radius: 999px;
+          margin-bottom: 1rem;
+        }
+
+        .hero-title {
+          font-size: 3rem;
+          font-weight: bold;
+        }
+
+        .hero-subtitle {
+          margin-top: 1rem;
+          font-size: 1.3rem;
+          opacity: 0.8;
+        }
+
+        .hero-cta {
+          margin-top: 2rem;
+        }
+
+        .btn-primary {
+          background: #3b82f6;
+          padding: 0.8rem 1.5rem;
+          border-radius: 10px;
+          color: white;
+          text-decoration: none;
+          margin-right: 1rem;
+        }
+
+        .link-secondary {
+          color: #60a5fa;
+          text-decoration: none;
+        }
+
+        .nav {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 1rem;
+          backdrop-filter: blur(12px);
+          position: sticky;
+          top: 0;
+          z-index: 10;
+        }
+
+        .nav-inner {
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+        }
+
+        .section {
+          padding: 4rem 0;
+        }
+
+        .section-title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          text-align: center;
+        }
+
+        .section-subtitle {
+          margin-bottom: 2rem;
+          text-align: center;
+          opacity: 0.8;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+
+        .card {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 2rem;
+          border-radius: 12px;
+        }
+
+        .form input,
+        .form textarea {
+          width: 100%;
+          padding: 0.8rem;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+          border: none;
+        }
+
+        .footer {
+          text-align: center;
+          padding: 2rem;
+          opacity: 0.6;
+        }
+      `}</style>
+    </>
+  );
+}
