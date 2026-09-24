@@ -1,4 +1,5 @@
 import { AlertTriangle, ArrowRight, BatteryCharging, Bot, Check, CircleDot, Database, Network, ShieldCheck, Sparkles, Workflow } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
@@ -9,7 +10,7 @@ const copy = {
   en: {
     badge:"From alert to accountable decision", title:"Turn critical signals into decisions your business can defend.",
     lead:"AURA connects business facts, causal rules, executive dialogue and deterministic analysis — so Energy and Supply Chain teams decide faster, with evidence.",
-    primary:"Bring us a decision", secondary:"See how AURA works",
+    primary:"Bring us a decision", secondary:"See how AURA works", heroAlt:"Critical signals converging into one clear, accountable decision",
     proof:["A first decision in 20 days","No heavy integration to start","Every recommendation sourced"],
     pivot:"Two modes. One continuous decision context.", pivotLead:"The cockpit detects what matters. Decision mode turns it into scenarios, trade-offs and action. The AURA copilot stays with the decision throughout.",
     cockpit:"Cockpit",decision:"Decision",signal:"Priority signal",signalTitle:"Power threshold at risk — Lille site",exposure:"€1.8m exposure",horizon:"36h to impact",confidence:"82% confidence",causal:"Demand ↑ + contracted capacity ↓ + battery unavailable",
@@ -24,7 +25,7 @@ const copy = {
   fr: {
     badge:"Du signal à la décision responsable",title:"Transformez les signaux critiques en décisions défendables.",
     lead:"AURA relie faits métier, règles causales, dialogue dirigeant et analyse déterministe — pour décider plus vite dans l’énergie et la supply chain, avec des preuves.",
-    primary:"Apportez-nous une décision",secondary:"Voir comment fonctionne AURA",
+    primary:"Apportez-nous une décision",secondary:"Voir comment fonctionne AURA",heroAlt:"Des signaux critiques convergent vers une décision claire et responsable",
     proof:["Une première décision en 20 jours","Aucune intégration lourde pour démarrer","Chaque recommandation est sourcée"],
     pivot:"Deux modes. Un contexte de décision continu.",pivotLead:"Le cockpit détecte ce qui compte. Le mode Décision le transforme en scénarios, arbitrages et actions. Le copilote AURA reste présent de bout en bout.",
     cockpit:"Cockpit",decision:"Décision",signal:"Signal prioritaire",signalTitle:"Seuil de puissance à risque — site de Lille",exposure:"1,8 M€ exposés",horizon:"Impact dans 36 h",confidence:"Confiance 82 %",causal:"Demande ↑ + capacité contractuelle ↓ + batterie indisponible",
@@ -65,7 +66,7 @@ export function HomePage({locale}:{locale:Locale}) {
       <p className="aura-kicker"><Sparkles size={14}/>{c.badge}</p><h1>{c.title}</h1><p>{c.lead}</p>
       <div className="hero-actions"><Link className="btn btn-primary btn-lg" href={r.contact}>{c.primary}<ArrowRight size={17}/></Link><a className="quiet-link" href="#product">{c.secondary}<ArrowRight size={15}/></a></div>
       <ul className="hero-proof">{c.proof.map(x=><li key={x}><Check size={14}/>{x}</li>)}</ul>
-    </div><div className="hero-principle" aria-hidden><span>signal</span><i/><span>decision</span></div></div></section>
+    </div><div className="aura-hero-visual"><Image src="/images/candidates/aura-alert-to-decision.webp" alt={c.heroAlt} width={1280} height={960} priority sizes="(max-width: 960px) 100vw, 42vw"/></div></div></section>
 
     <section className="product-section" id="product"><div className="container"><SectionHeading title={c.pivot} lead={c.pivotLead} align="split"/><ProductSurface locale={locale}/></div></section>
 

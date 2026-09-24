@@ -8,8 +8,8 @@ import { routes, type Locale } from "@/lib/i18n";
 import { ArticleCard, CtaBanner, SectionHeading } from "../blocks";
 
 const config = {
-  energy: { image: "/images/energy.jpg", topic: "energy" },
-  supplyChain: { image: "/images/supply-chain.jpg", topic: "supply-chain" },
+  energy: { image: "/images/candidates/aura-energy-resilience.webp", topic: "energy" },
+  supplyChain: { image: "/images/candidates/aura-supply-chain-resilience.webp", topic: "supply-chain" },
 } as const;
 
 export function IndustryPage({ locale, industry: key }: { locale: Locale; industry: "energy" | "supplyChain" }) {

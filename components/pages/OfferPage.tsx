@@ -6,7 +6,7 @@ import { routes, type Locale } from "@/lib/i18n";
 import { CtaBanner, Faq, OfferCard, SectionHeading, Steps } from "../blocks";
 import { DecisionRecordMockup } from "../DecisionRecordMockup";
 
-const images = { decide: "/images/decide.jpg", architect: "/images/architecture-team.jpg" };
+const images = { decide: "/images/candidates/aura-decision-sprint.webp", architect: "/images/architecture-team.jpg" };
 
 export function OfferPage({ locale, offer: key }: { locale: Locale; offer: "decide" | "architect" }) {
   const dict = getDictionary(locale);
