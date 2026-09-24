@@ -17,23 +17,6 @@ export function Header({
       label: dict.nav.offers,
       items: [
         {
-          href: r.decide,
-          title: dict.offers.decide.name,
-          text: dict.offers.decide.sprint,
-          meta: dict.offers.decide.duration,
-        },
-        {
-          href: r.architect,
-          title: dict.offers.architect.name,
-          text: dict.offers.architect.sprint,
-          meta: dict.offers.architect.duration,
-        },
-      ],
-    },
-    {
-      label: dict.nav.industries,
-      items: [
-        {
           href: r.energy,
           title: dict.industries.energy.name,
           text: dict.industries.energy.audience.slice(0, 3).join(" · "),
@@ -45,6 +28,7 @@ export function Header({
         },
       ],
     },
+    { label: dict.offers.decide.sprint, href: r.decide },
     { label: dict.nav.insights, href: r.insights },
     { label: dict.nav.contact, href: r.contact },
   ];

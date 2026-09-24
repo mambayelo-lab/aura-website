@@ -139,13 +139,13 @@ export type Dictionary = {
 
 const en: Dictionary = {
   meta: {
-    title: "AURA — Decision Intelligence & Transformation Architecture",
+    title: "AURA — From critical signals to accountable decisions",
     description:
-      "AURA secures complex investment, transformation and architecture decisions when data is incomplete, objectives conflict and industrial consequences are significant.",
+      "AURA turns critical Energy and Supply Chain signals into faster, evidence-based and traceable decisions.",
   },
   nav: {
     home: "AURA home",
-    offers: "Offers",
+    offers: "Solutions",
     industries: "Industries",
     insights: "Insights",
     contact: "Contact",
@@ -519,13 +519,13 @@ const en: Dictionary = {
 
 const fr: Dictionary = {
   meta: {
-    title: "AURA — Intelligence décisionnelle & architecture de transformation",
+    title: "AURA — Du signal critique à la décision responsable",
     description:
-      "AURA sécurise les décisions complexes d’investissement, de transformation et d’architecture lorsque les données sont incomplètes, les objectifs contradictoires et les conséquences industrielles importantes.",
+      "AURA transforme les signaux critiques de l’énergie et de la supply chain en décisions plus rapides, sourcées et traçables.",
   },
   nav: {
     home: "Accueil AURA",
-    offers: "Offres",
+    offers: "Solutions",
     industries: "Secteurs",
     insights: "Perspectives",
     contact: "Contact",

@@ -1,220 +1,87 @@
-import {
-  ArrowLeftRight,
-  ArrowRight,
-  ArrowUpRight,
-  BatteryCharging,
-  Factory,
-  GitBranch,
-  Network,
-  Rocket,
-  Shapes,
-  Sparkles,
-  Waves,
-  Workflow,
-} from "lucide-react";
-import Image from "next/image";
+import { AlertTriangle, ArrowRight, BatteryCharging, Bot, Check, CircleDot, Database, Network, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import Link from "next/link";
 import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
-import { getPositioning } from "@/content/positioning";
 import { routes, type Locale } from "@/lib/i18n";
-import { ArticleCard, CtaBanner, OfferCard, SectionHeading, Steps } from "../blocks";
-import { DecisionRecordMockup } from "../DecisionRecordMockup";
+import { ArticleCard, CtaBanner, SectionHeading } from "../blocks";
 
-const capabilityIcons = [Shapes, ArrowLeftRight, Waves, GitBranch, Rocket];
-const caseIcons = [BatteryCharging, Factory, Network, Workflow];
+const copy = {
+  en: {
+    badge:"From alert to accountable decision", title:"Turn critical signals into decisions your business can defend.",
+    lead:"AURA connects business facts, causal rules, executive dialogue and deterministic analysis — so Energy and Supply Chain teams decide faster, with evidence.",
+    primary:"Bring us a decision", secondary:"See how AURA works",
+    proof:["A first decision in 20 days","No heavy integration to start","Every recommendation sourced"],
+    pivot:"Two modes. One continuous decision context.", pivotLead:"The cockpit detects what matters. Decision mode turns it into scenarios, trade-offs and action. The AURA copilot stays with the decision throughout.",
+    cockpit:"Cockpit",decision:"Decision",signal:"Priority signal",signalTitle:"Power threshold at risk — Lille site",exposure:"€1.8m exposure",horizon:"36h to impact",confidence:"82% confidence",causal:"Demand ↑ + contracted capacity ↓ + battery unavailable",
+    llmTitle:"AURA Copilot",question:"What should I address first?",answer:"The Lille site. Three verified facts converge and the decision window closes in 36 hours.",action1:"Explain causes",action2:"Open decision",
+    layerEyebrow:"The missing decision layer",layerTitle:"Your systems monitor. Your models optimise. AURA helps leaders decide.",layerLead:"AURA does not replace operational systems, experts or solvers. It brings their outputs into one explainable and traceable decision flow.",
+    layers:[["Observe","ERP, SCADA, WMS, markets, files or expert inputs."],["Explain","A minimal ontology and causal rules reveal why the signal matters."],["Decide","The copilot frames scenarios; BORA tests constraints, vetoes and repairs."],["Act & learn","The leader validates, actions are followed and assumptions reopen when facts change."]],
+    productsEyebrow:"Two products",productsTitle:"Built around the decisions that protect operations and capital.",productsLead:"A shared AURA core. A dedicated ontology, causal rulebook and decision catalogue for each operating environment.",
+    energy:{name:"Energy Resilience Agent",text:"Anticipate power, continuity, storage, price and contract risks — then choose the safest economically viable response.",alerts:["Power exceedance","Outage & load shedding","Battery availability","Coverage & price exposure"],link:"Explore Energy"},
+    supply:{name:"Supply Chain Resilience Agent",text:"Detect supplier, inventory, transport and capacity risks — then protect service and margin without hiding trade-offs.",alerts:["Supplier disruption","Projected stock-out","Critical shipment delay","Allocation under shortage"],link:"Explore Supply Chain"},
+    sprintEyebrow:"The fastest way to start",sprintTitle:"One real decision. One working AURA model. Twenty days maximum.",sprintLead:"The Decision Sprint proves value before integration: we configure the minimum business context, test real scenarios and deliver a decision record your committee can challenge and approve.",sprintSteps:["Frame the decision","Connect the minimum facts","Test scenarios with BORA","Validate and operationalise"],sprintCta:"Start a Decision Sprint",architect:"Transformation architecture is available when the decision requires systems, data, integration and a delivery backlog. It is an implementation extension — not a prerequisite.",insights:"Recent thinking",insightsTitle:"Decision intelligence for industrial reality."
+  },
+  fr: {
+    badge:"Du signal à la décision responsable",title:"Transformez les signaux critiques en décisions défendables.",
+    lead:"AURA relie faits métier, règles causales, dialogue dirigeant et analyse déterministe — pour décider plus vite dans l’énergie et la supply chain, avec des preuves.",
+    primary:"Apportez-nous une décision",secondary:"Voir comment fonctionne AURA",
+    proof:["Une première décision en 20 jours","Aucune intégration lourde pour démarrer","Chaque recommandation est sourcée"],
+    pivot:"Deux modes. Un contexte de décision continu.",pivotLead:"Le cockpit détecte ce qui compte. Le mode Décision le transforme en scénarios, arbitrages et actions. Le copilote AURA reste présent de bout en bout.",
+    cockpit:"Cockpit",decision:"Décision",signal:"Signal prioritaire",signalTitle:"Seuil de puissance à risque — site de Lille",exposure:"1,8 M€ exposés",horizon:"Impact dans 36 h",confidence:"Confiance 82 %",causal:"Demande ↑ + capacité contractuelle ↓ + batterie indisponible",
+    llmTitle:"Copilote AURA",question:"Que dois-je traiter en priorité ?",answer:"Le site de Lille. Trois faits vérifiés convergent et la fenêtre de décision se referme dans 36 heures.",action1:"Expliquer les causes",action2:"Ouvrir la décision",
+    layerEyebrow:"La couche de décision manquante",layerTitle:"Vos systèmes surveillent. Vos modèles optimisent. AURA aide les dirigeants à décider.",layerLead:"AURA ne remplace ni les systèmes opérationnels, ni les experts, ni les solveurs. Elle réunit leurs résultats dans un parcours de décision explicable et traçable.",
+    layers:[["Observer","ERP, SCADA, WMS, marchés, fichiers ou apports experts."],["Expliquer","Une ontologie minimale et des règles causales révèlent pourquoi le signal compte."],["Décider","Le copilote structure les scénarios ; BORA teste contraintes, veto et réparations."],["Agir et apprendre","Le dirigeant valide, les actions sont suivies et les hypothèses rouvertes si les faits changent."]],
+    productsEyebrow:"Deux produits",productsTitle:"Conçus autour des décisions qui protègent les opérations et le capital.",productsLead:"Un noyau AURA partagé. Une ontologie, des règles causales et un catalogue de décisions propres à chaque environnement.",
+    energy:{name:"Energy Resilience Agent",text:"Anticipez les risques de puissance, continuité, stockage, prix et contrats — puis choisissez la réponse la plus sûre et économiquement viable.",alerts:["Dépassement de puissance","Rupture et délestage","Disponibilité batterie","Couverture et exposition prix"],link:"Découvrir Energy"},
+    supply:{name:"Supply Chain Resilience Agent",text:"Détectez les risques fournisseur, stock, transport et capacité — puis protégez le service et la marge sans masquer les arbitrages.",alerts:["Rupture fournisseur","Stock projeté sous seuil","Retard transport critique","Allocation sous pénurie"],link:"Découvrir Supply Chain"},
+    sprintEyebrow:"La voie la plus rapide",sprintTitle:"Une décision réelle. Un modèle AURA opérationnel. Vingt jours maximum.",sprintLead:"Le Decision Sprint prouve la valeur avant l’intégration : nous configurons le contexte métier minimal, testons les vrais scénarios et livrons un dossier que votre comité peut challenger et approuver.",sprintSteps:["Cadrer la décision","Connecter les faits minimaux","Tester avec BORA","Valider et opérationnaliser"],sprintCta:"Lancer un Decision Sprint",architect:"L’architecture de transformation intervient lorsque la décision exige des systèmes, des données, des intégrations et un backlog. C’est une extension de mise en œuvre — pas un prérequis.",insights:"Analyses récentes",insightsTitle:"La Decision Intelligence confrontée au réel industriel."
+  }
+} as const;
 
-export function HomePage({ locale }: { locale: Locale }) {
-  const dict = getDictionary(locale);
-  const h = dict.home;
-  const why = getPositioning(locale).why;
-  const r = routes[locale];
-  const articles = getArticles(locale);
-  const featured = [articles[0], articles[2], articles[6]];
-  const industries = [
-    { data: dict.industries.energy, href: r.energy, image: "/images/energy.jpg", icon: BatteryCharging },
-    { data: dict.industries.supplyChain, href: r.supplyChain, image: "/images/supply-chain.jpg", icon: Network },
-  ];
+function ProductSurface({locale}:{locale:Locale}) {
+  const c=copy[locale];
+  return <div className="product-surface" aria-label={c.pivot}>
+    <div className="surface-main">
+      <div className="surface-topbar"><div className="mode-switch"><span className="is-active">{c.cockpit}</span><span>{c.decision}</span></div><span className="live-state"><i/>Live</span></div>
+      <div className="signal-heading"><span><AlertTriangle size={16}/>{c.signal}</span><small>{c.horizon}</small></div>
+      <h3>{c.signalTitle}</h3>
+      <div className="signal-metrics">{[c.exposure,c.horizon,c.confidence].map(x=><span key={x}>{x}</span>)}</div>
+      <div className="micro-chart" aria-hidden><svg viewBox="0 0 620 122" preserveAspectRatio="none"><path className="chart-area" d="M0,104 C65,88 86,102 132,72 S222,92 260,60 S345,78 392,44 S482,68 520,30 S584,34 620,12 L620,122 L0,122 Z"/><path className="chart-line" d="M0,104 C65,88 86,102 132,72 S222,92 260,60 S345,78 392,44 S482,68 520,30 S584,34 620,12"/><line x1="0" x2="620" y1="46" y2="46"/></svg></div>
+      <div className="causal-line"><CircleDot size={15}/><span>{c.causal}</span></div>
+    </div>
+    <aside className="copilot-rail">
+      <div className="copilot-title"><span><Bot size={17}/></span>{c.llmTitle}<i/></div>
+      <p className="user-message">{c.question}</p><div className="aura-message"><Sparkles size={16}/><p>{c.answer}</p></div>
+      <div className="evidence-row"><span><Database size={13}/>3 facts</span><span><ShieldCheck size={13}/>sourced</span></div>
+      <button type="button">{c.action1}</button><button type="button" className="copilot-primary">{c.action2}<ArrowRight size={14}/></button>
+    </aside>
+  </div>;
+}
 
-  return (
-    <>
-      <section className="hero">
-        <div className="hero-backdrop" aria-hidden />
-        <div className="container hero-copy">
-          <Link className="hero-badge" href={r.decide}>
-            <span className="hero-badge-icon">
-              <Sparkles size={13} aria-hidden />
-            </span>
-            {h.badge}
-            <ArrowRight size={14} aria-hidden />
-          </Link>
-          <h1 className="title-display">
-            <span className="title-line">{h.titleStart}</span>{" "}
-            <span className="title-line">
-              <em>{h.titleEmphasis}</em> {h.titleEnd}
-            </span>
-          </h1>
-          <p className="lead lead-lg">{h.lead}</p>
-          <div className="hero-actions">
-            <Link className="btn btn-primary btn-lg" href={r.contact}>
-              {h.primary} <ArrowRight size={17} aria-hidden />
-            </Link>
-            <a className="btn btn-secondary btn-lg" href="#offers">
-              {h.secondary}
-            </a>
-          </div>
-        </div>
-        <div className="container hero-visual">
-          <DecisionRecordMockup dict={dict} />
-        </div>
-        <div className="container">
-          <dl className="facts">
-            {h.facts.map((fact) => (
-              <div key={fact.value} className="fact">
-                <dt>{fact.value}</dt>
-                <dd>{fact.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+export function HomePage({locale}:{locale:Locale}) {
+  const c=copy[locale],dict=getDictionary(locale),r=routes[locale],articles=getArticles(locale).slice(0,3);
+  return <>
+    <section className="aura-hero"><div className="container aura-hero-grid"><div className="aura-hero-copy">
+      <p className="aura-kicker"><Sparkles size={14}/>{c.badge}</p><h1>{c.title}</h1><p>{c.lead}</p>
+      <div className="hero-actions"><Link className="btn btn-primary btn-lg" href={r.contact}>{c.primary}<ArrowRight size={17}/></Link><a className="quiet-link" href="#product">{c.secondary}<ArrowRight size={15}/></a></div>
+      <ul className="hero-proof">{c.proof.map(x=><li key={x}><Check size={14}/>{x}</li>)}</ul>
+    </div><div className="hero-principle" aria-hidden><span>signal</span><i/><span>decision</span></div></div></section>
 
-      <section className="section">
-        <div className="container">
-          <SectionHeading eyebrow={why.eyebrow} title={why.title} lead={why.lead} align="split" />
-          <figure className="question-card reveal">
-            <p className="question-before">
-              {why.question.before} <span className="question-not">{why.question.not}</span> {why.question.but}
-            </p>
-            <blockquote>{why.question.answer}</blockquote>
-          </figure>
-          <h3 className="capabilities-title">{why.capabilitiesTitle}</h3>
-          <div className="capabilities">
-            {why.capabilities.map((capability, index) => {
-              const Icon = capabilityIcons[index];
-              return (
-                <article key={capability.title} className="card capability reveal">
-                  <span className="icon-tile">
-                    <Icon size={20} aria-hidden />
-                  </span>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.text}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <section className="product-section" id="product"><div className="container"><SectionHeading title={c.pivot} lead={c.pivotLead} align="split"/><ProductSurface locale={locale}/></div></section>
 
-      <section className="section section-muted" id="offers">
-        <div className="container">
-          <SectionHeading eyebrow={h.offers.eyebrow} title={h.offers.title} lead={h.offers.lead} align="split" />
-          <div className="offer-grid">
-            <OfferCard offer={dict.offers.decide} href={r.decide} index={1} dict={dict} />
-            <OfferCard offer={dict.offers.architect} href={r.architect} index={2} dict={dict} dark />
-          </div>
-        </div>
-      </section>
+    <section className="section decision-layer"><div className="container"><SectionHeading eyebrow={c.layerEyebrow} title={c.layerTitle} lead={c.layerLead} align="split"/>
+      <ol className="layer-flow">{c.layers.map(([title,text],i)=><li key={title}><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
+    </div></section>
 
-      <section className="section section-dark">
-        <div className="dark-grid" aria-hidden />
-        <div className="container">
-          <SectionHeading eyebrow={h.method.eyebrow} title={h.method.title} lead={h.method.lead} align="split" />
-          <Steps steps={h.method.steps} />
-          <div className="flows">
-            {[h.method.forward, h.method.backward].map((flow, index) => (
-              <article key={flow.title} className={`flow reveal ${index === 0 ? "flow-forward" : "flow-backward"}`}>
-                <h3>{flow.title}</h3>
-                <p>{flow.text}</p>
-                <ol className="flow-chain">
-                  {flow.chain.map((node) => (
-                    <li key={node}>{node}</li>
-                  ))}
-                </ol>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+    <section className="section products-section" id="products"><div className="container"><SectionHeading eyebrow={c.productsEyebrow} title={c.productsTitle} lead={c.productsLead} align="split"/>
+      <div className="agent-grid">
+        <article className="agent-card agent-energy"><div className="agent-card-top"><div className="agent-icon"><BatteryCharging size={22}/></div><p>01</p></div><h3>{c.energy.name}</h3><p>{c.energy.text}</p><ul>{c.energy.alerts.map(x=><li key={x}><AlertTriangle size={14}/>{x}</li>)}</ul><Link href={r.energy}>{c.energy.link}<ArrowRight size={15}/></Link></article>
+        <article className="agent-card agent-supply"><div className="agent-card-top"><div className="agent-icon"><Network size={22}/></div><p>02</p></div><h3>{c.supply.name}</h3><p>{c.supply.text}</p><ul>{c.supply.alerts.map(x=><li key={x}><CircleDot size={14}/>{x}</li>)}</ul><Link href={r.supplyChain}>{c.supply.link}<ArrowRight size={15}/></Link></article>
+      </div>
+    </div></section>
 
-      <section className="section" id="industries">
-        <div className="container">
-          <SectionHeading
-            eyebrow={h.industries.eyebrow}
-            title={h.industries.title}
-            lead={h.industries.lead}
-            align="split"
-          />
-          <div className="industry-grid">
-            {industries.map(({ data, href, image, icon: Icon }) => (
-              <Link key={href} href={href} className="industry-card reveal">
-                <div className="industry-card-media">
-                  <Image
-                    src={image}
-                    alt={data.imageAlt}
-                    width={1536}
-                    height={1152}
-                    sizes="(max-width: 860px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="industry-card-body">
-                  <p className="industry-kicker">
-                    <Icon size={16} aria-hidden /> {data.kicker}
-                  </p>
-                  <h3>{data.name}</h3>
-                  <p>{data.lead}</p>
-                  <ul className="tags">
-                    {data.decisions.map((decision) => (
-                      <li key={decision.title}>{decision.title}</li>
-                    ))}
-                  </ul>
-                  <span className="text-link">
-                    {dict.common.learnMore} <ArrowUpRight size={16} aria-hidden />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+    <section className="section sprint-section"><div className="container sprint-layout"><div><p className="eyebrow">{c.sprintEyebrow}</p><h2 className="title-lg">{c.sprintTitle}</h2><p className="lead">{c.sprintLead}</p><Link className="btn btn-primary btn-lg" href={r.contact}>{c.sprintCta}<ArrowRight size={17}/></Link></div><div className="sprint-aside"><ol>{c.sprintSteps.map((x,i)=><li key={x}><span>{i+1}</span>{x}</li>)}</ol><p><Workflow size={18}/>{c.architect}</p></div></div></section>
 
-      <section className="section section-muted">
-        <div className="container">
-          <SectionHeading eyebrow={h.cases.eyebrow} title={h.cases.title} lead={h.cases.lead} align="split" />
-          <div className="case-grid">
-            {h.cases.items.map((item, index) => {
-              const Icon = caseIcons[index];
-              return (
-                <article key={item.title} className="card case-card reveal">
-                  <span className="icon-tile">
-                    <Icon size={20} aria-hidden />
-                  </span>
-                  <p className="case-tag">{item.tag}</p>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <SectionHeading eyebrow={h.insights.eyebrow} title={h.insights.title} lead={h.insights.lead} align="split">
-            <Link className="text-link" href={r.insights}>
-              {dict.common.allInsights} <ArrowRight size={16} aria-hidden />
-            </Link>
-          </SectionHeading>
-          <div className="article-grid">
-            {featured.map((article) => (
-              <ArticleCard key={article.slug} article={article} locale={locale} dict={dict} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CtaBanner locale={locale} dict={dict} />
-    </>
-  );
+    <section className="section insights-clean"><div className="container"><SectionHeading eyebrow={c.insights} title={c.insightsTitle} align="split"/><div className="article-grid">{articles.map(a=><ArticleCard key={a.slug} article={a} locale={locale} dict={dict}/>)}</div></div></section><CtaBanner locale={locale} dict={dict}/>
+  </>;
 }
