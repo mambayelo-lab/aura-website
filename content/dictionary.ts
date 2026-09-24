@@ -68,7 +68,6 @@ export type Dictionary = {
     primary: string;
     secondary: string;
     facts: { value: string; label: string }[];
-    why: { eyebrow: string; title: string; lead: string; pillars: Item[] };
     offers: { eyebrow: string; title: string; lead: string };
     method: {
       eyebrow: string;
@@ -142,7 +141,7 @@ const en: Dictionary = {
   meta: {
     title: "AURA — Decision Intelligence & Transformation Architecture",
     description:
-      "AURA de-risks strategies, new products and digital transformations before irreversible investment begins. Decision Sprint in 20 days max, Architecture Sprint in 4 to 8 weeks.",
+      "AURA secures complex investment, transformation and architecture decisions when data is incomplete, objectives conflict and industrial consequences are significant.",
   },
   nav: {
     home: "AURA home",
@@ -177,7 +176,7 @@ const en: Dictionary = {
     titleStart: "Decide what must change.",
     titleEmphasis: "Architect",
     titleEnd: "what comes next.",
-    lead: "AURA de-risks strategies, new products and digital transformations before irreversible investment begins.",
+    lead: "AURA secures complex investment, transformation and architecture decisions — when data is incomplete, objectives conflict and industrial consequences are significant.",
     primary: "Frame a decision",
     secondary: "Explore the offers",
     facts: [
@@ -186,25 +185,6 @@ const en: Dictionary = {
       { value: "2 sprints", label: "decide, then architect" },
       { value: "Zero", label: "heavy integration to get started" },
     ],
-    why: {
-      eyebrow: "Why AURA",
-      title: "AI can read a file. It cannot arbitrate a decision.",
-      lead: "A convincing answer is not a decision. AURA separates understanding from arbitration, so every recommendation can be explained, tested and defended.",
-      pillars: [
-        {
-          title: "Explicit",
-          text: "Objectives, non-negotiable constraints and unknowns are laid out before any option is scored. A favourable average can never hide a critical blocker.",
-        },
-        {
-          title: "Tested",
-          text: "Every option is replayed across scenarios. Forward shows the consequences; Backward finds the minimum change that makes a strategy acceptable.",
-        },
-        {
-          title: "Defensible",
-          text: "Each result keeps its sources, assumptions, rules and validity date. Decision-makers can replay it, challenge it — and commit to it.",
-        },
-      ],
-    },
     offers: {
       eyebrow: "Two offers. One value chain.",
       title: "From the right decision to an executable transformation.",
@@ -272,18 +252,24 @@ const en: Dictionary = {
   },
   mockup: {
     title: "Decision Record",
-    subtitle: "Battery storage investment · Site B",
+    subtitle: "Battery investment · Industrial site",
     columns: ["Option", "Return", "Grid", "Safety", "Resilience", "Verdict"],
     options: [
-      { name: "Option A", detail: "20 MWh battery", scores: [92, 38, 80, 74], verdict: "Blocked", tone: "warn" },
-      { name: "Option B", detail: "10 MWh + PPA", scores: [78, 84, 88, 81], verdict: "Recommended", tone: "good" },
-      { name: "Option C", detail: "Defer 12 months", scores: [55, 90, 92, 32], verdict: "Rejected", tone: "bad" },
+      { name: "Option A", detail: "20 MW / 80 MWh", scores: [46, 58, 80, 88], verdict: "Fragile", tone: "warn" },
+      {
+        name: "Option B",
+        detail: "12 MW / 48 MWh",
+        scores: [78, 84, 88, 81],
+        verdict: "Go · conditions",
+        tone: "good",
+      },
+      { name: "Option C", detail: "No investment", scores: [60, 95, 92, 22], verdict: "No-Go", tone: "bad" },
     ],
     recommendation: "Recommendation",
     recommended: "Option B",
     robustness: "Robust in 4 of 5 scenarios",
-    backwardTitle: "Backward · what would make Option A acceptable",
-    backwardItems: ["CAPEX −8%", "Grid connection before Q3", "Stronger availability guarantee"],
+    backwardTitle: "Conditions for Go",
+    backwardItems: ["Grid-services contract secured", "Grid connection confirmed", "10-year supplier warranty"],
     evidence: [
       { value: "14", label: "sources" },
       { value: "9", label: "assumptions" },
@@ -329,7 +315,7 @@ const en: Dictionary = {
         },
         {
           title: "Recommendation and Decision Record",
-          text: "A clear recommendation with its sources, assumptions, applied rules and validity date — replayable and open to challenge.",
+          text: "A Go / Go under conditions / No-Go verdict with its sources, assumptions, applied rules and validity date — replayable and open to challenge.",
         },
       ],
       process: {
@@ -535,7 +521,7 @@ const fr: Dictionary = {
   meta: {
     title: "AURA — Intelligence décisionnelle & architecture de transformation",
     description:
-      "AURA dérisque vos stratégies, nouveaux produits et transformations digitales avant l’investissement irréversible. Decision Sprint en 20 jours max, Architecture Sprint en 4 à 8 semaines.",
+      "AURA sécurise les décisions complexes d’investissement, de transformation et d’architecture lorsque les données sont incomplètes, les objectifs contradictoires et les conséquences industrielles importantes.",
   },
   nav: {
     home: "Accueil AURA",
@@ -570,7 +556,7 @@ const fr: Dictionary = {
     titleStart: "Décidez ce qu’il faut changer.",
     titleEmphasis: "Architecturez",
     titleEnd: "ce qui vient ensuite.",
-    lead: "AURA dérisque vos stratégies, nouveaux produits et transformations digitales avant que l’investissement ne devienne irréversible.",
+    lead: "AURA sécurise les décisions complexes d’investissement, de transformation et d’architecture — lorsque les données sont incomplètes, les objectifs contradictoires et les conséquences industrielles importantes.",
     primary: "Cadrer une décision",
     secondary: "Découvrir les offres",
     facts: [
@@ -579,25 +565,6 @@ const fr: Dictionary = {
       { value: "2 sprints", label: "décider, puis architecturer" },
       { value: "Zéro", label: "intégration lourde pour démarrer" },
     ],
-    why: {
-      eyebrow: "Pourquoi AURA",
-      title: "Une IA sait lire un dossier. Elle ne sait pas arbitrer une décision.",
-      lead: "Une réponse convaincante n’est pas une décision. AURA sépare la compréhension de l’arbitrage : chaque recommandation peut être expliquée, testée et défendue.",
-      pillars: [
-        {
-          title: "Explicite",
-          text: "Objectifs, contraintes non négociables et inconnues sont posés avant toute évaluation. Une bonne moyenne ne peut jamais masquer un point bloquant.",
-        },
-        {
-          title: "Testée",
-          text: "Chaque option est rejouée sur plusieurs scénarios. Le Forward montre les conséquences ; le Backward trouve le changement minimal qui rend une stratégie acceptable.",
-        },
-        {
-          title: "Défendable",
-          text: "Chaque résultat conserve ses sources, hypothèses, règles et date de validité. Le décideur peut le rejouer, le contester — et s’engager.",
-        },
-      ],
-    },
     offers: {
       eyebrow: "Deux offres. Une chaîne de valeur.",
       title: "De la bonne décision à une transformation exécutable.",
@@ -665,18 +632,24 @@ const fr: Dictionary = {
   },
   mockup: {
     title: "Decision Record",
-    subtitle: "Investissement stockage batterie · Site B",
+    subtitle: "Investissement batterie · Site industriel",
     columns: ["Option", "Rentabilité", "Réseau", "Sécurité", "Résilience", "Verdict"],
     options: [
-      { name: "Option A", detail: "Batterie 20 MWh", scores: [92, 38, 80, 74], verdict: "Bloquée", tone: "warn" },
-      { name: "Option B", detail: "10 MWh + PPA", scores: [78, 84, 88, 81], verdict: "Recommandée", tone: "good" },
-      { name: "Option C", detail: "Reporter 12 mois", scores: [55, 90, 92, 32], verdict: "Rejetée", tone: "bad" },
+      { name: "Option A", detail: "20 MW / 80 MWh", scores: [46, 58, 80, 88], verdict: "Fragile", tone: "warn" },
+      {
+        name: "Option B",
+        detail: "12 MW / 48 MWh",
+        scores: [78, 84, 88, 81],
+        verdict: "Go · conditions",
+        tone: "good",
+      },
+      { name: "Option C", detail: "Pas d’investissement", scores: [60, 95, 92, 22], verdict: "No-Go", tone: "bad" },
     ],
     recommendation: "Recommandation",
     recommended: "Option B",
     robustness: "Robuste dans 4 scénarios sur 5",
-    backwardTitle: "Backward · ce qui rendrait l’option A acceptable",
-    backwardItems: ["CAPEX −8 %", "Raccordement avant le T3", "Garantie de disponibilité renforcée"],
+    backwardTitle: "Conditions du Go",
+    backwardItems: ["Contrat de services réseau sécurisé", "Raccordement confirmé", "Garantie fournisseur de dix ans"],
     evidence: [
       { value: "14", label: "sources" },
       { value: "9", label: "hypothèses" },
@@ -722,7 +695,7 @@ const fr: Dictionary = {
         },
         {
           title: "Recommandation et Decision Record",
-          text: "Une recommandation claire avec ses sources, hypothèses, règles appliquées et date de validité — rejouable et contestable.",
+          text: "Un verdict Go / Go sous conditions / No-Go avec ses sources, hypothèses, règles appliquées et date de validité — rejouable et contestable.",
         },
       ],
       process: {

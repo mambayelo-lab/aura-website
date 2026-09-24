@@ -1,29 +1,33 @@
 import {
+  ArrowLeftRight,
   ArrowRight,
   ArrowUpRight,
   BatteryCharging,
   Factory,
-  FlaskConical,
+  GitBranch,
   Network,
-  ScanSearch,
-  ShieldCheck,
+  Rocket,
+  Shapes,
   Sparkles,
+  Waves,
   Workflow,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
+import { getPositioning } from "@/content/positioning";
 import { routes, type Locale } from "@/lib/i18n";
 import { ArticleCard, CtaBanner, OfferCard, SectionHeading, Steps } from "../blocks";
 import { DecisionRecordMockup } from "../DecisionRecordMockup";
 
-const pillarIcons = [ScanSearch, FlaskConical, ShieldCheck];
+const capabilityIcons = [Shapes, ArrowLeftRight, Waves, GitBranch, Rocket];
 const caseIcons = [BatteryCharging, Factory, Network, Workflow];
 
 export function HomePage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const h = dict.home;
+  const why = getPositioning(locale).why;
   const r = routes[locale];
   const articles = getArticles(locale);
   const featured = [articles[0], articles[2], articles[6]];
@@ -77,17 +81,24 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section">
         <div className="container">
-          <SectionHeading eyebrow={h.why.eyebrow} title={h.why.title} lead={h.why.lead} align="split" />
-          <div className="pillars">
-            {h.why.pillars.map((pillar, index) => {
-              const Icon = pillarIcons[index];
+          <SectionHeading eyebrow={why.eyebrow} title={why.title} lead={why.lead} align="split" />
+          <figure className="question-card reveal">
+            <p className="question-before">
+              {why.question.before} <span className="question-not">{why.question.not}</span> {why.question.but}
+            </p>
+            <blockquote>{why.question.answer}</blockquote>
+          </figure>
+          <h3 className="capabilities-title">{why.capabilitiesTitle}</h3>
+          <div className="capabilities">
+            {why.capabilities.map((capability, index) => {
+              const Icon = capabilityIcons[index];
               return (
-                <article key={pillar.title} className="card pillar reveal">
+                <article key={capability.title} className="card capability reveal">
                   <span className="icon-tile">
                     <Icon size={20} aria-hidden />
                   </span>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.text}</p>
+                  <h3>{capability.title}</h3>
+                  <p>{capability.text}</p>
                 </article>
               );
             })}
