@@ -1,14 +1,6 @@
-export type Article = {
-  slug: string;
-  category: string;
-  title: string;
-  standfirst: string;
-  readTime: string;
-  body: string[];
-  takeaways: string[];
-};
+import type { Article } from "./articles";
 
-export const articles: Article[] = [
+export const articlesFr: Article[] = [
   {
     slug: "llm-arbitrer-decision",
     category: "Décision explicable",
