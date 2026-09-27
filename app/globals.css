@@ -2526,7 +2526,7 @@ button {
   z-index: 1;
   pointer-events: none;
   border-radius: inherit;
-  background: linear-gradient(160deg, var(--indigo-a06), transparent 45%, var(--indigo-a18));
+  background: linear-gradient(180deg, transparent 60%, rgba(10, 11, 30, 0.12));
   box-shadow: inset 0 0 0 1px var(--white-a35);
 }
 .media > figcaption,
@@ -2923,15 +2923,16 @@ a:hover .media img,
 .hero-photo img {
   object-fit: cover;
   object-position: 70% 40%;
-  opacity: 0.5;
+  opacity: 0.8;
+  filter: saturate(1.15);
 }
 .hero-photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--black) 0%, var(--black-a55) 55%, transparent 100%),
-    linear-gradient(0deg, var(--navy) 0%, transparent 35%);
+    linear-gradient(90deg, rgba(10, 11, 30, 0.88) 0%, rgba(10, 11, 30, 0.45) 45%, transparent 75%),
+    linear-gradient(0deg, rgba(21, 29, 82, 0.7) 0%, transparent 30%);
 }
 .hero.dark .eyebrow-pill {
   background: var(--indigo-a28);
