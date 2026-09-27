@@ -11,7 +11,9 @@ const copy = {
     eyebrow: "Le fondateur",
     role: "Ph.D · Lead Enterprise Architect",
     bio: [
-      "Mambaye Lo, Ph.D, est Lead Enterprise Architect. La thèse de doctorat, soutenue en 2013 et lauréate du prix de la meilleure thèse de l’AFIS (2014), porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
+      "Mambaye Lo, Ph.D, est Lead Enterprise Architect, avec 16 ans de transformations numériques dans le retail, l’énergie, la banque et l’automobile, à la jonction de la stratégie, de l’IA et de la delivery SI.",
+      "Parcours : responsable de l’architecture d’entreprise chez ENGIE (B2C, depuis 2024) ; managing enterprise architect chez Capgemini, dont la responsabilité produit iPaaS & Datahub pour la Supply Chain intelligente (2022-2024) ; lead architect de la plateforme industrielle d’ADEO — sourcing mondial, supply chain, finance (2017-2021) ; consultant chez CESAMES en architecture de systèmes complexes (2013-2017).",
+      "La thèse de doctorat (LGI2P, Mines Alès), soutenue en 2013 et lauréate du prix de la meilleure thèse de l’AFIS (2014), porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
       "Ces travaux étendent le méta-modèle d’ingénierie système, formalisent les liens de traçabilité de conception et proposent un modèle d’aide aux choix de conception, mis en œuvre avec Core (Vitech) et MATLAB sur le cas d’un fauteuil roulant à assistance électrique.",
       "La méthode d’évaluation d’Aura Supply Chain et d’Aura Décider s’appuie sur ces travaux : qualifier chaque option par son potentiel d’amélioration et son risque de dégradation, sans pondérations arbitraires.",
     ],
@@ -33,7 +35,9 @@ const copy = {
     eyebrow: "The founder",
     role: "Ph.D · Lead Enterprise Architect",
     bio: [
-      "Mambaye Lo, Ph.D, is a Lead Enterprise Architect. The doctoral thesis, defended in 2013 and winner of the AFIS Best PhD Award (2014), deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
+      "Mambaye Lo, Ph.D, is a Lead Enterprise Architect with 16 years of digital transformations across retail, energy, banking and automotive, bridging strategy, AI and IT delivery.",
+      "Background: head of enterprise architecture at ENGIE (B2C, since 2024); managing enterprise architect at Capgemini, including head of product for iPaaS & Datahub for the intelligent supply chain (2022-2024); lead architect of ADEO's industrial platform — global sourcing, supply chain, finance (2017-2021); consultant at CESAMES in complex systems architecture (2013-2017).",
+      "The doctoral thesis (LGI2P, Mines Alès), defended in 2013 and winner of the AFIS Best PhD Award (2014), deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
       "This research extends the systems engineering meta-model, formalises design traceability links and proposes a design-choice support model, implemented with Core (Vitech) and MATLAB on the case of a power-assisted wheelchair.",
       "The evaluation method of Aura Supply Chain and Aura Decide builds on this research: each option is qualified by its improvement potential and its degradation risk, with no arbitrary weights.",
     ],
