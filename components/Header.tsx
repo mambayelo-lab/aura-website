@@ -17,14 +17,14 @@ export function Header({
       label: dict.nav.offers,
       items: [
         {
-          href: r.energy,
-          title: dict.industries.energy.name,
-          text: dict.industries.energy.audience.slice(0, 3).join(" · "),
-        },
-        {
           href: r.supplyChain,
           title: dict.industries.supplyChain.name,
           text: dict.industries.supplyChain.audience.slice(0, 3).join(" · "),
+        },
+        {
+          href: r.architect,
+          title: dict.offers.architect.sprint,
+          text: dict.offers.architect.summary,
         },
       ],
     },
