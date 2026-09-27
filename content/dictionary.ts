@@ -350,7 +350,7 @@ const en: Dictionary = {
       ],
     },
     architect: {
-      name: "AURA Architect",
+      name: "AURA Architecture",
       sprint: "Architecture Sprint",
       headline: "De-risk and accelerate digital transformation programmes.",
       summary:
@@ -730,7 +730,7 @@ const fr: Dictionary = {
       ],
     },
     architect: {
-      name: "AURA Architecturer",
+      name: "AURA Architecture",
       sprint: "Architecture Sprint",
       headline: "Dérisquer et accélérer les programmes de transformation digitale.",
       summary:
