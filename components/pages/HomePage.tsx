@@ -1,5 +1,6 @@
 import { ArrowRight, BrainCircuit, Cable, ChartNoAxesCombined, CircleCheck, Globe2, Network, Radar, ShieldCheck, Sparkles, TriangleAlert } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 
 const text = {
@@ -15,6 +16,10 @@ const text = {
     productsLead: "Commencez par la peine la plus urgente. Les trois applications partagent le même langage de preuve, de causalité et de décision.",
     method: "Connecter. Comprendre. Gouverner. Expliquer. Décider.",
     methodLead: "Aura interroge les sources à la fréquence utile, applique des règles causales éditables et transforme une alerte en analyse décisionnelle préremplie.",
+    realityKicker: "DU TERRAIN À L’ARBITRAGE",
+    realityTitle: "Une décision sous pression, pas une démonstration d’IA.",
+    realityLead: "Quand un fournisseur, un port ou une route bascule, Aura rassemble le contexte utile et prépare les options. Le décideur garde la main, avec les impacts sur le service, le stock, le coût et la marge.",
+    realityCaption: "Réseau logistique européen · signal détecté · itinéraire alternatif évalué",
     final: "Apportez-nous une décision réelle.", finalLead: "Nous cadrons le cas, les données minimales et la preuve de valeur avant tout déploiement lourd.", finalCta: "Cadrer un pilote",
   },
   en: {
@@ -29,6 +34,10 @@ const text = {
     productsLead: "Start with the most urgent pain. All three applications share the same language of evidence, causality and decision.",
     method: "Connect. Understand. Govern. Explain. Decide.",
     methodLead: "Aura queries source systems at the useful frequency, applies editable causal rules and turns an alert into a pre-filled decision analysis.",
+    realityKicker: "FROM OPERATIONS TO ARBITRATION",
+    realityTitle: "A decision under pressure, not an AI demonstration.",
+    realityLead: "When a supplier, port or route shifts, Aura assembles the useful context and prepares the options. Decision-makers stay in control, with service, inventory, cost and margin impacts made explicit.",
+    realityCaption: "European logistics network · signal detected · alternative route assessed",
     final: "Bring us a real decision.", finalLead: "We frame the case, minimum data and proof of value before any heavy deployment.", finalCta: "Frame a pilot",
   },
 };
@@ -47,6 +56,11 @@ export function HomePage({ locale }: { locale: Locale }) {
 
     <section className="home-pressure"><div className="home-shell"><div className="home-pressure-head"><div><p className="home-kicker">{fr ? "LA PEINE RÉELLE" : "THE REAL PAIN"}</p><h2>{c.pressure}</h2></div><p>{c.pressureLead}</p></div>
       <div className="home-pain-grid"><Pain icon={Cable} label={fr ? "Fragmentation technique" : "Technical fragmentation"} text={fr ? "ERP, WMS, TMS, fichiers et outils de planification ne racontent pas spontanément la même histoire." : "ERP, WMS, TMS, files and planning tools do not naturally tell the same story."} /><Pain icon={Globe2} label={fr ? "Chocs géopolitiques" : "Geopolitical shocks"} text={fr ? "Fournisseurs, routes et délais changent avant que les modèles et comités ne soient actualisés." : "Suppliers, routes and lead times change before models and committees catch up."} /><Pain icon={ChartNoAxesCombined} label={fr ? "Incertitude économique" : "Economic uncertainty"} text={fr ? "Coût, service, stock et risque s’opposent ; une simple alerte ne suffit pas pour arbitrer." : "Cost, service, stock and risk conflict; an alert alone cannot arbitrate."} /></div>
+    </div></section>
+
+    <section className="home-reality"><div className="home-shell">
+      <div className="home-reality-grid"><div className="home-reality-copy"><p className="home-kicker">{c.realityKicker}</p><h2>{c.realityTitle}</h2><p>{c.realityLead}</p><div className="home-reality-facts"><span><strong>12 j</strong>{fr ? "avant impact" : "before impact"}</span><span><strong>3</strong>{fr ? "options comparées" : "options compared"}</span><span><strong>1</strong>{fr ? "décision traçable" : "traceable decision"}</span></div></div><figure className="home-people-visual"><Image src="/images/supply-chain.jpg" alt={fr ? "Des responsables Supply Chain analysent un risque logistique" : "Supply Chain leaders assessing a logistics risk"} fill sizes="(max-width: 980px) 100vw, 58vw" priority /><figcaption>{fr ? "Le contexte est calculé. L’arbitrage reste humain." : "Context is computed. Arbitration remains human."}</figcaption></figure></div>
+      <figure className="home-network-visual"><Image src="/images/living-context.jpg" alt={fr ? "Réseau logistique et itinéraire alternatif" : "Logistics network and alternative route"} fill sizes="(max-width: 1380px) 100vw, 1380px" /><figcaption><i />{c.realityCaption}</figcaption></figure>
     </div></section>
 
     <section className="home-products"><div className="home-shell"><div className="home-section-intro"><p className="home-kicker">AURA</p><h2>{c.products}</h2><p>{c.productsLead}</p></div><div className="home-product-grid">
