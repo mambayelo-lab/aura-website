@@ -94,7 +94,7 @@ export function ContactForm({ labels, email }: { labels: Dictionary["contact"]["
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />
       </label>
 
-      <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={status === "sending"}>
+      <button className="btn btn-ink btn-lg btn-block" type="submit" disabled={status === "sending"}>
         {status === "sending" ? (
           <>
             <LoaderCircle size={17} className="spin" aria-hidden /> {labels.sending}

@@ -5,6 +5,7 @@ import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
 import { appUrls, routes, type Locale } from "@/lib/i18n";
+import { AppScreen } from "../AppScreen";
 import { ArticleCard, CtaBanner, SectionHead, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
 import { EntrySelector } from "../EntrySelector";
 import { HeroSignal } from "../HeroSignal";
@@ -210,7 +211,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <h1 className="display">{c.title}</h1>
             <p className="lead lead-lg">{c.lead}</p>
             <div className="actions">
-              <a className="btn btn-primary btn-lg" href="#entry">
+              <a className="btn btn-ink btn-lg" href="#entry">
                 {c.primary} <ArrowRight size={17} aria-hidden />
               </a>
               <Link className="btn btn-secondary btn-lg" href={r.sprints}>
@@ -313,6 +314,35 @@ export function HomePage({ locale }: { locale: Locale }) {
                 />
               );
             })}
+          </div>
+          <div className="screens-preview">
+            <p className="eyebrow">{locale === "fr" ? "Aperçu des applications" : "A look at the applications"}</p>
+            <div className="grid-3">
+              {productOrder.map((key) => {
+                const screen = products[key].screens[0];
+                return (
+                  <Link key={key} href={r[key]} className="screens-preview-link" aria-label={tr(products[key].name, locale)}>
+                    <AppScreen
+                      locale={locale}
+                      compact
+                      note={false}
+                      sizes="(max-width: 720px) 100vw, 400px"
+                      screen={{
+                        src: screen.src,
+                        width: screen.width,
+                        height: screen.height,
+                        alt: tr(screen.alt, locale),
+                        caption: tr(products[key].name, locale),
+                        host: new URL(appUrls[key]).host,
+                      }}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+            <p className="app-window-note">
+              {locale === "fr" ? "Données de démonstration (SI synthétique Maison Lucie)" : "Demo data (Maison Lucie synthetic IT system)"}
+            </p>
           </div>
         </div>
       </section>

@@ -32,6 +32,9 @@ export type Product = {
   headline: T;
   lead: T;
   image: { src: string; alt: T };
+  /** Real screenshots of the application (demo data). The first one is the main visual. */
+  screens: { src: string; width: number; height: number; alt: T; caption: T }[];
+  screensTitle: T;
   audience: T[];
   features: Detail[];
   journey: { title: T; lead: T; steps: Detail[] };
@@ -78,13 +81,49 @@ const supply: Product = {
     "See risk in your real data. Understand its cause. Decide before impact.",
   ],
   lead: [
-    "Aura Supply Chain se branche sur vos systèmes existants, modélise vos objets métier dans une ontologie vivante et évalue en continu des règles causales. Chaque alerte provient d’une règle appliquée à des données réelles mappées — jamais d’une donnée inventée — et débouche sur une décision préremplie que vos équipes complètent et valident.",
-    "Aura Supply Chain plugs into your existing systems, models your business objects in a living ontology and continuously evaluates causal rules. Every alert comes from a rule applied to real mapped data — never from invented data — and leads to a pre-filled decision your teams complete and validate.",
+    "Le Studio connecte vos systèmes, modélise vos objets Supply Chain et fait raisonner une ontologie vivante sur vos valeurs réelles. Le cockpit exécutif ne garde que l’essentiel pour le décideur : ce qui est critique, ce qui est à surveiller, les décisions en cours et la fraîcheur des données. Chaque alerte ouvre une décision préremplie avec les faits observés.",
+    "The Studio connects your systems, models your Supply Chain objects and runs a living ontology over your real values. The executive cockpit keeps only what the decision-maker needs: what is critical, what to watch, decisions in progress and data freshness. Every alert opens a decision pre-filled with the observed facts.",
   ],
   image: {
     src: "/images/family/port-control-tower.webp",
     alt: ["Porte-conteneurs entrant dans un port industriel", "Container ship entering an industrial port"],
   },
+  screensTitle: ["Le cockpit exécutif, le Studio et la décision.", "The executive cockpit, the Studio and the decision."],
+  screens: [
+    {
+      src: "/images/product/supply-cockpit.webp",
+      width: 1440,
+      height: 900,
+      alt: [
+        "Cockpit Aura Supply Chain : quatre repères (4 alertes critiques, 1 à surveiller, 0 décision en cours, données à jour) et des alertes condensées — rupture fournisseur, stock projeté sous seuil, retard transport, dérive de prévision — chacune avec sa valeur, l’enregistrement concerné, le nombre concerné et un bouton Décider ; copilote Aura à droite.",
+        "Aura Supply Chain cockpit: four markers (4 critical alerts, 1 to watch, 0 decisions in progress, data up to date) and condensed alerts — supplier disruption, projected stock below threshold, transport delay, forecast drift — each with its value, the record concerned, the count concerned and a Decide button; Aura copilot on the right.",
+      ],
+      caption: [
+        "Cockpit : quatre repères, des alertes condensées et un bouton Décider sur chacune.",
+        "Cockpit: four markers, condensed alerts and a Decide button on each.",
+      ],
+    },
+    {
+      src: "/images/product/supply-studio.webp",
+      width: 1440,
+      height: 900,
+      alt: [
+        "Studio Aura Supply Chain : les cinq phases Connecter, Modéliser, Mapper, Raisonner, Publier avec leurs voyants, et le catalogue de sources (SAP, Salesforce, Microsoft Dynamics, Oracle, Snowflake, SI de démonstration Maison Lucie).",
+        "Aura Supply Chain Studio: the five phases Connect, Model, Map, Reason, Publish with their status lights, and the source catalogue (SAP, Salesforce, Microsoft Dynamics, Oracle, Snowflake, Maison Lucie demo system).",
+      ],
+      caption: ["Studio : cinq phases avec voyants, de la connexion à la publication.", "Studio: five phases with status lights, from connection to publication."],
+    },
+    {
+      src: "/images/product/supply-decision.webp",
+      width: 1280,
+      height: 800,
+      alt: [
+        "Décision Aura Supply Chain ouverte depuis l’alerte « Risque de rupture fournisseur » : étape Comprendre, question préremplie avec les faits observés (score 88/100 pour SUP-001 Tessitura Milano, seuil 60, 5 sur 15 concernés, source et date).",
+        "Aura Supply Chain decision opened from the “Supplier disruption risk” alert: Understand step, question pre-filled with the observed facts (score 88/100 for SUP-001 Tessitura Milano, threshold 60, 5 of 15 concerned, source and date).",
+      ],
+      caption: ["Décision : préremplie avec les faits observés, complétée par l’humain.", "Decision: pre-filled with the observed facts, completed by a human."],
+    },
+  ],
   audience: [
     ["Directions Supply Chain et opérations", "Supply Chain and operations leaders"],
     ["Achats et approvisionnement", "Procurement and sourcing"],
@@ -97,7 +136,7 @@ const supply: Product = {
       kicker: ["Studio", "Studio"],
       title: ["Connexion aux SI", "System connections"],
       summary: [
-        "REST, OAuth2, SOAP, GraphQL, événements Kafka, fichiers, batch et MCP : Aura lit vos systèmes là où ils sont.",
+        "REST, OAuth2, SOAP, GraphQL, événements Kafka, fichier, batch et MCP : Aura lit vos systèmes là où ils sont.",
         "REST, OAuth2, SOAP, GraphQL, Kafka events, files, batch and MCP: Aura reads your systems where they are.",
       ],
       body: [
@@ -173,10 +212,10 @@ const supply: Product = {
     {
       id: "mapping",
       kicker: ["Studio", "Studio"],
-      title: ["Objets métier & mapping sémantique", "Business objects & semantic mapping"],
+      title: ["Modèle objet & propositions de mapping", "Object model & mapping proposals"],
       summary: [
-        "Un LLM propose la correspondance entre vos champs et les objets métier ; un humain la valide.",
-        "An LLM proposes how your fields map to business objects; a human validates it.",
+        "Un modèle objet Supply Chain prêt à l’emploi ; Aura propose le mapping de vos champs, un humain valide chaque proposition.",
+        "A ready-to-use Supply Chain object model; Aura proposes how your fields map, a human validates each proposal.",
       ],
       body: [
         [
@@ -229,8 +268,8 @@ const supply: Product = {
       kicker: ["Studio", "Studio"],
       title: ["Ontologie vivante", "Living ontology"],
       summary: [
-        "Le modèle de votre réseau — objets, relations, dépendances — évolue avec votre activité.",
-        "The model of your network — objects, relationships, dependencies — evolves with your business.",
+        "Objets, relations et valeurs réelles : le modèle de votre réseau raisonne sur vos données et évolue avec elles.",
+        "Objects, relationships and real values: the model of your network reasons over your data and evolves with it.",
       ],
       body: [
         [
@@ -252,15 +291,15 @@ const supply: Product = {
     {
       id: "cockpit",
       kicker: ["Cockpit", "Cockpit"],
-      title: ["Alertes explicables", "Explainable alerts"],
+      title: ["Cockpit exécutif", "Executive cockpit"],
       summary: [
-        "Le cockpit ne montre que des alertes issues de règles évaluées sur vos données mappées.",
-        "The cockpit only shows alerts produced by rules evaluated on your mapped data.",
+        "Quatre repères — alertes critiques, à surveiller, décisions en cours, fraîcheur des données — et des alertes condensées, prêtes à décider.",
+        "Four markers — critical alerts, to watch, decisions in progress, data freshness — and condensed alerts, ready to decide.",
       ],
       body: [
         [
-          "Chaque alerte affiche la règle déclenchée, les données qui la justifient, les objets touchés et un voyant d’état. Un clic remonte jusqu’à l’enregistrement source.",
-          "Each alert shows the rule that fired, the data that justifies it, the objects affected and a status light. One click goes back to the source record.",
+          "Chaque alerte tient en une carte : la valeur observée, l’enregistrement concerné, le nombre d’objets touchés et un bouton Décider. Le détail technique — règle, version, données justificatives — s’ouvre dans une vue agrandie.",
+          "Each alert fits on one card: the observed value, the record concerned, the number of objects affected and a Decide button. The technical detail — rule, version, justifying data — opens in an expanded view.",
         ],
         [
           "Aucune alerte n’est générée par le LLM : s’il n’y a pas de règle et de donnée, il n’y a pas d’alerte.",
@@ -268,9 +307,9 @@ const supply: Product = {
         ],
       ],
       points: [
-        ["Règle déclenchée et version", "Rule fired and its version"],
-        ["Chiffres justificatifs, horodatés", "Justifying figures, time-stamped"],
-        ["Objets et sites exposés", "Exposed objects and sites"],
+        ["Valeur, enregistrement, nombre concerné", "Value, record, count concerned"],
+        ["Bouton Décider sur chaque alerte", "A Decide button on every alert"],
+        ["Vue agrandie : règle, version, données", "Expanded view: rule, version, data"],
       ],
     },
     {
@@ -278,8 +317,8 @@ const supply: Product = {
       kicker: ["Cockpit", "Cockpit"],
       title: ["Copilote qui raisonne", "A copilot that reasons"],
       summary: [
-        "Posez une question en langage naturel : le copilote répond avec des graphiques, en citant règles et données.",
-        "Ask in natural language: the copilot answers with charts, citing rules and data.",
+        "Posez une question en langage naturel : le copilote répond avec des graphiques par enregistrement, en citant règles et données.",
+        "Ask in natural language: the copilot answers with per-record charts, citing rules and data.",
       ],
       body: [
         [
@@ -301,8 +340,8 @@ const supply: Product = {
       kicker: ["Décision", "Decision"],
       title: ["Décision Supply préremplie", "Pre-filled Supply decision"],
       summary: [
-        "L’alerte ouvre une fiche de décision déjà renseignée : contexte, chiffres, options. Vous complétez et validez.",
-        "The alert opens a decision form already filled in: context, figures, options. You complete and validate.",
+        "Le bouton Décider ouvre une décision préremplie avec les faits observés : valeur, seuil, objets concernés, source et date. Vous complétez et validez.",
+        "The Decide button opens a decision pre-filled with the observed facts: value, threshold, objects concerned, source and date. You complete and validate.",
       ],
       body: [
         [
@@ -323,69 +362,69 @@ const supply: Product = {
     },
   ],
   journey: {
-    title: ["Du système source à la décision signée.", "From source system to signed decision."],
+    title: ["Le Studio en cinq phases, puis le cockpit.", "The Studio in five phases, then the cockpit."],
     lead: [
-      "Deux espaces, un fil continu : le Studio construit le modèle, le Cockpit l’exploite au quotidien.",
-      "Two spaces, one continuous thread: the Studio builds the model, the Cockpit runs it day to day.",
+      "Chaque phase du Studio a son voyant : vous savez à tout moment ce qui est prêt, ce qui attend une validation et ce qui bloque.",
+      "Each Studio phase has its status light: you always know what is ready, what awaits validation and what is blocking.",
     ],
     steps: [
       {
         id: "j-connect",
-        kicker: ["Studio", "Studio"],
+        kicker: ["Phase 1", "Phase 1"],
         title: ["Connecter", "Connect"],
-        summary: ["Déclarer les sources et lire leurs métadonnées.", "Declare sources and read their metadata."],
+        summary: ["Déclarer les sources, lire métadonnées et échantillons.", "Declare sources, read metadata and samples."],
         body: [
           [
-            "On commence petit : deux ou trois sources qui portent le risque prioritaire. Aura lit la structure et un échantillon de chacune.",
-            "Start small: two or three sources carrying the priority risk. Aura reads the structure and a sample of each.",
+            "REST, OAuth2, SOAP, GraphQL, événements Kafka, fichier, batch ou MCP. On commence par les deux ou trois sources qui portent le risque prioritaire.",
+            "REST, OAuth2, SOAP, GraphQL, Kafka events, file, batch or MCP. Start with the two or three sources that carry the priority risk.",
           ],
         ],
       },
       {
         id: "j-model",
-        kicker: ["Studio", "Studio"],
+        kicker: ["Phase 2", "Phase 2"],
         title: ["Modéliser", "Model"],
-        summary: ["Mapper les objets métier et construire l’ontologie.", "Map business objects and build the ontology."],
+        summary: ["Partir du modèle objet Supply Chain.", "Start from the Supply Chain object model."],
         body: [
           [
-            "Le LLM propose, l’humain valide. Les objets validés s’assemblent en un graphe de dépendances.",
-            "The LLM proposes, the human validates. Validated objects assemble into a dependency graph.",
+            "Fournisseurs, articles, sites, commandes, expéditions : le modèle objet est fourni, vous l’ajustez à votre réseau.",
+            "Suppliers, items, sites, orders, shipments: the object model is provided, you adjust it to your network.",
           ],
         ],
       },
       {
-        id: "j-rules",
-        kicker: ["Studio", "Studio"],
-        title: ["Calibrer", "Calibrate"],
-        summary: ["Indicateurs, seuils et règles causales.", "Indicators, thresholds and causal rules."],
+        id: "j-map",
+        kicker: ["Phase 3", "Phase 3"],
+        title: ["Mapper", "Map"],
+        summary: ["Aura propose, un humain valide.", "Aura proposes, a human validates."],
         body: [
           [
-            "Les règles sont écrites avec les experts métier et testées sur l’historique pour éviter le bruit.",
-            "Rules are written with domain experts and tested on history to avoid noise.",
+            "Chaque proposition de mapping reste en attente tant qu’un responsable ne l’a pas acceptée ou corrigée. Les validations sont tracées.",
+            "Each mapping proposal stays pending until an owner accepts or corrects it. Validations are traced.",
           ],
         ],
       },
       {
-        id: "j-monitor",
-        kicker: ["Cockpit", "Cockpit"],
-        title: ["Surveiller & expliquer", "Monitor & explain"],
-        summary: ["Alertes issues des règles, copilote qui explique.", "Rule-based alerts, a copilot that explains."],
+        id: "j-reason",
+        kicker: ["Phase 4", "Phase 4"],
+        title: ["Raisonner", "Reason"],
+        summary: ["L’ontologie vivante évalue les règles sur vos valeurs.", "The living ontology evaluates rules over your values."],
         body: [
           [
-            "Le cockpit évalue les règles à chaque rafraîchissement. Le copilote répond aux questions avec graphiques et sources.",
-            "The cockpit evaluates rules at every refresh. The copilot answers questions with charts and sources.",
+            "Les règles causales sont évaluées sur les valeurs réelles mappées. Pas de règle et de donnée, pas d’alerte.",
+            "Causal rules are evaluated over real mapped values. No rule and no data, no alert.",
           ],
         ],
       },
       {
-        id: "j-decide",
-        kicker: ["Décision", "Decision"],
-        title: ["Décider", "Decide"],
-        summary: ["Fiche préremplie, complétée et signée.", "Pre-filled form, completed and signed."],
+        id: "j-publish",
+        kicker: ["Phase 5", "Phase 5"],
+        title: ["Publier", "Publish"],
+        summary: ["Les faits arrivent au cockpit, prêts à décider.", "Facts reach the cockpit, ready to decide."],
         body: [
           [
-            "La décision part des chiffres de l’alerte. L’humain complète, arbitre et engage.",
-            "The decision starts from the alert’s figures. The human completes, arbitrates and commits.",
+            "Le cockpit exécutif affiche les alertes publiées ; chacune ouvre une décision préremplie avec les faits observés.",
+            "The executive cockpit shows the published alerts; each opens a decision pre-filled with the observed facts.",
           ],
         ],
       },
@@ -570,6 +609,19 @@ const decide: Product = {
     src: "/images/family/decide-options.webp",
     alt: ["Une décideuse face à des options reliées", "A decision-maker facing connected options"],
   },
+  screensTitle: ["Partir d’une intention, avancer pas à pas.", "Start from an intention, move step by step."],
+  screens: [
+    {
+      src: "/images/product/decide-home.webp",
+      width: 1440,
+      height: 900,
+      alt: [
+        "Accueil d’Aura Décider : « Une intention. Un chemin clair jusqu’à l’action. », quatre points d’entrée (produit, offre, stratégie, autre enjeu) avec un bouton Décider, et les travaux récents.",
+        "Aura Decide home: “One intention. A clear path to action.”, four entry points (product, offer, strategy, other challenge) each with a Decide button, and recent work.",
+      ],
+      caption: ["Accueil : choisir un enjeu, Aura guide la suite.", "Home: pick a challenge, Aura guides the rest."],
+    },
+  ],
   audience: [
     ["Comités de direction", "Executive committees"],
     ["Stratégie, finance, RH, produit, industrie", "Strategy, finance, HR, product, operations"],
@@ -861,6 +913,19 @@ const architect: Product = {
     src: "/images/family/architect-team.webp",
     alt: ["Équipe travaillant sur une trajectoire de transformation", "Team working on a transformation roadmap"],
   },
+  screensTitle: ["Cadrer avant de dessiner.", "Frame before you draw."],
+  screens: [
+    {
+      src: "/images/product/architect-frame.webp",
+      width: 1440,
+      height: 900,
+      alt: [
+        "Aura Architect, étape Cadrer la transformation : parcours en six étapes, question « Quel problème voulez-vous traiter, et quel résultat en attendez-vous ? », champs intention et périmètre, et panneau « Ce qu’Aura comprend » (intention, périmètre, enjeux, parties prenantes, applications, données).",
+        "Aura Architect, Frame the transformation step: six-step journey, question “What problem do you want to address, and what outcome do you expect?”, intention and scope fields, and the “What Aura understands” panel (intention, scope, stakes, stakeholders, applications, data).",
+      ],
+      caption: ["Cadrage : l’intention et le périmètre, confirmés élément par élément.", "Framing: intention and scope, confirmed item by item."],
+    },
+  ],
   audience: [
     ["DSI et architectes d’entreprise", "CIOs and enterprise architects"],
     ["Directions de programme", "Programme directors"],

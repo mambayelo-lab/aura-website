@@ -6,6 +6,7 @@ import { localize, products, sprints, tr } from "@/content/products";
 import { appUrls, routes, type Locale, type ProductKey } from "@/lib/i18n";
 import { AppLink, CtaBanner, Faq, SectionHead, productIcons, sprintHref, zoomLabels } from "../blocks";
 import { ZoomCard } from "../zoom/ZoomCard";
+import { AppScreen } from "../AppScreen";
 
 const copy = {
   fr: {
@@ -28,6 +29,7 @@ const copy = {
     faq: "Questions fréquentes",
     seeProduct: "Voir",
     deliverable: "Livrable",
+    screens: "Dans l’application",
   },
   en: {
     product: "Product",
@@ -49,6 +51,7 @@ const copy = {
     faq: "Frequently asked questions",
     seeProduct: "See",
     deliverable: "Deliverable",
+    screens: "Inside the application",
   },
 };
 
@@ -62,6 +65,15 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
   const Icon = productIcons[key];
   // In Aura Decide the five journey steps *are* the core features: show them once.
   const journeyIsFeatures = key === "decide";
+  const host = new URL(appUrls[key]).host;
+  const [mainScreen, ...otherScreens] = p.screens.map((screen) => ({
+    src: screen.src,
+    width: screen.width,
+    height: screen.height,
+    alt: l(screen.alt),
+    caption: l(screen.caption),
+    host,
+  }));
 
   return (
     <div data-product={key}>
@@ -76,7 +88,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
             <p className="hero-sub">{l(p.headline)}</p>
             <p className="lead">{l(p.lead)}</p>
             <div className="actions">
-              <AppLink product={key} label={dict.common.openApp} className="btn btn-primary btn-lg" />
+              <AppLink product={key} label={dict.common.openApp} className="btn btn-ink btn-lg" />
               <Link className="btn btn-secondary btn-lg" href={sprintHref(locale, key)}>
                 {l(s.name)} · {l(s.duration)}
               </Link>
@@ -89,6 +101,23 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
               {l(p.question)}
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section className="section section-tight screens" id="screens">
+        <div className="container">
+          <div className="section-head section-head-rule">
+            <p className="eyebrow">{c.screens}</p>
+            <h2 className="h2">{l(p.screensTitle)}</h2>
+          </div>
+          <AppScreen screen={mainScreen} locale={locale} />
+          {otherScreens.length > 0 && (
+            <div className="grid-2 screens-more">
+              {otherScreens.map((screen) => (
+                <AppScreen key={screen.src} screen={screen} locale={locale} compact note={false} sizes="(max-width: 980px) 100vw, 560px" />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

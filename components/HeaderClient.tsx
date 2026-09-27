@@ -121,7 +121,7 @@ export function HeaderClient({
 
         <div className="header-actions">
           {languageSwitch}
-          <Link className="btn btn-primary btn-sm header-cta" href={contactHref}>
+          <Link className="btn btn-ink btn-sm header-cta" href={contactHref}>
             {labels.cta}
           </Link>
           <button
