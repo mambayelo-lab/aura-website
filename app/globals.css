@@ -95,7 +95,7 @@
 
   /* Type */
   --font-body: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  --font-display: var(--font-serif), var(--font-sans), system-ui, sans-serif;
   --font-code: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
 
   /* Shape */

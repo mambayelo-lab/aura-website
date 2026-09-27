@@ -1,4 +1,4 @@
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 
 /** Inter for text and interface — identical to the Aura applications. */
 export const sans = Inter({
@@ -7,10 +7,9 @@ export const sans = Inter({
   variable: "--font-sans",
 });
 
-/** Fraunces for display titles (h1/h2, editorial section titles). */
-export const serif = Fraunces({
+/** Sora for display titles (h1/h2, section titles) — identical to the Aura applications. */
+export const serif = Sora({
   subsets: ["latin", "latin-ext"],
-  axes: ["opsz"],
   display: "swap",
   variable: "--font-serif",
 });
