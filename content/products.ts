@@ -82,7 +82,7 @@ const supply: Product = {
     "Aura Supply Chain plugs into your existing systems, models your business objects in a living ontology and continuously evaluates causal rules. Every alert comes from a rule applied to real mapped data — never from invented data — and leads to a pre-filled decision your teams complete and validate.",
   ],
   image: {
-    src: "/images/aura-port-control-tower.jpg",
+    src: "/images/family/port-control-tower.webp",
     alt: ["Porte-conteneurs entrant dans un port industriel", "Container ship entering an industrial port"],
   },
   audience: [
@@ -567,7 +567,7 @@ const decide: Product = {
     "Aura Decide is an agnostic workspace: it needs no prior data and no system connection. It guides a group from the initial question to a recorded decision in five steps — Understand, Impact, Compose, Arbitrate, Track — with human validation at every stage.",
   ],
   image: {
-    src: "/images/decide.jpg",
+    src: "/images/family/decide-options.webp",
     alt: ["Une décideuse face à des options reliées", "A decision-maker facing connected options"],
   },
   audience: [
@@ -858,7 +858,7 @@ const architect: Product = {
     "Aura Architect links requirements, business capabilities, applications, data and flows in one model. It derives a target and a roadmap, and produces the architecture files and decision notes teams need to execute.",
   ],
   image: {
-    src: "/images/architecture-team.jpg",
+    src: "/images/family/architect-team.webp",
     alt: ["Équipe travaillant sur une trajectoire de transformation", "Team working on a transformation roadmap"],
   },
   audience: [

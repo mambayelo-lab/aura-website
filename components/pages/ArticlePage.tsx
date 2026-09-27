@@ -36,14 +36,9 @@ export function ArticlePage({ locale, article }: { locale: Locale; article: Arti
 
         <div className="container container-narrow article-body">
           {article.image && (
-            <Image
-              className="article-image"
-              src={article.image.src}
-              alt={article.image.alt}
-              width={1536}
-              height={1152}
-              sizes="(max-width: 760px) 100vw, 720px"
-            />
+            <figure className="media media-wide">
+              <Image src={article.image.src} alt={article.image.alt} fill sizes="(max-width: 760px) 100vw, 720px" />
+            </figure>
           )}
           {article.body.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>

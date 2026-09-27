@@ -11,6 +11,12 @@ import { HeroSignal } from "../HeroSignal";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 
+const cardImages = {
+  supply: "/images/family/supply-resilience.webp",
+  decide: "/images/family/decide-options.webp",
+  architect: "/images/family/architect-team.webp",
+} as const;
+
 const copy = {
   fr: {
     eyebrow: "Intelligence décisionnelle · 3 applications",
@@ -226,7 +232,17 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section section-tight">
         <div className="container thesis">
-          <SectionHead eyebrow={c.thesisEyebrow} title={c.thesisTitle} />
+          <div className="thesis-aside">
+            <SectionHead eyebrow={c.thesisEyebrow} title={c.thesisTitle} />
+            <figure className="media media-wide thesis-media">
+              <Image
+                src="/images/family/signal-to-decision.webp"
+                alt={locale === "fr" ? "Des signaux dispersés convergent vers une décision unique" : "Scattered signals converging into a single decision"}
+                fill
+                sizes="(max-width: 980px) 100vw, 520px"
+              />
+            </figure>
+          </div>
           <ol className="thesis-list">
             {c.thesis.map(([title, text], index) => (
               <li key={title}>
@@ -253,6 +269,11 @@ export function HomePage({ locale }: { locale: Locale }) {
                   product={key}
                   labels={labels}
                   className="product-card"
+                  media={
+                    <figure className="media media-wide" aria-hidden>
+                      <Image src={cardImages[key]} alt="" fill sizes="(max-width: 720px) 100vw, (max-width: 980px) 50vw, 400px" />
+                    </figure>
+                  }
                   detail={{
                     id: key,
                     kicker: tr(p.trigger, locale),
@@ -349,10 +370,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               {c.scenarioCta} <ArrowRight size={15} aria-hidden />
             </a>
           </div>
-          <figure className="scenario-visual">
+          <figure className="scenario-visual media">
             <Image
-              src="/images/aura-port-control-tower.jpg"
-              alt={locale === "fr" ? "Porte-conteneurs entrant dans un port industriel" : "Container ship entering an industrial port"}
+              src="/images/family/port-control-tower.webp"
+              alt={locale === "fr" ? "Porte-conteneurs entrant dans un port industriel au crépuscule" : "Container ship entering an industrial port at dusk"}
               fill
               sizes="(max-width: 980px) 100vw, 50vw"
             />

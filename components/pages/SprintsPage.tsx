@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, Ban, Check, CircleDot, Repeat } from "lucide-react";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
@@ -93,6 +94,21 @@ const copy = {
 
 const order: SprintKey[] = ["resilience", "decision", "architecture"];
 
+const sprintImages: Record<string, { src: string; alt: readonly [string, string] }> = {
+  resilience: {
+    src: "/images/family/supply-network.webp",
+    alt: ["Réseau d’usines, d’entrepôt et de magasins avec une livraison interrompue", "Network of plants, a warehouse and stores with one interrupted delivery"],
+  },
+  decision: {
+    src: "/images/family/decision-sprint.webp",
+    alt: ["Un comité travaille devant une trajectoire de décision projetée", "A committee working in front of a projected decision path"],
+  },
+  architecture: {
+    src: "/images/family/transformation.webp",
+    alt: ["Des systèmes hérités reliés par un pont à une architecture cible", "Legacy systems bridged to a target architecture"],
+  },
+};
+
 export function SprintsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   const dict = getDictionary(locale);
@@ -172,13 +188,18 @@ export function SprintsPage({ locale }: { locale: Locale }) {
         return (
           <section key={key} id={key} className={`section sprint${sprintIndex % 2 === 0 ? " section-alt" : ""}`} data-product={s.product}>
             <div className="container">
-              <div className="sprint-head">
-                <p className="eyebrow eyebrow-pill">
-                  <Icon size={14} aria-hidden /> {l(p.name)}
-                </p>
-                <h2 className="h2">{l(s.name)}</h2>
-                <p className="sprint-duration mono">{l(s.duration)}</p>
-                <p className="lead">{l(s.promise)}</p>
+              <div className="sprint-intro">
+                <div className="sprint-head">
+                  <p className="eyebrow eyebrow-pill">
+                    <Icon size={14} aria-hidden /> {l(p.name)}
+                  </p>
+                  <h2 className="h2">{l(s.name)}</h2>
+                  <p className="sprint-duration mono">{l(s.duration)}</p>
+                  <p className="lead">{l(s.promise)}</p>
+                </div>
+                <figure className="media sprint-media">
+                  <Image src={sprintImages[key].src} alt={l(sprintImages[key].alt)} fill sizes="(max-width: 980px) 100vw, 480px" />
+                </figure>
               </div>
 
               <div className="sprint-facts">

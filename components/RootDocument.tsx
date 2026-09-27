@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
-import { mono, sans } from "@/lib/fonts";
+import { mono, sans, serif } from "@/lib/fonts";
 import { articleHref, routes, type Locale } from "@/lib/i18n";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
@@ -23,7 +23,7 @@ function languageAlternates(): Record<string, string> {
 export function RootDocument({ locale, children }: { locale: Locale; children: React.ReactNode }) {
   const dict = getDictionary(locale);
   return (
-    <html lang={locale} className={`${sans.variable} ${mono.variable}`}>
+    <html lang={locale} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
       <body>
         <a className="skip-link" href="#content">
           {dict.nav.skip}

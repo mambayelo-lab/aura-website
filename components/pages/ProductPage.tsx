@@ -82,7 +82,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
               </Link>
             </div>
           </div>
-          <figure className="product-visual">
+          <figure className="product-visual media">
             <Image src={p.image.src} alt={l(p.image.alt)} fill sizes="(max-width: 980px) 100vw, 45vw" priority />
             <figcaption>
               <Quote size={16} aria-hidden />

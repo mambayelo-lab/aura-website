@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { getDictionary } from "@/content/dictionary";
-import { mono, sans } from "@/lib/fonts";
+import { mono, sans, serif } from "@/lib/fonts";
 import { baseMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = { ...baseMetadata, title: "404 — AURA", robots: { index: false } };
@@ -12,7 +12,7 @@ export default function GlobalNotFound() {
   const en = getDictionary("en").notFound;
   const fr = getDictionary("fr").notFound;
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
       <body>
         <main className="not-found">
           <div className="hero-backdrop" aria-hidden />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Boxes, Plus, Radar, Scale } from "lucide-react";
 import Link from "next/link";
 import type { ArticleEntry } from "@/content/articles";
@@ -179,6 +180,11 @@ const topicClass: Record<ArticleEntry["topic"], string> = {
 export function ArticleCard({ article, locale, dict }: { article: ArticleEntry; locale: Locale; dict: Dictionary }) {
   return (
     <Link href={articleHref(locale, article.slug)} className="article-card" data-product={topicClass[article.topic]}>
+      {article.image && (
+        <figure className="media media-wide">
+          <Image src={article.image.src} alt="" fill sizes="(max-width: 720px) 100vw, (max-width: 980px) 50vw, 380px" />
+        </figure>
+      )}
       <p className="article-card-meta">
         <span className="product-dot" aria-hidden />
         <span>{article.category}</span>

@@ -20,6 +20,8 @@ type Props = {
   /** Extra content rendered at the end of the detail panel. */
   panelFooter?: React.ReactNode;
   className?: string;
+  /** Optional visual shown at the top of the card (decorative). */
+  media?: React.ReactNode;
 };
 
 /**
@@ -27,7 +29,7 @@ type Props = {
  * focus is contained in the dialog, Escape and the backdrop close it,
  * and focus returns to the card afterwards.
  */
-export function ZoomCard({ detail, labels, product, index, variant = "default", footer, panelFooter, className }: Props) {
+export function ZoomCard({ detail, labels, product, index, variant = "default", footer, panelFooter, className, media }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -48,6 +50,7 @@ export function ZoomCard({ detail, labels, product, index, variant = "default", 
 
   return (
     <article className={`zoom-card zoom-card-${variant}${className ? ` ${className}` : ""}`} data-product={product}>
+      {media}
       <button
         ref={triggerRef}
         type="button"
