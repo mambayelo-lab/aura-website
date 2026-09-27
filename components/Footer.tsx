@@ -61,6 +61,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <ul>
             <li>
               <Link href={r.founder}>{dict.nav.founder}</Link>
+              <a href="https://fr.linkedin.com/in/mambaye-lo" target="_blank" rel="noopener">LinkedIn</a>
             </li>
             <li>
               <Link href={r.insights}>{dict.nav.insights}</Link>

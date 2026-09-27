@@ -9,10 +9,10 @@ import { CtaBanner, SectionHead } from "../blocks";
 const copy = {
   fr: {
     eyebrow: "Le fondateur",
-    role: "Ph.D · Manager en architecture d’entreprise",
+    role: "Ph.D · Lead Enterprise Architect",
     bio: [
-      "Mambaye Lo, Ph.D, est manager en architecture d’entreprise. La thèse de doctorat, soutenue en 2013, porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
-      "Ces travaux étendent le méta-modèle d’ingénierie système, formalise les liens de traçabilité de conception et propose un modèle d’aide aux choix de conception, mis en œuvre avec Core (Vitech) et MATLAB sur le cas d’un fauteuil roulant à assistance électrique.",
+      "Mambaye Lo, Ph.D, est Lead Enterprise Architect. La thèse de doctorat, soutenue en 2013 et lauréate du prix de la meilleure thèse de l’AFIS (2014), porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
+      "Ces travaux étendent le méta-modèle d’ingénierie système, formalisent les liens de traçabilité de conception et proposent un modèle d’aide aux choix de conception, mis en œuvre avec Core (Vitech) et MATLAB sur le cas d’un fauteuil roulant à assistance électrique.",
       "La méthode d’évaluation d’Aura Supply Chain et d’Aura Décider s’appuie sur ces travaux : qualifier chaque option par son potentiel d’amélioration et son risque de dégradation, sans pondérations arbitraires.",
     ],
     whyEyebrow: "Pourquoi Aura",
@@ -31,9 +31,9 @@ const copy = {
   },
   en: {
     eyebrow: "The founder",
-    role: "Ph.D · Enterprise architecture manager",
+    role: "Ph.D · Lead Enterprise Architect",
     bio: [
-      "Mambaye Lo, Ph.D, is an enterprise architecture manager. The doctoral thesis, defended in 2013, deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
+      "Mambaye Lo, Ph.D, is a Lead Enterprise Architect. The doctoral thesis, defended in 2013 and winner of the AFIS Best PhD Award (2014), deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
       "This research extends the systems engineering meta-model, formalises design traceability links and proposes a design-choice support model, implemented with Core (Vitech) and MATLAB on the case of a power-assisted wheelchair.",
       "The evaluation method of Aura Supply Chain and Aura Decide builds on this research: each option is qualified by its improvement potential and its degradation risk, with no arbitrary weights.",
     ],
@@ -62,8 +62,8 @@ export function FounderPage({ locale }: { locale: Locale }) {
       <section className="hero hero-compact dark">
         <div className="hero-backdrop" aria-hidden />
         <div className="container founder-hero">
-          <div className="founder-monogram" aria-hidden>
-            <span>ML</span>
+          <div className="founder-monogram">
+            <img src="/images/founder/mambaye-lo.webp" alt="Mambaye Lo" width={158} height={178} />
           </div>
           <div>
             <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
