@@ -1,88 +1,69 @@
-import { AlertTriangle, ArrowRight, BatteryCharging, Bot, Check, CircleDot, Database, Network, ShieldCheck, Sparkles, Workflow } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Boxes, BrainCircuit, Cable, ChartNoAxesCombined, CircleCheck, Factory, Globe2, Network, Radar, ShieldCheck, Sparkles, TriangleAlert } from "lucide-react";
 import Link from "next/link";
-import { getArticles } from "@/content/articles";
-import { getDictionary } from "@/content/dictionary";
-import { routes, type Locale } from "@/lib/i18n";
-import { ArticleCard, CtaBanner, SectionHeading } from "../blocks";
+import type { Locale } from "@/lib/i18n";
 
-const copy = {
-  en: {
-    badge:"From alert to accountable decision", title:"Turn critical signals into decisions your business can defend.",
-    lead:"AURA connects fragmented Supply Chain facts, causal rules and executive trade-offs — so leaders decide faster through technical incidents, geopolitical shocks and economic uncertainty.",
-    primary:"Bring us a decision", secondary:"See how AURA works", heroAlt:"Critical signals converging into one clear, accountable decision",
-    proof:["A first decision in 20 days","No heavy integration to start","Every recommendation sourced"],
-    pivot:"Two modes. One continuous decision context.", pivotLead:"The cockpit detects what matters. Decision mode turns it into scenarios, trade-offs and action. The AURA copilot stays with the decision throughout.",
-    cockpit:"Cockpit",decision:"Decision",signal:"Priority signal",signalTitle:"Supplier capacity at risk — strategic component",exposure:"€1.8m exposure",horizon:"36h to impact",confidence:"82% confidence",causal:"Demand ↑ + supplier capacity ↓ + inbound delay",
-    llmTitle:"AURA Copilot",question:"What should I address first?",answer:"The critical supplier. Three verified facts converge and the decision window closes in 36 hours.",action1:"Explain causes",action2:"Open decision",
-    layerEyebrow:"The missing decision layer",layerTitle:"Your systems monitor. Your models optimise. AURA helps leaders decide.",layerLead:"AURA does not replace operational systems, experts or solvers. It brings their outputs into one explainable and traceable decision flow.",
-    layers:[["Observe","ERP, WMS, TMS, SRM, APS, files or expert inputs."],["Explain","A minimal ontology and causal rules reveal why the signal matters."],["Decide","The copilot frames scenarios; BORA tests constraints, vetoes and repairs."],["Act & learn","The leader validates, actions are followed and assumptions reopen when facts change."]],
-    productsEyebrow:"One product. Two expert sprints",productsTitle:"Built around the decisions that protect operations and capital.",productsLead:"SCRA connects signals to operational decisions. Architecture Sprint and Decision Sprint address the transformations and strategic choices around it.",
-    energy:{name:"Architecture Sprint",text:"Turn a validated Supply Chain decision into capabilities, data flows, target architecture and an executable backlog.",alerts:["Capability map","Target data flows","Integration architecture","Executable backlog"],link:"Explore Architecture Sprint"},
-    supply:{name:"Aura SCRA — Supply Chain",text:"Detect supplier, inventory, transport and capacity risks — then protect service and margin without hiding trade-offs.",alerts:["Supplier disruption","Projected stock-out","Critical shipment delay","Allocation under shortage"],link:"Explore Aura SCRA"},
-    sprintEyebrow:"The fastest way to start",sprintTitle:"One real decision. One working AURA model. Twenty days maximum.",sprintLead:"The Decision Sprint proves value before integration: we configure the minimum business context, test real scenarios and deliver a decision record your committee can challenge and approve.",sprintSteps:["Frame the decision","Connect the minimum facts","Test scenarios with BORA","Validate and operationalise"],sprintCta:"Start a Decision Sprint",architect:"Transformation architecture is available when the decision requires systems, data, integration and a delivery backlog. It is an implementation extension — not a prerequisite.",insights:"Recent thinking",insightsTitle:"Decision intelligence for industrial reality."
-  },
+const text = {
   fr: {
-    badge:"Du signal à la décision responsable",title:"Transformez les signaux critiques en décisions défendables.",
-    lead:"AURA relie les faits Supply Chain fragmentés, les règles causales et les arbitrages dirigeants — pour décider plus vite face aux incidents techniques, aux chocs géopolitiques et à l’incertitude économique.",
-    primary:"Apportez-nous une décision",secondary:"Voir comment fonctionne AURA",heroAlt:"Des signaux critiques convergent vers une décision claire et responsable",
-    proof:["Une première décision en 20 jours","Aucune intégration lourde pour démarrer","Chaque recommandation est sourcée"],
-    pivot:"Deux modes. Un contexte de décision continu.",pivotLead:"Le cockpit détecte ce qui compte. Le mode Décision le transforme en scénarios, arbitrages et actions. Le copilote AURA reste présent de bout en bout.",
-    cockpit:"Cockpit",decision:"Décision",signal:"Signal prioritaire",signalTitle:"Capacité fournisseur à risque — composant stratégique",exposure:"1,8 M€ exposés",horizon:"Impact dans 36 h",confidence:"Confiance 82 %",causal:"Demande ↑ + capacité fournisseur ↓ + retard amont",
-    llmTitle:"Copilote AURA",question:"Que dois-je traiter en priorité ?",answer:"Le fournisseur critique. Trois faits vérifiés convergent et la fenêtre de décision se referme dans 36 heures.",action1:"Expliquer les causes",action2:"Ouvrir la décision",
-    layerEyebrow:"La couche de décision manquante",layerTitle:"Vos systèmes surveillent. Vos modèles optimisent. AURA aide les dirigeants à décider.",layerLead:"AURA ne remplace ni les systèmes opérationnels, ni les experts, ni les solveurs. Elle réunit leurs résultats dans un parcours de décision explicable et traçable.",
-    layers:[["Observer","ERP, WMS, TMS, SRM, APS, fichiers ou apports experts."],["Expliquer","Une ontologie minimale et des règles causales révèlent pourquoi le signal compte."],["Décider","Le copilote structure les scénarios ; BORA teste contraintes, veto et réparations."],["Agir et apprendre","Le dirigeant valide, les actions sont suivies et les hypothèses rouvertes si les faits changent."]],
-    productsEyebrow:"Un produit. Deux sprints experts",productsTitle:"Conçus autour des décisions qui protègent les opérations et le capital.",productsLead:"SCRA relie les signaux aux décisions opérationnelles. Architecture Sprint et Decision Sprint traitent les transformations et les choix stratégiques qui l’entourent.",
-    energy:{name:"Architecture Sprint",text:"Transformez une décision Supply Chain validée en capacités, flux de données, architecture cible et backlog exécutable.",alerts:["Carte de capacités","Flux de données cibles","Architecture d’intégration","Backlog exécutable"],link:"Découvrir Architecture Sprint"},
-    supply:{name:"Aura SCRA — Supply Chain",text:"Détectez les risques fournisseur, stock, transport et capacité — puis protégez le service et la marge sans masquer les arbitrages.",alerts:["Rupture fournisseur","Stock projeté sous seuil","Retard transport critique","Allocation sous pénurie"],link:"Découvrir Aura SCRA"},
-    sprintEyebrow:"La voie la plus rapide",sprintTitle:"Une décision réelle. Un modèle AURA opérationnel. Vingt jours maximum.",sprintLead:"Le Decision Sprint prouve la valeur avant l’intégration : nous configurons le contexte métier minimal, testons les vrais scénarios et livrons un dossier que votre comité peut challenger et approuver.",sprintSteps:["Cadrer la décision","Connecter les faits minimaux","Tester avec BORA","Valider et opérationnaliser"],sprintCta:"Lancer un Decision Sprint",architect:"L’architecture de transformation intervient lorsque la décision exige des systèmes, des données, des intégrations et un backlog. C’est une extension de mise en œuvre — pas un prérequis.",insights:"Analyses récentes",insightsTitle:"La Decision Intelligence confrontée au réel industriel."
+    eyebrow:"INTELLIGENCE DE DÉCISION · SUPPLY CHAIN",
+    title:"Voir le risque. Comprendre ses causes. Décider avant l’impact.",
+    lead:"Aura relie les signaux dispersés de votre Supply Chain, explique ce qui change et prépare des décisions traçables — sans remplacer vos systèmes ni créer un nouvel entrepôt de données.",
+    cta:"Voir Aura Supply Chain", secondary:"Nous parler d’une décision",
+    proof:["Première décision en 20 jours","Connexion progressive aux SI","Validation humaine systématique"],
+    pressure:"Vos outils voient les événements. Vos équipes doivent encore reconstruire la décision.",
+    pressureLead:"Une alerte isolée ne dit ni pourquoi agir, ni quelle option protège le mieux le service, la marge et la résilience.",
+    products:"Un même moteur. Trois façons d’avancer.",
+    productsLead:"Commencez par la peine la plus urgente. Les trois applications partagent le même langage de preuve, de causalité et de décision.",
+    method:"Connecter. Comprendre. Gouverner. Expliquer. Décider.",
+    methodLead:"Aura interroge les sources à la fréquence utile, applique des règles causales éditables et transforme une alerte en analyse décisionnelle préremplie.",
+    final:"Apportez-nous une décision réelle.", finalLead:"Nous cadrons le cas, les données minimales et la preuve de valeur avant tout déploiement lourd.", finalCta:"Cadrer un pilote",
+  },
+  en: {
+    eyebrow:"DECISION INTELLIGENCE · SUPPLY CHAIN",
+    title:"See the risk. Understand its causes. Decide before impact.",
+    lead:"Aura connects fragmented Supply Chain signals, explains what changed and prepares traceable decisions — without replacing your systems or becoming another data warehouse.",
+    cta:"Explore Aura Supply Chain", secondary:"Discuss a decision",
+    proof:["First decision in 20 days","Progressive system connection","Human validation by design"],
+    pressure:"Your systems see events. Your teams still have to rebuild the decision.",
+    pressureLead:"An isolated alert does not explain why to act or which option best protects service, margin and resilience.",
+    products:"One engine. Three ways to move forward.",
+    productsLead:"Start with the most urgent pain. All three applications share the same language of evidence, causality and decision.",
+    method:"Connect. Understand. Govern. Explain. Decide.",
+    methodLead:"Aura queries source systems at the useful frequency, applies editable causal rules and turns an alert into a pre-filled decision analysis.",
+    final:"Bring us a real decision.", finalLead:"We frame the case, minimum data and proof of value before any heavy deployment.", finalCta:"Frame a pilot",
   }
-} as const;
+};
 
-function ProductSurface({locale}:{locale:Locale}) {
-  const c=copy[locale];
-  return <div className="product-surface" aria-label={c.pivot}>
-    <div className="surface-main">
-      <div className="surface-topbar"><div className="mode-switch"><span className="is-active">{c.cockpit}</span><span>{c.decision}</span></div><span className="live-state"><i/>Live</span></div>
-      <div className="signal-heading"><span><AlertTriangle size={16}/>{c.signal}</span><small>{c.horizon}</small></div>
-      <h3>{c.signalTitle}</h3>
-      <div className="signal-metrics">{[c.exposure,c.horizon,c.confidence].map(x=><span key={x}>{x}</span>)}</div>
-      <div className="micro-chart" aria-hidden><svg viewBox="0 0 620 122" preserveAspectRatio="none"><path className="chart-area" d="M0,104 C65,88 86,102 132,72 S222,92 260,60 S345,78 392,44 S482,68 520,30 S584,34 620,12 L620,122 L0,122 Z"/><path className="chart-line" d="M0,104 C65,88 86,102 132,72 S222,92 260,60 S345,78 392,44 S482,68 520,30 S584,34 620,12"/><line x1="0" x2="620" y1="46" y2="46"/></svg></div>
-      <div className="causal-line"><CircleDot size={15}/><span>{c.causal}</span></div>
-    </div>
-    <aside className="copilot-rail">
-      <div className="copilot-title"><span><Bot size={17}/></span>{c.llmTitle}<i/></div>
-      <p className="user-message">{c.question}</p><div className="aura-message"><Sparkles size={16}/><p>{c.answer}</p></div>
-      <div className="evidence-row"><span><Database size={13}/>3 facts</span><span><ShieldCheck size={13}/>sourced</span></div>
-      <button type="button">{c.action1}</button><button type="button" className="copilot-primary">{c.action2}<ArrowRight size={14}/></button>
-    </aside>
-  </div>;
-}
-
-export function HomePage({locale}:{locale:Locale}) {
-  const c=copy[locale],dict=getDictionary(locale),r=routes[locale],articles=getArticles(locale).slice(0,3);
-  return <>
-    <section className="aura-hero"><div className="container aura-hero-grid"><div className="aura-hero-copy">
-      <p className="aura-kicker"><Sparkles size={14}/>{c.badge}</p><h1>{c.title}</h1><p>{c.lead}</p>
-      <div className="hero-actions"><Link className="btn btn-primary btn-lg" href={r.contact}>{c.primary}<ArrowRight size={17}/></Link><a className="quiet-link" href="#product">{c.secondary}<ArrowRight size={15}/></a></div>
-      <ul className="hero-proof">{c.proof.map(x=><li key={x}><Check size={14}/>{x}</li>)}</ul>
-    </div><div className="aura-hero-visual"><Image src="/images/candidates/aura-alert-to-decision.webp" alt={c.heroAlt} width={1280} height={960} priority sizes="(max-width: 960px) 100vw, 42vw"/></div></div></section>
-
-    <section className="product-section" id="product"><div className="container"><SectionHeading title={c.pivot} lead={c.pivotLead} align="split"/><ProductSurface locale={locale}/></div></section>
-
-    <section className="section decision-layer"><div className="container"><SectionHeading eyebrow={c.layerEyebrow} title={c.layerTitle} lead={c.layerLead} align="split"/>
-      <ol className="layer-flow">{c.layers.map(([title,text],i)=><li key={title}><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
-    </div></section>
-
-    <section className="section products-section" id="products"><div className="container"><SectionHeading eyebrow={c.productsEyebrow} title={c.productsTitle} lead={c.productsLead} align="split"/>
-      <div className="agent-grid">
-        <article className="agent-card agent-energy"><div className="agent-card-top"><div className="agent-icon"><BatteryCharging size={22}/></div><p>01</p></div><h3>{c.energy.name}</h3><p>{c.energy.text}</p><ul>{c.energy.alerts.map(x=><li key={x}><AlertTriangle size={14}/>{x}</li>)}</ul><Link href={r.architect}>{c.energy.link}<ArrowRight size={15}/></Link></article>
-        <article className="agent-card agent-supply"><div className="agent-card-top"><div className="agent-icon"><Network size={22}/></div><p>02</p></div><h3>{c.supply.name}</h3><p>{c.supply.text}</p><ul>{c.supply.alerts.map(x=><li key={x}><CircleDot size={14}/>{x}</li>)}</ul><Link href={r.supplyChain}>{c.supply.link}<ArrowRight size={15}/></Link></article>
+export function HomePage({ locale }: { locale: Locale }) {
+  const c=text[locale]; const fr=locale==="fr";
+  const contact=fr?"/fr/contact":"/contact";
+  return <main className="overflow-hidden bg-white text-[#0b153b]">
+    <section className="relative border-b border-slate-200">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(56,88,255,.16),transparent_32%),radial-gradient(circle_at_15%_70%,rgba(15,184,210,.08),transparent_28%)]"/>
+      <div className="relative mx-auto grid max-w-[1440px] gap-14 px-6 pb-20 pt-20 lg:grid-cols-[.92fr_1.08fr] lg:px-10 lg:pb-28 lg:pt-28">
+        <div className="flex flex-col justify-center">
+          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-xs font-bold tracking-[.16em] text-indigo-700"><Sparkles size={14}/>{c.eyebrow}</div>
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-.055em] md:text-7xl">{c.title}</h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">{c.lead}</p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><a href="https://aura-decision-zen.vercel.app" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2446e8] px-6 py-4 text-sm font-bold text-white shadow-xl shadow-blue-200 transition hover:-translate-y-0.5">{c.cta}<ArrowRight size={17}/></a><Link href={contact} className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-4 text-sm font-bold">{c.secondary}</Link></div>
+          <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3">{c.proof.map(x=><span key={x} className="flex items-center gap-2 text-sm text-slate-600"><CircleCheck size={16} className="text-cyan-600"/>{x}</span>)}</div>
+        </div>
+        <HeroCockpit fr={fr}/>
       </div>
-    </div></section>
+    </section>
 
-    <section className="section sprint-section"><div className="container sprint-layout"><div><p className="eyebrow">{c.sprintEyebrow}</p><h2 className="title-lg">{c.sprintTitle}</h2><p className="lead">{c.sprintLead}</p><Link className="btn btn-primary btn-lg" href={r.contact}>{c.sprintCta}<ArrowRight size={17}/></Link></div><div className="sprint-aside"><ol>{c.sprintSteps.map((x,i)=><li key={x}><span>{i+1}</span>{x}</li>)}</ol><p><Workflow size={18}/>{c.architect}</p></div></div></section>
+    <section className="bg-[#081334] py-20 text-white lg:py-28">
+      <div className="mx-auto max-w-[1280px] px-6 lg:px-10"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end"><div><p className="text-xs font-bold tracking-[.18em] text-cyan-300">{fr?"LA PEINE RÉELLE":"THE REAL PAIN"}</p><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.035em] md:text-5xl">{c.pressure}</h2></div><p className="max-w-2xl text-lg leading-8 text-slate-300">{c.pressureLead}</p></div>
+      <div className="mt-14 grid gap-4 md:grid-cols-3"><Pain icon={Cable} label={fr?"Fragmentation technique":"Technical fragmentation"} text={fr?"ERP, WMS, TMS, fichiers et outils de planification ne racontent pas spontanément la même histoire.":"ERP, WMS, TMS, files and planning tools do not naturally tell the same story."}/><Pain icon={Globe2} label={fr?"Chocs géopolitiques":"Geopolitical shocks"} text={fr?"Fournisseurs, routes et délais changent avant que les modèles et comités ne soient actualisés.":"Suppliers, routes and lead times change before models and committees catch up."}/><Pain icon={ChartNoAxesCombined} label={fr?"Incertitude économique":"Economic uncertainty"} text={fr?"Coût, service, stock et risque s’opposent ; une simple alerte ne suffit pas pour arbitrer.":"Cost, service, stock and risk conflict; an alert alone cannot arbitrate."}/></div></div>
+    </section>
 
-    <section className="section insights-clean"><div className="container"><SectionHeading eyebrow={c.insights} title={c.insightsTitle} align="split"/><div className="article-grid">{articles.map(a=><ArticleCard key={a.slug} article={a} locale={locale} dict={dict}/>)}</div></div></section><CtaBanner locale={locale} dict={dict}/>
-  </>;
+    <section className="py-20 lg:py-28"><div className="mx-auto max-w-[1380px] px-6 lg:px-10"><div className="max-w-3xl"><p className="text-xs font-bold tracking-[.18em] text-indigo-600">AURA</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] md:text-5xl">{c.products}</h2><p className="mt-5 text-lg leading-8 text-slate-600">{c.productsLead}</p></div><div className="mt-14 grid gap-6 lg:grid-cols-3"><Product index="01" icon={Radar} title="Aura Supply Chain" text={fr?"Une control tower qui relie les sources, détecte les risques, explique leurs causes et câble les alertes vers la décision.":"A control tower that connects sources, detects risk, explains causes and wires alerts into decisions."} href="https://aura-decision-zen.vercel.app" accent="blue"/><Product index="02" icon={BrainCircuit} title={fr?"Aura Décider":"Aura Decide"} text={fr?"Un atelier guidé pour structurer, comparer et suivre une décision stratégique, avec ou sans données initiales.":"A guided workspace to frame, compare and track strategic decisions, with or without initial data."} href="https://aura-decider.vercel.app/cockpit/atelier" accent="violet"/><Product index="03" icon={Network} title={fr?"Aura Architecturer":"Aura Architect"} text={fr?"Un studio pour relier capacités, applications, données, flux et trajectoires de transformation.":"A studio connecting capabilities, applications, data, flows and transformation roadmaps."} href="https://aura-architect.vercel.app" accent="cyan"/></div></div></section>
+
+    <section className="border-y border-slate-200 bg-slate-50 py-20 lg:py-28"><div className="mx-auto max-w-[1280px] px-6 lg:px-10"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="text-xs font-bold tracking-[.18em] text-indigo-600">{fr?"LE WORKFLOW":"THE WORKFLOW"}</p><h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-.04em]">{c.method}</h2><p className="mt-5 text-lg leading-8 text-slate-600">{c.methodLead}</p></div><div className="grid gap-3 sm:grid-cols-5">{[fr?["01","Connecter"]:["01","Connect"],fr?["02","Comprendre"]:["02","Understand"],fr?["03","Gouverner"]:["03","Govern"],fr?["04","Expliquer"]:["04","Explain"],fr?["05","Décider"]:["05","Decide"]].map(([n,l],i)=><div key={n} className={"rounded-2xl border p-5 "+(i===4?"border-indigo-600 bg-indigo-600 text-white":"border-slate-200 bg-white")}><span className="text-xs opacity-60">{n}</span><p className="mt-10 text-sm font-bold">{l}</p></div>)}</div></div></div></section>
+
+    <section className="py-20 lg:py-28"><div className="mx-auto max-w-[1100px] px-6 text-center"><div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50 text-indigo-700"><ShieldCheck/></div><h2 className="mt-7 text-4xl font-semibold tracking-[-.04em] md:text-5xl">{c.final}</h2><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">{c.finalLead}</p><Link href={contact} className="mt-9 inline-flex items-center gap-2 rounded-xl bg-[#2446e8] px-7 py-4 text-sm font-bold text-white">{c.finalCta}<ArrowRight size={17}/></Link></div></section>
+  </main>;
 }
+
+function Pain({icon:Icon,label,text}:{icon:any;label:string;text:string}){return <div className="rounded-2xl border border-white/10 bg-white/[.04] p-6"><Icon className="text-cyan-300"/><h3 className="mt-8 text-lg font-bold">{label}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{text}</p></div>}
+function Product({index,icon:Icon,title,text,href,accent}:{index:string;icon:any;title:string;text:string;href:string;accent:string}){return <a href={href} className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_15px_60px_rgba(22,36,84,.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(22,36,84,.14)]"><div className={"absolute inset-x-0 top-0 h-1 "+(accent==="blue"?"bg-blue-600":accent==="violet"?"bg-violet-600":"bg-cyan-500")}/><div className="flex items-center justify-between"><div className="grid h-12 w-12 place-items-center rounded-2xl bg-slate-50 text-indigo-700"><Icon/></div><span className="text-xs font-bold text-slate-400">{index}</span></div><h3 className="mt-10 text-2xl font-bold">{title}</h3><p className="mt-4 min-h-24 text-base leading-7 text-slate-600">{text}</p><span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-indigo-700">Découvrir <ArrowRight size={16} className="transition group-hover:translate-x-1"/></span></a>}
+function HeroCockpit({fr}:{fr:boolean}){return <div className="relative flex items-center"><div className="absolute -inset-8 rounded-full bg-indigo-200/30 blur-3xl"/><div className="relative w-full overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_35px_100px_rgba(27,45,110,.18)]"><div className="flex items-center justify-between border-b border-slate-100 px-5 py-4"><div className="flex items-center gap-2 text-sm font-bold"><div className="h-6 w-6 rounded-lg bg-indigo-600"/>Aura Supply Chain</div><span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">● {fr?"Sources actives":"Sources live"}</span></div><div className="grid gap-4 p-5"><div className="grid grid-cols-3 gap-3">{[["OTIF","92,4%"],[fr?"Stock critique":"Critical stock","17"],[fr?"Risques actifs":"Active risks","3"]].map(([l,v],i)=><div key={l} className="rounded-xl border border-slate-200 p-4"><p className="text-xs text-slate-500">{l}</p><p className={"mt-2 text-xl font-bold "+(i===2?"text-rose-600":"")}>{v}</p></div>)}</div><div className="grid min-h-72 gap-4 md:grid-cols-[1.25fr_.75fr]"><div className="relative overflow-hidden rounded-2xl bg-[#0b173c] p-5 text-white"><p className="text-sm font-bold">{fr?"Réseau de dépendances":"Dependency network"}</p><div className="absolute left-[18%] top-[42%] h-3 w-3 rounded-full bg-cyan-400 ring-8 ring-cyan-400/15"/><div className="absolute left-[48%] top-[62%] h-4 w-4 rounded-full bg-blue-400 ring-8 ring-blue-400/15"/><div className="absolute right-[18%] top-[32%] h-4 w-4 rounded-full bg-rose-400 ring-8 ring-rose-400/15"/><div className="absolute left-[20%] right-[20%] top-1/2 h-px rotate-[-8deg] bg-gradient-to-r from-cyan-400 via-blue-400 to-rose-400"/><div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/10 bg-white/5 p-3 text-xs text-slate-300">{fr?"Fournisseur critique → composant → usine → client":"Critical supplier → component → plant → customer"}</div></div><div className="rounded-2xl border border-rose-100 bg-rose-50/60 p-5"><TriangleAlert className="text-rose-600"/><p className="mt-5 text-xs font-bold uppercase tracking-wider text-rose-600">{fr?"Impact dans 12 jours":"Impact in 12 days"}</p><h3 className="mt-2 text-lg font-bold">{fr?"Rupture fournisseur probable":"Supplier disruption likely"}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{fr?"3 composants et 2 sites exposés. Trois options sont prêtes à être arbitrées.":"3 components and 2 sites exposed. Three options are ready to arbitrate."}</p><button className="mt-5 w-full rounded-xl bg-indigo-600 px-3 py-3 text-sm font-bold text-white">{fr?"Ouvrir la décision":"Open decision"}</button></div></div></div></div></div>}
