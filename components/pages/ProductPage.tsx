@@ -7,6 +7,7 @@ import { appUrls, routes, type Locale, type ProductKey } from "@/lib/i18n";
 import { AppLink, CtaBanner, Faq, SectionHead, productIcons, sprintHref, zoomLabels } from "../blocks";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { AppScreen } from "../AppScreen";
+import { MethodReminder } from "../Methods";
 
 const copy = {
   fr: {
@@ -324,6 +325,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
                 <strong>{c.deliverable}{locale === "fr" ? " : " : ": "}</strong>
                 {l(s.outcome)}
               </p>
+              <MethodReminder sprint={p.sprint} locale={locale} />
               <div className="actions">
                 <Link className="btn btn-primary" href={sprintHref(locale, key)}>
                   {c.seeSprint} <ArrowRight size={16} aria-hidden />

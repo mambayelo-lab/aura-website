@@ -6,6 +6,7 @@ export type Dictionary = {
     home: string;
     products: string;
     sprints: string;
+    founder: string;
     insights: string;
     contact: string;
     applications: string;
@@ -72,6 +73,7 @@ const en: Dictionary = {
     home: "AURA home",
     products: "Products",
     sprints: "Sprints",
+    founder: "Founder",
     insights: "Insights",
     contact: "Contact",
     applications: "Applications",
@@ -169,6 +171,7 @@ const fr: Dictionary = {
     home: "Accueil AURA",
     products: "Produits",
     sprints: "Sprints",
+    founder: "Fondateur",
     insights: "Perspectives",
     contact: "Contact",
     applications: "Applications",

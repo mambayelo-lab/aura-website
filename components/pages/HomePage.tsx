@@ -5,7 +5,7 @@ import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
 import { appUrls, routes, type Locale } from "@/lib/i18n";
-import { AppScreen } from "../AppScreen";
+import { whyAura } from "@/content/founder";
 import { ArticleCard, CtaBanner, SectionHead, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
 import { EntrySelector } from "../EntrySelector";
 import { HeroSignal } from "../HeroSignal";
@@ -22,27 +22,21 @@ const copy = {
   fr: {
     eyebrow: "Intelligence décisionnelle · 3 applications",
     title: "Du signal à la décision que vous pouvez défendre.",
-    lead: "Aura réunit trois applications distinctes — Supply Chain, Décider, Architect — pour trois situations différentes : un signal dans vos données, une question stratégique, un programme de transformation. Chacune commence par un sprint court et se termine par une décision traçable, validée par des humains.",
+    lead: "Trois applications — Supply Chain, Décider, Architect — pour trois situations : un signal dans vos données, une question stratégique, un programme de transformation. Chacune démarre par un sprint court, ouvert par une analyse systémique, et aboutit à une décision traçable.",
     primary: "Trouver mon point d’entrée",
     secondary: "Comparer les sprints",
     trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
-    thesisEyebrow: "Notre thèse",
-    thesisTitle: "Les organisations ne manquent pas de données. Elles manquent de décisions explicites.",
-    thesis: [
-      ["Le signal", "Vos systèmes voient déjà les événements. Ce qui manque, c’est la règle qui dit pourquoi un événement compte — et pour qui."],
-      ["Le raisonnement", "Une décision robuste sépare ce qu’on sait, ce qu’on suppose et ce qu’on ignore. L’IA prépare ; elle ne tranche pas."],
-      ["La trace", "Une décision qu’on ne peut pas relire dans six mois n’a pas été prise : elle a été subie. Tout ce que fait Aura laisse une trace."],
-    ],
+    thesisEyebrow: "Pourquoi Aura",
+    thesisTitle: "Des méthodes simples pour un monde incertain.",
+    founderName: "Mambaye Lo, fondateur",
+    founderText: "Ph.D en évaluation d’architectures, manager en architecture d’entreprise. Son parcours et ses travaux.",
     productsEyebrow: "Trois produits, trois déclencheurs",
     productsTitle: "Des applications étanches, chacune pour une situation précise.",
-    productsLead: "Elles ne se recouvrent pas et ne se renvoient pas l’une à l’autre : ce site est le seul point d’entrée. Cliquez sur une carte pour le détail.",
+    productsLead: "Un aperçu ici ; le détail sur chaque page produit.",
     entryEyebrow: "Quel point d’entrée ?",
     entryTitle: "Partez de ce qui déclenche votre besoin, pas du produit.",
     entryLead: "Le déclencheur suffit à choisir : un signal dans les données, une question ponctuelle ou un programme.",
     compare: "Voir le comparatif complet",
-    methodEyebrow: "Méthode",
-    methodTitle: "Un sprint pour prouver. Une application pour durer.",
-    methodLead: "Nous ne vendons pas de projet long avant d’avoir montré la valeur sur votre cas réel.",
     trustEyebrow: "Confiance & gouvernance",
     trustTitle: "Quatre engagements, dans les trois applications.",
     trustLead: "Vos données restent sous votre contrôle, et aucune décision ne part sans une validation humaine explicite.",
@@ -65,27 +59,21 @@ const copy = {
   en: {
     eyebrow: "Decision intelligence · 3 applications",
     title: "From signal to a decision you can defend.",
-    lead: "Aura brings together three distinct applications — Supply Chain, Decide, Architect — for three different situations: a signal in your data, a strategic question, a transformation programme. Each starts with a short sprint and ends with a traceable decision, validated by people.",
+    lead: "Three applications — Supply Chain, Decide, Architect — for three situations: a signal in your data, a strategic question, a transformation programme. Each starts with a short sprint, opened by a systems analysis, and ends with a traceable decision.",
     primary: "Find my entry point",
     secondary: "Compare the sprints",
     trust: ["Human validation", "No invented data", "Traceable reasoning"],
-    thesisEyebrow: "Our thesis",
-    thesisTitle: "Organisations do not lack data. They lack explicit decisions.",
-    thesis: [
-      ["The signal", "Your systems already see events. What is missing is the rule saying why an event matters — and to whom."],
-      ["The reasoning", "A robust decision separates what we know, what we assume and what we do not know. AI prepares; it does not decide."],
-      ["The trace", "A decision you cannot re-read in six months was not made: it was endured. Everything Aura does leaves a trace."],
-    ],
+    thesisEyebrow: "Why Aura",
+    thesisTitle: "Simple methods for an uncertain world.",
+    founderName: "Mambaye Lo, founder",
+    founderText: "Ph.D in architecture evaluation, enterprise architecture manager. His background and research.",
     productsEyebrow: "Three products, three triggers",
     productsTitle: "Sealed applications, each for one precise situation.",
-    productsLead: "They do not overlap and never link to each other: this website is the only entry point. Click a card for details.",
+    productsLead: "An overview here; full detail on each product page.",
     entryEyebrow: "Which entry point?",
     entryTitle: "Start from what triggers your need, not from the product.",
     entryLead: "The trigger is enough to choose: a signal in the data, a one-off question or a programme.",
     compare: "See the full comparison",
-    methodEyebrow: "Method",
-    methodTitle: "A sprint to prove it. An application to make it last.",
-    methodLead: "We do not sell a long project before showing value on your real case.",
     trustEyebrow: "Trust & governance",
     trustTitle: "Four commitments, across all three applications.",
     trustLead: "Your data stays under your control, and no decision leaves without explicit human validation.",
@@ -106,47 +94,6 @@ const copy = {
     openApp: "Open the app",
   },
 };
-
-const method: Detail[] = [
-  {
-    id: "m-frame",
-    kicker: ["45 min", "45 min"],
-    title: ["Cadrer", "Frame"],
-    summary: ["Un appel pour qualifier le déclencheur et choisir le point d’entrée.", "One call to qualify the trigger and choose the entry point."],
-    body: [
-      [
-        "Nous partons de votre situation : un signal, une question ou un programme. Nous identifions les entrées disponibles, les personnes à mobiliser et le livrable attendu. Vous repartez avec une proposition de sprint écrite.",
-        "We start from your situation: a signal, a question or a programme. We identify the available inputs, the people to involve and the expected deliverable. You leave with a written sprint proposal.",
-      ],
-    ],
-    flow: [["Déclencheur", "Trigger"], ["Entrées", "Inputs"], ["Proposition", "Proposal"]],
-  },
-  {
-    id: "m-sprint",
-    kicker: ["5 jours → 4 semaines", "5 days → 4 weeks"],
-    title: ["Sprint", "Sprint"],
-    summary: ["Un engagement court, borné, avec un livrable réel.", "A short, bounded engagement with a real deliverable."],
-    body: [
-      [
-        "Sprint Résilience, Decision Sprint ou Design Sprint Architecture : chaque sprint a un déroulé fixe, des entrées connues et un livrable qui vous appartient — sur vos données, votre question ou votre programme, jamais sur un cas fictif.",
-        "Resilience Sprint, Decision Sprint or Architecture Design Sprint: each sprint has a fixed schedule, known inputs and a deliverable you own — on your data, your question or your programme, never on a fictional case.",
-      ],
-    ],
-    flow: [["Sprint Résilience", "Resilience Sprint"], ["Decision Sprint", "Decision Sprint"], ["Design Sprint Archi.", "Architecture Design Sprint"]],
-  },
-  {
-    id: "m-use",
-    kicker: ["Durée de vie", "Lifetime"],
-    title: ["Usage", "Use"],
-    summary: ["L’application prend le relais, vos équipes deviennent autonomes.", "The application takes over, your teams become autonomous."],
-    body: [
-      [
-        "Après le sprint, le livrable vit dans l’application correspondante : le cockpit continue d’évaluer les règles, les décisions sont suivies, le modèle d’architecture est maintenu. L’accompagnement devient optionnel.",
-        "After the sprint, the deliverable lives in the matching application: the cockpit keeps evaluating rules, decisions are tracked, the architecture model is maintained. Support becomes optional.",
-      ],
-    ],
-  },
-];
 
 const trust: Detail[] = [
   {
@@ -253,15 +200,25 @@ export function HomePage({ locale }: { locale: Locale }) {
               />
             </figure>
           </div>
-          <ol className="thesis-list">
-            {c.thesis.map(([title, text], index) => (
-              <li key={title}>
-                <span className="mono">0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </li>
-            ))}
-          </ol>
+          <div>
+            <ol className="thesis-list">
+              {whyAura.map((item, index) => (
+                <li key={item.id}>
+                  <span className="mono">0{index + 1}</span>
+                  <h3>{tr(item.title, locale)}</h3>
+                  <p>{tr(item.short, locale)}</p>
+                </li>
+              ))}
+            </ol>
+            <Link className="founder-teaser" href={r.founder}>
+              <span className="founder-teaser-mono" aria-hidden>ML</span>
+              <span>
+                <strong>{c.founderName}</strong>
+                <small>{c.founderText}</small>
+              </span>
+              <ArrowRight size={17} aria-hidden />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -324,35 +281,6 @@ export function HomePage({ locale }: { locale: Locale }) {
               );
             })}
           </div>
-          <div className="screens-preview">
-            <p className="eyebrow">{locale === "fr" ? "Aperçu des applications" : "A look at the applications"}</p>
-            <div className="grid-3">
-              {productOrder.map((key) => {
-                const screen = products[key].screens[0];
-                return (
-                  <Link key={key} href={r[key]} className="screens-preview-link" aria-label={tr(products[key].name, locale)}>
-                    <AppScreen
-                      locale={locale}
-                      compact
-                      note={false}
-                      sizes="(max-width: 720px) 100vw, 400px"
-                      screen={{
-                        src: screen.src,
-                        width: screen.width,
-                        height: screen.height,
-                        alt: tr(screen.alt, locale),
-                        caption: tr(products[key].name, locale),
-                        host: new URL(appUrls[key]).host,
-                      }}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-            <p className="app-window-note">
-              {locale === "fr" ? "Données de démonstration (SI synthétique Maison Lucie)" : "Demo data (Maison Lucie synthetic IT system)"}
-            </p>
-          </div>
         </div>
       </section>
 
@@ -365,17 +293,6 @@ export function HomePage({ locale }: { locale: Locale }) {
               {c.compare} <ArrowRight size={15} aria-hidden />
             </Link>
           </p>
-        </div>
-      </section>
-
-      <section className="section section-alt dark">
-        <div className="container">
-          <SectionHead eyebrow={c.methodEyebrow} title={c.methodTitle} lead={c.methodLead} />
-          <div className="grid-3 steps-row">
-            {method.map((step, index) => (
-              <ZoomCard key={step.id} variant="step" index={`0${index + 1}`} labels={labels} detail={localize(step, locale)} />
-            ))}
-          </div>
         </div>
       </section>
 

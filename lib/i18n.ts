@@ -2,7 +2,7 @@ export const locales = ["en", "fr"] as const;
 export type Locale = (typeof locales)[number];
 
 export type ProductKey = "supply" | "decide" | "architect";
-export type PageKey = "home" | ProductKey | "sprints" | "insights" | "contact";
+export type PageKey = "home" | ProductKey | "sprints" | "founder" | "insights" | "contact";
 
 /** Public URL of every page, per language. English is served at the root. */
 export const routes: Record<Locale, Record<PageKey, string>> = {
@@ -12,6 +12,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
     decide: "/products/decide",
     architect: "/products/architect",
     sprints: "/sprints",
+    founder: "/founder",
     insights: "/insights",
     contact: "/contact",
   },
@@ -21,6 +22,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
     decide: "/fr/produits/decider",
     architect: "/fr/produits/architect",
     sprints: "/fr/sprints",
+    founder: "/fr/fondateur",
     insights: "/fr/perspectives",
     contact: "/fr/contact",
   },

@@ -60,6 +60,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <p className="footer-title">{dict.footer.resources}</p>
           <ul>
             <li>
+              <Link href={r.founder}>{dict.nav.founder}</Link>
+            </li>
+            <li>
               <Link href={r.insights}>{dict.nav.insights}</Link>
             </li>
             <li>
