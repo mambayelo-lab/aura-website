@@ -2,9 +2,34 @@ import type { T } from "./products";
 
 export const founderLinks = {
   thesis: "https://theses.hal.science/tel-00918890",
-  article: "https://www.researchgate.net/publication/261223737_Tracking_the_consequences_of_design_decisions_in_mechatronic_Systems_Engineering",
+  article: "https://hal.science/hal-00840436v1",
   linkedin: "https://fr.linkedin.com/in/mambaye-lo",
 };
+
+/** Publications (vérifiées) — premier auteur signalé. */
+export const publications: { title: string; kind: T; authors: string; href: string; link: T }[] = [
+  {
+    title: "Evaluating Alternatives for Designing Mechatronic Systems in a Systems Engineering Context",
+    kind: ["Article · INCOSE INSIGHT · 2013 · premier auteur", "Article · INCOSE INSIGHT · 2013 · first author"],
+    authors: "M. Lo, P. Couturier, V. Chapurlat",
+    href: "https://incose.onlinelibrary.wiley.com/doi/abs/10.1002/inst.201316416",
+    link: ["Voir sur Wiley", "View on Wiley"],
+  },
+  {
+    title: "Needs for Tracing the Consequences of Decisions in Mechatronics Design",
+    kind: ["Communication · 2012 · premier auteur", "Conference paper · 2012 · first author"],
+    authors: "M. Lo, P. Couturier",
+    href: "https://scholar.google.com/scholar?q=%22Needs+for+Tracing+the+Consequences+of+Decisions+in+Mechatronics+Design%22",
+    link: ["Rechercher la publication", "Find the paper"],
+  },
+  {
+    title: "Tracking the consequences of design decisions in mechatronic systems engineering",
+    kind: ["Article · revue Mechatronics · 2014", "Article · Mechatronics journal · 2014"],
+    authors: "P. Couturier, M. Lo, A. Imoussaten, V. Chapurlat, J. Montmain",
+    href: "https://hal.science/hal-00840436v1",
+    link: ["Lire sur HAL", "Read on HAL"],
+  },
+];
 
 /** “Why Aura”: four short reasons, reused on the home page (short) and the founder page (developed). */
 export const whyAura: { id: string; title: T; short: T; long: T }[] = [

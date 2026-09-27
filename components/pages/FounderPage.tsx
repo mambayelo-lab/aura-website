@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight, BookOpen, FileText } from "lucide-react";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
-import { founderLinks, whyAura } from "@/content/founder";
+import { publications, founderLinks, whyAura } from "@/content/founder";
 import { tr } from "@/content/products";
 import { routes, type Locale } from "@/lib/i18n";
 import { CtaBanner, SectionHead } from "../blocks";
@@ -11,8 +11,8 @@ const copy = {
     eyebrow: "Le fondateur",
     role: "Ph.D · Manager en architecture d’entreprise",
     bio: [
-      "Mambaye Lo est docteur et manager en architecture d’entreprise. Sa thèse, soutenue en 2013, porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
-      "Il y étend le méta-modèle d’ingénierie système, formalise les liens de traçabilité de conception et propose un modèle d’aide aux choix de conception, mis en œuvre avec Core (Vitech) et MATLAB sur le cas d’un fauteuil roulant à assistance électrique.",
+      "Mambaye Lo, Ph.D, est manager en architecture d’entreprise. La thèse de doctorat, soutenue en 2013, porte sur l’évaluation d’architectures en ingénierie système, appliquée à la conception de systèmes mécatroniques.",
+      "Ces travaux étendent le méta-modèle d’ingénierie système, formalise les liens de traçabilité de conception et propose un modèle d’aide aux choix de conception, mis en œuvre avec Core (Vitech) et MATLAB sur le cas d’un fauteuil roulant à assistance électrique.",
       "La méthode d’évaluation d’Aura Supply Chain et d’Aura Décider s’appuie sur ces travaux : qualifier chaque option par son potentiel d’amélioration et son risque de dégradation, sans pondérations arbitraires.",
     ],
     whyEyebrow: "Pourquoi Aura",
@@ -33,8 +33,8 @@ const copy = {
     eyebrow: "The founder",
     role: "Ph.D · Enterprise architecture manager",
     bio: [
-      "Mambaye Lo holds a Ph.D and is an enterprise architecture manager. His doctoral thesis, defended in 2013, deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
-      "It extends the systems engineering meta-model, formalises design traceability links and proposes a design-choice support model, implemented with Core (Vitech) and MATLAB on the case of a power-assisted wheelchair.",
+      "Mambaye Lo, Ph.D, is an enterprise architecture manager. The doctoral thesis, defended in 2013, deals with architecture evaluation in systems engineering, applied to the design of mechatronic systems.",
+      "This research extends the systems engineering meta-model, formalises design traceability links and proposes a design-choice support model, implemented with Core (Vitech) and MATLAB on the case of a power-assisted wheelchair.",
       "The evaluation method of Aura Supply Chain and Aura Decide builds on this research: each option is qualified by its improvement potential and its degradation risk, with no arbitrary weights.",
     ],
     whyEyebrow: "Why Aura",
@@ -115,16 +115,18 @@ export function FounderPage({ locale }: { locale: Locale }) {
                 {c.read} <ArrowUpRight size={15} aria-hidden />
               </a>
             </article>
-            <article className="pub-card">
-              <p className="fact-label">
-                <FileText size={15} aria-hidden /> {c.articleKind}
-              </p>
-              <h3 lang="en">Tracking the consequences of design decisions in mechatronic Systems Engineering</h3>
-              <p className="muted">{c.articleText}</p>
-              <a className="text-link" href={founderLinks.article} target="_blank" rel="noopener">
-                {c.readArticle} <ArrowUpRight size={15} aria-hidden />
-              </a>
-            </article>
+            {publications.map(pub => (
+              <article className="pub-card" key={pub.title}>
+                <p className="fact-label">
+                  <FileText size={15} aria-hidden /> {tr(pub.kind, locale)}
+                </p>
+                <h3 lang="en">{pub.title}</h3>
+                <p className="muted">{pub.authors}</p>
+                <a className="text-link" href={pub.href} target="_blank" rel="noopener">
+                  {tr(pub.link, locale)} <ArrowUpRight size={15} aria-hidden />
+                </a>
+              </article>
+            ))}
           </div>
           <p className="section-foot">
             <Link className="text-link" href={`${routes[locale].sprints}#method`}>
