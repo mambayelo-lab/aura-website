@@ -1,34 +1,12 @@
-import { Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { Dictionary } from "@/content/dictionary";
-import { contactEmail, routes, type Locale } from "@/lib/i18n";
+import { productOrder, products, tr } from "@/content/products";
+import { appUrls, contactEmail, routes, type Locale } from "@/lib/i18n";
 import { Logo } from "./Logo";
 
 export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const r = routes[locale];
-  const columns = [
-    {
-      title: dict.nav.offers,
-      links: [
-        { href: r.decide, label: dict.offers.decide.name },
-        { href: r.architect, label: dict.offers.architect.name },
-      ],
-    },
-    {
-      title: dict.nav.industries,
-      links: [
-        { href: r.energy, label: dict.industries.energy.name },
-        { href: r.supplyChain, label: dict.industries.supplyChain.name },
-      ],
-    },
-    {
-      title: dict.footer.resources,
-      links: [
-        { href: r.insights, label: dict.nav.insights },
-        { href: r.contact, label: dict.nav.contact },
-      ],
-    },
-  ];
 
   return (
     <footer className="site-footer">
@@ -49,18 +27,46 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             </li>
           </ul>
         </div>
-        {columns.map((column) => (
-          <div key={column.title} className="footer-column">
-            <p className="footer-title">{column.title}</p>
-            <ul>
-              {column.links.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="footer-column">
+          <p className="footer-title">{dict.nav.products}</p>
+          <ul>
+            {productOrder.map((key) => (
+              <li key={key} data-product={key}>
+                <Link href={r[key]}>
+                  <span className="product-dot" aria-hidden />
+                  {tr(products[key].name, locale)}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href={r.sprints}>{dict.nav.sprints}</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="footer-column">
+          <p className="footer-title">{dict.footer.apps}</p>
+          <ul>
+            {productOrder.map((key) => (
+              <li key={key}>
+                <a href={appUrls[key]} target="_blank" rel="noopener">
+                  {tr(products[key].name, locale)} <ArrowUpRight size={13} aria-hidden />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="footer-note">{dict.footer.appsNote}</p>
+        </div>
+        <div className="footer-column">
+          <p className="footer-title">{dict.footer.resources}</p>
+          <ul>
+            <li>
+              <Link href={r.insights}>{dict.nav.insights}</Link>
+            </li>
+            <li>
+              <Link href={r.contact}>{dict.nav.contact}</Link>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="container footer-bottom">
         <p>

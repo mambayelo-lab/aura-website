@@ -8,13 +8,13 @@ export function ContactPage({ locale }: { locale: Locale }) {
   const c = dict.contact;
 
   return (
-    <section className="page-hero contact">
-      <div className="hero-backdrop hero-backdrop-soft" aria-hidden />
+    <section className="hero contact">
+      <div className="hero-backdrop" aria-hidden />
       <div className="container contact-grid">
         <div className="contact-intro">
           <p className="eyebrow">{c.eyebrow}</p>
-          <h1 className="title-xl">{c.title}</h1>
-          <p className="lead lead-lg">{c.lead}</p>
+          <h1 className="display display-sm">{c.title}</h1>
+          <p className="lead">{c.lead}</p>
 
           <div className="contact-include">
             <p className="contact-subtitle">{c.includeTitle}</p>

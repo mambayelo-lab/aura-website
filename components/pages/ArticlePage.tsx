@@ -18,18 +18,18 @@ export function ArticlePage({ locale, article }: { locale: Locale; article: Arti
     <>
       <article className="article">
         <header className="article-header">
-          <div className="hero-backdrop hero-backdrop-soft" aria-hidden />
+          <div className="hero-backdrop" aria-hidden />
           <div className="container container-narrow">
             <Link className="back-link" href={routes[locale].insights}>
               <ArrowLeft size={16} aria-hidden /> {dict.common.backToInsights}
             </Link>
             <p className="article-meta">
-              <span className="pill">{article.category}</span>
+              <span className="badge">{article.category}</span>
               <span>
                 {article.readTime} {dict.common.minRead}
               </span>
             </p>
-            <h1 className="title-xl">{article.title}</h1>
+            <h1 className="display display-sm">{article.title}</h1>
             <p className="article-standfirst">{article.standfirst}</p>
           </div>
         </header>
@@ -82,10 +82,10 @@ export function ArticlePage({ locale, article }: { locale: Locale; article: Arti
         </div>
       </article>
 
-      <section className="section section-muted">
+      <section className="section section-alt">
         <div className="container">
           <p className="eyebrow">{dict.common.related}</p>
-          <div className="article-grid article-grid-2">
+          <div className="grid-2">
             {suggestions.map((item) => (
               <ArticleCard key={item.slug} article={item} locale={locale} dict={dict} />
             ))}

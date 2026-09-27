@@ -1,85 +1,385 @@
-import { ArrowRight, BrainCircuit, Cable, ChartNoAxesCombined, CircleCheck, Globe2, Network, Radar, ShieldCheck, Sparkles, TriangleAlert } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
-import type { Locale } from "@/lib/i18n";
+import Link from "next/link";
+import { getArticles } from "@/content/articles";
+import { getDictionary } from "@/content/dictionary";
+import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
+import { appUrls, routes, type Locale } from "@/lib/i18n";
+import { ArticleCard, CtaBanner, SectionHead, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
+import { EntrySelector } from "../EntrySelector";
+import { HeroSignal } from "../HeroSignal";
+import { ZoomCard } from "../zoom/ZoomCard";
+import { localize } from "@/content/products";
 
-const text = {
+const copy = {
   fr: {
-    eyebrow: "INTELLIGENCE DE DÉCISION · SUPPLY CHAIN",
-    title: "Voir le risque. Comprendre ses causes. Décider avant l’impact.",
-    lead: "Aura relie les signaux dispersés de votre Supply Chain, explique ce qui change et prépare des décisions traçables — sans remplacer vos systèmes ni créer un nouvel entrepôt de données.",
-    cta: "Voir Aura Supply Chain", secondary: "Nous parler d’une décision",
-    proof: ["Première décision en 20 jours", "Connexion progressive aux SI", "Validation humaine systématique"],
-    pressure: "Vos outils voient les événements. Vos équipes doivent encore reconstruire la décision.",
-    pressureLead: "Une alerte isolée ne dit ni pourquoi agir, ni quelle option protège le mieux le service, la marge et la résilience.",
-    products: "Un même moteur. Trois façons d’avancer.",
-    productsLead: "Commencez par la peine la plus urgente. Les trois applications partagent le même langage de preuve, de causalité et de décision.",
-    method: "Connecter. Comprendre. Gouverner. Expliquer. Décider.",
-    methodLead: "Aura interroge les sources à la fréquence utile, applique des règles causales éditables et transforme une alerte en analyse décisionnelle préremplie.",
-    realityKicker: "DU TERRAIN À L’ARBITRAGE",
-    realityTitle: "Une décision sous pression, pas une démonstration d’IA.",
-    realityLead: "Quand un fournisseur, un port ou une route bascule, Aura rassemble le contexte utile et prépare les options. Le décideur garde la main, avec les impacts sur le service, le stock, le coût et la marge.",
-    realityCaption: "Réseau logistique européen · signal détecté · itinéraire alternatif évalué",
-    final: "Apportez-nous une décision réelle.", finalLead: "Nous cadrons le cas, les données minimales et la preuve de valeur avant tout déploiement lourd.", finalCta: "Cadrer un pilote",
+    eyebrow: "Intelligence décisionnelle · 3 applications",
+    title: "Du signal à la décision que vous pouvez défendre.",
+    lead: "Aura réunit trois applications distinctes — Supply Chain, Décider, Architect — pour trois situations différentes : un signal dans vos données, une question stratégique, un programme de transformation. Chacune commence par un sprint court et se termine par une décision traçable, validée par des humains.",
+    primary: "Trouver mon point d’entrée",
+    secondary: "Comparer les sprints",
+    trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
+    thesisEyebrow: "Notre thèse",
+    thesisTitle: "Les organisations ne manquent pas de données. Elles manquent de décisions explicites.",
+    thesis: [
+      ["Le signal", "Vos systèmes voient déjà les événements. Ce qui manque, c’est la règle qui dit pourquoi un événement compte — et pour qui."],
+      ["Le raisonnement", "Une décision robuste sépare ce qu’on sait, ce qu’on suppose et ce qu’on ignore. L’IA prépare ; elle ne tranche pas."],
+      ["La trace", "Une décision qu’on ne peut pas relire dans six mois n’a pas été prise : elle a été subie. Tout ce que fait Aura laisse une trace."],
+    ],
+    productsEyebrow: "Trois produits, trois déclencheurs",
+    productsTitle: "Des applications étanches, chacune pour une situation précise.",
+    productsLead: "Elles ne se recouvrent pas et ne se renvoient pas l’une à l’autre : ce site est le seul point d’entrée. Cliquez sur une carte pour le détail.",
+    entryEyebrow: "Quel point d’entrée ?",
+    entryTitle: "Partez de ce qui déclenche votre besoin, pas du produit.",
+    entryLead: "Le déclencheur suffit à choisir : un signal dans les données, une question ponctuelle ou un programme.",
+    compare: "Voir le comparatif complet",
+    methodEyebrow: "Méthode",
+    methodTitle: "Un sprint pour prouver. Une application pour durer.",
+    methodLead: "Nous ne vendons pas de projet long avant d’avoir montré la valeur sur votre cas réel.",
+    trustEyebrow: "Confiance & gouvernance",
+    trustTitle: "Quatre engagements, dans les trois applications.",
+    scenarioEyebrow: "Scénario d’illustration",
+    scenarioTitle: "À quoi ressemble « du signal à la décision » ?",
+    scenarioLead: "Exemple construit sur Maison Lucie, le SI synthétique de la démo Aura Supply Chain. Les chiffres sont fictifs et servent uniquement à illustrer le parcours.",
+    scenarioSteps: [
+      ["Signal", "Le délai annoncé par un fournisseur de composants passe de 21 à 34 jours (flux EDI)."],
+      ["Règle", "Règle causale : délai fournisseur critique > seuil ET couverture composant < 15 jours."],
+      ["Alerte", "Voyant orange : impact estimé sur le service dans 12 jours pour 2 références finies."],
+      ["Décision", "Fiche préremplie : contexte, chiffres, options (réallocation, express, second fournisseur). L’équipe complète et signe."],
+    ],
+    scenarioCta: "Explorer la démo Maison Lucie",
+    insightsEyebrow: "Perspectives",
+    insightsTitle: "Recul et méthode.",
+    allInsights: "Toutes les perspectives",
+    productDetails: "Voir le produit",
+    openApp: "Ouvrir l’app",
   },
   en: {
-    eyebrow: "DECISION INTELLIGENCE · SUPPLY CHAIN",
-    title: "See the risk. Understand its causes. Decide before impact.",
-    lead: "Aura connects fragmented Supply Chain signals, explains what changed and prepares traceable decisions — without replacing your systems or becoming another data warehouse.",
-    cta: "Explore Aura Supply Chain", secondary: "Discuss a decision",
-    proof: ["First decision in 20 days", "Progressive system connection", "Human validation by design"],
-    pressure: "Your systems see events. Your teams still have to rebuild the decision.",
-    pressureLead: "An isolated alert does not explain why to act or which option best protects service, margin and resilience.",
-    products: "One engine. Three ways to move forward.",
-    productsLead: "Start with the most urgent pain. All three applications share the same language of evidence, causality and decision.",
-    method: "Connect. Understand. Govern. Explain. Decide.",
-    methodLead: "Aura queries source systems at the useful frequency, applies editable causal rules and turns an alert into a pre-filled decision analysis.",
-    realityKicker: "FROM OPERATIONS TO ARBITRATION",
-    realityTitle: "A decision under pressure, not an AI demonstration.",
-    realityLead: "When a supplier, port or route shifts, Aura assembles the useful context and prepares the options. Decision-makers stay in control, with service, inventory, cost and margin impacts made explicit.",
-    realityCaption: "European logistics network · signal detected · alternative route assessed",
-    final: "Bring us a real decision.", finalLead: "We frame the case, minimum data and proof of value before any heavy deployment.", finalCta: "Frame a pilot",
+    eyebrow: "Decision intelligence · 3 applications",
+    title: "From signal to a decision you can defend.",
+    lead: "Aura brings together three distinct applications — Supply Chain, Decide, Architect — for three different situations: a signal in your data, a strategic question, a transformation programme. Each starts with a short sprint and ends with a traceable decision, validated by people.",
+    primary: "Find my entry point",
+    secondary: "Compare the sprints",
+    trust: ["Human validation", "No invented data", "Traceable reasoning"],
+    thesisEyebrow: "Our thesis",
+    thesisTitle: "Organisations do not lack data. They lack explicit decisions.",
+    thesis: [
+      ["The signal", "Your systems already see events. What is missing is the rule saying why an event matters — and to whom."],
+      ["The reasoning", "A robust decision separates what we know, what we assume and what we do not know. AI prepares; it does not decide."],
+      ["The trace", "A decision you cannot re-read in six months was not made: it was endured. Everything Aura does leaves a trace."],
+    ],
+    productsEyebrow: "Three products, three triggers",
+    productsTitle: "Sealed applications, each for one precise situation.",
+    productsLead: "They do not overlap and never link to each other: this website is the only entry point. Click a card for details.",
+    entryEyebrow: "Which entry point?",
+    entryTitle: "Start from what triggers your need, not from the product.",
+    entryLead: "The trigger is enough to choose: a signal in the data, a one-off question or a programme.",
+    compare: "See the full comparison",
+    methodEyebrow: "Method",
+    methodTitle: "A sprint to prove it. An application to make it last.",
+    methodLead: "We do not sell a long project before showing value on your real case.",
+    trustEyebrow: "Trust & governance",
+    trustTitle: "Four commitments, across all three applications.",
+    scenarioEyebrow: "Illustrative scenario",
+    scenarioTitle: "What does “from signal to decision” look like?",
+    scenarioLead: "Example built on Maison Lucie, the synthetic system behind the Aura Supply Chain demo. Figures are fictional and only illustrate the journey.",
+    scenarioSteps: [
+      ["Signal", "A component supplier’s announced lead time moves from 21 to 34 days (EDI feed)."],
+      ["Rule", "Causal rule: critical supplier lead time > threshold AND component cover < 15 days."],
+      ["Alert", "Amber light: estimated service impact in 12 days on 2 finished items."],
+      ["Decision", "Pre-filled form: context, figures, options (reallocation, express, second source). The team completes and signs."],
+    ],
+    scenarioCta: "Explore the Maison Lucie demo",
+    insightsEyebrow: "Insights",
+    insightsTitle: "Perspective and method.",
+    allInsights: "All insights",
+    productDetails: "See the product",
+    openApp: "Open the app",
   },
 };
 
+const method: Detail[] = [
+  {
+    id: "m-frame",
+    kicker: ["45 min", "45 min"],
+    title: ["Cadrer", "Frame"],
+    summary: ["Un appel pour qualifier le déclencheur et choisir le point d’entrée.", "One call to qualify the trigger and choose the entry point."],
+    body: [
+      [
+        "Nous partons de votre situation : un signal, une question ou un programme. Nous identifions les entrées disponibles, les personnes à mobiliser et le livrable attendu. Vous repartez avec une proposition de sprint écrite.",
+        "We start from your situation: a signal, a question or a programme. We identify the available inputs, the people to involve and the expected deliverable. You leave with a written sprint proposal.",
+      ],
+    ],
+    flow: [["Déclencheur", "Trigger"], ["Entrées", "Inputs"], ["Proposition", "Proposal"]],
+  },
+  {
+    id: "m-sprint",
+    kicker: ["5 jours → 4 semaines", "5 days → 4 weeks"],
+    title: ["Sprint", "Sprint"],
+    summary: ["Un engagement court, borné, avec un livrable réel.", "A short, bounded engagement with a real deliverable."],
+    body: [
+      [
+        "Sprint Résilience, Decision Sprint ou Design Sprint Architecture : chaque sprint a un déroulé fixe, des entrées connues et un livrable qui vous appartient — sur vos données, votre question ou votre programme, jamais sur un cas fictif.",
+        "Resilience Sprint, Decision Sprint or Architecture Design Sprint: each sprint has a fixed schedule, known inputs and a deliverable you own — on your data, your question or your programme, never on a fictional case.",
+      ],
+    ],
+    flow: [["Sprint Résilience", "Resilience Sprint"], ["Decision Sprint", "Decision Sprint"], ["Design Sprint Archi.", "Architecture Design Sprint"]],
+  },
+  {
+    id: "m-use",
+    kicker: ["Durée de vie", "Lifetime"],
+    title: ["Usage", "Use"],
+    summary: ["L’application prend le relais, vos équipes deviennent autonomes.", "The application takes over, your teams become autonomous."],
+    body: [
+      [
+        "Après le sprint, le livrable vit dans l’application correspondante : le cockpit continue d’évaluer les règles, les décisions sont suivies, le modèle d’architecture est maintenu. L’accompagnement devient optionnel.",
+        "After the sprint, the deliverable lives in the matching application: the cockpit keeps evaluating rules, decisions are tracked, the architecture model is maintained. Support becomes optional.",
+      ],
+    ],
+  },
+];
+
+const trust: Detail[] = [
+  {
+    id: "t-human",
+    title: ["Validation humaine", "Human validation"],
+    summary: ["L’IA propose, des personnes valident et signent.", "AI proposes, people validate and sign."],
+    body: [
+      [
+        "Mapping sémantique, règles, verdicts, choix d’architecture : aucune suggestion de l’IA n’est appliquée sans validation explicite d’une personne identifiée.",
+        "Semantic mapping, rules, verdicts, architecture choices: no AI suggestion is applied without explicit validation by an identified person.",
+      ],
+    ],
+    flow: [["Suggestion IA", "AI suggestion"], ["Revue", "Review"], ["Validation", "Validation"], ["Trace", "Trace"]],
+  },
+  {
+    id: "t-trace",
+    title: ["Traçabilité", "Traceability"],
+    summary: ["Chaque décision remonte à ses sources et hypothèses.", "Every decision traces back to its sources and assumptions."],
+    body: [
+      [
+        "Qui a décidé, quand, sur quelles données ou hypothèses, avec quelle version de règle : la réponse est dans l’application, pas dans la mémoire d’une réunion.",
+        "Who decided, when, on which data or assumptions, with which rule version: the answer is in the application, not in the memory of a meeting.",
+      ],
+    ],
+  },
+  {
+    id: "t-nodata",
+    title: ["Aucune donnée inventée", "No invented data"],
+    summary: ["Les alertes viennent de règles sur des données réelles.", "Alerts come from rules on real data."],
+    body: [
+      [
+        "Un modèle de langage peut produire un chiffre plausible et faux. Chez Aura, il n’en a pas le droit : les alertes viennent de règles explicites, les hypothèses sont déclarées comme telles, et les démos tournent sur un SI synthétique clairement identifié.",
+        "A language model can produce a plausible, wrong figure. At Aura it is not allowed to: alerts come from explicit rules, assumptions are declared as such, and demos run on a clearly labelled synthetic system.",
+      ],
+    ],
+  },
+  {
+    id: "t-sovereign",
+    title: ["Souveraineté", "Sovereignty"],
+    summary: ["Hébergement et modèle d’IA cadrés avec vous.", "Hosting and AI model agreed with you."],
+    body: [
+      [
+        "Aura lit vos sources plutôt que de tout copier. Le lieu d’hébergement, le modèle de langage utilisé et la conservation des données sont décidés avec vous, y compris des options souveraines européennes.",
+        "Aura reads your sources rather than copying everything. Hosting location, language model and data retention are decided with you, including European sovereign options.",
+      ],
+    ],
+  },
+];
+
 export function HomePage({ locale }: { locale: Locale }) {
-  const c = text[locale];
-  const fr = locale === "fr";
-  const contact = fr ? "/fr/contact" : "/contact";
-  return <main className="home-modern">
-    <section className="home-hero"><div className="home-hero-glow" aria-hidden /><div className="home-shell home-hero-grid">
-      <div className="home-hero-copy"><p className="home-pill"><Sparkles size={14} />{c.eyebrow}</p><h1>{c.title}</h1><p className="home-lead">{c.lead}</p>
-        <div className="home-actions"><a href="https://aura-decision-zen.vercel.app/cockpit/resilience?section=cockpit" className="home-btn home-btn-primary">{c.cta}<ArrowRight size={17} /></a><Link href={contact} className="home-btn home-btn-secondary">{c.secondary}</Link></div>
-        <ul className="home-proof">{c.proof.map(item => <li key={item}><CircleCheck size={16} />{item}</li>)}</ul>
-      </div><HeroCockpit fr={fr} />
-    </div></section>
+  const c = copy[locale];
+  const dict = getDictionary(locale);
+  const labels = zoomLabels(dict);
+  const r = routes[locale];
+  const articles = getArticles(locale).slice(0, 3);
 
-    <section className="home-pressure"><div className="home-shell"><div className="home-pressure-head"><div><p className="home-kicker">{fr ? "LA PEINE RÉELLE" : "THE REAL PAIN"}</p><h2>{c.pressure}</h2></div><p>{c.pressureLead}</p></div>
-      <div className="home-pain-grid"><Pain icon={Cable} label={fr ? "Fragmentation technique" : "Technical fragmentation"} text={fr ? "ERP, WMS, TMS, fichiers et outils de planification ne racontent pas spontanément la même histoire." : "ERP, WMS, TMS, files and planning tools do not naturally tell the same story."} /><Pain icon={Globe2} label={fr ? "Chocs géopolitiques" : "Geopolitical shocks"} text={fr ? "Fournisseurs, routes et délais changent avant que les modèles et comités ne soient actualisés." : "Suppliers, routes and lead times change before models and committees catch up."} /><Pain icon={ChartNoAxesCombined} label={fr ? "Incertitude économique" : "Economic uncertainty"} text={fr ? "Coût, service, stock et risque s’opposent ; une simple alerte ne suffit pas pour arbitrer." : "Cost, service, stock and risk conflict; an alert alone cannot arbitrate."} /></div>
-    </div></section>
+  return (
+    <>
+      <section className="hero">
+        <div className="hero-backdrop" aria-hidden />
+        <div className="container hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
+            <h1 className="display">{c.title}</h1>
+            <p className="lead lead-lg">{c.lead}</p>
+            <div className="actions">
+              <a className="btn btn-primary btn-lg" href="#entry">
+                {c.primary} <ArrowRight size={17} aria-hidden />
+              </a>
+              <Link className="btn btn-secondary btn-lg" href={r.sprints}>
+                {c.secondary}
+              </Link>
+            </div>
+            <ul className="trust-list">
+              {c.trust.map((item) => (
+                <li key={item}>
+                  <CircleCheck size={16} aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <HeroSignal locale={locale} />
+        </div>
+      </section>
 
-    <section className="home-reality"><div className="home-shell">
-      <div className="home-reality-grid"><div className="home-reality-copy"><p className="home-kicker">{c.realityKicker}</p><h2>{c.realityTitle}</h2><p>{c.realityLead}</p><div className="home-reality-facts"><span><strong>{fr ? "12 j" : "12 days"}</strong>{fr ? "avant impact" : "before impact"}</span><span><strong>3</strong>{fr ? "options comparées" : "options compared"}</span><span><strong>1</strong>{fr ? "décision traçable" : "traceable decision"}</span></div></div><figure className="home-people-visual"><Image src="/images/aura-port-control-tower.jpg" alt={fr ? "Porte-conteneurs entrant dans un port industriel surveillé par Aura" : "Container ship entering an industrial port monitored by Aura"} fill sizes="(max-width: 980px) 100vw, 58vw" priority /><figcaption>{fr ? "Le signal vient du terrain. La décision reste humaine." : "The signal comes from operations. The decision remains human."}</figcaption></figure></div>
-      <figure className="home-network-visual"><Image src="/images/candidates/aura-supply-chain-resilience.webp" alt={fr ? "Réseau Supply Chain et itinéraire alternatif" : "Supply Chain network and alternative route"} fill sizes="(max-width: 1380px) 100vw, 1380px" /><figcaption><i />{c.realityCaption}</figcaption></figure>
-    </div></section>
+      <section className="section section-tight">
+        <div className="container thesis">
+          <SectionHead eyebrow={c.thesisEyebrow} title={c.thesisTitle} />
+          <ol className="thesis-list">
+            {c.thesis.map(([title, text], index) => (
+              <li key={title}>
+                <span className="mono">0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-    <section className="home-products"><div className="home-shell"><div className="home-section-intro"><p className="home-kicker">AURA</p><h2>{c.products}</h2><p>{c.productsLead}</p></div><div className="home-product-grid">
-      <Product index="01" icon={Radar} title="Aura Supply Chain" text={fr ? "La tour de contrôle qui relie les sources, détecte les risques, explique leurs causes et transmet les alertes à l’atelier de décision." : "The control tower that connects sources, detects risks, explains their causes and routes alerts into the decision workspace."} href="https://aura-decision-zen.vercel.app/cockpit/resilience?section=cockpit" accent="blue" label={fr ? "Découvrir" : "Explore"} />
-      <Product index="02" icon={BrainCircuit} title={fr ? "Aura Décider" : "Aura Decide"} text={fr ? "L’atelier guidé pour structurer, comparer et suivre une décision stratégique, avec ou sans données initiales." : "A guided workspace to frame, compare and track strategic decisions, with or without initial data."} href="https://aura-decider.vercel.app/cockpit/atelier" accent="violet" label={fr ? "Découvrir" : "Explore"} />
-      <Product index="03" icon={Network} title="Aura Architecture" text={fr ? "Le studio pour relier capacités, applications, données, flux et trajectoires de transformation." : "The studio connecting capabilities, applications, data, flows and transformation roadmaps."} href="https://aura-architect-seven.vercel.app" accent="cyan" label={fr ? "Découvrir" : "Explore"} />
-    </div></div></section>
+      <section className="section section-alt" id="products">
+        <div className="container">
+          <SectionHead eyebrow={c.productsEyebrow} title={c.productsTitle} lead={c.productsLead} />
+          <div className="grid-3 product-grid">
+            {productOrder.map((key) => {
+              const p = products[key];
+              const s = sprints[p.sprint];
+              const Icon = productIcons[key];
+              return (
+                <ZoomCard
+                  key={key}
+                  product={key}
+                  labels={labels}
+                  className="product-card"
+                  detail={{
+                    id: key,
+                    kicker: tr(p.trigger, locale),
+                    title: tr(p.name, locale),
+                    summary: tr(p.tagline, locale),
+                    body: [tr(p.lead, locale), tr(p.question, locale)],
+                    flow: p.journey.steps.map((step) => tr(step.title, locale)),
+                    points: [
+                      `${locale === "fr" ? "Sprint associé : " : "Matching sprint: "}${tr(s.name, locale)} (${tr(s.duration, locale)})`,
+                      `${locale === "fr" ? "Livrable : " : "Deliverable: "}${tr(s.outcome, locale)}`,
+                      ...p.audience.slice(0, 2).map((a) => tr(a, locale)),
+                    ],
+                  }}
+                  panelFooter={
+                    <div className="actions">
+                      <Link className="btn btn-primary" href={r[key]}>
+                        {c.productDetails} <ArrowRight size={16} aria-hidden />
+                      </Link>
+                      <a className="btn btn-secondary" href={appUrls[key]} target="_blank" rel="noopener">
+                        {c.openApp}
+                      </a>
+                    </div>
+                  }
+                  footer={
+                    <>
+                      <span className="product-card-icon" aria-hidden>
+                        <Icon size={20} />
+                      </span>
+                      <Link className="text-link" href={r[key]}>
+                        {c.productDetails} <ArrowRight size={15} aria-hidden />
+                      </Link>
+                      <a className="text-link text-link-muted" href={appUrls[key]} target="_blank" rel="noopener">
+                        {c.openApp}
+                      </a>
+                    </>
+                  }
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-    <section className="home-method"><div className="home-shell home-method-grid"><div><p className="home-kicker">{fr ? "LE WORKFLOW" : "THE WORKFLOW"}</p><h2>{c.method}</h2><p>{c.methodLead}</p></div><ol className="home-steps">{(fr ? ["Connecter", "Comprendre", "Gouverner", "Expliquer", "Décider"] : ["Connect", "Understand", "Govern", "Explain", "Decide"]).map((label, index) => <li key={label} className={index === 4 ? "is-final" : ""}><span>0{index + 1}</span><strong>{label}</strong></li>)}</ol></div></section>
+      <section className="section" id="entry">
+        <div className="container">
+          <SectionHead eyebrow={c.entryEyebrow} title={c.entryTitle} lead={c.entryLead} />
+          <EntrySelector options={entryOptions(locale)} labels={selectorLabels(locale)} />
+          <p className="section-foot">
+            <Link className="text-link" href={r.sprints}>
+              {c.compare} <ArrowRight size={15} aria-hidden />
+            </Link>
+          </p>
+        </div>
+      </section>
 
-    <section className="home-final"><div className="home-shell"><div className="home-final-icon"><ShieldCheck /></div><h2>{c.final}</h2><p>{c.finalLead}</p><Link href={contact} className="home-btn home-btn-primary">{c.finalCta}<ArrowRight size={17} /></Link></div></section>
-  </main>;
-}
+      <section className="section section-alt">
+        <div className="container">
+          <SectionHead eyebrow={c.methodEyebrow} title={c.methodTitle} lead={c.methodLead} />
+          <div className="grid-3 steps-row">
+            {method.map((step, index) => (
+              <ZoomCard key={step.id} variant="step" index={`0${index + 1}`} labels={labels} detail={localize(step, locale)} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-function Pain({ icon: Icon, label, text }: { icon: typeof Cable; label: string; text: string }) { return <article className="home-pain-card"><Icon /><h3>{label}</h3><p>{text}</p></article>; }
+      <section className="section">
+        <div className="container">
+          <SectionHead eyebrow={c.trustEyebrow} title={c.trustTitle} />
+          <div className="grid-4">
+            {trust.map((item) => (
+              <ZoomCard key={item.id} variant="compact" labels={labels} detail={localize(item, locale)} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-function Product({ index, icon: Icon, title, text, href, accent, label }: { index: string; icon: typeof Cable; title: string; text: string; href: string; accent: string; label: string }) { return <a href={href} className={"home-product-card accent-" + accent}><div className="home-product-top"><span className="home-product-icon"><Icon /></span><small>{index}</small></div><h3>{title}</h3><p>{text}</p><strong>{label}<ArrowRight size={16} /></strong></a>; }
+      <section className="section section-alt">
+        <div className="container scenario">
+          <div>
+            <SectionHead eyebrow={c.scenarioEyebrow} title={c.scenarioTitle} lead={c.scenarioLead} />
+            <ol className="scenario-steps" data-product="supply">
+              {c.scenarioSteps.map(([label, text], index) => (
+                <li key={label}>
+                  <span className={`status-dot ${index === 2 ? "status-warn" : index === 3 ? "status-ok" : "status-info"}`} aria-hidden />
+                  <div>
+                    <strong>{label}</strong>
+                    <p>{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <a className="text-link" href={appUrls.supply} target="_blank" rel="noopener">
+              {c.scenarioCta} <ArrowRight size={15} aria-hidden />
+            </a>
+          </div>
+          <figure className="scenario-visual">
+            <Image
+              src="/images/aura-port-control-tower.jpg"
+              alt={locale === "fr" ? "Porte-conteneurs entrant dans un port industriel" : "Container ship entering an industrial port"}
+              fill
+              sizes="(max-width: 980px) 100vw, 50vw"
+            />
+            <figcaption>
+              <span className="badge">{dict.common.illustrative}</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
-function HeroCockpit({ fr }: { fr: boolean }) {
-  const metrics = [["OTIF", "92,4%"], [fr ? "Stock critique" : "Critical stock", "17"], [fr ? "Risques actifs" : "Active risks", "3"]];
-  return <div className="home-cockpit-wrap"><div className="home-cockpit"><div className="home-cockpit-bar"><strong><i />Aura Supply Chain</strong><span>● {fr ? "Sources actives" : "Sources live"}</span></div><div className="home-cockpit-body"><div className="home-metrics">{metrics.map(([label, value], index) => <div key={label}><small>{label}</small><strong className={index === 2 ? "danger" : ""}>{value}</strong></div>)}</div><div className="home-cockpit-grid"><div className="home-network"><strong>{fr ? "Réseau de dépendances" : "Dependency network"}</strong><div className="network-line" /><i className="node node-a" /><i className="node node-b" /><i className="node node-c" /><p>{fr ? "Fournisseur critique → composant → usine → client" : "Critical supplier → component → plant → customer"}</p></div><aside className="home-alert"><TriangleAlert /><small>{fr ? "IMPACT DANS 12 JOURS" : "IMPACT IN 12 DAYS"}</small><h3>{fr ? "Rupture fournisseur probable" : "Supplier disruption likely"}</h3><p>{fr ? "3 composants et 2 sites exposés. Trois options sont prêtes à être arbitrées." : "3 components and 2 sites exposed. Three options are ready for decision."}</p><button type="button">{fr ? "Ouvrir la décision" : "Open decision"}</button></aside></div></div></div></div>;
+      <section className="section">
+        <div className="container">
+          <div className="section-head-row">
+            <SectionHead eyebrow={c.insightsEyebrow} title={c.insightsTitle} />
+            <Link className="text-link" href={r.insights}>
+              {c.allInsights} <ArrowRight size={15} aria-hidden />
+            </Link>
+          </div>
+          <div className="grid-3">
+            {articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} locale={locale} dict={dict} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBanner locale={locale} dict={dict} />
+    </>
+  );
 }

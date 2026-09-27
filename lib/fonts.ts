@@ -1,15 +1,16 @@
-import { Fraunces, Inter } from "next/font/google";
+import { JetBrains_Mono, Manrope } from "next/font/google";
 
-export const sans = Inter({
+/** Manrope everywhere, harmonised with the Aura applications. */
+export const sans = Manrope({
   subsets: ["latin", "latin-ext"],
   display: "swap",
   variable: "--font-sans",
 });
 
-export const serif = Fraunces({
-  subsets: ["latin", "latin-ext"],
-  weight: ["500", "600"],
-  style: ["normal"],
+/** Monospace for data, identifiers and metrics. */
+export const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
-  variable: "--font-serif",
+  variable: "--font-mono",
 });

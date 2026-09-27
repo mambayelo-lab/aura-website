@@ -9,7 +9,7 @@ import { Logo } from "./Logo";
 
 export type NavGroup =
   | { label: string; href: string; items?: undefined }
-  | { label: string; href?: undefined; items: { href: string; title: string; text: string; meta?: string }[] };
+  | { label: string; href?: undefined; items: { href: string; title: string; text: string; meta?: string; product?: string }[] };
 
 type Labels = { home: string; cta: string; openMenu: string; closeMenu: string; language: string; main: string };
 
@@ -97,8 +97,9 @@ export function HeaderClient({
                   </button>
                   <div className="dropdown-panel">
                     {group.items.map((item) => (
-                      <Link key={item.href} href={item.href} className="dropdown-item">
+                      <Link key={item.href} href={item.href} className="dropdown-item" data-product={item.product}>
                         <span className="dropdown-title">
+                          <span className="product-dot" aria-hidden />
                           {item.title}
                           {item.meta && <small>{item.meta}</small>}
                         </span>
@@ -143,7 +144,7 @@ export function HeaderClient({
               <div key={group.label} className="mobile-group">
                 <p className="mobile-group-label">{group.label}</p>
                 {group.items.map((item) => (
-                  <Link key={item.href} href={item.href} className="mobile-link">
+                  <Link key={item.href} href={item.href} className="mobile-link" data-product={item.product}>
                     {item.title}
                     <small>{item.text}</small>
                   </Link>

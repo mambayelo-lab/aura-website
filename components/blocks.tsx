@@ -1,139 +1,197 @@
-import { ArrowRight, ArrowUpRight, Check, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Plus, Radar, Scale } from "lucide-react";
 import Link from "next/link";
 import type { ArticleEntry } from "@/content/articles";
-import type { Dictionary, Offer } from "@/content/dictionary";
-import { articleHref, contactEmail, routes, type Locale } from "@/lib/i18n";
+import type { Dictionary } from "@/content/dictionary";
+import { comparisonRows, productOrder, products, sprints, tr } from "@/content/products";
+import { appUrls, articleHref, routes, type Locale, type ProductKey } from "@/lib/i18n";
+import type { EntryOption } from "./EntrySelector";
+import type { ZoomLabels } from "./zoom/ZoomCard";
 
-export function SectionHeading({
+export const productIcons: Record<ProductKey, typeof Radar> = { supply: Radar, decide: Scale, architect: Boxes };
+
+export function zoomLabels(dict: Dictionary): ZoomLabels {
+  return { details: dict.common.details, close: dict.common.close, example: dict.common.example, schema: dict.common.schema };
+}
+
+export function sprintHref(locale: Locale, product: ProductKey) {
+  return `${routes[locale].sprints}#${products[product].sprint}`;
+}
+
+export function SectionHead({
   eyebrow,
   title,
   lead,
-  align = "left",
   as: Tag = "h2",
-  children,
+  center,
 }: {
   eyebrow?: string;
   title: React.ReactNode;
-  lead?: string;
-  align?: "left" | "center" | "split";
+  lead?: React.ReactNode;
   as?: "h1" | "h2";
-  children?: React.ReactNode;
+  center?: boolean;
 }) {
   return (
-    <div className={`section-heading section-heading-${align}`}>
-      <div>
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <Tag className={Tag === "h1" ? "title-xl" : "title-lg"}>{title}</Tag>
-      </div>
-      {(lead || children) && (
-        <div className="section-heading-aside">
-          {lead && <p className="lead">{lead}</p>}
-          {children}
-        </div>
-      )}
+    <div className={`section-head${center ? " section-head-center" : ""}`}>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <Tag className={Tag === "h1" ? "display" : "h2"}>{title}</Tag>
+      {lead && <p className="lead">{lead}</p>}
     </div>
   );
 }
 
-export function OfferCard({
-  offer,
-  href,
-  index,
-  dark,
-  dict,
-}: {
-  offer: Offer;
-  href: string;
-  index: number;
-  dark?: boolean;
-  dict: Dictionary;
-}) {
+export function AppLink({ product, label, className = "btn btn-primary" }: { product: ProductKey; label: string; className?: string }) {
   return (
-    <article className={`offer-card${dark ? " offer-card-dark" : ""}`}>
-      <div className="offer-card-top">
-        <span className="offer-index">0{index}</span>
-        <span className="pill">{offer.sprint}</span>
+    <a className={className} href={appUrls[product]} target="_blank" rel="noopener">
+      {label} <ArrowUpRight size={16} aria-hidden />
+    </a>
+  );
+}
+
+export function entryOptions(locale: Locale): EntryOption[] {
+  const fr = locale === "fr";
+  const situations: Record<ProductKey, [string, string]> = {
+    supply: fr
+      ? ["Un signal revient dans nos données", "Ruptures, retards fournisseurs, couverture de stock vue trop tard"]
+      : ["A signal keeps coming back in our data", "Stock-outs, supplier delays, stock cover seen too late"],
+    decide: fr
+      ? ["Nous avons une question stratégique à trancher", "Investir, réorganiser, lancer, relocaliser — sans données prêtes"]
+      : ["We have a strategic question to settle", "Invest, reorganise, launch, relocate — without data at hand"],
+    architect: fr
+      ? ["Nous lançons un programme de transformation", "Refonte ERP, fusion de SI, modernisation, nouveau canal"]
+      : ["We are launching a transformation programme", "ERP overhaul, IT merger, modernisation, new channel"],
+  };
+  const data: Record<ProductKey, string> = {
+    supply: tr(comparisonRows[2].values.supply, locale),
+    decide: tr(comparisonRows[2].values.decide, locale),
+    architect: tr(comparisonRows[2].values.architect, locale),
+  };
+  return productOrder.map((key) => {
+    const sprint = sprints[products[key].sprint];
+    return {
+      key,
+      situation: situations[key][0],
+      example: situations[key][1],
+      product: tr(products[key].name, locale),
+      sprint: tr(sprint.name, locale),
+      duration: tr(sprint.duration, locale),
+      outcome: tr(sprint.outcome, locale),
+      data: data[key],
+      productHref: routes[locale][key],
+      sprintHref: sprintHref(locale, key),
+      appHref: appUrls[key],
+    };
+  });
+}
+
+export function selectorLabels(locale: Locale) {
+  return locale === "fr"
+    ? {
+        prompt: "Qu’est-ce qui vous amène ?",
+        recommended: "Point d’entrée recommandé",
+        duration: "Durée du sprint",
+        outcome: "Livrable",
+        data: "Données requises",
+        product: "Voir le produit",
+        sprint: "Voir le sprint",
+        app: "Ouvrir l’application",
+      }
+    : {
+        prompt: "What brings you here?",
+        recommended: "Recommended entry point",
+        duration: "Sprint duration",
+        outcome: "Deliverable",
+        data: "Data required",
+        product: "See the product",
+        sprint: "See the sprint",
+        app: "Open the application",
+      };
+}
+
+/** “Which entry point?” comparison: a table on wide screens, stacked cards on phones. */
+export function ComparisonTable({ locale }: { locale: Locale }) {
+  const caption = locale === "fr" ? "Quel point d’entrée ? Comparatif des trois produits et de leur sprint" : "Which entry point? Comparison of the three products and their sprint";
+  return (
+    <div className="compare">
+      <table className="compare-table">
+        <caption className="sr-only">{caption}</caption>
+        <thead>
+          <tr>
+            <td />
+            {productOrder.map((key) => {
+              const Icon = productIcons[key];
+              return (
+                <th key={key} scope="col" data-product={key}>
+                  <span className="compare-product">
+                    <Icon size={18} aria-hidden />
+                    {tr(products[key].name, locale)}
+                  </span>
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {comparisonRows.map((row) => (
+            <tr key={row.label[1]}>
+              <th scope="row">{tr(row.label, locale)}</th>
+              {productOrder.map((key) => (
+                <td key={key} data-product={key}>
+                  {tr(row.values[key], locale)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div className="compare-cards">
+        {productOrder.map((key) => {
+          const Icon = productIcons[key];
+          return (
+            <section key={key} className="compare-card" data-product={key} aria-label={tr(products[key].name, locale)}>
+              <p className="compare-product">
+                <Icon size={18} aria-hidden />
+                {tr(products[key].name, locale)}
+              </p>
+              <dl>
+                {comparisonRows.map((row) => (
+                  <div key={row.label[1]}>
+                    <dt>{tr(row.label, locale)}</dt>
+                    <dd>{tr(row.values[key], locale)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          );
+        })}
       </div>
-      <h3 className="offer-name">{offer.name}</h3>
-      <p className="offer-headline">{offer.headline}</p>
-      <p className="offer-summary">{offer.summary}</p>
-      <ul className="check-list">
-        {offer.highlights.map((item) => (
-          <li key={item}>
-            <Check size={16} aria-hidden />
-            {item}
-          </li>
-        ))}
-      </ul>
-      <div className="offer-footer">
-        <div className="price">
-          <small>{dict.common.startingFrom}</small>
-          <strong>{offer.price}</strong>
-          <span>{offer.duration}</span>
-        </div>
-        <Link className={`btn ${dark ? "btn-light" : "btn-secondary"}`} href={href}>
-          {dict.common.discoverOffer} <ArrowRight size={16} aria-hidden />
-        </Link>
-      </div>
-    </article>
+    </div>
   );
 }
 
 const topicClass: Record<ArticleEntry["topic"], string> = {
-  decision: "topic-decision",
-  energy: "topic-energy",
-  "supply-chain": "topic-supply",
-  architecture: "topic-architecture",
+  decision: "decide",
+  energy: "decide",
+  "supply-chain": "supply",
+  architecture: "architect",
 };
 
-export function ArticleCard({
-  article,
-  locale,
-  dict,
-  featured,
-}: {
-  article: ArticleEntry;
-  locale: Locale;
-  dict: Dictionary;
-  featured?: boolean;
-}) {
+export function ArticleCard({ article, locale, dict }: { article: ArticleEntry; locale: Locale; dict: Dictionary }) {
   return (
-    <Link
-      href={articleHref(locale, article.slug)}
-      className={`article-card ${topicClass[article.topic]}${featured ? " article-card-featured" : ""}`}
-    >
-      <div className="article-card-cover" aria-hidden>
-        <span className="article-card-number">{String(article.index + 1).padStart(2, "0")}</span>
-        <span className="article-card-glyph" />
-      </div>
-      <div className="article-card-body">
-        <p className="article-card-meta">
-          <span>{article.category}</span>
-          <span>
-            {article.readTime} {dict.common.minRead}
-          </span>
-        </p>
-        <h3>{article.title}</h3>
-        {featured && <p className="article-card-standfirst">{article.standfirst}</p>}
-        <span className="text-link">
-          {dict.common.readArticle} <ArrowUpRight size={16} aria-hidden />
+    <Link href={articleHref(locale, article.slug)} className="article-card" data-product={topicClass[article.topic]}>
+      <p className="article-card-meta">
+        <span className="product-dot" aria-hidden />
+        <span>{article.category}</span>
+        <span>
+          {article.readTime} {dict.common.minRead}
         </span>
-      </div>
+      </p>
+      <h3>{article.title}</h3>
+      <p className="article-card-standfirst">{article.standfirst}</p>
+      <span className="text-link">
+        {dict.common.readArticle} <ArrowRight size={15} aria-hidden />
+      </span>
     </Link>
-  );
-}
-
-export function Steps({ steps }: { steps: { title: string; text: string }[] }) {
-  return (
-    <ol className="steps" style={{ "--steps": steps.length } as React.CSSProperties}>
-      {steps.map((step, index) => (
-        <li key={step.title} className="step">
-          <span className="step-number">{String(index + 1).padStart(2, "0")}</span>
-          <h3>{step.title}</h3>
-          <p>{step.text}</p>
-        </li>
-      ))}
-    </ol>
   );
 }
 
@@ -157,17 +215,19 @@ export function CtaBanner({ locale, dict }: { locale: Locale; dict: Dictionary }
   return (
     <section className="section section-tight">
       <div className="container">
-        <div className="cta-banner reveal">
-          <div className="cta-glow" aria-hidden />
-          <p className="eyebrow eyebrow-light">{dict.cta.eyebrow}</p>
-          <h2 className="title-lg">{dict.cta.title}</h2>
+        <div className="cta-banner">
+          <div>
+            <p className="eyebrow">{dict.cta.eyebrow}</p>
+            <h2 className="h2">{dict.cta.title}</h2>
+            <p className="lead">{dict.cta.lead}</p>
+          </div>
           <div className="cta-actions">
-            <Link className="btn btn-light btn-lg" href={routes[locale].contact}>
+            <Link className="btn btn-primary btn-lg" href={routes[locale].contact}>
               {dict.cta.button} <ArrowRight size={17} aria-hidden />
             </Link>
-            <a className="btn btn-ghost-light btn-lg" href={`mailto:${contactEmail}`}>
+            <Link className="btn btn-secondary btn-lg" href={routes[locale].sprints}>
               {dict.cta.secondary}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
