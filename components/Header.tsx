@@ -22,29 +22,14 @@ export function Header({
           text: locale === "fr" ? "Risques, alertes et décisions Supply Chain" : "Supply Chain risks, alerts and decisions",
         },
         {
-          href: "https://aura-decider.vercel.app",
+          href: "https://aura-decider.vercel.app/cockpit/atelier",
           title: locale === "fr" ? "Aura Décider" : "Aura Decide",
           text: locale === "fr" ? "Structurer et défendre une décision" : "Frame and defend a decision",
         },
         {
-          href: "https://aura-architecturer.vercel.app",
+          href: "https://aura-architect-seven.vercel.app",
           title: "Aura Architecture",
           text: locale === "fr" ? "Concevoir une transformation exécutable" : "Design an executable transformation",
-        },
-      ],
-    },
-    {
-      label: dict.nav.offers,
-      items: [
-        {
-          href: r.decide,
-          title: dict.offers.decide.sprint,
-          text: dict.offers.decide.summary,
-        },
-        {
-          href: r.architect,
-          title: dict.offers.architect.sprint,
-          text: dict.offers.architect.summary,
         },
       ],
     },
