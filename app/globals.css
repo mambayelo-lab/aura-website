@@ -3321,3 +3321,20 @@ a:hover .media img,
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Value vs. cost (ROI framing) */
+.value-block { display: grid; gap: 28px; }
+.value-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; }
+.value-col { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--surface); min-width: 0; }
+.value-col ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 14px; }
+.value-gains li { display: grid; gap: 4px; padding-left: 16px; border-left: 3px solid var(--indigo-600); }
+.value-gains li strong { font-family: var(--font-display, inherit); color: var(--ink); }
+.value-gains li span, .value-costs li { color: var(--ink-2); line-height: 1.55; }
+.value-costs { background: var(--bg-alt); }
+.value-costs li { position: relative; padding-left: 22px; }
+.value-costs li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 10px; height: 2px; background: var(--navy); }
+.value-source { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line-strong); font-size: 0.9rem; color: var(--muted); overflow-wrap: anywhere; }
+.value-source strong { color: var(--indigo-600); font-size: 1.05rem; }
+.value-source a { color: var(--indigo-700); white-space: nowrap; }
+.value-note { margin: 0; color: var(--muted); font-style: italic; }
+@media (max-width: 860px) { .value-grid { grid-template-columns: minmax(0, 1fr); } .value-col { padding: 18px; } }

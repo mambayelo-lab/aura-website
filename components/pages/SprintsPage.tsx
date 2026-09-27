@@ -9,12 +9,14 @@ import {
   ComparisonTable,
   CtaBanner,
   SectionHead,
+  ValueBlock,
   productIcons,
   zoomLabels,
 } from "../blocks";
 import { MethodCards, MethodChips } from "../Methods";
 import { methodOrder, sprintMethods } from "@/content/methods";
 import { ZoomCard } from "../zoom/ZoomCard";
+import { sprintsValue } from "@/content/value";
 
 const copy = {
   fr: {
@@ -131,7 +133,13 @@ export function SprintsPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt" id="compare">
+      <section className="section section-alt" id="sprint-value">
+        <div className="container">
+          <ValueBlock value={sprintsValue} locale={locale} id="value-block" />
+        </div>
+      </section>
+
+      <section className="section" id="compare">
         <div className="container">
           <SectionHead eyebrow={c.compareEyebrow} title={c.compareTitle} />
           <ComparisonTable locale={locale} />

@@ -243,3 +243,42 @@ export function CtaBanner({ locale, dict }: { locale: Locale; dict: Dictionary }
     </section>
   );
 }
+
+export function ValueBlock({ value, locale, id = "value" }: { value: import("@/content/value").ValueCopy; locale: Locale; id?: string }) {
+  const l = (v: readonly [string, string]) => tr(v, locale);
+  return (
+    <div className="value-block" id={id}>
+      <SectionHead eyebrow={l(value.eyebrow)} title={l(value.title)} lead={l(value.lead)} />
+      <div className="value-grid">
+        <div className="value-col value-gains">
+          <p className="fact-label">{l(value.gainsLabel)}</p>
+          <ul>
+            {value.gains.map((g) => (
+              <li key={g.title[1]}>
+                <strong>{l(g.title)}</strong>
+                <span>{l(g.text)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="value-col value-costs">
+          <p className="fact-label">{l(value.costsLabel)}</p>
+          <ul>
+            {value.costs.map((c) => (
+              <li key={c[1]}>{l(c)}</li>
+            ))}
+          </ul>
+          {value.source && (
+            <p className="value-source">
+              <strong>{l(value.source.figure)}</strong> {l(value.source.text)}{" "}
+              <a href={value.source.href} target="_blank" rel="noopener noreferrer">
+                {l(value.source.label)}
+              </a>
+            </p>
+          )}
+        </div>
+      </div>
+      {value.note && <p className="value-note">{l(value.note)}</p>}
+    </div>
+  );
+}

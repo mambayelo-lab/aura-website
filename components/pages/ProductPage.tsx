@@ -4,10 +4,11 @@ import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { localize, products, sprints, tr } from "@/content/products";
 import { appUrls, routes, type Locale, type ProductKey } from "@/lib/i18n";
-import { AppLink, CtaBanner, Faq, SectionHead, productIcons, sprintHref, zoomLabels } from "../blocks";
+import { AppLink, CtaBanner, Faq, SectionHead, ValueBlock, productIcons, sprintHref, zoomLabels } from "../blocks";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { AppScreen } from "../AppScreen";
 import { MethodReminder } from "../Methods";
+import { productValue } from "@/content/value";
 
 const copy = {
   fr: {
@@ -333,6 +334,12 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="section section-tight" id="value">
+        <div className="container">
+          <ValueBlock value={productValue[key]} locale={locale} id="value-block" />
         </div>
       </section>
 

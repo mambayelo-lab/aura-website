@@ -6,11 +6,12 @@ import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
 import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
-import { ArticleCard, CtaBanner, SectionHead, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
+import { ArticleCard, CtaBanner, SectionHead, ValueBlock, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
 import { EntrySelector } from "../EntrySelector";
 import { HeroSignal } from "../HeroSignal";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
+import { homeValue } from "@/content/value";
 
 const cardImages = {
   supply: "/images/aura/control-room.webp",
@@ -320,7 +321,13 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section" id="entry">
+      <section className="section">
+        <div className="container">
+          <ValueBlock value={homeValue} locale={locale} />
+        </div>
+      </section>
+
+      <section className="section section-alt" id="entry">
         <div className="container">
           <SectionHead eyebrow={c.entryEyebrow} title={c.entryTitle} lead={c.entryLead} />
           <EntrySelector options={entryOptions(locale)} labels={selectorLabels(locale)} />
