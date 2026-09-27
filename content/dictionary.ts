@@ -141,7 +141,7 @@ const en: Dictionary = {
   meta: {
     title: "AURA — From critical signals to accountable decisions",
     description:
-      "AURA turns critical Energy and Supply Chain signals into faster, evidence-based and traceable decisions.",
+      "AURA turns critical Supply Chain signals into faster, evidence-based and traceable decisions.",
   },
   nav: {
     home: "AURA home",
