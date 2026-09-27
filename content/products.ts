@@ -88,8 +88,8 @@ const supply: Product = {
     "You hear about the shortage when the customer calls. Aura spots it in your data, traces it to its cause and gets you deciding before it hits.",
   ],
   lead: [
-    "Aura se branche sur les systèmes que vous avez déjà, modélise votre réseau et évalue des règles causales explicites sur vos valeurs réelles. Le cockpit ne montre que ce qui compte : ce qui est critique, ce qui est à surveiller, ce qui attend une décision. Chaque alerte ouvre une décision déjà remplie avec les faits ; votre équipe choisit, justifie et signe.",
-    "Aura plugs into the systems you already run, models your network and evaluates explicit causal rules against your real values. The cockpit shows only what matters: what is critical, what to watch, what is waiting for a decision. Every alert opens a decision already filled in with the facts; your team chooses, justifies and signs.",
+    "Aura ne remplace ni SAP, ni Kinaxis, ni o9 : c’est la couche qui transforme leurs alertes en décisions explicables, validées, exécutables et mémorisées. Elle se branche sur les systèmes que vous avez déjà, modélise votre réseau et évalue des règles causales explicites sur vos valeurs réelles. Le cockpit ne montre que ce qui compte : ce qui est critique, ce qui est à surveiller, ce qui attend une décision. Chaque alerte ouvre une décision déjà remplie avec les faits ; votre équipe choisit, justifie et signe.",
+    "Aura does not replace SAP, Kinaxis or o9: it is the layer that turns their alerts into decisions that are explainable, validated, actionable and remembered. It plugs into the systems you already run, models your network and evaluates explicit causal rules against your real values. The cockpit shows only what matters: what is critical, what to watch, what is waiting for a decision. Every alert opens a decision already filled in with the facts; your team chooses, justifies and signs.",
   ],
   image: {
     src: "/images/aura/supply-map.webp",
@@ -150,9 +150,10 @@ const supply: Product = {
       "A supplier lead time drifts, stock cover melts, a shipment slips. The information is somewhere in your systems, but it arrives late, without its cause, and with no one clearly in charge of the call.",
     ],
     pain: [
-      ["Les écarts se découvrent en réunion hebdomadaire, dans un export Excel retravaillé à la main.", "Gaps surface in the weekly meeting, in a spreadsheet export reworked by hand."],
-      ["Chaque alerte lance une chaîne d’e-mails : est-elle réelle, et qui doit agir ?", "Every alert starts an email thread: is it real, and who should act?"],
-      ["Planification, achats et transport voient chacun un morceau du problème.", "Planning, procurement and transport each see one piece of the problem."],
+      ["Trop d’alertes, aucune hiérarchie économique : tout paraît urgent, rien n’est chiffré.", "Too many alerts and no economic ranking: everything looks urgent, nothing is quantified."],
+      ["Des données dispersées et contradictoires, réconciliées à la main dans un export Excel.", "Scattered, conflicting data, reconciled by hand in a spreadsheet export."],
+      ["Supply, Finance, Commerce et Achats défendent chacun leur lecture ; les options de mitigation s’évaluent à la main.", "Supply, Finance, Sales and Procurement each defend their own reading; mitigation options are assessed by hand."],
+      ["Des décisions lentes, peu tracées, rarement réévaluées une fois prises.", "Decisions that are slow, barely documented and rarely revisited once made."],
     ],
     cost: [
       ["Des ruptures et des livraisons en retard qui dégradent l’OTIF et la confiance de vos clients.", "Shortages and late deliveries that erode OTIF and customer trust."],
@@ -160,7 +161,7 @@ const supply: Product = {
       ["Des transports express et des arbitrages de dernière minute qui entament la marge.", "Expedited freight and last-minute trade-offs that eat into margin."],
     ],
     why: [
-      ["Les tours de contrôle affichent des alertes, mais ne disent ni la cause, ni les options, ni qui décide.", "Control towers display alerts, but not the cause, the options or who decides."],
+      ["Les tours de contrôle affichent des alertes, mais ne disent ni la cause, ni les options, ni qui décide ; et rien ne relie la décision à la transformation du SI.", "Control towers display alerts, but not the cause, the options or who decides; and nothing links the decision to how your systems evolve."],
       ["Leur branchement au SI réel est long et coûteux ; elles risquent de finir en tableau de bord de plus.", "Wiring them into your real systems is slow and costly; they risk becoming one more dashboard."],
       ["Une IA générative seule peut produire un chiffre plausible et faux : inacceptable pour engager un fournisseur.", "Generative AI on its own can produce a plausible but wrong figure: not acceptable when you commit a supplier."],
     ],
@@ -168,6 +169,7 @@ const supply: Product = {
       ["Le risque repéré dans vos données réelles, avec sa cause et les références touchées.", "The risk spotted in your real data, with its cause and the items affected."],
       ["Une décision préremplie avec les faits : votre équipe complète les options, choisit et signe.", "A decision pre-filled with the facts: your team completes the options, chooses and signs."],
       ["Une trace complète (règle, données, auteur) pour la revue S&OP comme pour l’audit.", "A complete trail (rule, data, author) for the S&OP review and for audit."],
+      ["Une mémoire qui s’enrichit : critères, hypothèses, bascules et résultats réels éclairent la décision suivante.", "A memory that grows: criteria, assumptions, tipping points and actual outcomes inform the next decision."],
     ],
   },
   features: [

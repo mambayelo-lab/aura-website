@@ -49,8 +49,8 @@ export const whyAura: { id: string; title: T; short: T; long: T }[] = [
     id: "why-towers",
     title: ["Votre tour de contrôle affiche des alertes, pas des décisions", "Your control tower shows alerts, not decisions"],
     short: [
-      "Chère à intégrer, mal branchée sur votre SI réel, elle dit ce qui se passe, rarement pourquoi ni quoi faire.",
-      "Costly to integrate and poorly wired into your real systems, it tells you what is happening, rarely why or what to do.",
+      "Aura n’en ajoute pas une de plus : c’est la couche qui transforme une alerte venue de SAP, Kinaxis, o9 ou de votre SI industriel en décision explicable, validée, exécutable et mémorisée, sans remplacer ces outils.",
+      "Aura does not add yet another one: it is the layer that turns an alert from SAP, Kinaxis, o9 or your industrial systems into a decision that is explainable, validated, actionable and remembered, without replacing those tools.",
     ],
     long: [
       "Nous avons vu des control towers onéreuses peiner à se connecter aux systèmes d’information des entreprises, puis produire des alertes que personne ne sait qualifier. Le problème n’est pas l’écran : c’est l’absence d’un modèle commun qui dise ce que signifie chaque donnée, d’où elle vient, ce qu’elle cause, et qui doit décider.",

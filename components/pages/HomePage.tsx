@@ -41,7 +41,16 @@ const copy = {
     founderText: "Lead Enterprise Architect, Ph.D. 16 ans de transformations dans le retail, l’énergie, la banque et l’automobile. Parcours et travaux.",
     productsEyebrow: "Trois problèmes, trois réponses",
     productsTitle: "Une application dédiée à chaque situation, sans chevauchement.",
-    productsLead: "Chaque application est indépendante et traite un problème précis. Voici lequel, et ce que vous obtenez.",
+    productsLead: "Chaque application est indépendante et traite un problème précis. Supply Chain ouvre la porte par la douleur métier, Décider en est le moteur explicable, Architect transforme le choix en exécution.",
+    pathEyebrow: "Une trajectoire, pas un big bang",
+    pathTitle: "Décider maintenant, sans attendre une transformation de deux ans.",
+    pathSteps: [
+      ["Une décision coûteuse", "Vous partez de l’arbitrage qui vous coûte le plus aujourd’hui."],
+      ["La valeur prouvée", "Options évaluées, décision signée, effet mesuré sur votre cas réel."],
+      ["Les signaux récurrents", "Les alertes qui reviennent sont connectées à vos systèmes existants."],
+      ["Le système transformé", "Les choix qui s’imposent deviennent une trajectoire d’architecture."],
+    ],
+    pathNote: "Une seule histoire de bout en bout, des étapes séparées et réversibles : vous vous engagez étape par étape. Et chaque décision, avec ses critères, ses hypothèses, ses points de bascule et ses résultats réels, enrichit une mémoire qui reste la vôtre.",
     entryEyebrow: "Par où commencer ?",
     entryTitle: "Partez de votre problème. Le bon point d’entrée en découle.",
     entryLead: "Choisissez la situation qui vous ressemble : vous voyez le sprint adapté, sa durée et ce que vous aurez en main à la fin.",
@@ -86,7 +95,16 @@ const copy = {
     founderText: "Lead Enterprise Architect, Ph.D. 16 years of transformations across retail, energy, banking and automotive. Background and research.",
     productsEyebrow: "Three problems, three answers",
     productsTitle: "One dedicated application for each situation, with no overlap.",
-    productsLead: "Each application stands on its own and solves one specific problem. Here is which one, and what you get.",
+    productsLead: "Each application stands on its own and solves one specific problem. Supply Chain opens the door through the business pain, Decide is the explainable engine, Architect turns the choice into execution.",
+    pathEyebrow: "A trajectory, not a big bang",
+    pathTitle: "Decide now, without waiting for a two-year transformation.",
+    pathSteps: [
+      ["One costly decision", "Start with the trade-off that costs you most today."],
+      ["Value proven", "Options evaluated, decision signed, impact measured on your real case."],
+      ["Recurring signals connected", "The alerts that keep coming back are wired to the systems you already run."],
+      ["The system transformed", "The choices that stand the test become an architecture roadmap."],
+    ],
+    pathNote: "One end-to-end story, in separate, reversible steps: you commit one step at a time. And every decision, with its criteria, assumptions, tipping points and actual outcomes, builds a memory that stays yours.",
     entryEyebrow: "Where to start?",
     entryTitle: "Start from your problem. The right entry point follows.",
     entryLead: "Pick the situation that sounds like yours: you will see the matching sprint, how long it takes and what you will have in hand at the end.",
@@ -317,6 +335,22 @@ export function HomePage({ locale }: { locale: Locale }) {
                 />
               );
             })}
+          </div>
+          <div className="path">
+            <div className="path-head">
+              <p className="eyebrow">{c.pathEyebrow}</p>
+              <h3>{c.pathTitle}</h3>
+            </div>
+            <ol className="path-steps">
+              {c.pathSteps.map(([title, text], index) => (
+                <li key={title}>
+                  <span className="mono">0{index + 1}</span>
+                  <strong>{title}</strong>
+                  <p>{text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="path-note">{c.pathNote}</p>
           </div>
         </div>
       </section>
