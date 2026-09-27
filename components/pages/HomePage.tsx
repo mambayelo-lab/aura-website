@@ -49,7 +49,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   return <main className="home-modern">
     <section className="home-hero"><div className="home-hero-glow" aria-hidden /><div className="home-shell home-hero-grid">
       <div className="home-hero-copy"><p className="home-pill"><Sparkles size={14} />{c.eyebrow}</p><h1>{c.title}</h1><p className="home-lead">{c.lead}</p>
-        <div className="home-actions"><a href="https://aura-decision-zen.vercel.app" className="home-btn home-btn-primary">{c.cta}<ArrowRight size={17} /></a><Link href={contact} className="home-btn home-btn-secondary">{c.secondary}</Link></div>
+        <div className="home-actions"><a href="https://aura-decision-zen.vercel.app/cockpit/resilience?section=cockpit" className="home-btn home-btn-primary">{c.cta}<ArrowRight size={17} /></a><Link href={contact} className="home-btn home-btn-secondary">{c.secondary}</Link></div>
         <ul className="home-proof">{c.proof.map(item => <li key={item}><CircleCheck size={16} />{item}</li>)}</ul>
       </div><HeroCockpit fr={fr} />
     </div></section>
@@ -64,9 +64,9 @@ export function HomePage({ locale }: { locale: Locale }) {
     </div></section>
 
     <section className="home-products"><div className="home-shell"><div className="home-section-intro"><p className="home-kicker">AURA</p><h2>{c.products}</h2><p>{c.productsLead}</p></div><div className="home-product-grid">
-      <Product index="01" icon={Radar} title="Aura Supply Chain" text={fr ? "La control tower qui relie les sources, détecte les risques, explique leurs causes et câble les alertes vers la décision." : "The control tower that connects sources, detects risk, explains causes and wires alerts into decisions."} href="https://aura-decision-zen.vercel.app" accent="blue" label={fr ? "Découvrir" : "Explore"} />
-      <Product index="02" icon={BrainCircuit} title="Aura Decide" text={fr ? "L’atelier guidé pour structurer, comparer et suivre une décision stratégique, avec ou sans données initiales." : "A guided workspace to frame, compare and track strategic decisions, with or without initial data."} href="https://aura-decider.vercel.app/cockpit/atelier" accent="violet" label={fr ? "Découvrir" : "Explore"} />
-      <Product index="03" icon={Network} title="Aura Architect" text={fr ? "Le studio pour relier capacités, applications, données, flux et trajectoires de transformation." : "The studio connecting capabilities, applications, data, flows and transformation roadmaps."} href="https://aura-architect-seven.vercel.app" accent="cyan" label={fr ? "Découvrir" : "Explore"} />
+      <Product index="01" icon={Radar} title="Aura Supply Chain" text={fr ? "La control tower qui relie les sources, détecte les risques, explique leurs causes et câble les alertes vers la décision." : "The control tower that connects sources, detects risk, explains causes and wires alerts into decisions."} href="https://aura-decision-zen.vercel.app/cockpit/resilience?section=cockpit" accent="blue" label={fr ? "Découvrir" : "Explore"} />
+      <Product index="02" icon={BrainCircuit} title={fr ? "Aura Décider" : "Aura Decide"} text={fr ? "L’atelier guidé pour structurer, comparer et suivre une décision stratégique, avec ou sans données initiales." : "A guided workspace to frame, compare and track strategic decisions, with or without initial data."} href="https://aura-decider.vercel.app" accent="violet" label={fr ? "Découvrir" : "Explore"} />
+      <Product index="03" icon={Network} title="Aura Architecture" text={fr ? "Le studio pour relier capacités, applications, données, flux et trajectoires de transformation." : "The studio connecting capabilities, applications, data, flows and transformation roadmaps."} href="https://aura-architecturer.vercel.app" accent="cyan" label={fr ? "Découvrir" : "Explore"} />
     </div></div></section>
 
     <section className="home-method"><div className="home-shell home-method-grid"><div><p className="home-kicker">{fr ? "LE WORKFLOW" : "THE WORKFLOW"}</p><h2>{c.method}</h2><p>{c.methodLead}</p></div><ol className="home-steps">{(fr ? ["Connecter", "Comprendre", "Gouverner", "Expliquer", "Décider"] : ["Connect", "Understand", "Govern", "Explain", "Decide"]).map((label, index) => <li key={label} className={index === 4 ? "is-final" : ""}><span>0{index + 1}</span><strong>{label}</strong></li>)}</ol></div></section>
