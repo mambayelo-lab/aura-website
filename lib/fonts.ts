@@ -1,4 +1,4 @@
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 
 export const sans = Inter({
   subsets: ["latin", "latin-ext"],
@@ -6,10 +6,10 @@ export const sans = Inter({
   variable: "--font-sans",
 });
 
-export const serif = Instrument_Serif({
+export const serif = Fraunces({
   subsets: ["latin", "latin-ext"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["500", "600"],
+  style: ["normal"],
   display: "swap",
   variable: "--font-serif",
 });
