@@ -9,7 +9,7 @@ export function InsightsPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="hero hero-compact">
+      <section className="hero hero-compact dark">
         <div className="hero-backdrop" aria-hidden />
         <div className="container">
           <SectionHead as="h1" eyebrow={dict.insightsPage.eyebrow} title={dict.insightsPage.title} lead={dict.insightsPage.lead} />

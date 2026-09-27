@@ -96,16 +96,25 @@ const order: SprintKey[] = ["resilience", "decision", "architecture"];
 
 const sprintImages: Record<string, { src: string; alt: readonly [string, string] }> = {
   resilience: {
-    src: "/images/family/supply-network.webp",
-    alt: ["Réseau d’usines, d’entrepôt et de magasins avec une livraison interrompue", "Network of plants, a warehouse and stores with one interrupted delivery"],
+    src: "/images/aura/illu-sprint.webp",
+    alt: [
+      "Cinq cartes en escalier reliées par un fil pointillé, la dernière validée par une coche : un sprint mène pas à pas au livrable",
+      "Five cards climbing like steps, joined by a dotted thread, the last one checked: a sprint leads step by step to the deliverable",
+    ],
   },
   decision: {
-    src: "/images/family/decision-sprint.webp",
-    alt: ["Un comité travaille devant une trajectoire de décision projetée", "A committee working in front of a projected decision path"],
+    src: "/images/aura/exec-meeting.webp",
+    alt: [
+      "Un comité de direction examine des scénarios chiffrés projetés sur un écran",
+      "A leadership committee reviews quantified scenarios projected on a screen",
+    ],
   },
   architecture: {
-    src: "/images/family/transformation.webp",
-    alt: ["Des systèmes hérités reliés par un pont à une architecture cible", "Legacy systems bridged to a target architecture"],
+    src: "/images/aura/architecture-workshop.webp",
+    alt: [
+      "Une équipe d’architectes dessine l’architecture cible d’un système au tableau blanc",
+      "A team of architects draws a system’s target architecture on a whiteboard",
+    ],
   },
 };
 
@@ -117,7 +126,7 @@ export function SprintsPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="hero hero-compact">
+      <section className="hero hero-compact dark">
         <div className="hero-backdrop" aria-hidden />
         <div className="container">
           <SectionHead as="h1" eyebrow={c.eyebrow} title={c.title} lead={c.lead} />

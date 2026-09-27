@@ -221,7 +221,10 @@ export function CtaBanner({ locale, dict }: { locale: Locale; dict: Dictionary }
   return (
     <section className="section section-tight">
       <div className="container">
-        <div className="cta-banner">
+        <div className="cta-banner dark">
+          <div className="cta-art" aria-hidden>
+            <Image src="/images/aura/illu-hero-wide.webp" alt="" fill sizes="(max-width: 980px) 100vw, 1200px" />
+          </div>
           <div>
             <p className="eyebrow">{dict.cta.eyebrow}</p>
             <h2 className="h2">{dict.cta.title}</h2>

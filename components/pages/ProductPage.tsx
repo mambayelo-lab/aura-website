@@ -55,6 +55,57 @@ const copy = {
   },
 };
 
+type Art = { src: string; alt: readonly [string, string] };
+
+const archArt: Record<ProductKey, Art> = {
+  supply: {
+    src: "/images/aura/illu-supply.webp",
+    alt: [
+      "Schéma de flux : des nœuds reliés par des tracés pointillés, un tronçon passe à l’orange et une carte d’alerte validée apparaît",
+      "Flow diagram: nodes joined by dotted paths, one segment turns amber and a validated alert card appears",
+    ],
+  },
+  decide: {
+    src: "/images/aura/illu-decide.webp",
+    alt: [
+      "Trois cartes d’options convergent vers une coche centrale, qui ouvre une piste retenue et une piste écartée",
+      "Three option cards converge on a central check mark, opening one chosen path and one rejected path",
+    ],
+  },
+  architect: {
+    src: "/images/aura/illu-architect.webp",
+    alt: [
+      "Blocs isométriques indigo assemblés en plateforme, reliés par une trajectoire pointillée au logo Aura",
+      "Indigo isometric blocks assembled into a platform, linked by a dotted trajectory to the Aura logo",
+    ],
+  },
+};
+
+const journeyArt: Partial<Record<ProductKey, Art>> = {
+  supply: {
+    src: "/images/aura/illu-studio.webp",
+    alt: [
+      "Constellation de points reliés sur une grille indigo sombre, avec deux cartes de règles : le studio relie les données aux règles",
+      "Constellation of linked dots on a dark indigo grid, with two rule cards: the studio links data to rules",
+    ],
+  },
+  architect: {
+    src: "/images/aura/legacy-modern.webp",
+    alt: [
+      "Des baies de serveurs anciennes reliées par un faisceau de lumière à des services cloud modernes",
+      "Legacy server racks linked by a beam of light to modern cloud services",
+    ],
+  },
+};
+
+const trustArt: Art = {
+  src: "/images/aura/illu-trust.webp",
+  alt: [
+    "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision",
+    "Indigo shield with a check mark, surrounded by linked dots: validation protects every decision",
+  ],
+};
+
 export function ProductPage({ locale, product: key }: { locale: Locale; product: ProductKey }) {
   const p = products[key];
   const s = sprints[p.sprint];
@@ -77,7 +128,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
 
   return (
     <div data-product={key}>
-      <section className="hero hero-product">
+      <section className="hero hero-product dark">
         <div className="hero-backdrop" aria-hidden />
         <div className="container hero-grid">
           <div className="hero-copy">
@@ -160,7 +211,16 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
       {!journeyIsFeatures && (
         <section className="section section-alt" id="journey">
           <div className="container">
-            <SectionHead eyebrow={c.journey} title={l(p.journey.title)} lead={l(p.journey.lead)} />
+            {journeyArt[key] ? (
+              <div className="section-media-row">
+                <SectionHead eyebrow={c.journey} title={l(p.journey.title)} lead={l(p.journey.lead)} />
+                <figure className="media media-wide">
+                  <Image src={journeyArt[key]!.src} alt={l(journeyArt[key]!.alt)} fill sizes="(max-width: 980px) 100vw, 520px" />
+                </figure>
+              </div>
+            ) : (
+              <SectionHead eyebrow={c.journey} title={l(p.journey.title)} lead={l(p.journey.lead)} />
+            )}
             <ol className="journey">
               {p.journey.steps.map((step, index) => (
                 <li key={step.id}>
@@ -194,6 +254,9 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
                 ))}
               </ul>
             </div>
+            <figure className="media arch-illustration">
+              <Image src={archArt[key].src} alt={l(archArt[key].alt)} fill sizes="(max-width: 980px) 100vw, 520px" />
+            </figure>
           </div>
           <div className="layers" role="list" aria-label={l(p.architecture.title)}>
             {p.architecture.layers.map((layer, index) => (
@@ -215,7 +278,12 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
 
       <section className={`section${journeyIsFeatures ? "" : " section-alt"}`} id="governance">
         <div className="container">
-          <SectionHead eyebrow={c.governance} title={c.governanceTitle} />
+          <div className="section-media-row">
+            <SectionHead eyebrow={c.governance} title={c.governanceTitle} />
+            <figure className="media media-wide">
+              <Image src={trustArt.src} alt={l(trustArt.alt)} fill sizes="(max-width: 980px) 100vw, 480px" />
+            </figure>
+          </div>
           <div className="grid-4">
             {p.governance.map((item) => (
               <ZoomCard key={item.id} product={key} variant="compact" labels={labels} detail={localize(item, locale)} />

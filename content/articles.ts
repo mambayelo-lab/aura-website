@@ -15,40 +15,40 @@ export type Article = {
 export type Topic = "decision" | "energy" | "supply-chain" | "architecture";
 
 /** Metadata shared by both translations, in article order. */
-const img = (src: string, fr: string, en: string) => ({ src: `/images/family/${src}.webp`, alt: { fr, en } });
+const img = (src: string, fr: string, en: string) => ({ src: `/images/aura/${src}.webp`, alt: { fr, en } });
 
 const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string> } }[] = [
   {
     topic: "decision",
-    image: img("decision-agent", "Un agent IA prépare une proposition, une personne la valide", "An AI agent prepares a proposal, a person validates it"),
+    image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : l’IA prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: AI prepares, people decide"),
   },
   {
     topic: "decision",
-    image: img("method", "Deux personnes relient un objectif à des options puis à un plan d’action", "Two people link a goal to options, then to an action plan"),
+    image: img("clouds-vision", "Un dirigeant, sur une passerelle au-dessus des nuages, regarde l’horizon au lever du soleil", "A leader on a walkway above the clouds looks at the horizon at sunrise"),
   },
   {
     topic: "energy",
-    image: img("energy-loop", "Site industriel relié à des sources d’énergie renouvelable et à une boucle de recyclage", "Industrial site linked to renewable energy sources and a recycling loop"),
+    image: img("earth-network", "La Terre vue de l’espace, parcourue de lignes lumineuses reliant les villes", "Earth seen from space, criss-crossed by light lines linking cities"),
   },
   {
     topic: "energy",
-    image: img("energy-site", "Site industriel avec stockage par batteries, panneaux solaires et raccordement au réseau", "Industrial site with battery storage, solar panels and a grid connection"),
+    image: img("nexus", "Salle de pilotage avec un mur d’écrans de courbes et d’indicateurs en temps réel", "Operations room with a wall of screens showing real-time curves and indicators"),
   },
   {
     topic: "energy",
-    image: img("signal-to-decision", "Flux de signaux convergeant vers une décision unique", "Streams of signals converging into a single decision"),
+    image: img("control-tower", "Tour de contrôle numérique : écrans de tableaux de bord et carte du monde autour d’un anneau central", "Digital control tower: dashboard screens and a world map around a central ring"),
   },
   {
     topic: "supply-chain",
-    image: img("port-control-tower", "Porte-conteneurs entrant dans un port industriel au crépuscule", "Container ship entering an industrial port at dusk"),
+    image: img("port-night", "Portiques de chargement et porte-conteneurs à quai, de nuit, sous un ciel indigo", "Loading cranes and container ships at the quay at night, under an indigo sky"),
   },
   {
     topic: "supply-chain",
-    image: img("supply-network", "Réseau d’usines, d’entrepôt et de magasins avec une livraison interrompue", "Network of plants, a warehouse and stores with one interrupted delivery"),
+    image: img("supply-map", "Carte du monde lumineuse des flux logistiques projetée au-dessus d’un port", "Glowing world map of logistics flows projected above a port"),
   },
   {
     topic: "architecture",
-    image: img("living-context", "Relier le contexte métier vivant aux systèmes de l’entreprise", "Connecting living business context to enterprise systems"),
+    image: img("legacy-modern", "Des baies de serveurs anciennes reliées par un faisceau de lumière à des services cloud modernes", "Legacy server racks linked by a beam of light to modern cloud services"),
   },
 ];
 

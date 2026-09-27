@@ -85,8 +85,11 @@ const supply: Product = {
     "The Studio connects your systems, models your Supply Chain objects and runs a living ontology over your real values. The executive cockpit keeps only what the decision-maker needs: what is critical, what to watch, decisions in progress and data freshness. Every alert opens a decision pre-filled with the observed facts.",
   ],
   image: {
-    src: "/images/family/port-control-tower.webp",
-    alt: ["Porte-conteneurs entrant dans un port industriel", "Container ship entering an industrial port"],
+    src: "/images/aura/supply-map.webp",
+    alt: [
+      "Salle de supervision : carte du monde lumineuse des flux logistiques au-dessus d’un port et de porte-conteneurs",
+      "Supervision room: glowing world map of logistics flows above a port and container ships",
+    ],
   },
   screensTitle: ["Le cockpit exécutif, le Studio et la décision.", "The executive cockpit, the Studio and the decision."],
   screens: [
@@ -606,8 +609,11 @@ const decide: Product = {
     "Aura Decide is an agnostic workspace: it needs no prior data and no system connection. It guides a group from the initial question to a recorded decision in five steps — Understand, Impact, Compose, Arbitrate, Track — with human validation at every stage.",
   ],
   image: {
-    src: "/images/family/decide-options.webp",
-    alt: ["Une décideuse face à des options reliées", "A decision-maker facing connected options"],
+    src: "/images/aura/exec-meeting.webp",
+    alt: [
+      "Une dirigeante présente des options chiffrées à un comité réuni autour d’une table",
+      "An executive presents quantified options to a committee gathered around a table",
+    ],
   },
   screensTitle: ["Partir d’une intention, avancer pas à pas.", "Start from an intention, move step by step."],
   screens: [
@@ -910,8 +916,11 @@ const architect: Product = {
     "Aura Architect links requirements, business capabilities, applications, data and flows in one model. It derives a target and a roadmap, and produces the architecture files and decision notes teams need to execute.",
   ],
   image: {
-    src: "/images/family/architect-team.webp",
-    alt: ["Équipe travaillant sur une trajectoire de transformation", "Team working on a transformation roadmap"],
+    src: "/images/aura/architecture-workshop.webp",
+    alt: [
+      "Atelier d’architecture : quatre personnes annotent un schéma de système au tableau blanc",
+      "Architecture workshop: four people annotate a system diagram on a whiteboard",
+    ],
   },
   screensTitle: ["Cadrer avant de dessiner.", "Frame before you draw."],
   screens: [

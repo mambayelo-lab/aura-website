@@ -13,9 +13,9 @@ import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 
 const cardImages = {
-  supply: "/images/family/supply-resilience.webp",
-  decide: "/images/family/decide-options.webp",
-  architect: "/images/family/architect-team.webp",
+  supply: "/images/aura/control-room.webp",
+  decide: "/images/aura/ai-cadrage.webp",
+  architect: "/images/aura/transformation.webp",
 } as const;
 
 const copy = {
@@ -45,6 +45,7 @@ const copy = {
     methodLead: "Nous ne vendons pas de projet long avant d’avoir montré la valeur sur votre cas réel.",
     trustEyebrow: "Confiance & gouvernance",
     trustTitle: "Quatre engagements, dans les trois applications.",
+    trustLead: "Vos données restent sous votre contrôle, et aucune décision ne part sans une validation humaine explicite.",
     scenarioEyebrow: "Scénario d’illustration",
     scenarioTitle: "À quoi ressemble « du signal à la décision » ?",
     scenarioLead: "Exemple construit sur Maison Lucie, le SI synthétique de la démo Aura Supply Chain. Les chiffres sont fictifs et servent uniquement à illustrer le parcours.",
@@ -87,6 +88,7 @@ const copy = {
     methodLead: "We do not sell a long project before showing value on your real case.",
     trustEyebrow: "Trust & governance",
     trustTitle: "Four commitments, across all three applications.",
+    trustLead: "Your data stays under your control, and no decision leaves without explicit human validation.",
     scenarioEyebrow: "Illustrative scenario",
     scenarioTitle: "What does “from signal to decision” look like?",
     scenarioLead: "Example built on Maison Lucie, the synthetic system behind the Aura Supply Chain demo. Figures are fictional and only illustrate the journey.",
@@ -203,7 +205,10 @@ export function HomePage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero dark">
+        <div className="hero-photo" aria-hidden>
+          <Image src="/images/aura/earth-network.webp" alt="" fill priority sizes="100vw" />
+        </div>
         <div className="hero-backdrop" aria-hidden />
         <div className="container hero-grid">
           <div className="hero-copy">
@@ -237,8 +242,12 @@ export function HomePage({ locale }: { locale: Locale }) {
             <SectionHead eyebrow={c.thesisEyebrow} title={c.thesisTitle} />
             <figure className="media media-wide thesis-media">
               <Image
-                src="/images/family/signal-to-decision.webp"
-                alt={locale === "fr" ? "Des signaux dispersés convergent vers une décision unique" : "Scattered signals converging into a single decision"}
+                src="/images/aura/summit.webp"
+                alt={
+                  locale === "fr"
+                    ? "Une personne au sommet d’une montagne contemple une mer de nuages sous un réseau de lignes lumineuses indigo"
+                    : "A person on a mountain summit looks over a sea of clouds beneath a web of indigo light lines"
+                }
                 fill
                 sizes="(max-width: 980px) 100vw, 520px"
               />
@@ -359,7 +368,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt">
+      <section className="section section-alt dark">
         <div className="container">
           <SectionHead eyebrow={c.methodEyebrow} title={c.methodTitle} lead={c.methodLead} />
           <div className="grid-3 steps-row">
@@ -372,7 +381,35 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section">
         <div className="container">
-          <SectionHead eyebrow={c.trustEyebrow} title={c.trustTitle} />
+          <div className="section-media-row">
+            <SectionHead eyebrow={c.trustEyebrow} title={c.trustTitle} lead={c.trustLead} />
+            <div className="duo-media">
+              <figure className="media">
+                <Image
+                  src="/images/aura/sovereignty.webp"
+                  alt={
+                    locale === "fr"
+                      ? "Allée de serveurs éclairée en indigo dans un centre de données"
+                      : "Aisle of servers lit in indigo inside a data centre"
+                  }
+                  fill
+                  sizes="(max-width: 980px) 50vw, 260px"
+                />
+              </figure>
+              <figure className="media">
+                <Image
+                  src="/images/aura/illu-trust.webp"
+                  alt={
+                    locale === "fr"
+                      ? "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision"
+                      : "Indigo shield with a check mark, surrounded by linked dots: validation protects every decision"
+                  }
+                  fill
+                  sizes="(max-width: 980px) 50vw, 260px"
+                />
+              </figure>
+            </div>
+          </div>
           <div className="grid-4">
             {trust.map((item) => (
               <ZoomCard key={item.id} variant="compact" labels={labels} detail={localize(item, locale)} />
@@ -402,8 +439,12 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
           <figure className="scenario-visual media">
             <Image
-              src="/images/family/port-control-tower.webp"
-              alt={locale === "fr" ? "Porte-conteneurs entrant dans un port industriel au crépuscule" : "Container ship entering an industrial port at dusk"}
+              src="/images/aura/port-night.webp"
+              alt={
+                locale === "fr"
+                  ? "Portiques de chargement et porte-conteneurs à quai, de nuit, sous un ciel indigo"
+                  : "Loading cranes and container ships at the quay at night, under an indigo sky"
+              }
               fill
               sizes="(max-width: 980px) 100vw, 50vw"
             />
