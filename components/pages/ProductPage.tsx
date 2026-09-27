@@ -14,20 +14,22 @@ const copy = {
     product: "Produit",
     trigger: "Déclencheur",
     forWhom: "Pour qui",
-    features: "Fonctionnalités",
-    featuresTitle: "Ce que fait l’application, élément par élément.",
+    problemEyebrow: "Le problème",
+    problemCols: ["Ce que vous vivez", "Ce que ça vous coûte", "Pourquoi vos outils n’y suffisent pas", "Ce qu’Aura change"],
+    features: "La solution",
+    featuresTitle: "Comment Aura le résout, brique par brique.",
     journey: "Parcours",
     how: "Architecture",
     integrations: "Intégrations",
     governance: "Gouvernance",
-    governanceTitle: "Ce qui rend l’application digne de confiance.",
-    boundaries: "Frontières",
-    boundariesTitle: "Ce que ce n’est pas.",
-    boundariesLead: "Pour éviter toute redondance entre les produits, chaque application a un périmètre net.",
-    sprint: "Sprint associé",
+    governanceTitle: "Des décisions que vous pouvez défendre devant un comité ou un auditeur.",
+    boundaries: "Périmètre",
+    boundariesTitle: "Le bon outil pour le bon problème.",
+    boundariesLead: "Chaque application traite une situation précise. Si la vôtre est différente, voici où aller.",
+    sprint: "Comment démarrer",
     seeSprint: "Voir le déroulé complet",
-    frame: "Cadrer ce sprint",
-    faq: "Questions fréquentes",
+    frame: "Parler de votre situation",
+    faq: "Vos questions, nos réponses",
     seeProduct: "Voir",
     deliverable: "Livrable",
     screens: "Dans l’application",
@@ -36,20 +38,22 @@ const copy = {
     product: "Product",
     trigger: "Trigger",
     forWhom: "Who it is for",
-    features: "Features",
-    featuresTitle: "What the application does, element by element.",
+    problemEyebrow: "The problem",
+    problemCols: ["What you live with", "What it costs you", "Why your current tools fall short", "What Aura changes"],
+    features: "The solution",
+    featuresTitle: "How Aura solves it, piece by piece.",
     journey: "Journey",
     how: "Architecture",
     integrations: "Integrations",
     governance: "Governance",
-    governanceTitle: "What makes the application trustworthy.",
-    boundaries: "Boundaries",
-    boundariesTitle: "What it is not.",
-    boundariesLead: "To avoid any overlap between products, each application has a clear scope.",
-    sprint: "Matching sprint",
+    governanceTitle: "Decisions you can defend in front of a board or an auditor.",
+    boundaries: "Scope",
+    boundariesTitle: "The right tool for the right problem.",
+    boundariesLead: "Each application handles one specific situation. If yours is different, here is where to go.",
+    sprint: "How to start",
     seeSprint: "See the full schedule",
-    frame: "Frame this sprint",
-    faq: "Frequently asked questions",
+    frame: "Talk through your situation",
+    faq: "Your questions, answered",
     seeProduct: "See",
     deliverable: "Deliverable",
     screens: "Inside the application",
@@ -62,7 +66,7 @@ const archArt: Record<ProductKey, Art> = {
   supply: {
     src: "/images/aura/illu-supply.webp",
     alt: [
-      "Schéma de flux : des nœuds reliés par des tracés pointillés, un tronçon passe à l’orange et une carte d’alerte validée apparaît",
+      "Schéma de flux : des nœuds reliés par des tracés pointillés, un tronçon passe à l’orange et une carte d’alerte validée apparaît",
       "Flow diagram: nodes joined by dotted paths, one segment turns amber and a validated alert card appears",
     ],
   },
@@ -86,7 +90,7 @@ const journeyArt: Partial<Record<ProductKey, Art>> = {
   supply: {
     src: "/images/aura/illu-studio.webp",
     alt: [
-      "Constellation de points reliés sur une grille indigo sombre, avec deux cartes de règles : le studio relie les données aux règles",
+      "Constellation de points reliés sur une grille indigo sombre, avec deux cartes de règles : le studio relie les données aux règles",
       "Constellation of linked dots on a dark indigo grid, with two rule cards: the studio links data to rules",
     ],
   },
@@ -102,7 +106,7 @@ const journeyArt: Partial<Record<ProductKey, Art>> = {
 const trustArt: Art = {
   src: "/images/aura/illu-trust.webp",
   alt: [
-    "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision",
+    "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision",
     "Indigo shield with a check mark, surrounded by linked dots: validation protects every decision",
   ],
 };
@@ -157,7 +161,25 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
         </div>
       </section>
 
-      <section className="section section-tight screens" id="screens">
+      <section className="section" id="problem">
+        <div className="container">
+          <SectionHead eyebrow={c.problemEyebrow} title={l(p.problem.title)} lead={l(p.problem.lead)} />
+          <div className="problem-grid">
+            {[p.problem.pain, p.problem.cost, p.problem.why, p.problem.gain].map((items, index) => (
+              <div key={c.problemCols[index]} className={`problem-col${index === 3 ? " problem-col-gain" : ""}`}>
+                <h3>{c.problemCols[index]}</h3>
+                <ul>
+                  {items.map((item) => (
+                    <li key={item[1]}>{l(item)}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-tight section-alt screens" id="screens">
         <div className="container">
           <div className="section-head section-head-rule">
             <p className="eyebrow">{c.screens}</p>
@@ -174,7 +196,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
         </div>
       </section>
 
-      <section className="section section-tight section-alt">
+      <section className="section section-tight">
         <div className="container audience">
           <p className="eyebrow">{c.forWhom}</p>
           <ul>
@@ -323,7 +345,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
               <p className="sprint-duration mono">{l(s.duration)}</p>
               <p className="lead">{l(s.promise)}</p>
               <p className="muted">
-                <strong>{c.deliverable}{locale === "fr" ? " : " : ": "}</strong>
+                <strong>{c.deliverable}{locale === "fr" ? " : " : ": "}</strong>
                 {l(s.outcome)}
               </p>
               <MethodReminder sprint={p.sprint} locale={locale} />

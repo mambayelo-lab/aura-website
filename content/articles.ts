@@ -26,7 +26,7 @@ const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string>
   },
   {
     topic: "decision",
-    image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : l’IA prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: AI prepares, people decide"),
+    image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : l’IA prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: AI prepares, people decide"),
   },
   {
     topic: "decision",
@@ -42,7 +42,7 @@ const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string>
   },
   {
     topic: "energy",
-    image: img("control-tower", "Tour de contrôle numérique : écrans de tableaux de bord et carte du monde autour d’un anneau central", "Digital control tower: dashboard screens and a world map around a central ring"),
+    image: img("control-tower", "Tour de contrôle numérique : écrans de tableaux de bord et carte du monde autour d’un anneau central", "Digital control tower: dashboard screens and a world map around a central ring"),
   },
   {
     topic: "supply-chain",

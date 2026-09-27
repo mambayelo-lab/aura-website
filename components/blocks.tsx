@@ -52,14 +52,14 @@ export function entryOptions(locale: Locale): EntryOption[] {
   const fr = locale === "fr";
   const situations: Record<ProductKey, [string, string]> = {
     supply: fr
-      ? ["Un signal revient dans nos données", "Ruptures, retards fournisseurs, couverture de stock vue trop tard"]
-      : ["A signal keeps coming back in our data", "Stock-outs, supplier delays, stock cover seen too late"],
+      ? ["Nous découvrons les risques trop tard", "Ruptures, retards fournisseurs, couverture de stock qui fond sans qu’on le voie venir"]
+      : ["We find out about risks too late", "Stock-outs, supplier delays, stock cover running down before anyone notices"],
     decide: fr
-      ? ["Nous avons une question stratégique à trancher", "Investir, réorganiser, lancer, relocaliser — sans données prêtes"]
-      : ["We have a strategic question to settle", "Invest, reorganise, launch, relocate — without data at hand"],
+      ? ["Une décision stratégique traîne ou divise", "Investir, réorganiser, lancer, relocaliser, sans données prêtes ni consensus"]
+      : ["A strategic decision drags on or divides", "Invest, reorganise, launch, relocate, with no data at hand and no consensus"],
     architect: fr
-      ? ["Nous lançons un programme de transformation", "Refonte ERP, fusion de SI, modernisation, nouveau canal"]
-      : ["We are launching a transformation programme", "ERP overhaul, IT merger, modernisation, new channel"],
+      ? ["Notre transformation SI risque de dériver", "Refonte ERP, fusion de SI, modernisation, nouveau canal : cible floue, dépendances mal connues"]
+      : ["Our IT transformation is at risk of drifting", "ERP overhaul, IT merger, modernisation, new channel: unclear target, poorly known dependencies"],
   };
   const data: Record<ProductKey, string> = {
     supply: tr(comparisonRows[2].values.supply, locale),
@@ -87,20 +87,20 @@ export function entryOptions(locale: Locale): EntryOption[] {
 export function selectorLabels(locale: Locale) {
   return locale === "fr"
     ? {
-        prompt: "Qu’est-ce qui vous amène ?",
+        prompt: "Quelle situation vivez-vous ?",
         recommended: "Point d’entrée recommandé",
         duration: "Durée du sprint",
-        outcome: "Livrable",
+        outcome: "Ce que vous obtenez",
         data: "Données requises",
         product: "Voir le produit",
         sprint: "Voir le sprint",
         app: "Ouvrir l’application",
       }
     : {
-        prompt: "What brings you here?",
+        prompt: "Which situation are you facing?",
         recommended: "Recommended entry point",
         duration: "Sprint duration",
-        outcome: "Deliverable",
+        outcome: "What you get",
         data: "Data required",
         product: "See the product",
         sprint: "See the sprint",
@@ -110,7 +110,7 @@ export function selectorLabels(locale: Locale) {
 
 /** “Which entry point?” comparison: a table on wide screens, stacked cards on phones. */
 export function ComparisonTable({ locale }: { locale: Locale }) {
-  const caption = locale === "fr" ? "Quel point d’entrée ? Comparatif des trois produits et de leur sprint" : "Which entry point? Comparison of the three products and their sprint";
+  const caption = locale === "fr" ? "Quel point d’entrée ? Comparatif des trois produits et de leur sprint" : "Which entry point? Comparison of the three products and their sprint";
   return (
     <div className="compare">
       <table className="compare-table">

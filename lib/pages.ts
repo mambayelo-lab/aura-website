@@ -21,15 +21,15 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
       title: locale === "fr" ? "Sprints — travailler ensemble" : "Sprints — working together",
       description:
         locale === "fr"
-          ? "Sprint Résilience, Decision Sprint, Design Sprint Architecture : trois offres d’engagement, toujours ouverts par une analyse systémique."
-          : "Resilience Sprint, Decision Sprint, Architecture Design Sprint: three engagement offers, always opened by a systems analysis.",
+          ? "Sprint Résilience, Decision Sprint, Design Sprint Architecture : un problème réel, quelques semaines, un livrable qui vous appartient."
+          : "Resilience Sprint, Decision Sprint, Architecture Design Sprint: one real problem, a few weeks, a deliverable you own.",
     },
     founder: {
       title: locale === "fr" ? "Le fondateur — pourquoi Aura" : "The founder — why Aura",
       description:
         locale === "fr"
-          ? "Mambaye Lo, Ph.D, manager en architecture d’entreprise : pourquoi Aura, et les travaux de thèse en évaluation d’architectures sur lesquels s’appuie sa méthode."
-          : "Mambaye Lo, Ph.D, enterprise architecture manager: why Aura, and the doctoral research on architecture evaluation its method builds on.",
+          ? "Mambaye Lo, Ph.D, Lead Enterprise Architect : les problèmes qu’Aura résout, et les travaux de thèse en évaluation d’architectures sur lesquels s’appuie sa méthode."
+          : "Mambaye Lo, Ph.D, Lead Enterprise Architect: the problems Aura solves, and the doctoral research on architecture evaluation its method builds on.",
     },
     insights: { title: dict.insightsPage.eyebrow, description: dict.insightsPage.lead },
     contact: { title: dict.nav.contact, description: dict.contact.lead },

@@ -14,7 +14,7 @@ export const methods: Record<MethodKey, Detail> = {
     ],
     body: [
       [
-        "Chaque sprint commence par la même étape : délimiter le système étudié, ses acteurs, ses flux et ses interactions. On évite ainsi d’optimiser une partie au détriment de l’ensemble, et chaque règle, option ou brique d’architecture est rattachée à un élément identifié du système.",
+        "Chaque sprint commence par la même étape : délimiter le système étudié, ses acteurs, ses flux et ses interactions. On évite ainsi d’optimiser une partie au détriment de l’ensemble, et chaque règle, option ou brique d’architecture est rattachée à un élément identifié du système.",
         "Every sprint starts with the same step: bounding the system under study, its actors, flows and interactions. This avoids optimising one part at the expense of the whole, and every rule, option or architecture building block is tied to an identified element of the system.",
       ],
     ],
@@ -30,7 +30,7 @@ export const methods: Record<MethodKey, Detail> = {
     ],
     body: [
       [
-        "Chaque option est qualifiée par son potentiel d’amélioration et son risque de dégradation, de façon qualitative. Cette méthode s’appuie sur les travaux de thèse du fondateur consacrés à l’évaluation d’architectures et à l’aide au choix de conception : elle reste lisible quand les données sont incomplètes et n’exige pas de pondérations difficiles à justifier.",
+        "Chaque option est qualifiée par son potentiel d’amélioration et son risque de dégradation, de façon qualitative. Cette méthode s’appuie sur les travaux de thèse du fondateur consacrés à l’évaluation d’architectures et à l’aide au choix de conception : elle reste lisible quand les données sont incomplètes et n’exige pas de pondérations difficiles à justifier.",
         "Each option is qualified by its improvement potential and its degradation risk, qualitatively. The method builds on the founder’s doctoral research on architecture evaluation and design-choice support: it stays readable when data is incomplete and requires no weights that are hard to justify.",
       ],
     ],
@@ -76,7 +76,7 @@ export const methods: Record<MethodKey, Detail> = {
     ],
     body: [
       [
-        "Les étapes et livrables du sprint s’alignent sur le cycle de développement d’architecture (ADM) : vision, architectures métier, données, applications et technologie, puis feuille de route de migration.",
+        "Les étapes et livrables du sprint s’alignent sur le cycle de développement d’architecture (ADM) : vision, architectures métier, données, applications et technologie, puis feuille de route de migration.",
         "The sprint’s steps and deliverables align with the Architecture Development Method (ADM): vision, business, data, application and technology architectures, then a migration roadmap.",
       ],
     ],
@@ -86,7 +86,7 @@ export const methods: Record<MethodKey, Detail> = {
     kicker: ["Architect", "Architect"],
     title: ["CESAMES", "CESAMES"],
     summary: [
-      "L’approche d’architecture de systèmes : besoins, fonctions, constituants.",
+      "L’approche d’architecture de systèmes : besoins, fonctions, constituants.",
       "The systems architecture approach: needs, functions, components.",
     ],
     body: [
@@ -107,7 +107,7 @@ export const methods: Record<MethodKey, Detail> = {
     ],
     body: [
       [
-        "Les processus actuels et cibles sont décrits en BPMN : acteurs, activités, événements et échanges. Les écarts entre l’existant et la cible deviennent visibles et vérifiables.",
+        "Les processus actuels et cibles sont décrits en BPMN : acteurs, activités, événements et échanges. Les écarts entre l’existant et la cible deviennent visibles et vérifiables.",
         "Current and target processes are described in BPMN: actors, activities, events and exchanges. Gaps between the current state and the target become visible and checkable.",
       ],
     ],

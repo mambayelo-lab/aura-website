@@ -53,7 +53,7 @@ export function MethodReminder({ sprint, locale }: { sprint: SprintKey; locale: 
         ? "Le sprint s’ouvre sur une analyse systémique, puis mobilise DDD, architecture modulaire, TOGAF, CESAMES et BPMN."
         : "The sprint opens with a systems analysis, then draws on DDD, modular architecture, TOGAF, CESAMES and BPMN."
       : fr
-        ? "Le sprint s’ouvre sur une analyse systémique ; les options sont évaluées selon une méthode issue de travaux de thèse, robuste à l’incertitude."
+        ? "Le sprint s’ouvre sur une analyse systémique ; les options sont évaluées selon une méthode issue de travaux de thèse, robuste à l’incertitude."
         : "The sprint opens with a systems analysis; options are evaluated with a method drawn from doctoral research, robust to uncertainty.";
   return (
     <div className="method-reminder">
