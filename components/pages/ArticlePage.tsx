@@ -54,6 +54,23 @@ export function ArticlePage({ locale, article }: { locale: Locale; article: Arti
             </ul>
           </aside>
 
+          {article.references && article.references.length > 0 && (
+            <section className="references" aria-labelledby="references-title">
+              <h2 id="references-title" className="references-title">
+                {locale === "fr" ? "Références" : "References"}
+              </h2>
+              <ol>
+                {article.references.map((ref) => (
+                  <li key={ref.href}>
+                    <a href={ref.href} target="_blank" rel="noopener noreferrer">
+                      {ref.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           <nav className="article-pager" aria-label={dict.nav.insights}>
             {previous ? (
               <Link href={articleHref(locale, previous.slug)} className="pager-link">

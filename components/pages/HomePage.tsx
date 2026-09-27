@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
-import { appUrls, routes, type Locale } from "@/lib/i18n";
+import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
 import { ArticleCard, CtaBanner, SectionHead, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
 import { EntrySelector } from "../EntrySelector";
@@ -28,6 +28,14 @@ const copy = {
     trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
     thesisEyebrow: "Pourquoi Aura",
     thesisTitle: "Des méthodes simples pour un monde incertain.",
+    diEyebrow: "Decision Intelligence · repères Gartner",
+    diLead: "Gartner décrit la Decision Intelligence comme la discipline qui modélise explicitement les décisions pour les évaluer et les améliorer. Aura en applique les principes : décisions modélisées, évaluation robuste, validation humaine.",
+    diFacts: [
+      ["50 %", "des décisions métier assistées ou automatisées par des agents d’IA d’ici 2027, selon Gartner.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
+      ["40 %+", "des projets d’IA agentique abandonnés d’ici fin 2027 : coûts, valeur floue, risques mal maîtrisés.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
+      ["5 %", "des organisations prendront au moins 10 % de leurs décisions de planification supply chain en autonomie d’ici 2030.", "Gartner, sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
+    ],
+    diMore: "Ce que dit Gartner, et où se situe Aura",
     founderName: "Mambaye Lo, fondateur",
     founderText: "Lead Enterprise Architect, Ph.D. 16 ans de transformations en retail, énergie, banque et automobile. Parcours et travaux.",
     productsEyebrow: "Trois produits, trois déclencheurs",
@@ -65,6 +73,14 @@ const copy = {
     trust: ["Human validation", "No invented data", "Traceable reasoning"],
     thesisEyebrow: "Why Aura",
     thesisTitle: "Simple methods for an uncertain world.",
+    diEyebrow: "Decision Intelligence · Gartner benchmarks",
+    diLead: "Gartner describes Decision Intelligence as the discipline of explicitly modelling decisions in order to evaluate and improve them. Aura applies its principles: modelled decisions, robust evaluation, human validation.",
+    diFacts: [
+      ["50%", "of business decisions augmented or automated by AI agents by 2027, according to Gartner.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
+      ["40%+", "of agentic AI projects canceled by the end of 2027: costs, unclear value, inadequate risk controls.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
+      ["5%", "of organizations will make at least 10% of their supply chain planning decisions autonomously by 2030.", "Gartner, Sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
+    ],
+    diMore: "What Gartner says, and where Aura stands",
     founderName: "Mambaye Lo, founder",
     founderText: "Lead Enterprise Architect, Ph.D. 16 years of transformations across retail, energy, banking and automotive. Background and research.",
     productsEyebrow: "Three products, three triggers",
@@ -210,6 +226,26 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
+            <aside className="di-facts" aria-label={c.diEyebrow}>
+              <p className="eyebrow">{c.diEyebrow}</p>
+              <p className="di-facts-lead">{c.diLead}</p>
+              <ul>
+                {c.diFacts.map(([figure, text, source, href]) => (
+                  <li key={href}>
+                    <strong>{figure}</strong>
+                    <span>{text}</span>
+                    <small>
+                      <a href={href} target="_blank" rel="noopener noreferrer">
+                        {source}
+                      </a>
+                    </small>
+                  </li>
+                ))}
+              </ul>
+              <Link className="text-link" href={articleHref(locale, "decision-intelligence-gartner-aura")}>
+                {c.diMore} <ArrowRight size={15} aria-hidden />
+              </Link>
+            </aside>
             <Link className="founder-teaser" href={r.founder}>
               <span className="founder-teaser-mono" aria-hidden>ML</span>
               <span>

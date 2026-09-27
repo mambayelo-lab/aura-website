@@ -10,6 +10,8 @@ export type Article = {
   readTime: string;
   body: string[];
   takeaways: string[];
+  /** Sources cited in the article, listed at the end. */
+  references?: { label: string; href: string }[];
 };
 
 export type Topic = "decision" | "energy" | "supply-chain" | "architecture";
@@ -18,6 +20,10 @@ export type Topic = "decision" | "energy" | "supply-chain" | "architecture";
 const img = (src: string, fr: string, en: string) => ({ src: `/images/aura/${src}.webp`, alt: { fr, en } });
 
 const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string> } }[] = [
+  {
+    topic: "decision",
+    image: img("exec-meeting", "Un comité de direction examine des scénarios chiffrés projetés sur un écran", "A leadership committee reviews quantified scenarios projected on a screen"),
+  },
   {
     topic: "decision",
     image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : l’IA prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: AI prepares, people decide"),

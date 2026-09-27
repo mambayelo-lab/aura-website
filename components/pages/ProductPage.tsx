@@ -139,6 +139,7 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
             <h1 className="display">{l(p.name)}</h1>
             <p className="hero-sub">{l(p.headline)}</p>
             <p className="lead">{l(p.lead)}</p>
+            {p.diAnchor && <p className="hero-note">{l(p.diAnchor)}</p>}
             <div className="actions">
               <AppLink product={key} label={dict.common.openApp} className="btn btn-ink btn-lg" />
               <Link className="btn btn-secondary btn-lg" href={sprintHref(locale, key)}>

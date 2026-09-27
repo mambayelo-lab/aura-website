@@ -44,6 +44,8 @@ export type Product = {
   notThis: { title: T; text: T; product?: ProductKey }[];
   faq: { q: T; a: T }[];
   sprint: SprintKey;
+  /** One sentence anchoring the product in the Decision Intelligence frame. */
+  diAnchor?: T;
 };
 
 export type Sprint = {
@@ -584,6 +586,10 @@ const supply: Product = {
     },
   ],
   sprint: "resilience",
+  diAnchor: [
+    "Gartner prévoit que les agents d’IA exécuteront de plus en plus de décisions supply chain ; Aura Supply Chain leur donne d’abord des règles causales explicites et une validation humaine tracée.",
+    "Gartner expects AI agents to execute more and more supply chain decisions; Aura Supply Chain first gives them explicit causal rules and traced human validation.",
+  ],
 };
 
 /* -------------------------------------------------------------------------- */
@@ -890,6 +896,10 @@ const decide: Product = {
     },
   ],
   sprint: "decision",
+  diAnchor: [
+    "Pour Gartner, les décisions stratégiques restent affaire de jugement humain ; Aura Décider structure ce jugement avec une évaluation ordinale robuste à l’incertitude.",
+    "Gartner considers strategic decisions a matter of human judgement; Aura Decide structures that judgement with ordinal evaluation that is robust to uncertainty.",
+  ],
 };
 decide.journey.steps = decide.features.slice(0, 5);
 
@@ -1196,6 +1206,10 @@ const architect: Product = {
     },
   ],
   sprint: "architecture",
+  diAnchor: [
+    "Gartner décrit la Decision Intelligence comme la modélisation explicite des décisions ; Aura Architect pose l’architecture et l’ontologie qui la rendent possible dans votre SI.",
+    "Gartner describes Decision Intelligence as explicitly modelling decisions; Aura Architect lays the architecture and ontology that make it possible in your IT landscape.",
+  ],
 };
 
 export const products: Record<ProductKey, Product> = { supply, decide, architect };

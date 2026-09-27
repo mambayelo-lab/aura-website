@@ -61,7 +61,7 @@ export const whyAura: { id: string; title: T; short: T; long: T }[] = [
     id: "why-ontology",
     title: ["L’architecture et l’ontologie d’abord", "Architecture and ontology first"],
     short: [
-      "Un modèle explicite du SI et des règles causales : la connexion devient simple, l’entreprise devient agentique.",
+      "Un modèle explicite du SI et des règles causales : la connexion devient simple, l’entreprise devient agentique sous validation humaine.",
       "An explicit model of the IT system and causal rules: connecting becomes simple, the company becomes agent-ready.",
     ],
     long: [

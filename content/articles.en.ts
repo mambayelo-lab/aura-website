@@ -2,6 +2,31 @@ import type { Article } from "./articles";
 
 export const articlesEn: Article[] = [
   {
+    slug: "decision-intelligence-gartner-aura",
+    category: "Decision Intelligence",
+    title: "Decision Intelligence: what Gartner says and where Aura stands",
+    standfirst: "Gartner turns the decision into something to model, measure and improve. Here is what its publications say, and how Aura applies those principles.",
+    readTime: "8 min",
+    body: [
+      "Gartner defines Decision Intelligence as a practical discipline that advances decision making by explicitly understanding and engineering how decisions are made, and how outcomes are evaluated, managed and improved via feedback. The key point: it is not one more technology, but a way of treating the decision itself as an asset to be modelled.",
+      "The topic has left the margins. Gartner already listed Decision Intelligence among its top strategic technology trends for 2022. Its 2025 Hype Cycle for AI rates it as “transformational”, with mainstream adoption expected within two to five years. In January 2026 Gartner published its first Magic Quadrant for Decision Intelligence Platforms, which it describes as combining decision modeling, analytics and AI to augment and automate decision making.",
+      "The forecasts point the same way, with a strong caveat. Gartner predicts that by 2027, 50% of business decisions will be augmented or automated by AI agents for decision intelligence, and that by 2030 half of cross-functional supply chain management solutions will use intelligent agents to execute decisions. But Gartner also predicts that over 40% of agentic AI projects will be canceled by the end of 2027, due to escalating costs, unclear business value or inadequate risk controls. And in September 2026, that only 5% of organizations will make at least 10% of their supply chain planning decisions autonomously by 2030: strategic decisions such as network design or inventory policy remain a matter of human judgement.",
+      "This double message describes the problem well. Agents are coming, but they only add value when the decision is explicit: which objectives, which constraints, which data, which rules, who validates. Without that model, an agent mostly automates opacity. This is exactly where Aura stands. Aura is not evaluated by Gartner and does not claim to be; at its own scale, it applies the principles Gartner describes.",
+      "Explicit decision modelling: every Aura decision carries its context, options, assumptions, the rule applied, the person who validates and the observed outcome. Evaluation that is robust to uncertainty: drawn from doctoral research, ordinal evaluation qualifies each option by its improvement potential and its degradation risk, with no invented weights and no average hiding a blocker. Causal rules and ontology: an explicit model of the company’s objects simplifies connecting to existing IT systems and gives agents a safe frame, under human validation.",
+      "The three applications cover three moments of a decision. Aura Supply Chain starts from a signal in the data and turns it into a traced operational decision. Aura Decide handles a one-off strategic question, where Gartner considers human judgement essential. Aura Architect prepares the transformation: the architecture and ontology that make the company agent-ready without losing control of its decisions."
+    ],
+    takeaways: ["Decision Intelligence treats the decision as a modelled asset", "Gartner rates it transformational and has run a Magic Quadrant on it since 2026", "Agent autonomy will stay limited without explicit, governed decisions", "Aura applies these principles: decision model, robust evaluation, human validation"],
+    references: [
+      { label: "Gartner, Glossary — Decision Intelligence", href: "https://www.gartner.com/en/information-technology/glossary/decision-intelligence" },
+      { label: "Gartner, Hype Cycle for Artificial Intelligence, 2025", href: "https://www.gartner.com/en/documents/6579402" },
+      { label: "Gartner, Magic Quadrant for Decision Intelligence Platforms (2026)", href: "https://www.gartner.com/en/documents/7363830" },
+      { label: "Gartner, Top Data & Analytics Predictions (June 17, 2025)", href: "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions" },
+      { label: "Gartner, Over 40% of Agentic AI Projects Will Be Canceled by End of 2027 (June 25, 2025)", href: "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" },
+      { label: "Gartner, Half of SCM Solutions Will Include Agentic AI Capabilities by 2030 (May 21, 2025)", href: "https://www.gartner.com/en/newsroom/press-releases/2025-05-21-gartner-predicts-half-of-supply-chain-management-solutions-will-include-agentic-ai-capabilities-by-2030" },
+      { label: "Gartner, Only 5% of Organizations Will Make At Least 10% of Supply Chain Planning Decisions Autonomously by 2030 (Sept. 24, 2026)", href: "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030" }
+    ]
+  },
+  {
     slug: "why-an-llm-cannot-arbitrate-a-decision",
     category: "Explainable decisions",
     title: "Why an LLM cannot arbitrate a decision",
