@@ -1,3 +1,5 @@
+import { FlowStrip } from "../FlowStrip";
+import { BellRing, Search, Scale, LineChart, MessageSquare, Boxes, LayoutGrid } from "lucide-react";
 import { ArrowRight, ArrowUpRight, Ban, Check, Quote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -107,10 +109,29 @@ export function ProductPage({
   const Icon = productIcons[key];
   // In Aura Decide the five journey steps *are* the core features: show them once.
   const journeyIsFeatures = key === "decide";
-  // Architect: real screenshot in the hero, gallery right below it.
-  const heroShot = key === "architect";
+  const heroShots: Partial<Record<typeof key, string>> = {
+    architect: "/images/product/architect-applicatif.webp",
+    supply: "/images/product/supply-cockpit.webp",
+  };
+  const heroScreen = p.screens.find((screen) => screen.src === heroShots[key]);
+  const heroShot = Boolean(heroShots[key]);
+  const flows = {
+    supply: [
+      [BellRing, ["Le signal", "The signal"], ["L’alerte arrive avant l’impact client.", "The alert lands before customers feel it."]],
+      [Search, ["La cause", "The cause"], ["Chaîne causale lisible, source de chaque attribut.", "Readable causal chain, source of every attribute."]],
+      [Scale, ["La décision", "The decision"], ["Options comparées, avec ou sans données.", "Options compared, with or without data."]],
+      [LineChart, ["Le suivi", "Follow-up"], ["Chaque décision suivie dans le journal.", "Every decision tracked in the log."]],
+    ],
+    architect: [
+      [MessageSquare, ["La demande", "The request"], ["Un cadrage guidé, hypothèses explicites.", "Guided scoping, explicit assumptions."]],
+      [Boxes, ["Le modèle", "The model"], ["Un modèle unique, contrôlé par les bonnes pratiques.", "One model, checked against best practice."]],
+      [LayoutGrid, ["Les vues", "The views"], ["Capacités, applicatif, BPMN, données : cohérents.", "Capabilities, apps, BPMN, data: consistent."]],
+      [Scale, ["La décision", "The decision"], ["Scénarios estimés, choix prouvé, exports.", "Scenarios estimated, choice proven, exports."]],
+    ],
+  } as const;
+  const flow = key in flows ? flows[key as keyof typeof flows] : null;
   const host = new URL(appUrls[key]).host;
-  const [mainScreen, ...otherScreens] = p.screens.map((screen) => ({
+  const [mainScreen, ...otherScreens] = p.screens.filter((screen) => screen.src !== heroShots[key]).map((screen) => ({
     src: screen.src,
     width: screen.width,
     height: screen.height,
@@ -182,8 +203,8 @@ export function ProductPage({
             <figure className="hero-shot">
               <span className="hero-shot-bar" aria-hidden><i /><i /><i /><span>{host}</span></span>
               <Image
-                src="/images/product/architect-applicatif.webp"
-                alt={l(["Aura Architect : schéma inter-applicatif généré depuis le modèle unique, statut « Cohérent », résumé de cadrage et hypothèses.", "Aura Architect: inter-application diagram generated from the single model, “Consistent” status, framing summary and assumptions."])}
+                src={heroShots[key]!}
+                alt={heroScreen ? l(heroScreen.alt) : ""}
                 width={1440}
                 height={900}
                 sizes="(max-width: 980px) 100vw, 45vw"
@@ -207,6 +228,18 @@ export function ProductPage({
           )}
         </div>
       </section>
+
+      {flow && (
+        <section className="section-flow">
+          <div className="container">
+            <h2 className="flow-head">{l(p.tagline)}</h2>
+            <FlowStrip
+              label={l(p.tagline)}
+              steps={flow.map(([icon, title, text]) => ({ icon, title: l(title), text: l(text) }))}
+            />
+          </div>
+        </section>
+      )}
 
       {heroShot && screensSection}
 

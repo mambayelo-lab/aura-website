@@ -74,7 +74,7 @@ export function FounderPage({ locale }: { locale: Locale }) {
             <h1 className="display">Mambaye Lo</h1>
             <p className="hero-sub">{c.role}</p>
             <div className="founder-bio">
-              {c.bio.map((paragraph) => (
+              {[c.bio[0], c.bio[4]].map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -87,6 +87,28 @@ export function FounderPage({ locale }: { locale: Locale }) {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section section-tight">
+        <div className="container">
+          <ul className="facts-strip">
+            {(locale === "fr"
+              ? [["16 ans", "de transformations SI"], ["Ph.D", "prix de la meilleure thèse AFIS 2014"], ["4 secteurs", "retail, énergie, banque, automobile"], ["Lead EA", "ENGIE, Capgemini, ADEO"]]
+              : [["16 years", "of IT transformations"], ["Ph.D", "AFIS best thesis award 2014"], ["4 sectors", "retail, energy, banking, automotive"], ["Lead EA", "ENGIE, Capgemini, ADEO"]]
+            ).map(([k, v]) => (
+              <li key={k}>
+                <strong>{k}</strong>
+                <span>{v}</span>
+              </li>
+            ))}
+          </ul>
+          <details className="founder-more">
+            <summary>{locale === "fr" ? "Parcours et travaux de recherche" : "Background and research"}</summary>
+            {c.bio.slice(1, 4).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </details>
         </div>
       </section>
 

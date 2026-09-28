@@ -7,6 +7,7 @@ import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
 import { CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
 import { ProductFilm } from "../ProductFilm";
+import { HeroSignal } from "../HeroSignal";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -20,6 +21,8 @@ const cardImages = {
 const copy = {
   fr: {
     eyebrow: "Intelligence décisionnelle",
+    filmEyebrow: "Le film",
+    filmTitle: "Voir Aura en 90 secondes",
     title: "Décidez plus tôt. Défendez chaque décision.",
     lead: "Un risque vu trop tard, un arbitrage qui divise le comité, une transformation qui dérive. Aura vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer. On commence par un sprint court, sur votre problème réel.",
     primary: "Par où commencer ?",
@@ -67,6 +70,8 @@ const copy = {
   },
   en: {
     eyebrow: "Decision intelligence",
+    filmEyebrow: "The film",
+    filmTitle: "See Aura in 90 seconds",
     title: "Decide earlier. Defend every decision.",
     lead: "A risk spotted too late, a call that splits the committee, a transformation that drifts. Aura gets you to a decision fast, on verifiable facts, with a trail you can show. You start with a short sprint, on your real problem.",
     primary: "Where should I start?",
@@ -197,6 +202,13 @@ export function HomePage({ locale }: { locale: Locale }) {
               ))}
             </ul>
           </div>
+          <HeroSignal locale={locale} />
+        </div>
+      </section>
+
+      <section className="section section-tight film-section" id="film">
+        <div className="container">
+          <SectionHead eyebrow={c.filmEyebrow} title={c.filmTitle} />
           <ProductFilm locale={locale} />
         </div>
       </section>
@@ -218,7 +230,6 @@ export function HomePage({ locale }: { locale: Locale }) {
             </ol>
             <aside className="di-facts" aria-label={c.diEyebrow}>
               <p className="eyebrow">{c.diEyebrow}</p>
-              <p className="di-facts-lead">{c.diLead}</p>
               <ul>
                 {c.diFacts.map(([figure, text, source, href]) => (
                   <li key={href}>
@@ -250,7 +261,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section section-alt" id="products">
         <div className="container">
-          <SectionHead eyebrow={c.productsEyebrow} title={c.productsTitle} lead={c.productsLead} />
+          <SectionHead eyebrow={c.productsEyebrow} title={c.productsTitle} />
           <div className="grid-3 product-grid">
             {productOrder.map((key) => {
               const p = products[key];
@@ -322,7 +333,6 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
-            <p className="path-note">{c.pathNote}</p>
           </div>
         </div>
       </section>

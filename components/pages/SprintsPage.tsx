@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, Ban, Check, Repeat } from "lucide-react";
+import { ArrowRight, Ban, Check, Repeat, Target, Rocket, Infinity as Loop } from "lucide-react";
+import { FlowStrip } from "../FlowStrip";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { localize, products, sprints, tr, type SprintKey } from "@/content/products";
@@ -120,6 +121,30 @@ export function SprintsPage({ locale }: { locale: Locale }) {
               );
             })}
           </nav>
+        </div>
+      </section>
+
+      <section className="section-flow">
+        <div className="container">
+          <h2 className="flow-head">{locale === "fr" ? "D’abord un sprint sur votre vrai sujet. Puis le produit, dans la durée." : "Start with a sprint on your real issue. Then the product, for the long run."}</h2>
+          <FlowStrip
+            label={locale === "fr" ? "Du sprint au produit" : "From sprint to product"}
+            steps={
+              locale === "fr"
+                ? [
+                    { icon: Target, title: "Votre sujet", text: "Le risque ou l’arbitrage qui coûte le plus aujourd’hui." },
+                    { icon: Rocket, title: "Le sprint", text: "2 à 4 semaines, sur vos données ou votre programme." },
+                    { icon: Check, title: "La preuve", text: "Une décision signée ou un dossier d’architecture exploitable." },
+                    { icon: Loop, title: "Le produit", text: "Aura s’installe dans la durée, à votre rythme." },
+                  ]
+                : [
+                    { icon: Target, title: "Your issue", text: "The risk or trade-off that costs you most today." },
+                    { icon: Rocket, title: "The sprint", text: "2 to 4 weeks, on your data or your programme." },
+                    { icon: Check, title: "The proof", text: "A signed decision or a usable architecture file." },
+                    { icon: Loop, title: "The product", text: "Aura settles in for the long run, at your pace." },
+                  ]
+            }
+          />
         </div>
       </section>
 
