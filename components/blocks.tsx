@@ -282,3 +282,16 @@ export function ValueBlock({ value, locale, id = "value" }: { value: import("@/c
     </div>
   );
 }
+
+/** Secondary details folded behind a “Show more” toggle (native, works without JS). */
+export function More({ label, children, className = "" }: { label: string; children: React.ReactNode; className?: string }) {
+  return (
+    <details className={`more ${className}`.trim()}>
+      <summary>
+        {label}
+        <Plus size={16} aria-hidden />
+      </summary>
+      <div className="more-body">{children}</div>
+    </details>
+  );
+}

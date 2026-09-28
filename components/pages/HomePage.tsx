@@ -1,13 +1,11 @@
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getArticles } from "@/content/articles";
 import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
 import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
-import { ArticleCard, CtaBanner, SectionHead, ValueBlock, entryOptions, productIcons, selectorLabels, zoomLabels } from "../blocks";
-import { EntrySelector } from "../EntrySelector";
+import { CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
 import { HeroSignal } from "../HeroSignal";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
@@ -23,14 +21,14 @@ const copy = {
   fr: {
     eyebrow: "Intelligence décisionnelle",
     title: "Décidez plus tôt. Défendez chaque décision.",
-    lead: "Un risque repéré trop tard dans vos données, une question stratégique qui divise le comité, un programme de transformation qui dérive : Aura vous aide à trancher vite, sur des faits vérifiables, avec une trace que vous pouvez montrer. Vous commencez par un sprint court, sur votre problème réel.",
+    lead: "Un risque vu trop tard, un arbitrage qui divise le comité, une transformation qui dérive. Aura vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer. On commence par un sprint court, sur votre problème réel.",
     primary: "Par où commencer ?",
     secondary: "Comparer les sprints",
     trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
     thesisEyebrow: "Ce qui bloque vos décisions",
     thesisTitle: "Vous avez les données. Il vous manque le chemin jusqu’à la décision.",
     diEyebrow: "Decision Intelligence · repères Gartner",
-    diLead: "L’IA va prendre part à vos décisions, que vous l’ayez prévu ou non. Gartner décrit la Decision Intelligence comme la discipline qui modélise explicitement les décisions pour les évaluer et les améliorer. Aura en applique les principes : décisions modélisées, évaluation robuste, validation humaine.",
+    diLead: "La Decision Intelligence modélise les décisions pour les évaluer et les améliorer (Gartner). Aura en applique les principes : décisions modélisées, évaluation robuste, validation humaine.",
     diFacts: [
       ["50 %", "des décisions métier assistées ou automatisées par des agents d’IA d’ici 2027, selon Gartner.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
       ["40 %+", "des projets d’IA agentique abandonnés d’ici fin 2027 : coûts, valeur floue, risques mal maîtrisés.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
@@ -41,7 +39,7 @@ const copy = {
     founderText: "Lead Enterprise Architect, Ph.D. 16 ans de transformations dans le retail, l’énergie, la banque et l’automobile. Parcours et travaux.",
     productsEyebrow: "Trois problèmes, trois réponses",
     productsTitle: "Une application dédiée à chaque situation, sans chevauchement.",
-    productsLead: "Chaque application est indépendante et traite un problème précis. Supply Chain ouvre la porte par la douleur métier, Décider en est le moteur explicable, Architect transforme le choix en exécution.",
+    productsLead: "Trois applications indépendantes. Supply Chain part de la douleur métier, Décider est le moteur explicable, Architect transforme le choix en exécution. Chaque carte indique le sprint pour démarrer.",
     pathEyebrow: "Une trajectoire, pas un big bang",
     pathTitle: "Décider maintenant, sans attendre une transformation de deux ans.",
     pathSteps: [
@@ -50,17 +48,13 @@ const copy = {
       ["Les signaux récurrents", "Les alertes qui reviennent sont connectées à vos systèmes existants."],
       ["Le système transformé", "Les choix qui s’imposent deviennent une trajectoire d’architecture."],
     ],
-    pathNote: "Une seule histoire de bout en bout, des étapes séparées et réversibles : vous vous engagez étape par étape. Et chaque décision, avec ses critères, ses hypothèses, ses points de bascule et ses résultats réels, enrichit une mémoire qui reste la vôtre.",
-    entryEyebrow: "Par où commencer ?",
-    entryTitle: "Partez de votre problème. Le bon point d’entrée en découle.",
-    entryLead: "Choisissez la situation qui vous ressemble : vous voyez le sprint adapté, sa durée et ce que vous aurez en main à la fin.",
-    compare: "Comparer les trois sprints",
+    pathNote: "Des étapes séparées et réversibles : vous vous engagez pas à pas. Chaque décision (critères, hypothèses, points de bascule, résultats réels) enrichit une mémoire qui reste la vôtre.",
     trustEyebrow: "Confiance & gouvernance",
     trustTitle: "L’IA accélère. Vos équipes gardent la main.",
-    trustLead: "Quatre engagements, identiques dans les trois applications : vos données restent sous votre contrôle, et aucune décision ne part sans validation humaine explicite.",
+    trustLead: "Quatre engagements, identiques dans les trois applications.",
     scenarioEyebrow: "Scénario d’illustration",
     scenarioTitle: "Douze jours d’avance sur une rupture : à quoi ça ressemble ?",
-    scenarioLead: "Exemple construit sur Maison Lucie, le SI synthétique de la démo Aura Supply Chain. Les chiffres sont fictifs et servent uniquement à illustrer le parcours.",
+    scenarioLead: "Exemple sur Maison Lucie, le SI synthétique de la démo Supply Chain. Chiffres fictifs.",
     scenarioSteps: [
       ["Signal", "Le délai annoncé par un fournisseur de composants passe de 21 à 34 jours (flux EDI)."],
       ["Règle", "Règle causale : délai fournisseur critique > seuil ET couverture composant < 15 jours."],
@@ -68,23 +62,20 @@ const copy = {
       ["Décision", "Fiche préremplie : contexte, chiffres, options (réallocation, transport express, second fournisseur). L’équipe complète, choisit et signe."],
     ],
     scenarioCta: "Parcourir la démo Maison Lucie",
-    insightsEyebrow: "Perspectives",
-    insightsTitle: "Des réponses aux questions que se posent les dirigeants.",
-    allInsights: "Toutes les perspectives",
     productDetails: "Voir le produit",
     openApp: "Ouvrir l’app",
   },
   en: {
     eyebrow: "Decision intelligence",
     title: "Decide earlier. Defend every decision.",
-    lead: "A risk spotted too late in your data, a strategic question that splits the committee, a transformation programme that keeps drifting: Aura helps you make the call quickly, on verifiable facts, with a trail you can show. You start with a short sprint, on your real problem.",
+    lead: "A risk spotted too late, a call that splits the committee, a transformation that drifts. Aura gets you to a decision fast, on verifiable facts, with a trail you can show. You start with a short sprint, on your real problem.",
     primary: "Where should I start?",
     secondary: "Compare the sprints",
     trust: ["Human validation", "No invented data", "Traceable reasoning"],
     thesisEyebrow: "What holds your decisions back",
     thesisTitle: "You have the data. What you lack is the path to a decision.",
     diEyebrow: "Decision Intelligence · Gartner benchmarks",
-    diLead: "AI is going to take part in your decisions, whether you planned for it or not. Gartner describes Decision Intelligence as the discipline of explicitly modelling decisions in order to evaluate and improve them. Aura applies its principles: modelled decisions, robust evaluation, human validation.",
+    diLead: "Decision Intelligence models decisions in order to evaluate and improve them (Gartner). Aura applies its principles: modelled decisions, robust evaluation, human validation.",
     diFacts: [
       ["50%", "of business decisions augmented or automated by AI agents by 2027, according to Gartner.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
       ["40%+", "of agentic AI projects canceled by the end of 2027: costs, unclear value, inadequate risk controls.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
@@ -95,7 +86,7 @@ const copy = {
     founderText: "Lead Enterprise Architect, Ph.D. 16 years of transformations across retail, energy, banking and automotive. Background and research.",
     productsEyebrow: "Three problems, three answers",
     productsTitle: "One dedicated application for each situation, with no overlap.",
-    productsLead: "Each application stands on its own and solves one specific problem. Supply Chain opens the door through the business pain, Decide is the explainable engine, Architect turns the choice into execution.",
+    productsLead: "Three stand-alone applications. Supply Chain starts from the business pain, Decide is the explainable engine, Architect turns the choice into execution. Each card shows the sprint to start with.",
     pathEyebrow: "A trajectory, not a big bang",
     pathTitle: "Decide now, without waiting for a two-year transformation.",
     pathSteps: [
@@ -104,17 +95,13 @@ const copy = {
       ["Recurring signals connected", "The alerts that keep coming back are wired to the systems you already run."],
       ["The system transformed", "The choices that stand the test become an architecture roadmap."],
     ],
-    pathNote: "One end-to-end story, in separate, reversible steps: you commit one step at a time. And every decision, with its criteria, assumptions, tipping points and actual outcomes, builds a memory that stays yours.",
-    entryEyebrow: "Where to start?",
-    entryTitle: "Start from your problem. The right entry point follows.",
-    entryLead: "Pick the situation that sounds like yours: you will see the matching sprint, how long it takes and what you will have in hand at the end.",
-    compare: "Compare the three sprints",
+    pathNote: "Separate, reversible steps: you commit one step at a time. Every decision (criteria, assumptions, tipping points, actual outcomes) builds a memory that stays yours.",
     trustEyebrow: "Trust & governance",
     trustTitle: "AI speeds things up. Your people stay in charge.",
-    trustLead: "Four commitments, the same in all three applications: your data stays under your control, and no decision goes out without explicit human validation.",
+    trustLead: "Four commitments, the same in all three applications.",
     scenarioEyebrow: "Illustrative scenario",
     scenarioTitle: "Twelve days ahead of a shortage: what does it look like?",
-    scenarioLead: "Example built on Maison Lucie, the synthetic system behind the Aura Supply Chain demo. Figures are fictional and only illustrate the journey.",
+    scenarioLead: "Example on Maison Lucie, the synthetic system behind the Supply Chain demo. Fictional figures.",
     scenarioSteps: [
       ["Signal", "A component supplier’s announced lead time moves from 21 to 34 days (EDI feed)."],
       ["Rule", "Causal rule: critical supplier lead time > threshold AND component cover < 15 days."],
@@ -122,9 +109,6 @@ const copy = {
       ["Decision", "Pre-filled form: context, figures, options (reallocation, expedited freight, second source). The team completes it, chooses and signs."],
     ],
     scenarioCta: "Walk through the Maison Lucie demo",
-    insightsEyebrow: "Insights",
-    insightsTitle: "Answers to the questions leaders are asking.",
-    allInsights: "All insights",
     productDetails: "See the product",
     openApp: "Open the app",
   },
@@ -183,7 +167,6 @@ export function HomePage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const labels = zoomLabels(dict);
   const r = routes[locale];
-  const articles = getArticles(locale).slice(0, 3);
 
   return (
     <>
@@ -198,7 +181,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <h1 className="display">{c.title}</h1>
             <p className="lead lead-lg">{c.lead}</p>
             <div className="actions">
-              <a className="btn btn-ink btn-lg" href="#entry">
+              <a className="btn btn-ink btn-lg" href="#products">
                 {c.primary} <ArrowRight size={17} aria-hidden />
               </a>
               <Link className="btn btn-secondary btn-lg" href={r.sprints}>
@@ -222,18 +205,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container thesis">
           <div className="thesis-aside">
             <SectionHead eyebrow={c.thesisEyebrow} title={c.thesisTitle} />
-            <figure className="media media-wide thesis-media">
-              <Image
-                src="/images/aura/summit.webp"
-                alt={
-                  locale === "fr"
-                    ? "Une personne au sommet d’une montagne contemple une mer de nuages sous un réseau de lignes lumineuses indigo"
-                    : "A person on a mountain summit looks over a sea of clouds beneath a web of indigo light lines"
-                }
-                fill
-                sizes="(max-width: 980px) 100vw, 520px"
-              />
-            </figure>
           </div>
           <div>
             <ol className="thesis-list">
@@ -266,7 +237,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               </Link>
             </aside>
             <Link className="founder-teaser" href={r.founder}>
-              <span className="founder-teaser-mono" aria-hidden>ML</span>
+              <Image className="founder-teaser-photo" src="/images/founder/mambaye-lo.webp" alt={locale === "fr" ? "Portrait de Mambaye Lo, fondateur d’Aura" : "Portrait of Mambaye Lo, founder of Aura"} width={56} height={56} />
               <span>
                 <strong>{c.founderName}</strong>
                 <small>{c.founderText}</small>
@@ -361,49 +332,9 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt" id="entry">
+      <section className="section section-tight">
         <div className="container">
-          <SectionHead eyebrow={c.entryEyebrow} title={c.entryTitle} lead={c.entryLead} />
-          <EntrySelector options={entryOptions(locale)} labels={selectorLabels(locale)} />
-          <p className="section-foot">
-            <Link className="text-link" href={r.sprints}>
-              {c.compare} <ArrowRight size={15} aria-hidden />
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-media-row">
-            <SectionHead eyebrow={c.trustEyebrow} title={c.trustTitle} lead={c.trustLead} />
-            <div className="duo-media">
-              <figure className="media">
-                <Image
-                  src="/images/aura/sovereignty.webp"
-                  alt={
-                    locale === "fr"
-                      ? "Allée de serveurs éclairée en indigo dans un centre de données"
-                      : "Aisle of servers lit in indigo inside a data centre"
-                  }
-                  fill
-                  sizes="(max-width: 980px) 50vw, 260px"
-                />
-              </figure>
-              <figure className="media">
-                <Image
-                  src="/images/aura/illu-trust.webp"
-                  alt={
-                    locale === "fr"
-                      ? "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision"
-                      : "Indigo shield with a check mark, surrounded by linked dots: validation protects every decision"
-                  }
-                  fill
-                  sizes="(max-width: 980px) 50vw, 260px"
-                />
-              </figure>
-            </div>
-          </div>
+          <SectionHead eyebrow={c.trustEyebrow} title={c.trustTitle} lead={c.trustLead} />
           <div className="grid-4">
             {trust.map((item) => (
               <ZoomCard key={item.id} variant="compact" labels={labels} detail={localize(item, locale)} />
@@ -412,7 +343,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt">
+      <section className="section section-tight section-alt">
         <div className="container scenario">
           <div>
             <SectionHead eyebrow={c.scenarioEyebrow} title={c.scenarioTitle} lead={c.scenarioLead} />
@@ -431,7 +362,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               {c.scenarioCta} <ArrowRight size={15} aria-hidden />
             </a>
           </div>
-          <figure className="scenario-visual media">
+          <figure className="scenario-visual media hide-mobile">
             <Image
               src="/images/aura/port-night.webp"
               alt={
@@ -449,21 +380,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head-row">
-            <SectionHead eyebrow={c.insightsEyebrow} title={c.insightsTitle} />
-            <Link className="text-link" href={r.insights}>
-              {c.allInsights} <ArrowRight size={15} aria-hidden />
-            </Link>
-          </div>
-          <div className="grid-3">
-            {articles.map((article) => (
-              <ArticleCard key={article.slug} article={article} locale={locale} dict={dict} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CtaBanner locale={locale} dict={dict} />
     </>

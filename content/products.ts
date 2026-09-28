@@ -88,8 +88,8 @@ const supply: Product = {
     "You hear about the shortage when the customer calls. Aura spots it in your data, traces it to its cause and gets you deciding before it hits.",
   ],
   lead: [
-    "Aura ne remplace ni SAP, ni Kinaxis, ni o9 : c’est la couche qui transforme leurs alertes en décisions explicables, validées, exécutables et mémorisées. Elle se branche sur les systèmes que vous avez déjà, modélise votre réseau et évalue des règles causales explicites sur vos valeurs réelles. Le cockpit ne montre que ce qui compte : ce qui est critique, ce qui est à surveiller, ce qui attend une décision. Chaque alerte ouvre une décision déjà remplie avec les faits ; votre équipe choisit, justifie et signe.",
-    "Aura does not replace SAP, Kinaxis or o9: it is the layer that turns their alerts into decisions that are explainable, validated, actionable and remembered. It plugs into the systems you already run, models your network and evaluates explicit causal rules against your real values. The cockpit shows only what matters: what is critical, what to watch, what is waiting for a decision. Every alert opens a decision already filled in with the facts; your team chooses, justifies and signs.",
+    "Aura ne remplace ni SAP, ni Kinaxis, ni o9 : c’est la couche qui transforme leurs alertes en décisions explicables, validées, exécutables et mémorisées. Des règles causales explicites tournent sur vos valeurs réelles ; chaque alerte ouvre une décision préremplie que votre équipe choisit, justifie et signe.",
+    "Aura does not replace SAP, Kinaxis or o9: it is the layer that turns their alerts into decisions that are explainable, validated, actionable and remembered. Explicit causal rules run on your real values; every alert opens a pre-filled decision your team chooses, justifies and signs.",
   ],
   image: {
     src: "/images/aura/supply-map.webp",

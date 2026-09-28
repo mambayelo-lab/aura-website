@@ -4,7 +4,17 @@ import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { localize, products, sprints, tr } from "@/content/products";
 import { appUrls, routes, type Locale, type ProductKey } from "@/lib/i18n";
-import { AppLink, CtaBanner, Faq, SectionHead, ValueBlock, productIcons, sprintHref, zoomLabels } from "../blocks";
+import {
+  AppLink,
+  CtaBanner,
+  Faq,
+  More,
+  SectionHead,
+  ValueBlock,
+  productIcons,
+  sprintHref,
+  zoomLabels,
+} from "../blocks";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { AppScreen } from "../AppScreen";
 import { MethodReminder } from "../Methods";
@@ -16,17 +26,23 @@ const copy = {
     trigger: "Déclencheur",
     forWhom: "Pour qui",
     problemEyebrow: "Le problème",
-    problemCols: ["Ce que vous vivez", "Ce que ça vous coûte", "Pourquoi vos outils n’y suffisent pas", "Ce qu’Aura change"],
+    problemCols: [
+      "Ce que vous vivez",
+      "Ce que ça vous coûte",
+      "Pourquoi vos outils n’y suffisent pas",
+      "Ce qu’Aura change",
+    ],
     features: "La solution",
     featuresTitle: "Comment Aura le résout, brique par brique.",
     journey: "Parcours",
     how: "Architecture",
     integrations: "Intégrations",
     governance: "Gouvernance",
-    governanceTitle: "Des décisions que vous pouvez défendre devant un comité ou un auditeur.",
+    governanceTitle:
+      "Des décisions que vous pouvez défendre devant un comité ou un auditeur.",
     boundaries: "Périmètre",
     boundariesTitle: "Le bon outil pour le bon problème.",
-    boundariesLead: "Chaque application traite une situation précise. Si la vôtre est différente, voici où aller.",
+    boundariesLead: "Si votre situation est différente, voici où aller.",
     sprint: "Comment démarrer",
     seeSprint: "Voir le déroulé complet",
     frame: "Parler de votre situation",
@@ -34,23 +50,33 @@ const copy = {
     seeProduct: "Voir",
     deliverable: "Livrable",
     screens: "Dans l’application",
+    moreFeatures: (n: number) => `Voir ${n} autres briques`,
+    seeIntegrations: "Voir les connecteurs",
+    moreGovernance: "Voir les autres garanties",
+    moreScreens: (n: number) => `Voir ${n} autres écrans`,
   },
   en: {
     product: "Product",
     trigger: "Trigger",
     forWhom: "Who it is for",
     problemEyebrow: "The problem",
-    problemCols: ["What you live with", "What it costs you", "Why your current tools fall short", "What Aura changes"],
+    problemCols: [
+      "What you live with",
+      "What it costs you",
+      "Why your current tools fall short",
+      "What Aura changes",
+    ],
     features: "The solution",
     featuresTitle: "How Aura solves it, piece by piece.",
     journey: "Journey",
     how: "Architecture",
     integrations: "Integrations",
     governance: "Governance",
-    governanceTitle: "Decisions you can defend in front of a board or an auditor.",
+    governanceTitle:
+      "Decisions you can defend in front of a board or an auditor.",
     boundaries: "Scope",
     boundariesTitle: "The right tool for the right problem.",
-    boundariesLead: "Each application handles one specific situation. If yours is different, here is where to go.",
+    boundariesLead: "If your situation is different, here is where to go.",
     sprint: "How to start",
     seeSprint: "See the full schedule",
     frame: "Talk through your situation",
@@ -58,61 +84,20 @@ const copy = {
     seeProduct: "See",
     deliverable: "Deliverable",
     screens: "Inside the application",
+    moreFeatures: (n: number) => `See ${n} more building blocks`,
+    seeIntegrations: "See the connectors",
+    moreGovernance: "See the other safeguards",
+    moreScreens: (n: number) => `See ${n} more screens`,
   },
 };
 
-type Art = { src: string; alt: readonly [string, string] };
-
-const archArt: Record<ProductKey, Art> = {
-  supply: {
-    src: "/images/aura/illu-supply.webp",
-    alt: [
-      "Schéma de flux : des nœuds reliés par des tracés pointillés, un tronçon passe à l’orange et une carte d’alerte validée apparaît",
-      "Flow diagram: nodes joined by dotted paths, one segment turns amber and a validated alert card appears",
-    ],
-  },
-  decide: {
-    src: "/images/aura/illu-decide.webp",
-    alt: [
-      "Trois cartes d’options convergent vers une coche centrale, qui ouvre une piste retenue et une piste écartée",
-      "Three option cards converge on a central check mark, opening one chosen path and one rejected path",
-    ],
-  },
-  architect: {
-    src: "/images/aura/illu-architect.webp",
-    alt: [
-      "Blocs isométriques indigo assemblés en plateforme, reliés par une trajectoire pointillée au logo Aura",
-      "Indigo isometric blocks assembled into a platform, linked by a dotted trajectory to the Aura logo",
-    ],
-  },
-};
-
-const journeyArt: Partial<Record<ProductKey, Art>> = {
-  supply: {
-    src: "/images/aura/illu-studio.webp",
-    alt: [
-      "Constellation de points reliés sur une grille indigo sombre, avec deux cartes de règles : le studio relie les données aux règles",
-      "Constellation of linked dots on a dark indigo grid, with two rule cards: the studio links data to rules",
-    ],
-  },
-  architect: {
-    src: "/images/aura/legacy-modern.webp",
-    alt: [
-      "Des baies de serveurs anciennes reliées par un faisceau de lumière à des services cloud modernes",
-      "Legacy server racks linked by a beam of light to modern cloud services",
-    ],
-  },
-};
-
-const trustArt: Art = {
-  src: "/images/aura/illu-trust.webp",
-  alt: [
-    "Bouclier indigo marqué d’une coche, entouré de points reliés : la validation protège chaque décision",
-    "Indigo shield with a check mark, surrounded by linked dots: validation protects every decision",
-  ],
-};
-
-export function ProductPage({ locale, product: key }: { locale: Locale; product: ProductKey }) {
+export function ProductPage({
+  locale,
+  product: key,
+}: {
+  locale: Locale;
+  product: ProductKey;
+}) {
   const p = products[key];
   const s = sprints[p.sprint];
   const c = copy[locale];
@@ -146,14 +131,27 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
             <p className="lead">{l(p.lead)}</p>
             {p.diAnchor && <p className="hero-note">{l(p.diAnchor)}</p>}
             <div className="actions">
-              <AppLink product={key} label={dict.common.openApp} className="btn btn-ink btn-lg" />
-              <Link className="btn btn-secondary btn-lg" href={sprintHref(locale, key)}>
+              <AppLink
+                product={key}
+                label={dict.common.openApp}
+                className="btn btn-ink btn-lg"
+              />
+              <Link
+                className="btn btn-secondary btn-lg"
+                href={sprintHref(locale, key)}
+              >
                 {l(s.name)} · {l(s.duration)}
               </Link>
             </div>
           </div>
           <figure className="product-visual media">
-            <Image src={p.image.src} alt={l(p.image.alt)} fill sizes="(max-width: 980px) 100vw, 45vw" priority />
+            <Image
+              src={p.image.src}
+              alt={l(p.image.alt)}
+              fill
+              sizes="(max-width: 980px) 100vw, 45vw"
+              priority
+            />
             <figcaption>
               <Quote size={16} aria-hidden />
               {l(p.question)}
@@ -164,10 +162,33 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
 
       <section className="section" id="problem">
         <div className="container">
-          <SectionHead eyebrow={c.problemEyebrow} title={l(p.problem.title)} lead={l(p.problem.lead)} />
+          <SectionHead
+            eyebrow={c.problemEyebrow}
+            title={l(p.problem.title)}
+            lead={l(p.problem.lead)}
+          />
+          <div className="audience audience-inline">
+            <p className="eyebrow">{c.forWhom}</p>
+            <ul>
+              {p.audience.map((item) => (
+                <li key={item[1]}>
+                  <Check size={15} aria-hidden />
+                  {l(item)}
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="problem-grid">
-            {[p.problem.pain, p.problem.cost, p.problem.why, p.problem.gain].map((items, index) => (
-              <div key={c.problemCols[index]} className={`problem-col${index === 3 ? " problem-col-gain" : ""}`}>
+            {[
+              p.problem.pain,
+              p.problem.cost,
+              p.problem.why,
+              p.problem.gain,
+            ].map((items, index) => (
+              <div
+                key={c.problemCols[index]}
+                className={`problem-col${index === 3 ? " problem-col-gain" : ""}`}
+              >
                 <h3>{c.problemCols[index]}</h3>
                 <ul>
                   {items.map((item) => (
@@ -180,7 +201,10 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
         </div>
       </section>
 
-      <section className="section section-tight section-alt screens" id="screens">
+      <section
+        className="section section-tight section-alt screens"
+        id="screens"
+      >
         <div className="container">
           <div className="section-head section-head-rule">
             <p className="eyebrow">{c.screens}</p>
@@ -188,26 +212,21 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
           </div>
           <AppScreen screen={mainScreen} locale={locale} />
           {otherScreens.length > 0 && (
-            <div className="grid-2 screens-more">
-              {otherScreens.map((screen) => (
-                <AppScreen key={screen.src} screen={screen} locale={locale} compact note={false} sizes="(max-width: 980px) 100vw, 560px" />
-              ))}
-            </div>
+            <More label={c.moreScreens(otherScreens.length)}>
+              <div className="grid-2 screens-more">
+                {otherScreens.map((screen) => (
+                  <AppScreen
+                    key={screen.src}
+                    screen={screen}
+                    locale={locale}
+                    compact
+                    note={false}
+                    sizes="(max-width: 980px) 100vw, 560px"
+                  />
+                ))}
+              </div>
+            </More>
           )}
-        </div>
-      </section>
-
-      <section className="section section-tight">
-        <div className="container audience">
-          <p className="eyebrow">{c.forWhom}</p>
-          <ul>
-            {p.audience.map((item) => (
-              <li key={item[1]}>
-                <Check size={15} aria-hidden />
-                {l(item)}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -219,33 +238,44 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
             lead={journeyIsFeatures ? l(p.journey.lead) : undefined}
           />
           <div className={journeyIsFeatures ? "grid-3 steps-row" : "grid-3"}>
-            {p.features.map((feature, index) => (
+            {p.features.slice(0, 6).map((feature, index) => (
               <ZoomCard
                 key={feature.id}
                 product={key}
                 labels={labels}
                 variant={journeyIsFeatures && index < 5 ? "step" : "default"}
-                index={journeyIsFeatures && index < 5 ? `0${index + 1}` : undefined}
+                index={
+                  journeyIsFeatures && index < 5 ? `0${index + 1}` : undefined
+                }
                 detail={localize(feature, locale)}
               />
             ))}
           </div>
+          {p.features.length > 6 && (
+            <More label={c.moreFeatures(p.features.length - 6)}>
+              <div className="grid-3">
+                {p.features.slice(6).map((feature) => (
+                  <ZoomCard
+                    key={feature.id}
+                    product={key}
+                    labels={labels}
+                    detail={localize(feature, locale)}
+                  />
+                ))}
+              </div>
+            </More>
+          )}
         </div>
       </section>
 
       {!journeyIsFeatures && (
         <section className="section section-alt" id="journey">
           <div className="container">
-            {journeyArt[key] ? (
-              <div className="section-media-row">
-                <SectionHead eyebrow={c.journey} title={l(p.journey.title)} lead={l(p.journey.lead)} />
-                <figure className="media media-wide">
-                  <Image src={journeyArt[key]!.src} alt={l(journeyArt[key]!.alt)} fill sizes="(max-width: 980px) 100vw, 520px" />
-                </figure>
-              </div>
-            ) : (
-              <SectionHead eyebrow={c.journey} title={l(p.journey.title)} lead={l(p.journey.lead)} />
-            )}
+            <SectionHead
+              eyebrow={c.journey}
+              title={l(p.journey.title)}
+              lead={l(p.journey.lead)}
+            />
             <ol className="journey">
               {p.journey.steps.map((step, index) => (
                 <li key={step.id}>
@@ -263,27 +293,37 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
         </section>
       )}
 
-      <section className={`section${journeyIsFeatures ? " section-alt" : ""}`} id="architecture">
+      <section
+        className={`section${journeyIsFeatures ? " section-alt" : ""}`}
+        id="architecture"
+      >
         <div className="container arch">
           <div>
-            <SectionHead eyebrow={c.how} title={l(p.architecture.title)} lead={l(p.architecture.lead)} />
+            <SectionHead
+              eyebrow={c.how}
+              title={l(p.architecture.title)}
+              lead={l(p.architecture.lead)}
+            />
             <div className="integrations">
               <p className="eyebrow">{c.integrations}</p>
               <p className="muted">{l(p.integrations.lead)}</p>
-              <ul>
-                {p.integrations.items.map((item) => (
-                  <li key={item.name}>
-                    <strong className="mono">{item.name}</strong>
-                    <span>{l(item.text)}</span>
-                  </li>
-                ))}
-              </ul>
+              <More label={c.seeIntegrations}>
+                <ul>
+                  {p.integrations.items.map((item) => (
+                    <li key={item.name}>
+                      <strong className="mono">{item.name}</strong>
+                      <span>{l(item.text)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </More>
             </div>
-            <figure className="media arch-illustration">
-              <Image src={archArt[key].src} alt={l(archArt[key].alt)} fill sizes="(max-width: 980px) 100vw, 520px" />
-            </figure>
           </div>
-          <div className="layers" role="list" aria-label={l(p.architecture.title)}>
+          <div
+            className="layers"
+            role="list"
+            aria-label={l(p.architecture.title)}
+          >
             {p.architecture.layers.map((layer, index) => (
               <div className="layer" role="listitem" key={layer.name[1]}>
                 <p className="layer-name">
@@ -301,25 +341,48 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
         </div>
       </section>
 
-      <section className={`section${journeyIsFeatures ? "" : " section-alt"}`} id="governance">
+      <section
+        className={`section section-tight${journeyIsFeatures ? "" : " section-alt"}`}
+        id="governance"
+      >
         <div className="container">
-          <div className="section-media-row">
-            <SectionHead eyebrow={c.governance} title={c.governanceTitle} />
-            <figure className="media media-wide">
-              <Image src={trustArt.src} alt={l(trustArt.alt)} fill sizes="(max-width: 980px) 100vw, 480px" />
-            </figure>
-          </div>
-          <div className="grid-4">
-            {p.governance.map((item) => (
-              <ZoomCard key={item.id} product={key} variant="compact" labels={labels} detail={localize(item, locale)} />
+          <SectionHead eyebrow={c.governance} title={c.governanceTitle} />
+          <div className="grid-2">
+            {p.governance.slice(0, 2).map((item) => (
+              <ZoomCard
+                key={item.id}
+                product={key}
+                variant="compact"
+                labels={labels}
+                detail={localize(item, locale)}
+              />
             ))}
           </div>
+          {p.governance.length > 2 && (
+            <More label={c.moreGovernance}>
+              <div className="grid-2">
+                {p.governance.slice(2).map((item) => (
+                  <ZoomCard
+                    key={item.id}
+                    product={key}
+                    variant="compact"
+                    labels={labels}
+                    detail={localize(item, locale)}
+                  />
+                ))}
+              </div>
+            </More>
+          )}
         </div>
       </section>
 
-      <section className="section" id="boundaries">
+      <section className="section section-tight" id="boundaries">
         <div className="container">
-          <SectionHead eyebrow={c.boundaries} title={c.boundariesTitle} lead={c.boundariesLead} />
+          <SectionHead
+            eyebrow={c.boundaries}
+            title={c.boundariesTitle}
+            lead={c.boundariesLead}
+          />
           <ul className="grid-3 boundaries">
             {p.notThis.map((item) => (
               <li key={item.title[1]} data-product={item.product}>
@@ -327,8 +390,12 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
                 <h3>{l(item.title)}</h3>
                 <p>{l(item.text)}</p>
                 {item.product && (
-                  <Link className="text-link" href={routes[locale][item.product]}>
-                    {c.seeProduct} {l(products[item.product].name)} <ArrowRight size={14} aria-hidden />
+                  <Link
+                    className="text-link"
+                    href={routes[locale][item.product]}
+                  >
+                    {c.seeProduct} {l(products[item.product].name)}{" "}
+                    <ArrowRight size={14} aria-hidden />
                   </Link>
                 )}
               </li>
@@ -339,7 +406,11 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
 
       <section className="section section-tight" id="value">
         <div className="container">
-          <ValueBlock value={productValue[key]} locale={locale} id="value-block" />
+          <ValueBlock
+            value={productValue[key]}
+            locale={locale}
+            id="value-block"
+          />
         </div>
       </section>
 
@@ -352,28 +423,28 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
               <p className="sprint-duration mono">{l(s.duration)}</p>
               <p className="lead">{l(s.promise)}</p>
               <p className="muted">
-                <strong>{c.deliverable}{locale === "fr" ? " : " : ": "}</strong>
+                <strong>
+                  {c.deliverable}
+                  {locale === "fr" ? " : " : ": "}
+                </strong>
                 {l(s.outcome)}
               </p>
               <MethodReminder sprint={p.sprint} locale={locale} />
               <div className="actions">
-                <Link className="btn btn-primary" href={sprintHref(locale, key)}>
+                <Link
+                  className="btn btn-primary"
+                  href={sprintHref(locale, key)}
+                >
                   {c.seeSprint} <ArrowRight size={16} aria-hidden />
                 </Link>
-                <Link className="btn btn-secondary" href={routes[locale].contact}>
+                <Link
+                  className="btn btn-secondary"
+                  href={routes[locale].contact}
+                >
                   {c.frame}
                 </Link>
               </div>
             </div>
-            <ol className="mini-timeline">
-              {s.steps.map((step) => (
-                <li key={step.id}>
-                  <span className="mono">{step.kicker && l(step.kicker)}</span>
-                  <strong>{l(step.title)}</strong>
-                  <p>{l(step.summary)}</p>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </section>
@@ -383,8 +454,14 @@ export function ProductPage({ locale, product: key }: { locale: Locale; product:
           <SectionHead eyebrow="FAQ" title={c.faq} />
           <Faq items={p.faq.map((item) => ({ q: l(item.q), a: l(item.a) }))} />
           <p className="section-foot">
-            <a className="text-link" href={appUrls[key]} target="_blank" rel="noopener">
-              {dict.common.openApp} — {l(p.name)} <ArrowUpRight size={15} aria-hidden />
+            <a
+              className="text-link"
+              href={appUrls[key]}
+              target="_blank"
+              rel="noopener"
+            >
+              {dict.common.openApp} — {l(p.name)}{" "}
+              <ArrowUpRight size={15} aria-hidden />
             </a>
           </p>
         </div>

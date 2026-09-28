@@ -8,6 +8,7 @@ import {
   AppLink,
   ComparisonTable,
   CtaBanner,
+  More,
   SectionHead,
   ValueBlock,
   productIcons,
@@ -22,10 +23,10 @@ const copy = {
   fr: {
     eyebrow: "Travailler ensemble",
     title: "Un problème réel, quelques semaines, un résultat que vous gardez.",
-    lead: "Pas de mission de conseil sans fin ni de projet d’intégration de plusieurs mois. Chaque sprint traite un problème précis, avec un déroulé fixe, des entrées connues et un livrable qui vous appartient.",
+    lead: "Ni mission de conseil sans fin, ni intégration de plusieurs mois : un problème précis, un déroulé fixe, des entrées connues, un livrable qui vous appartient.",
     methodEyebrow: "Méthode",
     methodTitle: "D’abord comprendre le système, pour ne pas traiter le mauvais problème.",
-    methodLead: "Optimiser une partie au détriment de l’ensemble est l’erreur la plus coûteuse. Chaque sprint s’ouvre donc sur une analyse systémique du périmètre. Pour Supply Chain et Décider, les options sont ensuite évaluées selon une méthode issue de travaux de thèse, robuste à l’incertitude. Pour Architect, s’y ajoutent DDD, architecture modulaire, TOGAF, CESAMES et BPMN.",
+    methodLead: "Chaque sprint s’ouvre sur une analyse systémique du périmètre. Supply Chain et Décider évaluent ensuite les options avec une méthode issue de travaux de thèse, robuste à l’incertitude ; Architect y ajoute DDD, architecture modulaire, TOGAF, CESAMES et BPMN.",
     compareEyebrow: "Par où commencer ?",
     compareTitle: "Trois situations, trois sprints : le comparatif.",
     forWhom: "Pour qui",
@@ -37,14 +38,16 @@ const copy = {
     after: "Après le sprint",
     frame: "Parler de ma situation",
     seeProduct: "Voir le produit",
+    moreMethods: "Les sept méthodes en détail",
+    seeCompare: "Afficher le comparatif",
   },
   en: {
     eyebrow: "Working together",
     title: "One real problem, a few weeks, a result you keep.",
-    lead: "No open-ended consulting mission, no months-long integration project. Each sprint tackles one specific problem, with a fixed schedule, known inputs and a deliverable you own.",
+    lead: "No open-ended consulting, no months-long integration: one specific problem, a fixed schedule, known inputs, a deliverable you own.",
     methodEyebrow: "Method",
     methodTitle: "First understand the system, so you do not solve the wrong problem.",
-    methodLead: "Optimising one part at the expense of the whole is the costliest mistake. So every sprint opens with a systems analysis of the scope. For Supply Chain and Decide, options are then evaluated with a method drawn from doctoral research that holds up under uncertainty. For Architect, DDD, modular architecture, TOGAF, CESAMES and BPMN come on top.",
+    methodLead: "Every sprint opens with a systems analysis of the scope. Supply Chain and Decide then evaluate options with a method drawn from doctoral research, robust to uncertainty; Architect adds DDD, modular architecture, TOGAF, CESAMES and BPMN.",
     compareEyebrow: "Where to start?",
     compareTitle: "Three situations, three sprints: side by side.",
     forWhom: "Who it is for",
@@ -56,6 +59,8 @@ const copy = {
     after: "After the sprint",
     frame: "Discuss my situation",
     seeProduct: "See the product",
+    moreMethods: "The seven methods in detail",
+    seeCompare: "Show the comparison",
   },
 };
 
@@ -121,28 +126,24 @@ export function SprintsPage({ locale }: { locale: Locale }) {
       <section className="section" id="method">
         <div className="container">
           <SectionHead eyebrow={c.methodEyebrow} title={c.methodTitle} lead={c.methodLead} />
-          <div className="method-tracks">
-            {order.map((key) => (
-              <div key={key} className="method-track" data-product={sprints[key].product}>
-                <p className="fact-label">{l(sprints[key].name)}</p>
-                <MethodChips keys={sprintMethods[key]} locale={locale} />
-              </div>
-            ))}
-          </div>
-          <MethodCards keys={methodOrder} locale={locale} labels={labels} />
+          <More label={c.moreMethods}>
+            <MethodCards keys={methodOrder} locale={locale} labels={labels} />
+          </More>
         </div>
       </section>
 
-      <section className="section section-alt" id="sprint-value">
+      <section className="section section-tight section-alt" id="sprint-value">
         <div className="container">
           <ValueBlock value={sprintsValue} locale={locale} id="value-block" />
         </div>
       </section>
 
-      <section className="section" id="compare">
+      <section className="section section-tight" id="compare">
         <div className="container">
           <SectionHead eyebrow={c.compareEyebrow} title={c.compareTitle} />
-          <ComparisonTable locale={locale} />
+          <More label={c.seeCompare}>
+            <ComparisonTable locale={locale} />
+          </More>
         </div>
       </section>
 
@@ -162,7 +163,7 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                   <p className="sprint-duration mono">{l(s.duration)}</p>
                   <p className="lead">{l(s.promise)}</p>
                 </div>
-                <figure className="media sprint-media">
+                <figure className="media sprint-media hide-mobile">
                   <Image src={sprintImages[key].src} alt={l(sprintImages[key].alt)} fill sizes="(max-width: 980px) 100vw, 480px" />
                 </figure>
               </div>
