@@ -1,0 +1,16 @@
+import { chromium } from "/home/user/aura-architect/node_modules/playwright/index.mjs";
+const BASE="http://127.0.0.1:5395";
+const b=await chromium.launch({executablePath:"/opt/pw-browsers/chromium"});
+const p=await b.newPage({viewport:{width:1440,height:1500}});
+await p.goto(`${BASE}/cockpit/dessine-moi?nouvelle=1`,{waitUntil:"networkidle",timeout:120000});
+await p.waitForTimeout(1500);
+await p.click('button:has-text("Dessiner directement")');
+await p.fill('textarea[aria-label="Votre demande"]',"Site e-commerce sur Azure avec Kafka, un CRM et une appli mobile pour une enseigne de retail.");
+await p.click('.dm-input button[type="submit"]');
+await p.waitForSelector(".dm-svg svg",{timeout:90000});await p.waitForTimeout(1500);
+const tab=async l=>{const d=p.locator(`.dm-tabs > button:has-text("${l}")`);if(await d.count())await d.first().click();else{await p.click(".dm-tabs .dm-more > button");await p.click(`.dm-more-menu button:has-text("${l}")`)}await p.waitForTimeout(800)};
+await tab("Exports");
+const el=p.locator('.dm-tabs').first();await el.scrollIntoViewIfNeeded();await p.waitForTimeout(500);
+await p.screenshot({path:"assets/x1.png"});
+await tab("Bonnes pratiques");await p.waitForTimeout(500);await p.screenshot({path:"assets/x2.png"});
+await b.close();

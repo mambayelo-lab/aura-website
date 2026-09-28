@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Aura film</title>
+<style>
+@font-face{font-family:Sora;font-weight:300;src:url(fonts/sora-300.ttf)}
+@font-face{font-family:Sora;font-weight:400;src:url(fonts/sora-400.ttf)}
+@font-face{font-family:Sora;font-weight:600;src:url(fonts/sora-600.ttf)}
+@font-face{font-family:Sora;font-weight:700;src:url(fonts/sora-700.ttf)}
+@font-face{font-family:Lexend;font-weight:300;src:url(fonts/lexend-300.ttf)}
+@font-face{font-family:Lexend;font-weight:400;src:url(fonts/lexend-400.ttf)}
+@font-face{font-family:Lexend;font-weight:600;src:url(fonts/lexend-600.ttf)}
+:root{--indigo:#4743E6;--nuit:#151D52;--ink:#0a0b1e;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ink)}
+#stage{position:absolute;inset:0;overflow:hidden;font-family:Lexend,sans-serif;color:#fff}
+#bg{position:absolute;inset:-10%;background:
+ radial-gradient(1100px 800px at var(--gx,70%) var(--gy,30%),rgba(71,67,230,.42),transparent 60%),
+ radial-gradient(900px 700px at 10% 100%,rgba(71,67,230,.18),transparent 60%),
+ linear-gradient(135deg,#03050f 0%,#0d1440 55%,#151D52 100%)}
+#grid{position:absolute;inset:-64px;opacity:.22;background-image:
+ linear-gradient(rgba(140,150,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(140,150,255,.10) 1px,transparent 1px);
+ background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 50%,#000 15%,transparent 72%)}
+canvas.full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.scene{position:absolute;inset:0;opacity:0;display:none}
+.eyebrow{font-family:Sora;font-weight:600;font-size:19px;letter-spacing:.26em;text-transform:uppercase;color:#a5a8ff}
+.eyebrow b{color:#fff;font-weight:600}
+.eyebrow.red{color:#ff8fa3}
+.title{font-family:Sora;font-weight:600;font-size:58px;line-height:1.1;letter-spacing:-.025em}
+.sub{font-family:Lexend;font-weight:300;font-size:25px;line-height:1.5;color:#c3c6ea}
+.left{position:absolute;left:110px;top:0;bottom:0;width:560px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.rule{width:56px;height:3px;background:var(--indigo);border-radius:2px;box-shadow:0 0 18px var(--indigo)}
+.persp{position:absolute;left:640px;top:140px;width:1180px;height:800px;perspective:2400px}
+.frame{position:absolute;left:10px;top:20px;width:1160px;height:761px;border-radius:18px;overflow:hidden;transform-origin:30% 50%;
+ background:#0c1030;box-shadow:0 50px 140px rgba(0,0,0,.6),0 0 0 1px rgba(170,170,255,.28),0 0 90px rgba(71,67,230,.45)}
+.frame:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 32%);mix-blend-mode:screen}
+.bar{height:36px;background:rgba(17,22,63,.96);display:flex;align-items:center;gap:8px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.bar i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.22);display:block}
+.bar span{margin-left:14px;font-size:13px;color:#9da1d6;letter-spacing:.04em}
+.vp{position:relative;width:1160px;height:725px;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px}
+.hl{position:absolute;border-radius:14px;border:3px solid var(--indigo);opacity:0}
+.beam{position:absolute;left:110px;height:2px;width:600px;top:0;background:linear-gradient(90deg,rgba(71,67,230,0),#7d7aff 60%,rgba(255,255,255,.9));box-shadow:0 0 14px #6f6bff;transform-origin:0 50%}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px}
+.big{font-family:Sora;font-weight:600;font-size:80px;letter-spacing:-.03em;line-height:1.06}
+.huge{font-family:Sora;font-weight:700;font-size:118px;letter-spacing:-.035em;line-height:1.02}
+.accent{background:linear-gradient(90deg,#b9b7ff,#7470ff 50%,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chips{display:flex;gap:18px}
+.chip{font-family:Sora;font-weight:600;font-size:24px;padding:14px 30px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);backdrop-filter:blur(8px)}
+.chip.on{background:var(--indigo);border-color:#8d8aff;box-shadow:0 0 34px rgba(71,67,230,.8)}
+.tag{font-family:Lexend;font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:#aeb2e0;padding:9px 18px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.05)}
+.cta{font-family:Sora;font-weight:600;font-size:32px;padding:24px 50px;border-radius:999px;background:#fff;color:var(--nuit);box-shadow:0 0 70px rgba(71,67,230,.9)}
+.tabs{position:absolute;left:110px;bottom:190px;display:flex;flex-direction:column;gap:12px}
+.tab{font-family:Sora;font-size:21px;color:#8f93c7;display:flex;align-items:center;gap:12px}
+.tab:before{content:"";width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2)}
+.tab.on{color:#fff}.tab.on:before{background:var(--indigo);box-shadow:0 0 12px var(--indigo)}
+.line{display:block}
+.ititle{font-family:Sora;font-weight:600;font-size:124px;letter-spacing:-.03em;color:#fff;text-shadow:0 0 60px rgba(71,67,230,.9)}
+.who{font-family:Lexend;font-size:17px;color:#aeb2e0;letter-spacing:.06em;display:flex;align-items:center;gap:10px}
+.who:before{content:"";width:18px;height:1px;background:#a5a8ff}
+.q{position:absolute;left:920px;width:900px;padding:24px 32px;font-family:Sora;font-weight:600;font-size:25px;white-space:nowrap;line-height:1.3;color:#fff}
+.q:before{content:"?";display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--indigo);margin-right:18px;font-size:22px;vertical-align:middle;box-shadow:0 0 20px rgba(71,67,230,.8)}
+.pane{width:640px;padding:34px 40px;text-align:left;display:grid;gap:14px}
+.pane .eyebrow{font-size:15px;letter-spacing:.16em}
+.pt{font-family:Sora;font-weight:600;font-size:32px;line-height:1.25}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);border-radius:22px;backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.opt{position:absolute;width:560px;height:176px;left:1160px;padding:24px 30px;display:flex;flex-direction:column;gap:14px}
+.opt h4{font-family:Sora;font-weight:600;font-size:28px;display:flex;justify-content:space-between}
+.opt h4 small{font-family:Lexend;font-weight:400;font-size:18px;color:#aeb2e0;letter-spacing:.1em}
+.crit{display:grid;grid-template-columns:110px 1fr;gap:8px 14px;align-items:center;font-size:17px;color:#c3c6ea}
+.crit i{display:block;height:8px;border-radius:5px;background:linear-gradient(90deg,#6c69ff,#b3b1ff)}
+.crit i.bad{background:linear-gradient(90deg,#ff4d6d,#ff9aae)}
+.label{position:absolute;font-family:Lexend;font-size:16px;color:#d7d9ff;padding:6px 14px;border-radius:999px;background:rgba(21,29,82,.75);border:1px solid rgba(160,160,255,.35);transform:translate(-50%,-50%);white-space:nowrap}
+.label.red{border-color:rgba(239,68,68,.8);color:#ffd0d8;background:rgba(80,10,30,.7)}
+</style></head><body>
+<div id="stage">
+ <div id="bg"></div><div id="grid"></div><canvas id="bgfx" class="full" width="1920" height="1080"></canvas>
+
+ <div class="scene" id="intro"><div class="center">
+  <img id="introLogo" src="assets/logo-white.png" style="width:440px">
+  <div class="sub a" style="font-size:24px;letter-spacing:.14em;text-transform:uppercase">La couche de décision de l'entreprise</div>
+ </div></div>
+
+ <div class="scene" id="pb"><div class="center">
+  <div class="big"><span class="line k">Vos décisions arrivent</span><span class="line k accent">trop tard.</span></div>
+ </div></div>
+
+ <div class="scene" id="aura"><div class="center">
+  <div class="a" id="orb" style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a5a8ff,#4743E6 45%,#151D52 100%);box-shadow:0 0 90px rgba(71,67,230,.95)"></div>
+  <div class="big a">Aura les avance.</div>
+  <div class="chips a"><div class="chip">Supply</div><div class="chip">Architect</div><div class="chip">Décider</div></div>
+ </div></div>
+
+ <div class="scene" id="offer"><div class="center" style="gap:48px">
+  <div class="big a" style="font-size:66px">D'abord un sprint sur votre vrai sujet.<br><span class="accent">Puis le produit, dans la durée.</span></div>
+  <div class="a" style="display:flex;gap:28px;align-items:stretch">
+   <div class="glass pane"><div class="eyebrow">01 · Sprint Résilience · 3 à 4 semaines</div><div class="pt">Aura Supply Chain</div></div>
+   <div class="glass pane"><div class="eyebrow">01 · Design Sprint Architecture · 2 à 3 semaines</div><div class="pt">Aura Architect</div></div>
+  </div></div></div>
+
+ <div class="scene inter" id="i1"><canvas class="full" id="ci1" width="1920" height="1080"></canvas><div class="center"><div class="ititle">Anticiper</div></div></div>
+ <div class="scene inter" id="i2"><canvas class="full" id="ci2" width="1920" height="1080"></canvas><div class="center"><div class="ititle">Concevoir</div></div></div>
+ <div class="scene inter" id="i3"><canvas class="full" id="ci3" width="1920" height="1080"></canvas><div class="center"><div class="ititle">Décider</div></div></div>
+ <div class="scene inter" id="i4"><canvas class="full" id="ci4" width="1920" height="1080"></canvas><div class="center"><div class="ititle">Prouver</div></div></div>
+ <!-- SUPPLY -->
+ <div class="scene" id="sp"><canvas class="full" id="globe" width="1920" height="1080"></canvas>
+  <div class="left" style="width:600px"><div class="eyebrow red a">Supply · Le problème</div><div class="rule a" style="background:var(--red);box-shadow:0 0 18px var(--red)"></div>
+  <div class="title a">Un fournisseur décroche.</div><div class="sub a">La rupture se découvre quand le client appelle.</div></div>
+  <div class="label red" id="milan" style="opacity:0">Fournisseur · Milan</div>
+ </div>
+ <div class="scene shot" id="s1" data-img="s1.png" data-app="Aura Supply Chain · Cockpit" data-kb="0.806,720,450;1.0,650,400" data-hl="296,293,708,160"
+  data-eb="Aura Supply · <b>Le signal</b>" data-t="L'alerte arrive avant l'impact." data-who="Directeur supply chain"></div>
+ <div class="scene shot" id="s2" data-img="s2.png" data-app="Aura Supply Chain · Cause" data-kb="0.806,720,450;1.1,500,560" data-hl="276,398,420,322"
+  data-eb="Aura Supply · <b>La cause</b>" data-t="La cause, comprise." data-who="Approvisionnements · Planification"></div>
+ <div class="scene shot" id="s5" data-img="s5.png" data-app="Aura Supply Chain · Décision" data-kb="0.806,720,450;1.0,900,300" data-hl="500,150,910,56"
+  data-eb="Aura Supply · <b>La décision</b>" data-t="Des options à la décision, avec ou sans données." data-who="Acheteurs · DAF" data-s="« Double source ou stock de sécurité ? »"></div>
+ <div class="scene shot" id="s3" data-img="s3.png" data-app="Aura Supply Chain · Journal des décisions" data-kb="0.806,720,450;1.0,760,560" data-hl="297,741,707,159"
+  data-eb="Aura Supply · <b>Le suivi</b>" data-t="Chaque décision suivie dans le journal." data-who="DAF · COMEX"></div>
+ <div class="scene shot" id="s4" data-img="o1.png,o2.png" data-app="Aura Supply Chain · Studio" data-kb="0.806,720,450;0.9,720,420" data-hl=""
+  data-eb="Paramétrage · <b>Le socle</b>" data-t="Ontologie vivante : chaque attribut connaît sa source." data-who="Équipes data et supply" data-tabs="Ontologie vivante,Lignage"></div>
+ <div class="scene shot" id="s6" data-img="r1.png" data-app="Aura Supply Chain · Règles" data-kb="0.806,720,450;1.0,720,450" data-hl="163,130,1114,300"
+  data-eb="Paramétrage · <b>Les règles</b>" data-t="Des règles cohérentes, par entité." data-who="Équipes data et supply"></div>
+ <div class="scene impact" id="si"><div class="center">
+  <div class="eyebrow a">Supply · Impact</div>
+  <div class="huge"><span class="line k" style="font-size:96px">Chaque rupture anticipée,</span><span class="line k accent" style="font-size:96px">c'est un coût évité.</span></div>
+  <div class="tag a">Moins de pénalités, d'urgences et de surstocks</div>
+ </div></div>
+
+ <!-- ARCHITECT -->
+ <div class="scene" id="ap"><canvas class="full" id="tangle" width="1920" height="1080"></canvas>
+  <div class="left" style="width:560px"><div class="eyebrow red a">Architect · Le problème</div><div class="rule a" style="background:var(--red);box-shadow:0 0 18px var(--red)"></div>
+  <div class="title a">Des systèmes emmêlés.</div><div class="sub a">Chaque demande ajoute un lien que personne ne voit.</div></div>
+ </div>
+ <div class="scene shot" id="a1" data-img="a1.png" data-app="Aura Architect · Cadrage" data-kb="0.806,720,450;1.05,560,480" data-hl="318,395,332,408"
+  data-eb="Aura Architect · <b>Le cadrage</b>" data-t="Une demande, un cadrage guidé." data-who="Architectes d'entreprise et de solution"></div>
+ <div class="scene shot" id="a2" data-img="a2.png,a3.png,a4.png" data-app="Aura Architect · Modèle unique" data-kb="0.806,720,450;0.88,900,520" data-hl=""
+  data-eb="Aura Architect · <b>Le modèle</b>" data-t="Un modèle, des vues cohérentes." data-who="Architectes · Architectes data" data-tabs="Inter-applicatif,Capacités,BPMN"></div>
+ <div class="scene shot" id="a6" data-img="x2c.png" data-app="Aura Architect · Bonnes pratiques" data-kb="0.806,720,450;1.0,860,700" data-hl="325,380,1070,200"
+  data-eb="Aura Architect · <b>Le contrôle</b>" data-t="Vérifié par les bonnes pratiques." data-who="Architectes · DSI"></div>
+ <div class="scene shot" id="a7" data-img="e1.png" data-app="Aura Architect · Estimation" data-kb="0.806,720,450;1.0,860,300" data-hl=""
+  data-eb="Aura Architect · <b>L'estimation</b>" data-t="Chaque changement, estimé." data-who="PMO · Transformation"></div>
+ <div class="scene shot" id="d1" data-img="d1.png" data-app="Aura Architect · Décision (moteur Bora)" data-kb="0.806,720,450;1.1,760,640" data-hl="749,498,318,305"
+  data-eb="Aura Architect · <b>La décision</b>" data-t="Le scénario prudent, expliqué." data-who="DSI · CTO · COMEX" data-s="« Build, Buy ou Strangler pour notre ERP ? »"></div>
+ <div class="scene shot" id="a8" data-img="x1c.png" data-app="Aura Architect · Exports" data-kb="0.806,720,450;1.0,860,560" data-hl="325,392,1070,340"
+  data-eb="Aura Architect · <b>Les exports</b>" data-t="Vers vos outils existants." data-who="Chefs de projet · PMO"></div>
+ <div class="scene impact" id="ai"><div class="center">
+  <div class="eyebrow a">Architect · Impact</div>
+  <div class="huge"><span class="line k" style="font-size:96px">Des semaines de schémas</span><span class="line k accent" style="font-size:96px">ramenées à une conversation.</span></div>
+  <div class="tag a">Cohérente dès le départ : moins de reprises</div>
+ </div></div>
+
+ <div class="scene" id="res"><div class="center">
+  <div class="big" style="font-size:92px"><span class="line k">Moins de coûts subis.</span><span class="line k">Moins d'efforts perdus.</span><span class="line k accent">Moins de décisions à refaire.</span></div>
+ </div></div>
+
+ <div class="scene" id="cta"><div class="center">
+  <img class="a" src="assets/logo-white.png" style="width:380px">
+  <div class="a" style="margin-top:40px"><span class="cta">Réservez un cadrage</span></div>
+  <div class="sub a" style="font-size:22px;margin-top:8px;letter-spacing:.04em">aura-website-one.vercel.app</div>
+ </div></div>
+</div>
+<script>
+const EN=[["Anticiper","Anticipate"],["Concevoir","Design"],["Prouver","Prove"],["D'abord un sprint sur votre vrai sujet.", "Start with a sprint on your real issue."], ["Puis le produit, dans la durée.", "Then the product, for the long run."], ["01 · Sprint Résilience · 3 à 4 semaines", "01 · Resilience Sprint · 3 to 4 weeks"], ["01 · Design Sprint Architecture · 2 à 3 semaines", "01 · Architecture Design Sprint · 2 to 3 weeks"], ["L'alerte arrive avant l'impact.", "The alert lands before the impact."], ["La cause, comprise.", "The cause, understood."], ["Des options à la décision, avec ou sans données.", "From options to decision, with or without data."], ["« Double source ou stock de sécurité ? »", "“Dual sourcing or safety stock?”"], ["Chaque décision suivie dans le journal.", "Every decision tracked in the log."], ["Ontologie vivante : chaque attribut connaît sa source.", "Living ontology: every attribute knows its source."], ["Des règles cohérentes, par entité.", "Consistent rules, entity by entity."], ["Une demande, un cadrage guidé.", "A request, a guided scoping."], ["Vérifié par les bonnes pratiques.", "Checked against best practice."], ["Chaque changement, estimé.", "Every change, estimated."], ["Le scénario prudent, expliqué.", "The prudent scenario, explained."], ["« Build, Buy ou Strangler pour notre ERP ? »", "“Build, buy or strangle our ERP?”"], ["Vers vos outils existants.", "Into the tools you already use."], ["Aura Supply Chain · Décision", "Aura Supply Chain · Decision"], ["Aura Supply Chain · Règles", "Aura Supply Chain · Rules"], ["Aura Architect · Bonnes pratiques", "Aura Architect · Best practice"], ["Aura Architect · Décision (moteur Bora)", "Aura Architect · Decision (Bora engine)"], ["Paramétrage ·", "Setup ·"], ["<b>Le suivi</b>", "<b>Follow-up</b>"], ["<b>Les règles</b>", "<b>Rules</b>"], ["<b>Le contrôle</b>", "<b>Quality check</b>"], ["<b>L'estimation</b>", "<b>Estimation</b>"], ["<b>Les exports</b>", "<b>Exports</b>"], ["Le suivi", "Follow-up"], ["Les règles", "Rules"], ["Le contrôle", "Quality check"], ["L'estimation", "Estimation"], ["Les exports", "Exports"], ["Directeur supply chain", "Supply chain director"], ["Approvisionnements · Planification", "Procurement · Planning"], ["Acheteurs · DAF", "Buyers · CFO"], ["DAF · COMEX", "CFO · Executive committee"], ["Équipes data et supply", "Data and supply teams"], ["Architectes d'entreprise et de solution", "Enterprise and solution architects"], ["Architectes · Architectes data", "Architects · Data architects"], ["Architectes · DSI", "Architects · CIO"], ["PMO · Transformation", "PMO · Transformation office"], ["DSI · CTO · COMEX", "CIO · CTO · Executive committee"], ["Chefs de projet · PMO", "Project managers · PMO"], ["La couche de décision de l'entreprise", "The decision layer of the enterprise"], ["Vos décisions arrivent", "Your decisions arrive"], ["trop tard.", "too late."], ["Aura les avance.", "Aura brings them forward."], ["Supply · Le problème", "Supply · The problem"], ["Architect · Le problème", "Architect · The problem"], ["Décider · Le problème", "Decide · The problem"], ["Un fournisseur décroche.", "A supplier slips."], ["La rupture se découvre quand le client appelle.", "You find out when the customer calls."], ["Fournisseur · Milan", "Supplier · Milan"], ["<b>Le signal</b>", "<b>The signal</b>"], ["<b>La cause</b>", "<b>Root cause</b>"], ["<b>La décision</b>", "<b>The decision</b>"], ["<b>Ontologie vivante</b>", "<b>Living ontology</b>"], ["<b>Le cadrage</b>", "<b>Framing</b>"], ["<b>Le modèle</b>", "<b>The model</b>"], ["<b>La preuve</b>", "<b>The proof</b>"], ["<b>Moteur Bora</b>", "<b>Bora engine</b>"], ["L'alerte remonte avant l'impact.", "The alert surfaces before the impact."], ["La chaîne causale, lisible.", "The root cause, in plain sight."], ["Décidée, tracée, mesurée.", "Decided, logged, measured."], ["Une ontologie vivante, de la source à l'alerte.", "A living ontology, from source to alert."], ["Ontologie vivante,Lignage", "Living ontology,Lineage"], ["Aura Supply Chain · Cause", "Aura Supply Chain · Root cause"], ["Journal des décisions", "Decision log"], ["Aura Architect · Cadrage", "Aura Architect · Framing"], ["Modèle unique", "Single model"], ["Décision d'architecture", "Architecture decision"], ["Aura Décider · Moteur Bora", "Aura Decide · Bora engine"], ["Chaque rupture anticipée,", "Every shortage anticipated"], ["c'est un coût évité.", "is a cost avoided."], ["Moins de pénalités, d'urgences et de surstocks", "Fewer penalties, rush orders and overstock"], ["Des systèmes emmêlés.", "Tangled systems."], ["Chaque demande ajoute un lien que personne ne voit.", "Every request adds a link no one sees."], ["La demande devient un cadrage.", "A request becomes a clear scope."], ["Un modèle, des vues cohérentes.", "One model, consistent views."], ["Inter-applicatif,Capacités,BPMN", "Applications,Capabilities,BPMN"], ["Chaque choix, justifié.", "Every choice, justified."], ["Des semaines de schémas", "Weeks of diagrams,"], ["ramenées à une conversation.", "down to one conversation."], ["Cohérente dès le départ : moins de reprises", "Consistent from day one: less rework"], ["Les arbitrages qui coûtent le plus.", "The calls that cost the most."], ["Chaque critère désigne un gagnant différent.", "Every criterion points to a different winner."], ["Quelle stratégie d'approvisionnement face au risque pays ?", "Which sourcing strategy against country risk?"], ["Build, Buy ou Strangler pour notre ERP ?", "Build, buy or strangle our ERP?"], ["Quel investissement prioriser cette année ?", "Which investment comes first this year?"], ["Double source ou stock de sécurité ?", "Dual sourcing or safety stock?"], ["Le choix prudent, expliqué.", "The prudent choice, explained."], ["Et le plus petit changement qui le ferait basculer.", "Plus the smallest change that would flip it."], ["Avec ou sans données,", "With or without data,"], ["Aura vous aide à trancher.", "Aura helps you decide."], ["Avec vos données", "With your data"], ["Alertes, ontologie, SI connecté", "Alerts, ontology, connected systems"], ["Sans données", "Without data"], ["Jugement d'experts, critères qualitatifs", "Expert judgement, qualitative criteria"], ["Une décision prouvée,", "A proven decision"], ["qu'on n'a pas à refaire.", "you won't have to remake."], ["Le plus petit changement, identifié", "The smallest change, identified"], ["Moins de coûts subis.", "Fewer costs incurred."], ["Moins d'efforts perdus.", "Less effort wasted."], ["Moins de décisions à refaire.", "Fewer decisions to redo."], ["Réservez un cadrage", "Book a scoping session"], ["Ontologie vivante", "Living ontology"], ["Moteur Bora", "Bora engine"], ["Le signal", "The signal"], ["La cause", "Root cause"], ["La décision", "The decision"], ["Le socle", "The foundation"], ["Le cadrage", "Framing"], ["Le modèle", "The model"], ["La preuve", "The proof"], ["Décider", "Decide"]];
+if(new URLSearchParams(location.search).get('lang')==='en'){const st=document.getElementById('stage');let h=st.innerHTML;
+ for(const [a,b] of EN){const esc=x=>x.replace(/'/g,'&#39;');h=h.split(a).join(b);}st.innerHTML=h;document.documentElement.lang='en'}
+const T=[['intro',0,4],['pb',4,7.5],['offer',7.5,12],['i1',12,14],
+ ['sp',14,18],['s1',18,21],['s2',21,24],['s5',24,27.5],['s3',27.5,30.5],['s4',30.5,34],['s6',34,37],['si',37,41],['i2',41,43],
+ ['ap',43,46.5],['a1',46.5,49.5],['a2',49.5,53],['a6',53,56],['a7',56,59],['i3',59,61],['d1',61,65],['a8',65,68.5],['ai',68.5,72.5],['i4',72.5,74.5],['res',74.5,80.5],['cta',80.5,89]];
+const DUR=89;
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const eo=x=>1-Math.pow(1-cl(x),3);
+function rnd(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+// ---------- shot scenes
+document.querySelectorAll('.shot').forEach(s=>{
+ const imgs=s.dataset.img.split(',');
+ s.innerHTML=`<div class="left" style="width:500px"><div class="eyebrow a">${s.dataset.eb}</div><div class="rule a"></div>
+ <div class="title a" style="font-size:52px">${s.dataset.t}</div>${s.dataset.s?`<div class="sub a">${s.dataset.s}</div>`:''}${s.dataset.who?`<div class="who a">${s.dataset.who}</div>`:''}</div>
+ <div class="beam"></div>
+ ${s.dataset.tabs?`<div class="tabs">${s.dataset.tabs.split(',').map(x=>`<div class="tab">${x}</div>`).join('')}</div>`:''}
+ <div class="persp"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>${s.dataset.app}</span></div>
+ <div class="vp"><div class="cam">${imgs.map(i=>`<img src="assets/${i}">`).join('')}
+ ${s.dataset.hl?(()=>{const[x,y,w,h]=s.dataset.hl.split(',').map(Number);return `<div class="hl" style="left:${x-8}px;top:${y-8}px;width:${w+16}px;height:${h+16}px"></div>`})():''}
+ </div></div></div></div>`;
+});
+// ---------- background particles
+const P=[];{const r=rnd(11);for(let i=0;i<150;i++)P.push([r()*1920,r()*1080,(r()-.5)*14,(r()-.5)*10,r()])}
+function drawBg(t){
+ const c=document.getElementById('bgfx').getContext('2d');c.clearRect(0,0,1920,1080);
+ const pts=P.map(p=>[(p[0]+p[2]*t+1920*4)%1920,(p[1]+p[3]*t+1080*4)%1080,p[4]]);
+ c.lineWidth=1;
+ for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i][0]-pts[j][0],dy=pts[i][1]-pts[j][1],d=dx*dx+dy*dy;
+  if(d<130*130){c.strokeStyle=`rgba(140,140,255,${0.10*(1-Math.sqrt(d)/130)})`;c.beginPath();c.moveTo(pts[i][0],pts[i][1]);c.lineTo(pts[j][0],pts[j][1]);c.stroke()}}
+ for(const p of pts){c.fillStyle=`rgba(190,190,255,${0.25+0.35*p[2]})`;c.beginPath();c.arc(p[0],p[1],1+1.3*p[2],0,6.283);c.fill()}
+}
+// ---------- globe
+const GP=[];{const n=1600;for(let i=0;i<n;i++){const y=1-2*(i+.5)/n,lat=Math.asin(y),lon=(i*2.39996323)%(2*Math.PI);GP.push([lat,lon])}}
+const D=Math.PI/180;
+const CITY={sha:[31.2,121.5],szn:[22.5,114.1],sgp:[1.35,103.8],mum:[19,72.8],dxb:[25.2,55.3],mil:[45.5,9.2],rtm:[51.9,4.5],par:[48.9,2.35],nyc:[40.7,-74],sao:[-23.5,-46.6],ist:[41,29]};
+const ARCS=[['sha','rtm'],['szn','mil'],['sgp','dxb'],['mum','ist'],['dxb','mil'],['rtm','nyc'],['par','nyc'],['sao','rtm'],['ist','par'],['mil','par'],['sha','sgp']];
+function drawGlobe(lt){
+ const c=document.getElementById('globe').getContext('2d');c.clearRect(0,0,1920,1080);
+ const cx=1290,cy=560,R=400;const rot=-(70-62*ease(lt/4.6))*D;const tilt=0.62;
+ const proj=(lat,lon,h=1)=>{const x=Math.cos(lat)*Math.sin(lon+rot),y0=Math.sin(lat),z0=Math.cos(lat)*Math.cos(lon+rot);
+  const y=y0*Math.cos(tilt)-z0*Math.sin(tilt),z=y0*Math.sin(tilt)+z0*Math.cos(tilt);return [cx+R*h*x,cy-R*h*y,z]};
+ const g=c.createRadialGradient(cx-120,cy-140,40,cx,cy,R*1.25);g.addColorStop(0,'rgba(71,67,230,.30)');g.addColorStop(.8,'rgba(21,29,82,.25)');g.addColorStop(1,'rgba(0,0,0,0)');
+ c.fillStyle=g;c.beginPath();c.arc(cx,cy,R*1.25,0,6.283);c.fill();
+ c.strokeStyle='rgba(140,140,255,.35)';c.lineWidth=1.2;c.beginPath();c.arc(cx,cy,R,0,6.283);c.stroke();
+ for(const [la,lo] of GP){const [x,y,z]=proj(la,lo);if(z<0)continue;c.fillStyle=`rgba(170,175,255,${0.08+0.5*z})`;c.fillRect(x-1,y-1,2.2,2.2)}
+ const red=eo((lt-2.6)/0.8);
+ ARCS.forEach(([a,b],k)=>{const A=CITY[a].map(v=>v*D),B=CITY[b].map(v=>v*D);
+  const isRed=(a==='mil'&&b==='par')||(a==='szn'&&b==='mil');
+  const va=[Math.cos(A[0])*Math.cos(A[1]),Math.cos(A[0])*Math.sin(A[1]),Math.sin(A[0])],vb=[Math.cos(B[0])*Math.cos(B[1]),Math.cos(B[0])*Math.sin(B[1]),Math.sin(B[0])];
+  const pts=[];for(let i=0;i<=40;i++){const u=i/40;const v=va.map((q,j)=>q*(1-u)+vb[j]*u);const n=Math.hypot(...v);
+   const la=Math.asin(v[2]/n),lo=Math.atan2(v[1],v[0]);pts.push(proj(la,lo,1+0.18*Math.sin(Math.PI*u)))}
+  const grow=eo((lt-0.2-k*0.12)/1.2);const nn=Math.floor(40*grow);
+  c.lineWidth=isRed?2.6:1.6;
+  for(let i=0;i<nn;i++){const p=pts[i],q=pts[i+1];if(p[2]<-0.05)continue;
+   c.strokeStyle=isRed&&red>0?`rgba(255,${Math.round(120-60*red)},${Math.round(255-150*red)},${0.5+0.5*red})`:`rgba(150,150,255,${0.35+0.4*p[2]})`;
+   c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.stroke()}
+  if(grow>=1&&!(isRed&&red>0.5)){const u=((lt*0.45+k*0.21)%1);const p=pts[Math.floor(u*40)];if(p[2]>0){c.fillStyle='#fff';c.shadowColor='#8d8aff';c.shadowBlur=14;c.beginPath();c.arc(p[0],p[1],3,0,6.283);c.fill();c.shadowBlur=0}}
+ });
+ for(const k in CITY){const [la,lo]=CITY[k].map(v=>v*D);const [x,y,z]=proj(la,lo);if(z<0)continue;
+  const isM=k==='mil';c.fillStyle=isM&&red>0?`rgb(255,${Math.round(200-120*red)},${Math.round(255-140*red)})`:'#d8d9ff';
+  c.shadowColor=isM&&red>0?'#ef4444':'#6f6bff';c.shadowBlur=16;c.beginPath();c.arc(x,y,isM?5:3.5,0,6.283);c.fill();c.shadowBlur=0;
+  if(isM&&red>0){for(let r=0;r<2;r++){const ph=((lt-2.6)*0.9+r*0.5)%1;c.strokeStyle=`rgba(239,68,68,${(1-ph)*0.8*red})`;c.lineWidth=2;c.beginPath();c.arc(x,y,8+ph*50,0,6.283);c.stroke()}
+   const l=document.getElementById('milan');l.style.left=(x+95)+'px';l.style.top=(y-34)+'px';l.style.opacity=red}}
+}
+// ---------- tangle
+const TN=[],TE=[];{const r=rnd(5);for(let i=0;i<38;i++)TN.push([860+r()*960,140+r()*820,r()*6.28,r()]);
+ for(let i=0;i<90;i++){const a=Math.floor(r()*38);let b=Math.floor(r()*38);if(a===b)b=(b+7)%38;TE.push([a,b,(r()-.5)*420,r(),r()<.14])}}
+const TL=['ERP','CRM','WMS','API','Batch','Excel','Kafka','Legacy','BI','ETL','SSO','PIM'];
+function drawTangle(lt){
+ const c=document.getElementById('tangle').getContext('2d');c.clearRect(0,0,1920,1080);
+ const chaos=0.4+0.6*ease(lt/5);
+ const pos=TN.map(([x,y,p,s])=>[x+Math.sin(lt*0.9+p)*28*chaos,y+Math.cos(lt*0.8+p*1.3)*22*chaos]);
+ const shown=Math.floor(TE.length*eo(lt/4.2));
+ for(let i=0;i<shown;i++){const [a,b,off,al,bad]=TE[i];const A=pos[a],B=pos[b];const mx=(A[0]+B[0])/2+off*chaos,my=(A[1]+B[1])/2-off*0.6*chaos;
+  const redOn=bad&&lt>2.2;c.strokeStyle=redOn?`rgba(239,68,68,${0.55+0.3*Math.sin(lt*6+i)})`:`rgba(150,150,255,${0.18+0.3*al})`;c.lineWidth=redOn?2:1.2;
+  c.beginPath();c.moveTo(A[0],A[1]);c.quadraticCurveTo(mx,my,B[0],B[1]);c.stroke()}
+ pos.forEach(([x,y],i)=>{c.fillStyle='#cfd0ff';c.shadowColor='#6f6bff';c.shadowBlur=12;c.beginPath();c.arc(x,y,3+TN[i][3]*4,0,6.283);c.fill();c.shadowBlur=0});
+ c.font='500 17px Lexend';c.textAlign='center';
+ TL.forEach((t,i)=>{const [x,y]=pos[i*3];const a=eo((lt-0.3-i*0.12)/0.6);c.globalAlpha=a;
+  const w=c.measureText(t).width+26;c.fillStyle='rgba(21,29,82,.85)';c.strokeStyle='rgba(160,160,255,.45)';c.beginPath();c.roundRect(x-w/2,y-34,w,28,14);c.fill();c.stroke();
+  c.fillStyle='#e3e4ff';c.fillText(t,x,y-14);c.globalAlpha=1});
+}
+// ---------- options
+function drawOpts(lt){
+ const vals=[[.8,.3,.7],[.3,.8,.4],[.55,.55,.85]];
+ const order=[[0,1,2],[1,2,0],[2,0,1],[0,2,1],[1,0,2]];const step=Math.floor(Math.max(0,lt-1.2)/0.9);const o=order[step%order.length];
+ OPT.forEach((_,i)=>{const el=document.getElementById('o'+i);const slot=o.indexOf(i);const a=eo((lt-0.2-i*0.2)/0.7);
+  const tt=Math.max(0,lt-1.2)/0.9;const fr=tt-Math.floor(tt);const po=step>0?order[(step-1)%order.length]:[0,1,2];
+  const y=lt<1.2?210+i*215:210+215*(po.indexOf(i)+(slot-po.indexOf(i))*ease(fr/0.45));
+  el.style.top=y+'px';el.style.opacity=a;el.style.transform=`translateX(${(1-a)*80}px) rotateZ(${Math.sin(lt*2+i)*0.8}deg)`;
+  el.style.borderColor=lt>1.8&&slot===0?'rgba(239,68,68,.6)':'rgba(255,255,255,.16)';
+  el.querySelectorAll('i').forEach((b,k)=>{const v=cl(vals[i][k]+0.25*Math.sin(lt*2.2+i*2+k*1.7));b.style.width=(v*100)+'%';b.classList.toggle('bad',v<0.4)})});
+ document.getElementById('conf').style.opacity=eo((lt-1.8)/0.6);
+}
+
+// ---------- interstitials (generated)
+function ctx(id){const c=document.getElementById(id).getContext('2d');c.clearRect(0,0,1920,1080);return c}
+const IP=[];{const r=rnd(21);for(let i=0;i<520;i++)IP.push([r()*6.283,300+r()*900,r(),r()])}
+function drawConverge(lt){const c=ctx('ci1');const k=ease(lt/1.9);
+ for(const [a,d,s,z] of IP){const rr=d*(1-0.82*k)+20;const ang=a+k*(1.2+s);const x=960+Math.cos(ang)*rr*1.3,y=540+Math.sin(ang)*rr*0.75;
+  const x2=960+Math.cos(ang-0.05)*(rr+30)*1.3,y2=540+Math.sin(ang-0.05)*(rr+30)*0.75;
+  c.strokeStyle=`rgba(${150+100*z|0},${150+60*z|0},255,${0.25+0.5*s})`;c.lineWidth=1+1.5*z;c.beginPath();c.moveTo(x2,y2);c.lineTo(x,y);c.stroke()}
+ const g=c.createRadialGradient(960,540,0,960,540,260*k+10);g.addColorStop(0,`rgba(140,140,255,${0.5*k})`);g.addColorStop(1,'rgba(71,67,230,0)');c.fillStyle=g;c.fillRect(0,0,1920,1080)}
+function drawMesh(lt){const c=ctx('ci2');const N=34,M=22;const P=(x,z,y)=>{const f=700/(z+700);return [960+x*f,640+y*f]};
+ for(let j=0;j<M;j++)for(let i=0;i<N;i++){const X=(i-N/2)*90,Z=j*80-200+ (lt*60)%80;const Y=Math.sin(i*0.4+lt*1.5)*40+Math.cos(j*0.5+lt)*40+120;
+  const [x,y]=P(X,Z,Y);const al=0.55*(1-j/M);
+  if(i<N-1){const X2=X+90,Y2=Math.sin((i+1)*0.4+lt*1.5)*40+Math.cos(j*0.5+lt)*40+120;const [x2,y2]=P(X2,Z,Y2);c.strokeStyle=`rgba(120,118,255,${al})`;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke()}
+  if(j<M-1){const Z2=Z+80,Y3=Math.sin(i*0.4+lt*1.5)*40+Math.cos((j+1)*0.5+lt)*40+120;const [x3,y3]=P(X,Z2,Y3);c.strokeStyle=`rgba(120,118,255,${al*0.8})`;c.beginPath();c.moveTo(x,y);c.lineTo(x3,y3);c.stroke()}
+  c.fillStyle=`rgba(200,200,255,${al})`;c.fillRect(x-1,y-1,2,2)}}
+const ON=[];{const r=rnd(33);for(let i=0;i<48;i++)ON.push([200+r()*1520,120+r()*840])}
+function drawOrder(lt){const c=ctx('ci3');const k=ease((lt-0.2)/1.3);const cols=8;
+ const pos=ON.map(([x,y],i)=>{const gx=520+(i%cols)*125,gy=230+Math.floor(i/cols)*125;return [x+(gx-x)*k,y+(gy-y)*k]});
+ c.lineWidth=1.2;for(let i=0;i<pos.length;i++){const js=k<0.5?[(i*7+3)%48,(i*13+5)%48]:[i+1,i+cols];
+  for(const j of js){if(j>=48||(k>=0.5&&j===i+1&&(i%cols)===cols-1))continue;c.strokeStyle=k<0.5?`rgba(239,68,68,${0.35*(1-2*k)})`:`rgba(140,140,255,${0.5*(2*k-1)})`;c.beginPath();c.moveTo(...pos[i]);c.lineTo(...pos[j]);c.stroke()}}
+ pos.forEach(([x,y])=>{c.fillStyle='#d6d7ff';c.shadowColor='#6f6bff';c.shadowBlur=14;c.beginPath();c.arc(x,y,4,0,6.283);c.fill();c.shadowBlur=0})}
+function drawHorizon(lt){const c=ctx('ci4');const hy=600;
+ const g=c.createLinearGradient(0,hy-260,0,hy+10);g.addColorStop(0,'rgba(71,67,230,0)');g.addColorStop(1,'rgba(140,138,255,.55)');c.fillStyle=g;c.fillRect(0,hy-260,1920,270);
+ c.strokeStyle='rgba(165,168,255,.9)';c.lineWidth=2;c.beginPath();c.moveTo(0,hy);c.lineTo(1920,hy);c.stroke();
+ for(let i=-30;i<=30;i++){c.strokeStyle='rgba(120,118,255,.45)';c.lineWidth=1;c.beginPath();c.moveTo(960+i*18,hy);c.lineTo(960+i*260,1080);c.stroke()}
+ for(let j=0;j<16;j++){const u=((j+lt*1.6)%16)/16;const y=hy+Math.pow(u,2.2)*480;c.strokeStyle=`rgba(120,118,255,${0.15+0.6*u})`;c.beginPath();c.moveTo(0,y);c.lineTo(1920,y);c.stroke()}}
+function render(t){
+ const bg=document.getElementById('bg');
+ bg.style.setProperty('--gx',(60+14*Math.sin(t/7))+'%');bg.style.setProperty('--gy',(30+12*Math.cos(t/9))+'%');
+ document.getElementById('grid').style.transform=`translate(${(t*12)%64}px,${(t*6)%64}px)`;
+ drawBg(t);
+ for(const [id,a,b] of T){
+  const el=document.getElementById(id);const X=0.3;
+  let op=cl((t-(a-X))/(2*X))*cl(((b+X)-t)/(2*X));
+  if(id==='intro')op=cl((t-0.15)/1.0)*cl(((b+X)-t)/(2*X));
+  if(id==='cta')op=cl((t-(a-X))/(2*X))*cl((DUR-0.2-t)/1.8);
+  el.style.opacity=op;el.style.display=op<=0?'none':'block';
+  if(op<=0)continue;
+  const lt=t-a;
+  el.querySelectorAll('.a').forEach((n,i)=>{const p=eo((lt-0.1-i*0.22)/0.7);n.style.opacity=p;n.style.transform=`translateY(${(1-p)*20}px)`});
+  el.querySelectorAll('.k').forEach((n,i)=>{const p=eo((lt-0.15-i*0.45)/0.8);n.style.opacity=p;
+   n.style.transform=`translateY(${(1-p)*50}px) scale(${1.06-0.06*p})`;n.style.filter=`blur(${(1-p)*14}px)`;n.style.letterSpacing=`${(1-p)*0.12-0.03}em`});
+  if(id==='intro'){const p=eo((t-0.1)/1.8);const l=document.getElementById('introLogo');l.style.transform=`scale(${0.9+0.1*p})`;l.style.filter=`blur(${(1-p)*12}px) drop-shadow(0 0 ${36*p}px rgba(71,67,230,.95))`}
+  if(id==='aura'){el.querySelectorAll('.chip').forEach((c,i)=>c.classList.toggle('on',lt>1.4+i*0.5));document.getElementById('orb').style.transform+=` scale(${1+0.06*Math.sin(lt*6)})`}
+  if(id==='sp')drawGlobe(lt);
+  if(id==='i1')drawConverge(lt);if(id==='i2')drawMesh(lt);if(id==='i3')drawOrder(lt);if(id==='i4')drawHorizon(lt);
+  if(el.classList.contains('inter')){const ti=el.querySelector('.ititle');const p=eo((lt-0.25)/0.7);ti.style.opacity=p*cl((2.2-lt)/0.4+0.2);ti.style.letterSpacing=((1-p)*0.3-0.03)+'em';ti.style.filter=`blur(${(1-p)*10}px)`}
+  if(id==='ap')drawTangle(lt);
+  if(id==='__none')el.querySelectorAll('.q').forEach((q,i)=>{const p=eo((lt-0.6-i*0.7)/0.7);q.style.top=(300+i*130)+'px';q.style.opacity=p;q.style.transform=`translateX(${(1-p)*60}px)`});
+  if(el.classList.contains('impact')||id==='res'){const s=1+0.02*lt;el.querySelector('.center').style.transform=`scale(${s})`}
+  if(el.classList.contains('shot')){
+   const len=b-a;const k=ease((lt+0.3)/(len+0.6));
+   const [p0,p1]=el.dataset.kb.split(';').map(s=>s.split(',').map(Number));
+   const s=p0[0]+(p1[0]-p0[0])*k,fx=p0[1]+(p1[1]-p0[1])*k,fy=p0[2]+(p1[2]-p0[2])*k;
+   let tx=580-fx*s,ty=362.5-fy*s;tx=cl(tx,1160-1440*s,0);ty=cl(ty,725-900*s,0);
+   el.querySelector('.cam').style.transform=`translate(${tx}px,${ty}px) scale(${s})`;
+   const fr=el.querySelector('.frame');const fp=eo((lt+0.3)/1.0);
+   fr.style.transform=`translateX(${(1-fp)*90}px) rotateY(${-11+6*k}deg) rotateX(${3-1.5*k}deg) translateZ(${-40+30*k}px)`;
+   const beam=el.querySelector('.beam');const bp=eo((lt-0.3)/0.9);beam.style.top='668px';beam.style.transform=`scaleX(${bp})`;beam.style.opacity=bp*(1-cl((lt-2.6)/0.8))*0.9;
+   const hl=el.querySelector('.hl');if(hl){const h=eo((lt-1.1)/0.6);hl.style.opacity=h;hl.style.boxShadow=`0 0 0 4000px rgba(8,10,40,${.45*h}),0 0 ${24+10*Math.sin(lt*5)}px rgba(71,67,230,.9)`;hl.style.transform=`scale(${1.05-0.05*h})`}
+   const imgs=el.querySelectorAll('.cam img');
+   if(imgs.length>1){const seg=len/imgs.length;imgs.forEach((im,i)=>{im.style.opacity=i===0?1:cl((lt-i*seg+0.2)/0.4)});
+    el.querySelectorAll('.tab').forEach((tb,i)=>tb.classList.toggle('on',Math.min(imgs.length-1,Math.floor((lt+0.2)/seg))===i))}
+  }
+ }
+}
+window.render=render;window.DUR=DUR;render(0);
+</script></body></html>

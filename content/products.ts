@@ -32,6 +32,8 @@ export type Product = {
   headline: T;
   lead: T;
   image: { src: string; alt: T };
+  /** Short “for whom” line: users and sponsors. */
+  who?: T;
   /** Real screenshots of the application (demo data). The first one is the main visual. */
   screens: { src: string; width: number; height: number; alt: T; caption: T }[];
   screensTitle: T;
@@ -72,6 +74,7 @@ export type Sprint = {
 
 const supply: Product = {
   key: "supply",
+  who: ["Pour : directions supply chain, approvisionnements, achats, planification · sponsors DAF et COMEX", "For: supply chain, procurement, buying and planning leaders · sponsored by the CFO and executive committee"],
   name: ["Aura Supply Chain", "Aura Supply Chain"],
   short: ["Supply Chain", "Supply Chain"],
   tagline: [
@@ -98,40 +101,49 @@ const supply: Product = {
       "Supervision room: glowing world map of logistics flows above a port and container ships",
     ],
   },
-  screensTitle: ["Du signal à la décision signée, en trois écrans.", "From signal to signed decision, in three screens."],
+  screensTitle: ["Le signal, la cause, la décision.", "The signal, the cause, the decision."],
   screens: [
     {
       src: "/images/product/supply-cockpit.webp",
       width: 1440,
       height: 900,
-      alt: [
-        "Cockpit Aura Supply Chain : quatre repères (4 alertes critiques, 1 à surveiller, 0 décision en cours, données à jour) et des alertes condensées — rupture fournisseur, stock projeté sous seuil, retard transport, dérive de prévision — chacune avec sa valeur, l’enregistrement concerné, le nombre concerné et un bouton Décider ; copilote Aura à droite.",
-        "Aura Supply Chain cockpit: four markers (4 critical alerts, 1 to watch, 0 decisions in progress, data up to date) and condensed alerts — supplier disruption, projected stock below threshold, transport delay, forecast drift — each with its value, the record concerned, the count concerned and a Decide button; Aura copilot on the right.",
-      ],
-      caption: [
-        "Cockpit : quatre repères, des alertes condensées et un bouton Décider sur chacune.",
-        "Cockpit: four markers, condensed alerts and a Decide button on each.",
-      ],
+      alt: ["Cockpit Aura Supply Chain : bandeau « Décision requise : 3 alertes au seuil critique », repères et alertes prioritaires classées par gravité.", "Aura Supply Chain cockpit: “Decision required: 3 alerts at critical threshold” banner, markers and priority alerts ranked by severity."],
+      caption: ["Le signal : les alertes critiques en tête, sur des données vérifiées.", "The signal: critical alerts first, on verified data."],
     },
     {
-      src: "/images/product/supply-studio.webp",
+      src: "/images/product/supply-cause.webp",
       width: 1440,
       height: 900,
-      alt: [
-        "Studio Aura Supply Chain : les cinq phases Connecter, Modéliser, Mapper, Raisonner, Publier avec leurs voyants, et le catalogue de sources (SAP, Salesforce, Microsoft Dynamics, Oracle, Snowflake, SI de démonstration Maison Lucie).",
-        "Aura Supply Chain Studio: the five phases Connect, Model, Map, Reason, Publish with their status lights, and the source catalogue (SAP, Salesforce, Microsoft Dynamics, Oracle, Snowflake, Maison Lucie demo system).",
-      ],
-      caption: ["Studio : cinq phases avec voyants, de la connexion à la publication.", "Studio: five phases with status lights, from connection to publication."],
+      alt: ["Détail d’une alerte : faits observés, chaîne de causalité (prévision, indicateur, alerte, décision), règle causale et options.", "Alert detail: observed facts, causal chain (forecast, indicator, alert, decision), causal rule and options."],
+      caption: ["La cause : une chaîne de causalité lisible, de la donnée source à la décision.", "The cause: a readable causal chain, from source data to decision."],
     },
     {
-      src: "/images/product/supply-decision.webp",
-      width: 1280,
-      height: 800,
-      alt: [
-        "Décision Aura Supply Chain ouverte depuis l’alerte « Risque de rupture fournisseur » : étape Comprendre, question préremplie avec les faits observés (score 88/100 pour SUP-001 Tessitura Milano, seuil 60, 5 sur 15 concernés, source et date).",
-        "Aura Supply Chain decision opened from the “Supplier disruption risk” alert: Understand step, question pre-filled with the observed facts (score 88/100 for SUP-001 Tessitura Milano, threshold 60, 5 of 15 concerned, source and date).",
-      ],
-      caption: ["Décision : préremplie avec les faits observés, complétée par l’humain.", "Decision: pre-filled with the observed facts, completed by a human."],
+      src: "/images/product/supply-ontologie.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Studio : graphe de l’ontologie vivante (fournisseur, article, commande, stock, expédition, perturbation) et leurs relations.", "Studio: living ontology graph (supplier, item, order, stock, shipment, disruption) and their relations."],
+      caption: ["L’ontologie vivante : vos objets métier et leurs relations.", "The living ontology: your business objects and their relations."],
+    },
+    {
+      src: "/images/product/supply-lignage.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Studio : lignage des champs sources des systèmes vers les objets métier et les indicateurs.", "Studio: lineage from source-system fields to business objects and indicators."],
+      caption: ["Le lignage : chaque indicateur remonte à ses champs sources.", "Lineage: every indicator traces back to its source fields."],
+    },
+    {
+      src: "/images/product/supply-copilote.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Copilote Aura répondant avec un graphique de comparaison sourcé.", "Aura copilot answering with a sourced comparison chart."],
+      caption: ["Le copilote : des réponses sourcées, avec graphiques.", "The copilot: sourced answers, with charts."],
+    },
+    {
+      src: "/images/product/supply-journal.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Cockpit avec le journal des décisions (option choisie, valeur à la décision, valeur aujourd’hui, évolution) et le copilote.", "Cockpit with the decision log (chosen option, value at decision, value today, trend) and the copilot."],
+      caption: ["Le journal : chaque décision tracée, son effet suivi dans le temps.", "The log: every decision traced, its effect tracked over time."],
     },
   ],
   audience: [
@@ -174,233 +186,50 @@ const supply: Product = {
   },
   features: [
     {
-      id: "connect",
+      id: "ontology",
       kicker: ["Studio", "Studio"],
-      title: ["Vos systèmes, tels qu’ils sont", "Your systems, as they are"],
-      summary: [
-        "Pas de nouvel entrepôt de données à construire : Aura lit ERP, WMS, TMS, fichiers et flux d’événements là où ils se trouvent.",
-        "No new data warehouse to build: Aura reads your ERP, WMS, TMS, files and event streams where they already live.",
-      ],
-      body: [
-        [
-          "Le Studio déclare chaque source comme un connecteur : protocole, authentification, fréquence d’interrogation et périmètre. Aura interroge vos systèmes à la fréquence utile au lieu de copier toute votre donnée dans un nouvel entrepôt.",
-          "The Studio declares each source as a connector: protocol, authentication, polling frequency and scope. Aura queries your systems at the useful frequency instead of copying all your data into yet another warehouse.",
-        ],
-        [
-          "Les connexions sont progressives : deux ou trois sources suffisent pour produire une première alerte utile. D’autres s’ajoutent ensuite sans refaire le modèle.",
-          "Connections are progressive: two or three sources are enough to produce a first useful alert. Others are added later without rebuilding the model.",
-        ],
-      ],
-      flow: [
-        ["ERP / WMS / TMS", "ERP / WMS / TMS"],
-        ["Connecteur", "Connector"],
-        ["Métadonnées", "Metadata"],
-        ["Studio Aura", "Aura Studio"],
-      ],
-      example: [
-        "Un ERP exposé en REST/OAuth2, un fichier de prévisions déposé chaque nuit en SFTP et un flux Kafka d’événements transport.",
-        "An ERP exposed through REST/OAuth2, a nightly forecast file dropped on SFTP and a Kafka stream of transport events.",
-      ],
+      title: ["Une ontologie vivante", "A living ontology"],
+      summary: ["Fournisseurs, articles, commandes, stocks, expéditions : vos objets métier et leurs relations, dans un seul graphe.", "Suppliers, items, orders, stock, shipments: your business objects and their relations, in a single graph."],
+      body: [["L’ontologie se construit depuis vos sources et évolue avec elles. Elle donne au copilote et aux règles le même vocabulaire que vos équipes.", "The ontology is built from your sources and evolves with them. It gives the copilot and the rules the same vocabulary as your teams."]],
+      flow: [["Sources", "Sources"], ["Objets métier", "Business objects"], ["Relations", "Relations"]],
     },
     {
-      id: "metadata",
+      id: "lineage",
       kicker: ["Studio", "Studio"],
-      title: ["Ce qu’Aura lit, vous le voyez", "You see what Aura reads"],
-      summary: [
-        "Structure, échantillons et qualité de chaque source, visibles par vos équipes avant toute mise en production.",
-        "Structure, samples and quality of every source, visible to your teams before anything goes live.",
-      ],
-      body: [
-        [
-          "Pour chaque source, le Studio récupère les métadonnées (champs, types, clés, volumétrie) et un échantillon représentatif. Vos équipes voient exactement ce qu’Aura lit — rien n’est supposé.",
-          "For each source, the Studio retrieves metadata (fields, types, keys, volumes) and a representative sample. Your teams see exactly what Aura reads — nothing is assumed.",
-        ],
-        [
-          "Les échantillons servent à tester le mapping et les règles avant de les activer sur le flux complet.",
-          "Samples are used to test mapping and rules before activating them on the full stream.",
-        ],
-      ],
-      points: [
-        ["Schéma et types détectés", "Detected schema and types"],
-        ["Clés et jointures candidates", "Candidate keys and joins"],
-        ["Qualité : valeurs manquantes, doublons", "Quality: missing values, duplicates"],
-      ],
-    },
-    {
-      id: "indicators",
-      kicker: ["Studio", "Studio"],
-      title: ["Un seul chiffre pour tout le monde", "One number everyone agrees on"],
-      summary: [
-        "Couverture de stock, OTIF, délais fournisseurs : définis une fois, avec leurs seuils, pour ne plus débattre du chiffre en réunion.",
-        "Stock cover, OTIF, supplier lead times: defined once, with their thresholds, so meetings stop arguing about the number.",
-      ],
-      body: [
-        [
-          "Chaque indicateur est une formule explicite sur des objets métier mappés, avec une unité, une granularité et des seuils vert / orange / rouge. Les seuils sont des paramètres métier, modifiables et historisés.",
-          "Each indicator is an explicit formula over mapped business objects, with a unit, a granularity and green / amber / red thresholds. Thresholds are business parameters, editable and versioned.",
-        ],
-      ],
-      flow: [
-        ["Données mappées", "Mapped data"],
-        ["Formule", "Formula"],
-        ["Seuils", "Thresholds"],
-        ["Voyant d’état", "Status light"],
-      ],
-      example: [
-        "Couverture de stock = stock disponible ÷ consommation moyenne journalière ; orange sous 10 jours, rouge sous 5.",
-        "Stock cover = available stock ÷ average daily consumption; amber below 10 days, red below 5.",
-      ],
-    },
-    {
-      id: "mapping",
-      kicker: ["Studio", "Studio"],
-      title: ["Vos données comprises, validées par vos équipes", "Your data understood, validated by your people"],
-      summary: [
-        "Un modèle Supply Chain prêt à l’emploi ; Aura propose la correspondance de vos champs, un responsable valide chaque proposition.",
-        "A ready-to-use supply chain model; Aura proposes how your fields map to it, and an owner validates every proposal.",
-      ],
-      body: [
-        [
-          "Fournisseur, article, site, commande, expédition : Aura raisonne sur des objets métier, pas sur des noms de colonnes. Le LLM suggère le mapping à partir des métadonnées et des échantillons ; chaque suggestion reste en attente tant qu’un responsable ne l’a pas acceptée ou corrigée.",
-          "Supplier, item, site, order, shipment: Aura reasons about business objects, not column names. The LLM suggests the mapping from metadata and samples; each suggestion stays pending until an owner accepts or corrects it.",
-        ],
-        [
-          "Le mapping validé est tracé : qui a validé quoi, quand, et sur quel échantillon.",
-          "The validated mapping is traced: who validated what, when, and on which sample.",
-        ],
-      ],
-      flow: [
-        ["Champ source", "Source field"],
-        ["Suggestion LLM", "LLM suggestion"],
-        ["Validation humaine", "Human validation"],
-        ["Objet métier", "Business object"],
-      ],
-      example: [
-        "Le champ « LIFNR » de l’ERP est proposé comme identifiant Fournisseur ; l’acheteur confirme et la jointure avec les commandes devient disponible.",
-        "The ERP field “LIFNR” is proposed as the Supplier identifier; the buyer confirms and the join with orders becomes available.",
-      ],
+      title: ["Un lignage de bout en bout", "End-to-end lineage"],
+      summary: ["Chaque indicateur remonte au champ source qui l’alimente : plus de chiffre sans origine.", "Every indicator traces back to the source field that feeds it: no more figures without an origin."],
+      body: [["Le mapping proposé par Aura est validé par vos équipes. Le lignage montre, pour chaque chiffre, d’où il vient et ce qu’il touche.", "The mapping Aura proposes is validated by your teams. Lineage shows, for each figure, where it comes from and what it affects."]],
+      flow: [["Champ source", "Source field"], ["Objet", "Object"], ["Indicateur", "Indicator"]],
     },
     {
       id: "rules",
       kicker: ["Studio", "Studio"],
-      title: ["La cause, pas seulement le symptôme", "The cause, not just the symptom"],
-      summary: [
-        "Des règles causales lisibles qui relient un événement à ses effets sur le service, le stock, le coût et la marge.",
-        "Readable causal rules linking an event to its effects on service, inventory, cost and margin.",
-      ],
-      body: [
-        [
-          "Une règle causale décrit un mécanisme : « si le délai d’un fournisseur critique dépasse X alors que la couverture de ses composants est inférieure à Y, le service client du site Z est menacé ». Les règles sont éditables, versionnées et testables sur l’historique.",
-          "A causal rule describes a mechanism: “if a critical supplier’s lead time exceeds X while cover for its components is below Y, customer service at site Z is at risk”. Rules are editable, versioned and testable on history.",
-        ],
-        [
-          "C’est le cœur de la promesse : une alerte n’est jamais une corrélation opaque, c’est une règle explicite évaluée sur des données réelles.",
-          "This is the core of the promise: an alert is never an opaque correlation, it is an explicit rule evaluated on real data.",
-        ],
-      ],
-      flow: [
-        ["Cause", "Cause"],
-        ["Condition", "Condition"],
-        ["Effet propagé", "Propagated effect"],
-        ["Alerte", "Alert"],
-      ],
-    },
-    {
-      id: "ontology",
-      kicker: ["Studio", "Studio"],
-      title: ["L’effet domino, vu avant qu’il ne tombe", "The domino effect, seen before it falls"],
-      summary: [
-        "Une ontologie vivante relie fournisseurs, composants, sites et clients : un retard devient une liste précise de commandes menacées.",
-        "A living ontology links suppliers, components, sites and customers: one delay becomes a precise list of orders at risk.",
-      ],
-      body: [
-        [
-          "L’ontologie relie fournisseurs, composants, sites, clients et flux. Elle permet de propager un signal : un retard fournisseur devient un composant exposé, puis un produit, puis une commande client.",
-          "The ontology links suppliers, components, sites, customers and flows. It lets a signal propagate: a supplier delay becomes an exposed component, then a product, then a customer order.",
-        ],
-        [
-          "Elle est « vivante » : un nouveau site, un nouveau fournisseur ou une nouvelle source enrichit le modèle sans le reconstruire.",
-          "It is “living”: a new site, supplier or source enriches the model without rebuilding it.",
-        ],
-      ],
-      flow: [
-        ["Fournisseur", "Supplier"],
-        ["Composant", "Component"],
-        ["Site", "Site"],
-        ["Client", "Customer"],
-      ],
+      title: ["Des règles causales cohérentes", "Consistent causal rules"],
+      summary: ["Des règles explicites, vérifiées entre elles : pas de doublon, pas de contradiction, pas de seuil orphelin.", "Explicit rules, checked against each other: no duplicates, no contradictions, no orphan thresholds."],
+      body: [["Chaque alerte vient d’une règle lisible (si… alors…) sur vos valeurs réelles. Le contrôle de cohérence signale les règles qui se contredisent avant qu’elles ne trompent le cockpit.", "Every alert comes from a readable rule (if… then…) on your real values. The consistency check flags contradicting rules before they mislead the cockpit."]],
+      flow: [["Indicateur", "Indicator"], ["Règle", "Rule"], ["Alerte", "Alert"]],
     },
     {
       id: "cockpit",
       kicker: ["Cockpit", "Cockpit"],
-      title: ["L’essentiel en un regard", "What matters, at a glance"],
-      summary: [
-        "Quatre repères (critique, à surveiller, décisions en cours, fraîcheur des données) et des alertes condensées, prêtes à décider.",
-        "Four markers (critical, to watch, decisions in progress, data freshness) and condensed alerts, ready for a decision.",
-      ],
-      body: [
-        [
-          "Chaque alerte tient en une carte : la valeur observée, l’enregistrement concerné, le nombre d’objets touchés et un bouton Décider. Le détail technique — règle, version, données justificatives — s’ouvre dans une vue agrandie.",
-          "Each alert fits on one card: the observed value, the record concerned, the number of objects affected and a Decide button. The technical detail — rule, version, justifying data — opens in an expanded view.",
-        ],
-        [
-          "Aucune alerte n’est générée par le LLM : s’il n’y a pas de règle et de donnée, il n’y a pas d’alerte.",
-          "No alert is generated by the LLM: without a rule and data, there is no alert.",
-        ],
-      ],
-      points: [
-        ["Valeur, enregistrement, nombre concerné", "Value, record, count concerned"],
-        ["Bouton Décider sur chaque alerte", "A Decide button on every alert"],
-        ["Vue agrandie : règle, version, données", "Expanded view: rule, version, data"],
-      ],
+      title: ["Le risque, avant la rupture", "The risk, before the shortage"],
+      summary: ["Les alertes critiques remontent en tête, avec leur cause et la question à trancher.", "Critical alerts come first, with their cause and the question to settle."],
+      body: [["Chaque alerte ouvre sa chaîne de causalité : faits observés, indicateur, règle, décision attendue.", "Each alert opens its causal chain: observed facts, indicator, rule, expected decision."]],
     },
     {
       id: "copilot",
       kicker: ["Cockpit", "Cockpit"],
-      title: ["Des réponses sourcées, jamais inventées", "Sourced answers, never made up"],
-      summary: [
-        "Posez votre question en langage courant : le copilote répond graphique à l’appui, en citant la règle et la donnée. S’il ne sait pas, il le dit.",
-        "Ask in plain language: the copilot answers with a chart, citing the rule and the data. If it does not know, it says so.",
-      ],
-      body: [
-        [
-          "Le copilote LLM s’appuie sur l’ontologie, les règles et les données mappées. Il explique une alerte, compare des périodes, trace un graphique et indique toujours d’où viennent les chiffres.",
-          "The LLM copilot relies on the ontology, the rules and the mapped data. It explains an alert, compares periods, draws a chart and always states where the figures come from.",
-        ],
-        [
-          "S’il manque une donnée pour répondre, il le dit — il ne comble pas le vide.",
-          "If a piece of data is missing, it says so — it does not fill the gap.",
-        ],
-      ],
-      example: [
-        "« Pourquoi le site de Lyon passe-t-il en orange ? » → graphique de couverture sur 8 semaines, règle concernée, fournisseur en cause.",
-        "“Why is the Lyon site turning amber?” → 8-week cover chart, the rule involved, the supplier at the root.",
-      ],
+      title: ["Un copilote qui montre ses sources", "A copilot that shows its sources"],
+      summary: ["Questions en langage naturel, réponses sourcées et graphiques de tendance ou de comparaison.", "Natural-language questions, sourced answers and trend or comparison charts."],
+      body: [["Le copilote ne répond qu’à partir de vos données et de vos règles : chaque chiffre est cité, chaque graphique est reproductible.", "The copilot only answers from your data and rules: every figure is cited, every chart can be reproduced."]],
     },
     {
       id: "decision",
       kicker: ["Décision", "Decision"],
-      title: ["De l’alerte à la décision signée", "From alert to signed decision"],
-      summary: [
-        "Un clic sur Décider ouvre une fiche déjà remplie avec les faits : valeur, seuil, objets concernés, source et date. Vous complétez, choisissez et signez.",
-        "One click on Decide opens a form already filled with the facts: value, threshold, objects concerned, source and date. You complete, choose and sign.",
-      ],
-      body: [
-        [
-          "La fiche reprend le contexte de l’alerte et les chiffres qui la justifient. L’utilisateur complète les options (réallocation, expédition express, second fournisseur…), choisit, justifie et signe.",
-          "The form carries over the alert’s context and the figures that justify it. The user completes the options (reallocation, express shipment, second source…), chooses, justifies and signs.",
-        ],
-        [
-          "La décision est enregistrée avec son contexte : on peut la relire, la rejouer et apprendre des suivantes.",
-          "The decision is recorded with its context: it can be re-read, replayed and learnt from.",
-        ],
-      ],
-      flow: [
-        ["Alerte", "Alert"],
-        ["Contexte + chiffres", "Context + figures"],
-        ["Options complétées", "Options completed"],
-        ["Décision signée", "Signed decision"],
-      ],
+      title: ["Un journal des décisions qui mesure le ROI", "A decision log that measures ROI"],
+      summary: ["Chaque décision est tracée, puis son effet suivi : ce qui a été évité devient visible.", "Every decision is traced, then its effect tracked: what was avoided becomes visible."],
+      body: [["Option choisie, raison, valeur à la décision et valeur aujourd’hui : le journal montre si la décision a porté ses fruits, et nourrit les suivantes.", "Chosen option, reason, value at decision time and value today: the log shows whether the decision paid off, and informs the next ones."]],
+      flow: [["Alerte", "Alert"], ["Décision", "Decision"], ["Effet mesuré", "Measured effect"]],
     },
   ],
   journey: {
@@ -635,6 +464,7 @@ const supply: Product = {
 
 const decide: Product = {
   key: "decide",
+  who: ["Pour : COMEX et directions qui arbitrent des investissements ou des stratégies", "For: executive committees and leaders deciding on investments or strategies"],
   name: ["Aura Décider", "Aura Decide"],
   short: ["Décider", "Decide"],
   tagline: [
@@ -979,11 +809,12 @@ decide.journey.steps = decide.features.slice(0, 5);
 
 const architect: Product = {
   key: "architect",
+  who: ["Pour : architectes d’entreprise, de solution et data · DSI, CTO, PMO et chefs de projet", "For: enterprise, solution and data architects · CIOs, CTOs, PMOs and project managers"],
   name: ["Aura Architect", "Aura Architect"],
   short: ["Architect", "Architect"],
   tagline: [
-    "Cadrez votre transformation SI avant qu’elle ne dérive.",
-    "Frame your IT transformation before it drifts.",
+    "Le copilote des architectes, DSI et PMO : de la demande à une architecture cohérente et à une décision prouvée.",
+    "The copilot for architects, CIOs and PMOs: from a request to a consistent architecture and a proven decision.",
   ],
   trigger: ["Un programme de transformation à cadrer", "A transformation programme to frame"],
   question: [
@@ -991,12 +822,12 @@ const architect: Product = {
     "“Which target, which roadmap, in what order, and why?”",
   ],
   headline: [
-    "Refonte ERP, fusion de SI, modernisation : chaque exigence reliée à la cible, à la trajectoire et aux dossiers que vos équipes peuvent exécuter.",
-    "ERP overhaul, IT merger, modernisation: every requirement linked to the target, the roadmap and the files your teams can deliver from.",
+    "Décrivez votre demande : Aura la cadre avec vous, construit un modèle unique, en tire des vues cohérentes, estime les changements et vous aide à trancher. Des semaines de schémas ramenées à une conversation.",
+    "Describe your request: Aura frames it with you, builds a single model, derives consistent views, estimates the changes and helps you decide. Weeks of diagrams, down to one conversation.",
   ],
   lead: [
-    "Aura Architect réunit exigences, capacités métier, applications, données et flux dans un modèle unique. Vous en tirez une cible, une trajectoire par paliers, des dossiers d’architecture à jour et des notes de décision qui gardent le pourquoi de chaque choix.",
-    "Aura Architect brings requirements, business capabilities, applications, data and flows into a single model. From it you get a target, a staged roadmap, up-to-date architecture files and decision notes that keep the why behind every choice.",
+    "Cadrage conversationnel, modèle unique et vues cohérentes (capacités, applicatif, BPMN, fonctionnel, données), estimation des changements, décision avec le moteur Bora, exports vers vos outils et mémoire des études : une architecture cohérente dès le départ, donc moins de reprises.",
+    "Conversational framing, a single model and consistent views (capabilities, applications, BPMN, functional, data), change estimation, decisions with the Bora engine, exports to your tools and a memory of every study: an architecture that is consistent from the start, so less rework.",
   ],
   image: {
     src: "/images/aura/architecture-workshop.webp",
@@ -1005,17 +836,49 @@ const architect: Product = {
       "Architecture workshop: four people annotate a system diagram on a whiteboard",
     ],
   },
-  screensTitle: ["Cadrer le problème avant de dessiner la solution.", "Frame the problem before you draw the solution."],
+  screensTitle: ["De la demande au schéma cohérent, puis à la décision prouvée.", "From the request to a consistent diagram, then to a proven decision."],
   screens: [
     {
-      src: "/images/product/architect-frame.webp",
+      src: "/images/product/architect-cadrage.webp",
       width: 1440,
       height: 900,
-      alt: [
-        "Aura Architect, étape Cadrer la transformation : parcours en six étapes, question « Quel problème voulez-vous traiter, et quel résultat en attendez-vous ? », champs intention et périmètre, et panneau « Ce qu’Aura comprend » (intention, périmètre, enjeux, parties prenantes, applications, données).",
-        "Aura Architect, Frame the transformation step: six-step journey, question “What problem do you want to address, and what outcome do you expect?”, intention and scope fields, and the “What Aura understands” panel (intention, scope, stakes, stakeholders, applications, data).",
-      ],
-      caption: ["Cadrage : l’intention et le périmètre, confirmés élément par élément.", "Framing: intention and scope, confirmed item by item."],
+      alt: ["Aura Architect, cadrage conversationnel : résumé de cadrage (objectif, périmètre, contraintes, échéance, risques) et questions guidées.", "Aura Architect, conversational framing: framing summary (objective, scope, constraints, deadline, risks) and guided questions."],
+      caption: ["Le cadrage : Aura pose les bonnes questions et rend chaque hypothèse explicite.", "Framing: Aura asks the right questions and makes every assumption explicit."],
+    },
+    {
+      src: "/images/product/architect-applicatif.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Schéma inter-applicatif généré depuis le modèle unique, avec le statut « Cohérent ».", "Inter-application diagram generated from the single model, with a “Consistent” status."],
+      caption: ["Le modèle unique : des vues générées, toujours cohérentes.", "The single model: generated views, always consistent."],
+    },
+    {
+      src: "/images/product/architect-capacites.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Carte des capacités métier reliée aux applications.", "Business capability map linked to applications."],
+      caption: ["Les capacités : le langage commun des métiers et du SI.", "Capabilities: the common language of business and IT."],
+    },
+    {
+      src: "/images/product/architect-estimation.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Estimation des changements par élément : statut, taille, vague et justification, avec coût macro.", "Change estimation per element: status, size, wave and rationale, with a macro cost."],
+      caption: ["L’estimation : chaque changement dimensionné et justifié.", "Estimation: every change sized and justified."],
+    },
+    {
+      src: "/images/product/architect-bora.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Moteur Bora : classement des scénarios en attitude pessimiste et plus petit changement pour faire basculer la décision.", "Bora engine: scenario ranking under a pessimistic attitude and the smallest change that would flip the decision."],
+      caption: ["La décision : le classement Bora et le plus petit changement.", "The decision: the Bora ranking and the smallest change."],
+    },
+    {
+      src: "/images/product/architect-adr.webp",
+      width: 1440,
+      height: 900,
+      alt: ["Note de décision d’architecture (ADR) générée : contexte, décision, conséquences et alternatives.", "Generated architecture decision record (ADR): context, decision, consequences and alternatives."],
+      caption: ["La preuve : une note de décision générée et versionnée.", "The proof: a generated, versioned decision record."],
     },
   ],
   audience: [
@@ -1056,121 +919,53 @@ const architect: Product = {
   },
   features: [
     {
-      id: "requirements",
+      id: "framing",
       kicker: ["Cadrage", "Framing"],
-      title: ["Chaque exigence a une raison d’être", "Every requirement has a reason to exist"],
-      summary: ["Besoins, exigences et contraintes qualifiés et rattachés à un objectif métier : fini les exigences orphelines.", "Needs, requirements and constraints qualified and tied to a business objective: no more orphan requirements."],
-      body: [
-        [
-          "Chaque exigence est rattachée à un objectif métier et à une capacité, avec sa priorité et sa source. On sait pourquoi elle existe et ce qu’elle touche.",
-          "Each requirement is tied to a business objective and a capability, with its priority and source. You know why it exists and what it touches.",
-        ],
-      ],
+      title: ["Un cadrage conversationnel", "Conversational framing"],
+      summary: ["Vous décrivez la demande, Aura pose les questions qui manquent et tient les hypothèses à jour.", "You describe the request, Aura asks the missing questions and keeps assumptions up to date."],
+      body: [["Objectif, périmètre, contraintes, échéance, risques : chaque réponse est confirmée ou marquée comme hypothèse, modifiable à tout moment.", "Objective, scope, constraints, deadline, risks: each answer is confirmed or flagged as an assumption, editable at any time."]],
+      flow: [["Demande", "Request"], ["Questions", "Questions"], ["Cadrage", "Framing"]],
     },
     {
-      id: "capabilities",
+      id: "model",
       kicker: ["Modèle", "Model"],
-      title: ["Un langage commun métier et SI", "One language for business and IT"],
-      summary: ["La carte des capacités métier : ce que l’entreprise doit savoir faire, indépendamment des outils.", "The business capability map: what the company must be able to do, independent of tools."],
-      body: [
-        [
-          "La carte des capacités sert de langage commun entre métiers et SI. On y superpose maturité, criticité et couverture applicative.",
-          "The capability map is the common language between business and IT. Maturity, criticality and application coverage are overlaid on it.",
-        ],
-      ],
-      flow: [
-        ["Objectif", "Objective"],
-        ["Capacité", "Capability"],
-        ["Application", "Application"],
-        ["Donnée", "Data"],
-      ],
+      title: ["Un modèle, des vues cohérentes", "One model, consistent views"],
+      summary: ["Capacités, applicatif, BPMN, fonctionnel, données : toutes les vues sont tirées du même modèle.", "Capabilities, applications, BPMN, functional, data: every view comes from the same model."],
+      body: [["Une modification se propage partout. Le contrôle de cohérence signale les flux orphelins et les capacités non couvertes : moins de non-qualité, moins de reprises.", "A change propagates everywhere. The consistency check flags orphan flows and uncovered capabilities: fewer defects, less rework."]],
+      flow: [["Modèle", "Model"], ["Vues", "Views"], ["Cohérence", "Consistency"]],
     },
     {
-      id: "applications",
-      kicker: ["Modèle", "Model"],
-      title: ["Doublons et trous, enfin visibles", "Overlaps and gaps in plain sight"],
-      summary: ["Votre portefeuille applicatif et son devenir : garder, faire évoluer, remplacer, construire.", "Your application portfolio and its future: keep, evolve, replace, build."],
-      body: [
-        [
-          "Chaque application est reliée aux capacités qu’elle sert et aux données qu’elle manipule. Les recouvrements et les trous deviennent visibles.",
-          "Each application is linked to the capabilities it serves and the data it handles. Overlaps and gaps become visible.",
-        ],
-      ],
+      id: "estimate",
+      kicker: ["Estimation", "Estimation"],
+      title: ["Chaque changement, estimé", "Every change, estimated"],
+      summary: ["Nouveau, modifié, décommissionné : chaque élément reçoit une taille, une vague et sa justification.", "New, changed, retired: every element gets a size, a wave and its rationale."],
+      body: [["L’estimation en tailles et le coût macro donnent un ordre de grandeur défendable avant le premier atelier de chiffrage.", "Size-based estimation and the macro cost give a defensible order of magnitude before the first costing workshop."]],
     },
     {
-      id: "data",
-      kicker: ["Modèle", "Model"],
-      title: ["Un propriétaire pour chaque donnée", "An owner for every data object"],
-      summary: ["Objets de données, référentiels et responsabilités explicites, pour ne plus avoir trois vérités du client.", "Data objects, master data and explicit ownership, so you stop having three versions of the customer."],
-      body: [
-        [
-          "Qui est maître de la donnée client, article, fournisseur ? Aura Architect le rend explicite et le relie aux flux.",
-          "Who masters customer, item and supplier data? Aura Architect makes it explicit and links it to flows.",
-        ],
-      ],
+      id: "bora",
+      kicker: ["Décision", "Decision"],
+      title: ["Une décision Bora, prouvée", "A proven Bora decision"],
+      summary: ["Les scénarios sont classés par risque, puis Aura trouve le plus petit changement qui ferait basculer la décision.", "Scenarios are ranked by risk, then Aura finds the smallest change that would flip the decision."],
+      body: [["Le moteur Bora explore toutes les combinaisons et génère une note de décision (ADR) : contexte, alternatives, conséquences. Une décision qu’on n’a pas à refaire.", "The Bora engine explores every combination and generates a decision record (ADR): context, alternatives, consequences. A decision you won’t have to make twice."]],
+      flow: [["Scénarios", "Scenarios"], ["Classement", "Ranking"], ["ADR", "ADR"]],
     },
     {
-      id: "flows",
-      kicker: ["Modèle", "Model"],
-      title: ["Les dépendances avant les retards", "Dependencies before delays"],
-      summary: ["Le catalogue des échanges entre systèmes, pour voir les dépendances avant qu’elles ne bloquent la réalisation.", "The catalogue of exchanges between systems, so dependencies show up before they block delivery."],
-      body: [
-        [
-          "Chaque flux a une source, une cible, un protocole, une fréquence et une donnée. Les dépendances apparaissent avant de devenir des retards.",
-          "Each flow has a source, target, protocol, frequency and data. Dependencies surface before they become delays.",
-        ],
-      ],
-      flow: [
-        ["Application A", "Application A"],
-        ["Flux", "Flow"],
-        ["Application B", "Application B"],
-      ],
-    },
-    {
-      id: "roadmap",
-      kicker: ["Cible", "Target"],
-      title: ["Une trajectoire par paliers réalistes", "A roadmap in realistic stages"],
-      summary: ["De l’existant à la cible, des paliers séquencés selon la valeur, le risque et les dépendances.", "From current state to target, stages sequenced by value, risk and dependencies."],
-      body: [
-        [
-          "La trajectoire séquence les chantiers selon leurs dépendances, leur valeur et leur risque. Chaque palier est un état cohérent du SI.",
-          "The roadmap sequences workstreams by dependency, value and risk. Each stage is a coherent state of the landscape.",
-        ],
-      ],
-      flow: [
-        ["Existant", "Current"],
-        ["Palier 1", "Stage 1"],
-        ["Palier 2", "Stage 2"],
-        ["Cible", "Target"],
-      ],
-    },
-    {
-      id: "files",
+      id: "exports",
       kicker: ["Livrables", "Deliverables"],
-      title: ["Des dossiers toujours à jour", "Architecture files that stay current"],
-      summary: ["Générés depuis le modèle, ils ne divergent plus des schémas.", "Generated from the model, they no longer drift from the diagrams."],
-      body: [
-        [
-          "Vue fonctionnelle, applicative, données, intégration : les dossiers sont produits depuis le modèle et non réécrits à la main.",
-          "Functional, application, data and integration views: files are produced from the model, not rewritten by hand.",
-        ],
-      ],
+      title: ["Des exports vers vos outils", "Exports to your tools"],
+      summary: ["draw.io, LeanIX, ArchiMate, Jira, PowerPoint et Excel : le modèle alimente vos outils existants.", "draw.io, LeanIX, ArchiMate, Jira, PowerPoint and Excel: the model feeds the tools you already use."],
+      body: [["Schémas, inventaires, backlog et supports de comité sont produits depuis le modèle, jamais ressaisis.", "Diagrams, inventories, backlog and committee decks are produced from the model, never re-entered."]],
     },
     {
-      id: "adr",
-      kicker: ["Livrables", "Deliverables"],
-      title: ["Le pourquoi de chaque choix, conservé", "The why behind every choice, kept"],
-      summary: ["Des notes de décision d’architecture argumentées et datées, pour ne pas rouvrir les débats tranchés.", "Reasoned, dated architecture decision notes, so settled debates stay settled."],
-      body: [
-        [
-          "Une note d’architecture consigne un choix de conception (par exemple : bus d’événements ou API synchrones) dans le périmètre du programme. Ce ne sont pas des arbitrages stratégiques — ceux-là relèvent d’Aura Décider.",
-          "An architecture note records a design choice (for example: event bus or synchronous APIs) within the programme’s scope. These are not strategic arbitrations — those belong to Aura Decide.",
-        ],
-      ],
+      id: "memory",
+      kicker: ["Mémoire", "Memory"],
+      title: ["Une mémoire des études", "A memory of every study"],
+      summary: ["Versions, comparaisons et décisions passées restent consultables : le pourquoi de chaque choix est conservé.", "Versions, comparisons and past decisions stay available: the why behind every choice is kept."],
+      body: [["Chaque étude est historisée. Un nouvel arrivant retrouve les options écartées et les raisons, sans rouvrir les débats tranchés.", "Every study is versioned. A newcomer finds the discarded options and the reasons, without reopening settled debates."]],
     },
   ],
   journey: {
-    title: ["Du besoin au dossier que vos équipes peuvent exécuter.", "From the need to a file your teams can deliver from."],
+    title: ["De la demande à la décision, dans une seule conversation.", "From request to decision, in a single conversation."],
     lead: [
       "Chaque étape enrichit le même modèle : rien n’est ressaisi entre la cartographie et les livrables, et rien ne se perd entre deux ateliers.",
       "Each step enriches the same model: nothing is re-entered between mapping and deliverables, and nothing gets lost between workshops.",
@@ -1179,32 +974,32 @@ const architect: Product = {
       {
         id: "a-frame",
         title: ["Cadrer", "Frame"],
-        summary: ["Ambition, périmètre, exigences.", "Ambition, scope, requirements."],
-        body: [["Objectifs métier et contraintes posés et priorisés.", "Business objectives and constraints set and prioritised."]],
+        summary: ["Demande, questions, hypothèses.", "Request, questions, assumptions."],
+        body: [["Demande, questions, hypothèses.", "Request, questions, assumptions."]],
       },
       {
-        id: "a-map",
-        title: ["Cartographier", "Map"],
-        summary: ["Capacités, applications, données, flux.", "Capabilities, applications, data, flows."],
-        body: [["L’existant modélisé juste assez pour décider.", "The current state modelled just enough to decide."]],
+        id: "a-model",
+        title: ["Modéliser", "Model"],
+        summary: ["Un modèle, des vues cohérentes.", "One model, consistent views."],
+        body: [["Un modèle, des vues cohérentes.", "One model, consistent views."]],
       },
       {
-        id: "a-target",
-        title: ["Concevoir la cible", "Design the target"],
-        summary: ["Options de cible et compromis.", "Target options and trade-offs."],
-        body: [["Plusieurs cibles comparées avant d’en retenir une.", "Several targets compared before one is retained."]],
+        id: "a-estimate",
+        title: ["Estimer", "Estimate"],
+        summary: ["Tailles, vagues, coût macro.", "Sizes, waves, macro cost."],
+        body: [["Tailles, vagues, coût macro.", "Sizes, waves, macro cost."]],
       },
       {
-        id: "a-sequence",
-        title: ["Séquencer", "Sequence"],
-        summary: ["Paliers, dépendances, priorités.", "Stages, dependencies, priorities."],
-        body: [["Une trajectoire réaliste, palier par palier.", "A realistic roadmap, stage by stage."]],
+        id: "a-decide",
+        title: ["Décider", "Decide"],
+        summary: ["Classement Bora et ADR.", "Bora ranking and ADR."],
+        body: [["Classement Bora et ADR.", "Bora ranking and ADR."]],
       },
       {
-        id: "a-document",
-        title: ["Documenter", "Document"],
-        summary: ["Dossiers et notes de décision.", "Files and decision notes."],
-        body: [["Des livrables générés depuis le modèle.", "Deliverables generated from the model."]],
+        id: "a-export",
+        title: ["Exporter", "Export"],
+        summary: ["Vers vos outils, avec mémoire.", "To your tools, with memory."],
+        body: [["Vers vos outils, avec mémoire.", "To your tools, with memory."]],
       },
     ],
   },
@@ -1228,10 +1023,12 @@ const architect: Product = {
       "Aura Architect starts from what you already have: inventories, maps, exports. No blank page.",
     ],
     items: [
-      { name: "Inventaires", text: ["Listes d’applications, CMDB", "Application lists, CMDB"] },
-      { name: "Tableurs", text: ["Imports CSV / Excel", "CSV / Excel imports"] },
-      { name: "Documents", text: ["Cahiers des charges, études", "Specifications, studies"] },
-      { name: "Export", text: ["Dossiers et feuille de route", "Files and roadmap"] },
+      { name: "draw.io", text: ["Schémas éditables", "Editable diagrams"] },
+      { name: "LeanIX", text: ["Inventaire applicatif", "Application inventory"] },
+      { name: "ArchiMate", text: ["Échange de modèle", "Model exchange"] },
+      { name: "Jira", text: ["Backlog de changements", "Change backlog"] },
+      { name: "PowerPoint", text: ["Supports de comité", "Committee decks"] },
+      { name: "Excel", text: ["Estimation et inventaires", "Estimation and inventories"] },
     ],
   },
   governance: [

@@ -6,7 +6,7 @@ import { productOrder, products, sprints, tr, type Detail } from "@/content/prod
 import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
 import { CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
-import { HeroSignal } from "../HeroSignal";
+import { ProductFilm } from "../ProductFilm";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -197,7 +197,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               ))}
             </ul>
           </div>
-          <HeroSignal locale={locale} />
+          <ProductFilm locale={locale} />
         </div>
       </section>
 
@@ -292,6 +292,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                   }
                   footer={
                     <>
+                      {p.who && <p className="card-who">{tr(p.who, locale)}</p>}
                       <span className="product-card-icon" aria-hidden>
                         <Icon size={20} />
                       </span>

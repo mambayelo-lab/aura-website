@@ -128,6 +128,7 @@ export function ProductPage({
             </p>
             <h1 className="display">{l(p.name)}</h1>
             <p className="hero-sub">{l(p.headline)}</p>
+            {p.who && <p className="hero-who">{l(p.who)}</p>}
             <p className="lead">{l(p.lead)}</p>
             {p.diAnchor && <p className="hero-note">{l(p.diAnchor)}</p>}
             <div className="actions">
