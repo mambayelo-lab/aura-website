@@ -107,6 +107,8 @@ export function ProductPage({
   const Icon = productIcons[key];
   // In Aura Decide the five journey steps *are* the core features: show them once.
   const journeyIsFeatures = key === "decide";
+  // Architect: real screenshot in the hero, gallery right below it.
+  const heroShot = key === "architect";
   const host = new URL(appUrls[key]).host;
   const [mainScreen, ...otherScreens] = p.screens.map((screen) => ({
     src: screen.src,
@@ -116,6 +118,37 @@ export function ProductPage({
     caption: l(screen.caption),
     host,
   }));
+
+  const screensSection = (
+      <section
+        className="section section-tight section-alt screens"
+        id="screens"
+      >
+        <div className="container">
+          <div className="section-head section-head-rule">
+            <p className="eyebrow">{c.screens}</p>
+            <h2 className="h2">{l(p.screensTitle)}</h2>
+          </div>
+          <AppScreen screen={mainScreen} locale={locale} />
+          {otherScreens.length > 0 && (
+            <More label={c.moreScreens(otherScreens.length)}>
+              <div className="grid-2 screens-more">
+                {otherScreens.map((screen) => (
+                  <AppScreen
+                    key={screen.src}
+                    screen={screen}
+                    locale={locale}
+                    compact
+                    note={false}
+                    sizes="(max-width: 980px) 100vw, 560px"
+                  />
+                ))}
+              </div>
+            </More>
+          )}
+        </div>
+      </section>
+  );
 
   return (
     <div data-product={key}>
@@ -129,8 +162,8 @@ export function ProductPage({
             <h1 className="display">{l(p.name)}</h1>
             <p className="hero-sub">{l(p.headline)}</p>
             {p.who && <p className="hero-who">{l(p.who)}</p>}
-            <p className="lead">{l(p.lead)}</p>
-            {p.diAnchor && <p className="hero-note">{l(p.diAnchor)}</p>}
+            {!heroShot && <p className="lead">{l(p.lead)}</p>}
+            {p.diAnchor && !heroShot && <p className="hero-note">{l(p.diAnchor)}</p>}
             <div className="actions">
               <AppLink
                 product={key}
@@ -145,21 +178,37 @@ export function ProductPage({
               </Link>
             </div>
           </div>
+          {heroShot ? (
+            <figure className="hero-shot">
+              <span className="hero-shot-bar" aria-hidden><i /><i /><i /><span>{host}</span></span>
+              <Image
+                src="/images/product/architect-applicatif.webp"
+                alt={l(["Aura Architect : schéma inter-applicatif généré depuis le modèle unique, statut « Cohérent », résumé de cadrage et hypothèses.", "Aura Architect: inter-application diagram generated from the single model, “Consistent” status, framing summary and assumptions."])}
+                width={1440}
+                height={900}
+                sizes="(max-width: 980px) 100vw, 45vw"
+                priority
+              />
+            </figure>
+          ) : (
           <figure className="product-visual media">
-            <Image
-              src={p.image.src}
-              alt={l(p.image.alt)}
-              fill
-              sizes="(max-width: 980px) 100vw, 45vw"
-              priority
-            />
-            <figcaption>
-              <Quote size={16} aria-hidden />
-              {l(p.question)}
-            </figcaption>
-          </figure>
+              <Image
+                src={p.image.src}
+                alt={l(p.image.alt)}
+                fill
+                sizes="(max-width: 980px) 100vw, 45vw"
+                priority
+              />
+              <figcaption>
+                <Quote size={16} aria-hidden />
+                {l(p.question)}
+              </figcaption>
+            </figure>
+          )}
         </div>
       </section>
+
+      {heroShot && screensSection}
 
       <section className="section" id="problem">
         <div className="container">
@@ -202,34 +251,7 @@ export function ProductPage({
         </div>
       </section>
 
-      <section
-        className="section section-tight section-alt screens"
-        id="screens"
-      >
-        <div className="container">
-          <div className="section-head section-head-rule">
-            <p className="eyebrow">{c.screens}</p>
-            <h2 className="h2">{l(p.screensTitle)}</h2>
-          </div>
-          <AppScreen screen={mainScreen} locale={locale} />
-          {otherScreens.length > 0 && (
-            <More label={c.moreScreens(otherScreens.length)}>
-              <div className="grid-2 screens-more">
-                {otherScreens.map((screen) => (
-                  <AppScreen
-                    key={screen.src}
-                    screen={screen}
-                    locale={locale}
-                    compact
-                    note={false}
-                    sizes="(max-width: 980px) 100vw, 560px"
-                  />
-                ))}
-              </div>
-            </More>
-          )}
-        </div>
-      </section>
+      {!heroShot && screensSection}
 
       <section className="section" id="features">
         <div className="container">

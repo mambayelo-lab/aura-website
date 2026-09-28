@@ -3527,3 +3527,13 @@ a:hover .media img,
 }
 .card-who { flex-basis: 100%; margin: 0 0 4px; font-size: 0.8rem; line-height: 1.45; color: var(--ink-2); opacity: 0.8; }
 .hero-who { margin: 0; font-size: 0.9rem; letter-spacing: 0.01em; opacity: 0.78; }
+.hero-shot {
+  margin: 0; border-radius: 16px; overflow: hidden; background: var(--black);
+  box-shadow: 0 30px 80px rgba(10, 11, 30, 0.5), 0 0 0 1px var(--lilac-a22), 0 0 70px var(--indigo-a45);
+  transform: perspective(1800px) rotateY(-5deg); transform-origin: 30% 50%;
+}
+.hero-shot img { display: block; width: 100%; height: auto; }
+.hero-shot-bar { display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 14px; background: var(--navy); }
+.hero-shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--white-a35); }
+.hero-shot-bar span { margin-left: 10px; font-size: 0.72rem; color: var(--indigo-300); letter-spacing: 0.04em; }
+@media (max-width: 980px) { .hero-shot { transform: none; } }
