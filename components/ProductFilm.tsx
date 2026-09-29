@@ -6,8 +6,8 @@ import type { Locale } from "@/lib/i18n";
 
 const copy = {
   fr: {
-    play: "Lire le film Aura (88 s, avec son)",
-    label: "Film Aura · 88 s",
+    play: "Lire le film Aura (89 s, avec son)",
+    label: "Film Aura · 89 s",
     impacts: [
       ["Supply", "Chaque rupture anticipée, c’est un coût évité."],
       ["Architect", "Des semaines de schémas ramenées à une conversation."],
@@ -15,8 +15,8 @@ const copy = {
     ],
   },
   en: {
-    play: "Play the Aura film (88 s, with sound)",
-    label: "Aura film · 88 s",
+    play: "Play the Aura film (89 s, with sound)",
+    label: "Aura film · 89 s",
     impacts: [
       ["Supply", "Every shortage anticipated is a cost avoided."],
       ["Architect", "Weeks of diagrams, down to one conversation."],
