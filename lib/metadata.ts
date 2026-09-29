@@ -39,10 +39,20 @@ export function pageMetadata({ locale, title, description, paths, type = "websit
   };
 }
 
+/** Bump to bust browser favicon caches. */
+const ICON_V = "2";
+
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "64x64" }],
-    apple: [{ url: "/brand/apple-icon.png", sizes: "180x180" }],
+    icon: [
+      { url: `/icons/icon.svg?v=${ICON_V}`, type: "image/svg+xml" },
+      { url: `/favicon.ico?v=${ICON_V}`, sizes: "48x48" },
+      { url: `/icons/icon-32.png?v=${ICON_V}`, type: "image/png", sizes: "32x32" },
+      { url: `/icons/icon-48.png?v=${ICON_V}`, type: "image/png", sizes: "48x48" },
+      { url: `/icons/icon-512.png?v=${ICON_V}`, type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: [{ url: `/favicon.ico?v=${ICON_V}` }],
+    apple: [{ url: `/icons/apple-touch-icon.png?v=${ICON_V}`, sizes: "180x180" }],
   },
 };
