@@ -8,6 +8,7 @@ import { whyAura } from "@/content/founder";
 import { CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
 import { ProductFilm } from "../ProductFilm";
 import { HeroSignal } from "../HeroSignal";
+import { DsiSection } from "../DsiSection";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -336,6 +337,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <DsiSection locale={locale} summary href={r.supply} />
 
       <section className="section">
         <div className="container">

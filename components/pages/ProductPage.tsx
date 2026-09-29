@@ -1,4 +1,5 @@
 import { FlowStrip } from "../FlowStrip";
+import { DsiSection } from "../DsiSection";
 import { BellRing, Search, Scale, LineChart, MessageSquare, Boxes, LayoutGrid } from "lucide-react";
 import { ArrowRight, ArrowUpRight, Ban, Check, Quote } from "lucide-react";
 import Image from "next/image";
@@ -240,6 +241,8 @@ export function ProductPage({
           </div>
         </section>
       )}
+
+      {key === "supply" && <DsiSection locale={locale} />}
 
       {heroShot && screensSection}
 
