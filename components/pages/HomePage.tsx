@@ -23,7 +23,7 @@ const copy = {
   fr: {
     eyebrow: "Intelligence décisionnelle",
     filmEyebrow: "Le film",
-    filmTitle: "Voir Aura en 90 secondes",
+    filmTitle: "Aura Supply Chain en 74 secondes",
     title: "Décidez plus tôt. Défendez chaque décision.",
     lead: "Un risque vu trop tard, un arbitrage qui divise le comité, une transformation qui dérive. Aura vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer. On commence par un sprint court, sur votre problème réel.",
     primary: "Par où commencer ?",
@@ -72,7 +72,7 @@ const copy = {
   en: {
     eyebrow: "Decision intelligence",
     filmEyebrow: "The film",
-    filmTitle: "See Aura in 90 seconds",
+    filmTitle: "Aura Supply Chain in 74 seconds",
     title: "Decide earlier. Defend every decision.",
     lead: "A risk spotted too late, a call that splits the committee, a transformation that drifts. Aura gets you to a decision fast, on verifiable facts, with a trail you can show. You start with a short sprint, on your real problem.",
     primary: "Where should I start?",
@@ -210,7 +210,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="section section-tight film-section" id="film">
         <div className="container">
           <SectionHead eyebrow={c.filmEyebrow} title={c.filmTitle} />
-          <ProductFilm locale={locale} />
+          <ProductFilm locale={locale} film="supply" />
         </div>
       </section>
 

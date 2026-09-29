@@ -1,5 +1,6 @@
 import { FlowStrip } from "../FlowStrip";
 import { DsiSection } from "../DsiSection";
+import { ProductFilm } from "../ProductFilm";
 import { BellRing, Search, Scale, LineChart, MessageSquare, Boxes, LayoutGrid } from "lucide-react";
 import { ArrowRight, ArrowUpRight, Ban, Check, Quote } from "lucide-react";
 import Image from "next/image";
@@ -229,6 +230,14 @@ export function ProductPage({
           )}
         </div>
       </section>
+
+      {(key === "supply" || key === "architect") && (
+        <section className="section section-tight film-section" id="film">
+          <div className="container">
+            <ProductFilm locale={locale} film={key} impacts={false} />
+          </div>
+        </section>
+      )}
 
       {flow && (
         <section className="section-flow">

@@ -6,7 +6,7 @@ import type { Locale } from "@/lib/i18n";
 
 const copy = {
   fr: {
-    play: "Lire le film Aura (89 s, avec son)",
+    play: "Lire le film, avec son :",
     label: "Film Aura · 89 s",
     impacts: [
       ["Supply", "Chaque rupture anticipée, c’est un coût évité."],
@@ -15,7 +15,7 @@ const copy = {
     ],
   },
   en: {
-    play: "Play the Aura film (89 s, with sound)",
+    play: "Play the film, with sound:",
     label: "Aura film · 89 s",
     impacts: [
       ["Supply", "Every shortage anticipated is a cost avoided."],
@@ -29,11 +29,13 @@ const copy = {
  * Product film: elegant poster with a large play button. A click starts the
  * video WITH sound (volume 1). No muted autoplay; mute stays in the controls.
  */
-export function ProductFilm({ locale }: { locale: Locale }) {
+export function ProductFilm({ locale, film = "supply", impacts = true }: { locale: Locale; film?: "supply" | "architect"; impacts?: boolean }) {
   const c = copy[locale];
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
-  const base = `/video/aura-film-${locale}`;
+  const base = `/video/aura-${film}-${locale}`;
+  const secs = film === "supply" ? 74 : 70;
+  const label = `${film === "supply" ? "Aura Supply Chain" : "Aura Architect"} · ${secs} s`;
 
   const start = () => {
     const v = ref.current;
@@ -54,29 +56,29 @@ export function ProductFilm({ locale }: { locale: Locale }) {
           preload="metadata"
           playsInline
           controls={started}
-          aria-label={c.label}
+          aria-label={label}
           lang={locale}
         >
           <source src={`${base}.webm`} type="video/webm" />
           <source src={`${base}.mp4`} type="video/mp4" />
         </video>
         {!started && (
-          <button type="button" className="film-play" onClick={start} aria-label={c.play}>
+          <button type="button" className="film-play" onClick={start} aria-label={`${c.play} ${label}`}>
             <span className="film-play-icon" aria-hidden>
               <Play size={30} fill="currentColor" />
             </span>
-            <span className="film-play-label">{c.label}</span>
+            <span className="film-play-label">{label}</span>
           </button>
         )}
       </div>
-      <ul className="film-impacts">
+      {impacts && (<ul className="film-impacts">
         {c.impacts.map(([k, text]) => (
           <li key={k}>
             <span className="mono">{k}</span>
             <strong>{text}</strong>
           </li>
         ))}
-      </ul>
+      </ul>)}
     </div>
   );
 }
