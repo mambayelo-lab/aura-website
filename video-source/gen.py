@@ -226,7 +226,7 @@ EN_S = EN_COMMON + [["Supply · Le problème","Supply · The problem"],["Vos don
  ["Chaque rupture anticipée,","Every shortage anticipated"],["c'est un coût évité.","is a cost avoided."],["Moins de pénalités, d'urgences et de surstocks","Fewer penalties, rush orders and overstock"],
  ["Sprint Résilience","Resilience Sprint"],["3 à 4 semaines","3 to 4 weeks"],["Commencez par votre risque prioritaire.","Start with your priority risk."],["Décider","Decide"],
  ["Moins de ruptures.","Fewer shortages."],["Moins d'urgences.","Fewer emergencies."],["Des décisions tracées.","Decisions on record."],["Aura Supply Chain · Journal","Aura Supply Chain · Log"],["Aura Supply Chain · Décision","Aura Supply Chain · Decision"],
- ["fs_connect.png","es_connect.png"],["fs_map.png","es_map.png"],["fs_onto.png","es_onto.png"],["fs_cockpit.png","es_cockpit.png"],["fs_cause.png","es_cause.png"],["n_decide.png","es_decide.png"]]
+ ["fs_connect.png","es_connect.png"],["fs_map.png","es_map.png"],["fs_onto.png","es_onto.png"],["fs_cockpit.png","es_cockpit.png"],["fs_cause.png","es_cause.png"],["n_decide.png","es_decide.png"],["s3.png","es_journal.png"]]
 HS = r'''
   if(id==='hero'){if(!document.getElementById('heroSvg')){el.insertAdjacentHTML('afterbegin',heroSvg());el.querySelector('.center').innerHTML=`<div id="heroTitle" style="text-align:center"><img src="assets/logo-white.png" style="width:300px"><div class="sub" style="font-size:24px;letter-spacing:.2em;text-transform:uppercase;margin-top:10px">Supply Chain</div></div>`}drawHero(lt)}
   if(id==='pb')drawGlobe(lt);
