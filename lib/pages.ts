@@ -22,7 +22,7 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
       description:
         locale === "fr"
           ? "Sprint Résilience, Decision Sprint, Design Sprint Architecture : un problème réel, quelques semaines, un livrable qui vous appartient."
-          : "Resilience Sprint, Decision Sprint, Architecture Design Sprint: one real problem, a few weeks, a deliverable you own.",
+          : "Resilience stress test, Resilience Sprint, Decision Sprint, Architecture Design Sprint: one real problem, a few weeks, a deliverable you own.",
     },
     founder: {
       title: locale === "fr" ? "Le fondateur — pourquoi Aura" : "The founder — why Aura",

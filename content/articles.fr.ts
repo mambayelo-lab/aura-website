@@ -169,5 +169,29 @@ export const articlesFr: Article[] = [
       { label: "EMSA, extension of the EU ETS to maritime transport (consulted 29/09/2026)", href: "https://www.emsa.europa.eu/reducing-emissions/extension-ets.html" },
       { label: "MIT Sloan Executive Education, Supply Chain Strategy and Management", href: "https://executive.mit.edu/course/supply-chain-strategy-and-management/a056g00000URaN6AAL.html" }
     ]
+  },
+  {
+    slug: "cas-pandemie-lecons-covid-supply-chain",
+    category: "Cas",
+    title: "Cas : la prochaine pandémie n’attendra pas votre prochain S&OP",
+    standfirst: "Ce que le COVID-19 a appris aux supply chains : effet bullwhip, flux tendus et préparation. Scénario illustratif, fondé sur des sources publiées (recherche du 30 septembre 2026). Il ne prédit aucune crise et ne promet aucun gain chiffré.",
+    readTime: "5 min",
+    body: [
+      "En 2020, la demande a varié de façon inédite : ruée sur les produits sanitaires et alimentaires, effondrement du discrétionnaire. À la reprise, les commandes ont été doublées par peur de la rupture et les stocks ont gonflé. C’est l’effet bullwhip : chaque maillon amplifie la variation qu’il reçoit, et il a contribué aux pénuries de semi-conducteurs qui ont suivi (Aerospace SCRM).",
+      "La cause profonde est connue. Les chaînes en flux tendu, à faibles stocks, reposent sur des prévisions historiques qui ignorent les ruptures majeures. Les prévisions elles-mêmes ont décroché : selon le Digital Supply Chain Transformation Lab du MIT CTL, le COVID-19 a creusé l’écart entre les entreprises qui alimentent leurs modèles avec des données courantes et combinent algorithme et jugement humain, et les autres.",
+      "Ce n’est pas un événement isolé. Le McKinsey Global Institute estimait en 2020 que des perturbations d’un mois ou plus surviennent en moyenne tous les 3,7 ans. D’où la proposition de David Simchi-Levi (MIT) : un stress-test des chaînes critiques, sur le modèle des banques après 2008. Pour chaque nœud, on compare le temps de survie (TTS, combien de temps on sert encore la demande si le nœud tombe) et le temps de reprise (TTR). Si le TTR dépasse le TTS, le nœud est critique.",
+      "Le cas illustré croise cinq scénarios : confinement régional de 4 à 8 semaines, choc de demande bipolaire puis rebond, absentéisme de 20 à 30 % en entrepôt, restrictions à l’export sur des composants ou principes actifs, saturation du fret. Chacun retire un nœud ou déforme la demande. Aura affiche le TTS et le TTR des références critiques, puis compare les leviers : double source, stock tampon ciblé, source proche, contrat de flexibilité, plafonnement des commandes pour limiter le bullwhip.",
+      "Le moteur Décider indique, option par option, ce qui s’améliore, ce qui se dégrade et le plus petit changement qui ferait basculer le choix. Les cadres cités (OCDE, HERA pour les médicaments critiques, travaux du MIT) sont des références de méthode, pas des partenaires. Les effets restent des hypothèses à confirmer par vos équipes."
+    ],
+    takeaways: ["Effet bullwhip : amortir plutôt qu’amplifier", "Comparer TTS et TTR nœud par nœud", "Cinq scénarios sanitaires, illustratifs", "Des arbitrages documentés, validés par vos équipes"],
+    references: [
+      { label: "Simchi-Levi D., Simchi-Levi E., « We Need a Stress Test for Critical Supply Chains », HBR (28/04/2020), résumé SCDigest", href: "https://www.scdigest.com/ONTARGET/20-07-08_Supply_Chain_Reslience_Tests.php" },
+      { label: "MIT News, companies use MIT research to identify and respond to supply chain risks (15/06/2022)", href: "https://news.mit.edu/2022/companies-use-mit-research-identify-respond-supply-chain-risks-0615" },
+      { label: "Aerospace SCRM, COVID-19 bullwhip and ripple effects in global supply chains", href: "https://scrm.aerospace.org/scrm-document/the-implications-of-covid-19-bullwhip-and-ripple-effects-in-global-supply-chains/" },
+      { label: "MIT CTL Digital Supply Chain Transformation Lab, COVID-19 separates leaders from laggards in ML-driven demand forecasting (2020)", href: "https://digitalsc.mit.edu/covid-19-separates-leaders-from-laggards-in-ml-driven-demand-forecasting/" },
+      { label: "McKinsey Global Institute, Risk, resilience, and rebalancing in global value chains (2020), via PreventionWeb", href: "https://www.preventionweb.net/publication/risk-resilience-and-rebalancing-global-value-chains" },
+      { label: "OCDE / OECD, Keys to resilient supply chains", href: "https://search.oecd.org/trade/resilient-supply-chains/" },
+      { label: "Commission européenne / European Commission, HERA, addressing market challenges (critical medicines)", href: "https://health.ec.europa.eu/health-emergency-preparedness-and-response-hera/preparedness/addressing-market-challenges_en" }
+    ]
   }
 ];

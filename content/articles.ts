@@ -60,6 +60,10 @@ const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string>
     topic: "supply-chain",
     image: img("port-night", "Porte-conteneurs à quai de nuit : un flux Asie → Europe exposé à la perturbation d’un détroit", "Container ships at the quay at night: an Asia → Europe flow exposed to a strait disruption"),
   },
+  {
+    topic: "supply-chain",
+    image: img("control-room", "Salle de pilotage : une équipe suit des indicateurs de stock et de délai pendant une crise", "Operations room: a team tracks stock and lead-time indicators during a crisis"),
+  },
 ];
 
 /** Articles of the « Cas » / « Case » section. */

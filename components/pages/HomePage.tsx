@@ -5,7 +5,8 @@ import { getDictionary } from "@/content/dictionary";
 import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
 import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
-import { CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
+import { getArticles, isCase } from "@/content/articles";
+import { ArticleCard, CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
 import { ProductFilm } from "../ProductFilm";
 import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
@@ -21,13 +22,13 @@ const cardImages = {
 
 const copy = {
   fr: {
-    eyebrow: "Intelligence décisionnelle",
+    eyebrow: "Aura Supply Chain · résilience",
     filmEyebrow: "Le film",
     filmTitle: "Aura Supply Chain en 74 secondes",
-    title: "Décidez plus tôt. Défendez chaque décision.",
-    lead: "Un risque vu trop tard, un arbitrage qui divise le comité, une transformation qui dérive. Aura vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer. On commence par un sprint court, sur votre problème réel.",
-    primary: "Par où commencer ?",
-    secondary: "Comparer les sprints",
+    title: "Anticipez les ruptures. Décidez avant qu’elles ne coûtent.",
+    lead: "Un fournisseur qui décroche, un détroit qui se ferme, une pandémie qui déforme la demande. Aura Supply Chain repère le signal, mesure combien de temps votre chaîne tient, et vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer.",
+    primary: "Réserver un cadrage",
+    secondary: "Voir les offres",
     trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
     thesisEyebrow: "Ce qui bloque vos décisions",
     thesisTitle: "Vous avez les données. Il vous manque le chemin jusqu’à la décision.",
@@ -41,9 +42,9 @@ const copy = {
     diMore: "Ce que dit Gartner, et où se situe Aura",
     founderName: "Mambaye Lo, fondateur",
     founderText: "Lead Enterprise Architect, Ph.D. 16 ans de transformations dans le retail, l’énergie, la banque et l’automobile. Parcours et travaux.",
-    productsEyebrow: "Trois problèmes, trois réponses",
-    productsTitle: "Une application dédiée à chaque situation, sans chevauchement.",
-    productsLead: "Trois applications indépendantes. Supply Chain part de la douleur métier, Décider est le moteur explicable, Architect transforme le choix en exécution. Chaque carte indique le sprint pour démarrer.",
+    productsEyebrow: "Supply Chain, son moteur, et le volet DSI",
+    productsTitle: "Supply Chain au centre, Décider comme moteur.",
+    productsLead: "Supply Chain part de la douleur métier. Décider est le moteur explicable qui compare les options. Architect, pour les DSI et les architectes, transforme les choix qui s’imposent en trajectoire de SI.",
     pathEyebrow: "Une trajectoire, pas un big bang",
     pathTitle: "Décider maintenant, sans attendre une transformation de deux ans.",
     pathSteps: [
@@ -66,17 +67,28 @@ const copy = {
       ["Décision", "Fiche préremplie : contexte, chiffres, options (réallocation, transport express, second fournisseur). L’équipe complète, choisit et signe."],
     ],
     scenarioCta: "Parcourir la démo Maison Lucie",
+    offersEyebrow: "Deux façons de démarrer",
+    offersTitle: "Un périmètre court, un livrable que vous gardez.",
+    offers: [
+      { name: "Stress-test résilience", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par nœud", "Nœuds critiques : ceux dont le TTR dépasse le TTS", "Plans B priorisés, à valider par vos équipes"] },
+      { name: "Sprint Résilience", duration: "3 à 4 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur Décider", "Décisions tracées dans un journal"] },
+    ],
+    offersCta: "Détail des offres",
+    casesEyebrow: "Cas",
+    casesTitle: "Deux chocs, sourcés et datés.",
+    credLabel: "Références de méthode",
+    cred: "Aura s’appuie sur des travaux publiés : TTS/TTR et stress-test des chaînes critiques (Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
     productDetails: "Voir le produit",
     openApp: "Ouvrir l’app",
   },
   en: {
-    eyebrow: "Decision intelligence",
+    eyebrow: "Aura Supply Chain · resilience",
     filmEyebrow: "The film",
     filmTitle: "Aura Supply Chain in 74 seconds",
-    title: "Decide earlier. Defend every decision.",
-    lead: "A risk spotted too late, a call that splits the committee, a transformation that drifts. Aura gets you to a decision fast, on verifiable facts, with a trail you can show. You start with a short sprint, on your real problem.",
-    primary: "Where should I start?",
-    secondary: "Compare the sprints",
+    title: "See disruptions coming. Decide before they cost you.",
+    lead: "A supplier that slips, a strait that closes, a pandemic that distorts demand. Aura Supply Chain picks up the signal, measures how long your chain can hold, and gets you to a decision fast, on verifiable facts, with a trail you can show.",
+    primary: "Book a scoping call",
+    secondary: "See the offers",
     trust: ["Human validation", "No invented data", "Traceable reasoning"],
     thesisEyebrow: "What holds your decisions back",
     thesisTitle: "You have the data. What you lack is the path to a decision.",
@@ -90,9 +102,9 @@ const copy = {
     diMore: "What Gartner says, and where Aura stands",
     founderName: "Mambaye Lo, founder",
     founderText: "Lead Enterprise Architect, Ph.D. 16 years of transformations across retail, energy, banking and automotive. Background and research.",
-    productsEyebrow: "Three problems, three answers",
-    productsTitle: "One dedicated application for each situation, with no overlap.",
-    productsLead: "Three stand-alone applications. Supply Chain starts from the business pain, Decide is the explainable engine, Architect turns the choice into execution. Each card shows the sprint to start with.",
+    productsEyebrow: "Supply Chain, its engine, and the IT side",
+    productsTitle: "Supply Chain at the centre, Decide as the engine.",
+    productsLead: "Supply Chain starts from the business pain. Decide is the explainable engine that compares the options. Architect, for CIOs and architects, turns the choices that stand the test into an IT roadmap.",
     pathEyebrow: "A trajectory, not a big bang",
     pathTitle: "Decide now, without waiting for a two-year transformation.",
     pathSteps: [
@@ -115,6 +127,17 @@ const copy = {
       ["Decision", "Pre-filled form: context, figures, options (reallocation, expedited freight, second source). The team completes it, chooses and signs."],
     ],
     scenarioCta: "Walk through the Maison Lucie demo",
+    offersEyebrow: "Two ways to start",
+    offersTitle: "A short scope, a deliverable you keep.",
+    offers: [
+      { name: "Resilience stress test", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time-to-survive (TTS) and time-to-recover (TTR) per node", "Critical nodes: those whose TTR exceeds their TTS", "Prioritised fallback plans, for your teams to validate"] },
+      { name: "Resilience Sprint", duration: "3 to 4 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the Decide engine", "Decisions traced in a log"] },
+    ],
+    offersCta: "Offer details",
+    casesEyebrow: "Cases",
+    casesTitle: "Two shocks, sourced and dated.",
+    credLabel: "Methodological references",
+    cred: "Aura builds on published work: TTS/TTR and stress tests for critical supply chains (Simchi-Levi, MIT), the resilient enterprise (Sheffi, MIT CTL), human-AI teaming (Sáenz, MIT CTL), and its founder’s doctoral research on robust decision evaluation. These are references, not partnerships.",
     productDetails: "See the product",
     openApp: "Open the app",
   },
@@ -173,6 +196,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const labels = zoomLabels(dict);
   const r = routes[locale];
+  const cases = getArticles(locale).filter(isCase);
 
   return (
     <>
@@ -187,10 +211,10 @@ export function HomePage({ locale }: { locale: Locale }) {
             <h1 className="display">{c.title}</h1>
             <p className="lead lead-lg">{c.lead}</p>
             <div className="actions">
-              <a className="btn btn-ink btn-lg" href="#products">
+              <Link className="btn btn-ink btn-lg" href={r.contact}>
                 {c.primary} <ArrowRight size={17} aria-hidden />
-              </a>
-              <Link className="btn btn-secondary btn-lg" href={r.sprints}>
+              </Link>
+              <Link className="btn btn-secondary btn-lg" href="#offers">
                 {c.secondary}
               </Link>
             </div>
@@ -211,6 +235,51 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container">
           <SectionHead eyebrow={c.filmEyebrow} title={c.filmTitle} />
           <ProductFilm locale={locale} film="supply" />
+        </div>
+      </section>
+
+      <section className="section section-tight section-alt" id="offers">
+        <div className="container">
+          <SectionHead eyebrow={c.offersEyebrow} title={c.offersTitle} />
+          <div className="grid-2 offer-grid">
+            {c.offers.map((offer) => (
+              <article key={offer.name} className="offer-card" data-product="supply">
+                <p className="sprint-duration mono">{offer.duration}</p>
+                <h3>{offer.name}</h3>
+                <p className="lead">{offer.question}</p>
+                <ul className="check-list">
+                  {offer.points.map((point) => (
+                    <li key={point}>
+                      <CircleCheck size={15} aria-hidden />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="actions">
+            <Link className="btn btn-primary" href={r.contact}>
+              {c.primary} <ArrowRight size={16} aria-hidden />
+            </Link>
+            <Link className="btn btn-secondary" href={`${r.sprints}#stress-test`}>
+              {c.offersCta}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-tight" id="cases">
+        <div className="container">
+          <SectionHead eyebrow={c.casesEyebrow} title={c.casesTitle} />
+          <div className="grid-2">
+            {cases.map((article) => (
+              <ArticleCard key={article.slug} article={article} locale={locale} dict={dict} />
+            ))}
+          </div>
+          <p className="cred-line">
+            <strong>{c.credLabel}.</strong> {c.cred}
+          </p>
         </div>
       </section>
 

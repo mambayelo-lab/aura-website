@@ -20,7 +20,7 @@ export function Header({
         href: r[key],
         title: tr(products[key].name, locale),
         text: tr(products[key].tagline, locale),
-        meta: tr(products[key].trigger, locale),
+        meta: key === "architect" ? (locale === "fr" ? "Pour DSI et architectes" : "For CIOs and architects") : key === "decide" ? (locale === "fr" ? "Le moteur de Supply" : "The engine behind Supply") : tr(products[key].trigger, locale),
         product: key,
       })),
     },

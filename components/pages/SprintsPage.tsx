@@ -124,6 +124,60 @@ export function SprintsPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <section className="section section-tight" id="stress-test" data-product="supply">
+        <div className="container">
+          {(() => {
+            const t =
+              locale === "fr"
+                ? {
+                    eyebrow: "Nouvelle offre · environ 10 jours",
+                    title: "Stress-test résilience",
+                    lead: "Avant d’investir, savoir où la chaîne casse. On retire chaque nœud critique, un par un, et on mesure combien de temps vous servez encore la demande. Méthode inspirée des travaux publiés de David Simchi-Levi (MIT) sur le temps de survie et le temps de reprise.",
+                    blocks: [
+                      ["Carte d’exposition", "Fournisseurs de rang 1 et, quand c’est possible, de rang 2, sites, routes et points de passage (détroits, ports)."],
+                      ["TTS et TTR par nœud", "TTS : combien de temps vous tenez si le nœud tombe (stock, transit, sources alternatives). TTR : combien de temps il faut pour qu’il revienne à pleine capacité."],
+                      ["Nœuds critiques", "Les nœuds dont le TTR dépasse le TTS, classés par impact et non par volume d’achat."],
+                      ["Plans B comparés", "Double source, stock tampon ciblé, capacité dupliquée : options comparées par le moteur Décider, décision à valider par vos équipes."],
+                    ],
+                    inputs: "Entrées : liste des fournisseurs et sites, nomenclatures critiques, stocks et délais. Sortie : un rapport que vous gardez, qui peut ouvrir un Sprint Résilience.",
+                    cta: "Réserver un cadrage",
+                  }
+                : {
+                    eyebrow: "New offer · about 10 days",
+                    title: "Resilience stress test",
+                    lead: "Before investing, find out where the chain breaks. We remove each critical node, one at a time, and measure how long you can still meet demand. Method inspired by David Simchi-Levi’s (MIT) published work on time-to-survive and time-to-recover.",
+                    blocks: [
+                      ["Exposure map", "Tier-1 suppliers and, where possible, tier-2, sites, routes and chokepoints (straits, ports)."],
+                      ["TTS and TTR per node", "TTS: how long you hold if the node goes down (stock, transit, alternative sources). TTR: how long it takes to get back to full capacity."],
+                      ["Critical nodes", "Nodes whose TTR exceeds their TTS, ranked by impact rather than spend."],
+                      ["Fallback plans compared", "Dual sourcing, targeted buffer stock, duplicated capacity: options compared by the Decide engine, decision validated by your teams."],
+                    ],
+                    inputs: "Inputs: list of suppliers and sites, critical bills of materials, stock and lead times. Output: a report you keep, which can open a Resilience Sprint.",
+                    cta: "Book a scoping call",
+                  };
+            return (
+              <>
+                <SectionHead eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
+                <div className="grid-4">
+                  {t.blocks.map(([title, text]) => (
+                    <div key={title} className="offer-card">
+                      <h3>{title}</h3>
+                      <p>{text}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="cred-line">{t.inputs}</p>
+                <div className="actions">
+                  <Link className="btn btn-primary" href={routes[locale].contact}>
+                    {t.cta} <ArrowRight size={16} aria-hidden />
+                  </Link>
+                </div>
+              </>
+            );
+          })()}
+        </div>
+      </section>
+
       <section className="section-flow">
         <div className="container">
           <h2 className="flow-head">{locale === "fr" ? "D’abord un sprint sur votre vrai sujet. Puis le produit, dans la durée." : "Start with a sprint on your real issue. Then the product, for the long run."}</h2>
