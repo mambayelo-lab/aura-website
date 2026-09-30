@@ -1,11 +1,11 @@
 import type { Locale } from "@/lib/i18n";
 
 const sources = [
-  { label: "ERP", y: 70 },
-  { label: "WMS", y: 145 },
-  { label: "TMS", y: 220 },
-  { label: "Kafka", y: 295 },
-  { label: "API", y: 370 },
+  { label: "ERP", fr: "ERP", y: 70 },
+  { label: "Stock", fr: "Stocks", y: 145 },
+  { label: "Freight", fr: "Transport", y: 220 },
+  { label: "Suppliers", fr: "Fournis.", y: 295 },
+  { label: "Files", fr: "Fichiers", y: 370 },
 ];
 
 const ONTO = { x: 270, y: 140 };
@@ -73,7 +73,7 @@ export function HeroSignal({ locale }: { locale: Locale }) {
             <g key={s.label} className="signal-source" style={{ animationDelay: `${i * 0.4}s` }}>
               <rect x="30" y={s.y - 15} width="66" height="30" rx="8" />
               <text x="63" y={s.y + 4}>
-                {s.label}
+                {fr ? s.fr : s.label}
               </text>
             </g>
           ))}
@@ -81,7 +81,7 @@ export function HeroSignal({ locale }: { locale: Locale }) {
           <g className="signal-hub">
             <circle cx={ONTO.x} cy={ONTO.y} r="26" />
             <circle cx={ONTO.x} cy={ONTO.y} r="6" className="signal-core" />
-            <text x={ONTO.x} y={ONTO.y + 46}>{fr ? "Ontologie" : "Ontology"}</text>
+            <text x={ONTO.x} y={ONTO.y + 46}>{fr ? "Données reliées" : "Linked data"}</text>
           </g>
           <g className="signal-hub">
             <rect x={RULE.x - 34} y={RULE.y - 24} width="68" height="48" rx="12" />

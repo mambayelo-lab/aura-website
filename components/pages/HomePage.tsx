@@ -12,6 +12,8 @@ import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
 import { ArchitectOffer } from "../ArchitectOffer";
 import { CostTiles } from "../CostTiles";
+import { QuickCards } from "../QuickCards";
+import { CompareTools } from "../CompareTools";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -29,6 +31,11 @@ const copy = {
     filmTitle: "Aura Supply Chain en 74 secondes",
     title: "Décisions prouvées : voir venir, comprendre, décider — et le prouver.",
     lead: "Un fournisseur qui décroche, un détroit qui se ferme, une pandémie qui déforme la demande. Aura Supply Chain repère le signal, mesure combien de temps votre chaîne tient, et vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer.",
+    three: [
+      ["Pour qui", "Directeurs supply chain, DSI et architectes."],
+      ["Le problème", "Les ruptures et les transformations coûtent cher parce que la décision arrive trop tard ou ne tient pas."],
+      ["Le résultat", "Une décision prise plus tôt, expliquée, tracée, et validée par un humain."],
+    ],
     primary: "Réserver un cadrage",
     secondary: "Voir les offres",
     trust: ["Des agents IA qui préparent l’arbitrage", "Un humain qui décide", "Une preuve à chaque décision"],
@@ -72,14 +79,14 @@ const copy = {
     offersEyebrow: "Deux façons de démarrer",
     offersTitle: "Un périmètre court, un livrable que vous gardez.",
     offers: [
-      { name: "Stress-test résilience", impact: "Sachez combien de jours vous tenez si un fournisseur, un site ou une route tombe.", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par nœud", "Nœuds critiques : ceux dont le TTR dépasse le TTS", "Plans B priorisés, à valider par vos équipes"] },
+      { name: "Stress-test résilience", impact: "Sachez combien de jours vous tenez si un fournisseur, un site ou une route tombe.", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par fournisseur, site ou route", "Points critiques : ceux qui mettent plus de temps à repartir que vous ne pouvez tenir", "Plans B priorisés, à valider par vos équipes"] },
       { name: "Sprint Résilience", impact: "Quand la chaîne casse, vous perdez de l’argent tant qu’il n’y a pas de décision. Aura transforme l’alerte en arbitrage justifiable en quelques minutes, pas en quelques réunions.", duration: "4 à 6 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur de décision", "Décisions tracées dans un journal"] },
     ],
     offersCta: "Détail des offres",
     casesEyebrow: "Cas",
     casesTitle: "Deux chocs, sourcés et datés.",
     credLabel: "Références de méthode",
-    cred: "Aura s’appuie sur des travaux publiés : TTS/TTR et stress-test des chaînes critiques (Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
+    cred: "Aura s’appuie sur des travaux publiés : temps de survie et de reprise (TTS/TTR) et stress-test des chaînes critiques (Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
     engineEyebrow: "Notre moteur de décision",
     engineTitle: "Une décision explicable et traçable, au cœur de Supply et d’Architect.",
     engineLead: "Le même moteur évalue les options dans les deux produits. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision.",
@@ -103,6 +110,11 @@ const copy = {
     filmTitle: "Aura Supply Chain in 74 seconds",
     title: "Proven decisions: see it coming, understand, decide — and prove it.",
     lead: "A supplier that slips, a strait that closes, a pandemic that distorts demand. Aura Supply Chain picks up the signal, measures how long your chain can hold, and gets you to a decision fast, on verifiable facts, with a trail you can show.",
+    three: [
+      ["Who it is for", "Supply chain directors, CIOs and architects."],
+      ["The problem", "Disruptions and transformations cost a lot because the decision comes too late or does not hold."],
+      ["The result", "A decision made earlier, explained, traced, and validated by a human."],
+    ],
     primary: "Book a scoping call",
     secondary: "See the offers",
     trust: ["AI agents that prepare the trade-off", "A human who decides", "Proof for every decision"],
@@ -146,14 +158,14 @@ const copy = {
     offersEyebrow: "Two ways to start",
     offersTitle: "A short scope, a deliverable you keep.",
     offers: [
-      { name: "Resilience stress test", impact: "Know how many days you can hold if a supplier, a site or a route goes down.", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time-to-survive (TTS) and time-to-recover (TTR) per node", "Critical nodes: those whose TTR exceeds their TTS", "Prioritised fallback plans, for your teams to validate"] },
+      { name: "Resilience stress test", impact: "Know how many days you can hold if a supplier, a site or a route goes down.", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time to survive (TTS) and time to recover (TTR) per supplier, site or route", "Critical points: those that take longer to recover than you can hold", "Prioritised fallback plans, for your teams to validate"] },
       { name: "Resilience Sprint", impact: "When the chain breaks, you lose money for as long as no decision is made. Aura turns the alert into a defensible trade-off in minutes, not in meetings.", duration: "4 to 6 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the decision engine", "Decisions traced in a log"] },
     ],
     offersCta: "Offer details",
     casesEyebrow: "Cases",
     casesTitle: "Two shocks, sourced and dated.",
     credLabel: "Methodological references",
-    cred: "Aura builds on published work: TTS/TTR and stress tests for critical supply chains (Simchi-Levi, MIT), the resilient enterprise (Sheffi, MIT CTL), human-AI teaming (Sáenz, MIT CTL), and its founder’s doctoral research on robust decision evaluation. These are references, not partnerships.",
+    cred: "Aura builds on published work: time to survive and time to recover (TTS/TTR) and stress tests for critical supply chains (Simchi-Levi, MIT), the resilient enterprise (Sheffi, MIT CTL), human-AI teaming (Sáenz, MIT CTL), and its founder’s doctoral research on robust decision evaluation. These are references, not partnerships.",
     engineEyebrow: "Our decision engine",
     engineTitle: "Explainable, traceable decisions, at the heart of Supply and Architect.",
     engineLead: "The same engine evaluates options in both products. AI agents prepare the trade-off, a human decides, every decision comes with proof.",
@@ -239,7 +251,14 @@ export function HomePage({ locale }: { locale: Locale }) {
           <div className="hero-copy">
             <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
             <h1 className="display display-promise">{c.title}</h1>
-            <p className="lead lead-lg">{c.lead}</p>
+            <dl className="hero-three">
+              {c.three.map(([k, v]) => (
+                <div key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
             <div className="actions">
               <Link className="btn btn-ink btn-lg" href={r.contact}>
                 {c.primary} <ArrowRight size={17} aria-hidden />
@@ -260,6 +279,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           <HeroSignal locale={locale} />
         </div>
       </section>
+
+      <QuickCards locale={locale} />
 
       <section className="section section-tight film-section" id="film">
         <div className="container">
@@ -361,6 +382,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <CompareTools locale={locale} />
 
       <section className="section section-alt" id={locale === "fr" ? "moteur" : "engine"}>
         <div className="container">

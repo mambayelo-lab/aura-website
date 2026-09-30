@@ -3630,3 +3630,32 @@ a:hover .media img,
 .cost-tile .text-link { margin-top: auto; font-size: .9rem; }
 .cost-figure { font-size: 2rem; line-height: 1.1; color: var(--indigo-600); }
 .impact-line { margin: 0; padding-left: 12px; border-left: 3px solid var(--indigo-400); font-weight: 500; }
+.hero-three { display: grid; gap: 10px; margin: 20px 0 28px; max-width: 620px; }
+.hero-three div { display: grid; grid-template-columns: 130px 1fr; gap: 12px; }
+.hero-three dt { font-weight: 700; color: var(--indigo-300); text-transform: uppercase; font-size: .78rem; letter-spacing: .08em; padding-top: 4px; }
+.hero-three dd { margin: 0; color: var(--white-a82); font-size: 1.05rem; }
+@media (max-width: 720px) { .hero-three div { grid-template-columns: 1fr; gap: 2px; } }
+.quick-card { text-decoration: none; color: inherit; }
+.quick-card h3 { display: flex; align-items: center; gap: 8px; }
+.tools-wrap { overflow-x: auto; border: 1px solid var(--mist); border-radius: 16px; background: var(--white); }
+.tools-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.tools-table th, .tools-table td { padding: 14px 16px; border-bottom: 1px solid var(--mist); text-align: center; font-size: .92rem; }
+.tools-table tbody th { text-align: left; font-weight: 500; }
+.tools-table thead th { font-size: .8rem; color: var(--slate); }
+.tools-table thead th:last-child, .tools-table td[data-aura] { background: var(--indigo-a06); color: var(--indigo-600); font-weight: 700; }
+.tools-table td[data-mark="no"] { color: var(--mist); }
+.tools-table td[data-mark="partial"] { color: var(--slate); }
+.tools-table td[data-mark="yes"] { color: var(--indigo-600); }
+.tools-table tr:last-child > * { border-bottom: 0; }
+
+.tools-table th:first-child { width: 40%; text-transform: none; letter-spacing: 0; }
+.tools-table td svg { display: inline-block; }
+@media (max-width: 720px) {
+  .tools-table { min-width: 0; table-layout: fixed; }
+  .tools-table th, .tools-table td { padding: 10px 4px; font-size: .72rem; }
+  .tools-table tbody th { font-size: .8rem; padding-left: 10px; }
+  .tools-table th:first-child { width: 40%; }
+  .tools-table thead th { word-break: normal; font-size: .66rem; padding: 10px 2px; }
+}
+.col-short { display: none; }
+@media (max-width: 720px) { .tools-table .col-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .tools-table .col-short { display: inline; } }
