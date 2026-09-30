@@ -393,8 +393,8 @@ const supply: Product = {
     {
       title: ["Vous devez trancher une question stratégique ?", "Facing a strategic call?"],
       text: [
-        "Investir, réorganiser, relocaliser, sans données connectées : c’est le rôle d’Aura Décider.",
-        "Invest, reorganise, relocate, with no connected data: that is what Aura Decide is for.",
+        "Investir, réorganiser, relocaliser, sans données connectées : le moteur de décision d’Aura le traite aussi, en atelier.",
+        "Invest, reorganise, relocate, with no connected data: Aura’s decision engine handles it too, in a workshop.",
       ],
       product: "decide",
     },
@@ -1086,8 +1086,8 @@ const architect: Product = {
     {
       q: ["Faut-il une cartographie existante ?", "Do we need an existing map?"],
       a: [
-        "Non, mais elle fait gagner du temps. Un inventaire applicatif, même partiel, suffit pour démarrer le Design Sprint Architecture.",
-        "No, but it saves time. An application inventory, even a partial one, is enough to start the Architecture Design Sprint.",
+        "Non, mais elle fait gagner du temps. Un inventaire applicatif, même partiel, suffit pour démarrer le Sprint Architecture.",
+        "No, but it saves time. An application inventory, even a partial one, is enough to start the Architecture Sprint.",
       ],
     },
     {
@@ -1098,10 +1098,10 @@ const architect: Product = {
       ],
     },
     {
-      q: ["Les notes de décision font-elles doublon avec Aura Décider ?", "Do the decision notes overlap with Aura Decide?"],
+      q: ["Les notes de décision font-elles doublon avec le moteur de décision ?", "Do the decision notes overlap with the decision engine?"],
       a: [
-        "Non. Les notes d’Aura Architect consignent des choix de conception dans un programme déjà décidé. Aura Décider sert à décider s’il faut engager ce programme.",
-        "No. Aura Architect’s notes record design choices within a programme already decided. Aura Decide is for deciding whether to commit to the programme.",
+        "Non. Elles sont produites par le moteur : chaque choix de conception garde ses options, ses critères et sa signature, dans le dossier du programme.",
+        "No. The engine produces them: every design choice keeps its options, criteria and signature, in the programme file.",
       ],
     },
   ],
@@ -1114,6 +1114,8 @@ const architect: Product = {
 
 export const products: Record<ProductKey, Product> = { supply, decide, architect };
 export const productOrder: ProductKey[] = ["supply", "decide", "architect"];
+/** Products presented on the site. Decide is the engine inside both, not a product of its own. */
+export const siteProducts: ProductKey[] = ["supply", "architect"];
 
 /* -------------------------------------------------------------------------- */
 /*                                     Sprints                                 */
@@ -1123,7 +1125,7 @@ const resilience: Sprint = {
   key: "resilience",
   product: "supply",
   name: ["Sprint Résilience", "Resilience Sprint"],
-  duration: ["3 à 4 semaines", "3 to 4 weeks"],
+  duration: ["4 à 6 semaines", "4 to 6 weeks"],
   promise: [
     "En quelques semaines, votre risque prioritaire est surveillé sur vos propres données, et la première alerte réelle devient une décision signée.",
     "Within weeks, your priority risk is monitored on your own data, and the first real alert becomes a signed decision.",
@@ -1230,8 +1232,8 @@ const resilience: Sprint = {
     ["Pas une démo sur données fictives : le livrable tourne sur vos données.", "Not a demo on fictional data: the deliverable runs on your data."],
   ],
   after: [
-    "Abonnement Aura Supply Chain : vous étendez à d’autres risques, sources et sites, et le cockpit entre dans le quotidien des équipes.",
-    "Aura Supply Chain subscription: you extend to more risks, sources and sites, and the cockpit becomes part of your teams’ daily routine.",
+    "Licence Aura Supply Chain : vous étendez à d’autres risques, sources et sites, et le cockpit entre dans le quotidien des équipes.",
+    "Aura Supply Chain licence: you extend to more risks, sources and sites, and the cockpit becomes part of your teams’ daily routine.",
   ],
   outcome: ["Cockpit vivant sur votre SI", "Live cockpit on your systems"],
 };
@@ -1338,8 +1340,8 @@ const decision: Sprint = {
 const architecture: Sprint = {
   key: "architecture",
   product: "architect",
-  name: ["Design Sprint Architecture", "Architecture Design Sprint"],
-  duration: ["2 à 3 semaines", "2 to 3 weeks"],
+  name: ["Sprint Architecture", "Architecture Sprint"],
+  duration: ["2 à 4 semaines", "2 to 4 weeks"],
   promise: [
     "Votre programme cadré avant d’engager le budget : une cible, une trajectoire et un dossier d’architecture dont vos équipes et vos intégrateurs peuvent partir.",
     "Your programme framed before the budget is committed: a target, a roadmap and an architecture file your teams and integrators can work from.",
@@ -1349,7 +1351,7 @@ const architecture: Sprint = {
     "A transformation programme to launch or bring back on track: ERP overhaul, new channel, IT merger, modernisation.",
   ],
   forWhom: [
-    ["DSI, architectes, direction de programme", "CIO, architects, programme leadership"],
+    ["DSI, architectes, responsables de transformation, tous secteurs", "CIOs, architects, transformation leads, any industry"],
     ["Métiers porteurs de la transformation", "Business owners of the transformation"],
     ["Intégrateurs à embarquer", "Integrators to onboard"],
   ],
@@ -1409,15 +1411,15 @@ const architecture: Sprint = {
     },
   ],
   notThis: [
-    ["Pas la décision de lancer le programme : elle relève d’un Decision Sprint.", "Not the decision to launch the programme: that is a Decision Sprint."],
+    ["Pas une mission d’intégration : le sprint cadre, vos équipes et intégrateurs exécutent.", "Not an integration project: the sprint frames it, your teams and integrators deliver."],
     ["Pas une surveillance opérationnelle : aucune alerte Supply.", "Not operational monitoring: no Supply alerts."],
     ["Pas une étude de plusieurs mois : juste assez de modèle pour décider et lancer.", "Not a months-long study: just enough model to decide and get going."],
   ],
   after: [
-    "Accès à Aura Architect pour tenir le modèle, les dossiers et la trajectoire à jour pendant tout le programme.",
-    "Access to Aura Architect to keep the model, files and roadmap current throughout the programme.",
+    "Licence Aura Architect pour tenir le modèle, les dossiers et la trajectoire à jour pendant tout le programme.",
+    "Aura Architect licence to keep the model, files and roadmap current throughout the programme.",
   ],
-  outcome: ["Dossier d’architecture et feuille de route", "Architecture file and roadmap"],
+  outcome: ["Cartographie, cible, feuille de route et spécification", "Map, target, roadmap and specification"],
 };
 
 export const sprints: Record<SprintKey, Sprint> = { resilience, decision, architecture };

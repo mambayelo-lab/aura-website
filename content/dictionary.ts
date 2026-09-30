@@ -67,12 +67,12 @@ const en: Dictionary = {
   meta: {
     title: "AURA — Decide earlier, defend every decision",
     description:
-      "Risks spotted too late, strategic questions that drag on, transformation programmes that drift: Aura Supply Chain, Aura Decide and Aura Architect turn them into traceable decisions, starting with a short sprint on your real problem.",
+      "Risks spotted too late, strategic questions that drag on, transformation programmes that drift: Aura Supply Chain and Aura Architect, driven by the same decision engine, turn them into traceable decisions, starting with a short sprint on your real problem.",
   },
   nav: {
     home: "AURA home",
     products: "Products",
-    sprints: "Sprints",
+    sprints: "Offers",
     founder: "Founder",
     insights: "Insights",
     contact: "Contact",
@@ -123,8 +123,8 @@ const en: Dictionary = {
       interest: "Which entry point?",
       interests: [
         "Risks spotted too late: Aura Supply Chain, Resilience Sprint",
-        "A strategic call to make: Aura Decide, Decision Sprint",
-        "A transformation to frame: Aura Architect, Architecture Design Sprint",
+        "A first measure of exposure: Resilience stress test",
+        "A transformation to frame: Aura Architect, Architecture Sprint",
         "Not sure yet: let’s talk it through",
       ],
       message: "Message",
@@ -144,10 +144,10 @@ const en: Dictionary = {
     title: "Bring us a real problem. Leave with a plan to solve it.",
     lead: "In a 45-minute call, we clarify what is at stake, choose the right entry point and set the sprint: inputs, schedule, deliverable.",
     button: "Book a scoping call",
-    secondary: "Compare the sprints",
+    secondary: "See the offers",
   },
   footer: {
-    tagline: "Decide earlier, defend every decision. Human validation, traceable reasoning, no invented data.",
+    tagline: "Proven decisions: see it coming, understand, decide — and prove it. Human validation, traceable reasoning, no invented data.",
     location: "Paris · France",
     rights: "All rights reserved.",
     resources: "Company",
@@ -165,12 +165,12 @@ const fr: Dictionary = {
   meta: {
     title: "AURA — Décidez plus tôt, défendez chaque décision",
     description:
-      "Risques vus trop tard, décisions stratégiques qui traînent, transformations qui dérivent : Aura Supply Chain, Aura Décider et Aura Architect les transforment en décisions traçables, en commençant par un sprint court sur votre problème réel.",
+      "Risques vus trop tard, décisions stratégiques qui traînent, transformations qui dérivent : Aura Supply Chain et Aura Architect, portés par le même moteur de décision, les transforment en décisions traçables, en commençant par un sprint court sur votre problème réel.",
   },
   nav: {
     home: "Accueil AURA",
     products: "Produits",
-    sprints: "Sprints",
+    sprints: "Offres",
     founder: "Fondateur",
     insights: "Perspectives",
     contact: "Contact",
@@ -221,8 +221,8 @@ const fr: Dictionary = {
       interest: "Quel point d’entrée ?",
       interests: [
         "Risques vus trop tard : Aura Supply Chain, Sprint Résilience",
-        "Une décision stratégique à trancher : Aura Décider, Decision Sprint",
-        "Une transformation à cadrer : Aura Architect, Design Sprint Architecture",
+        "Une première mesure de l’exposition : Stress-test résilience",
+        "Une transformation à cadrer : Aura Architect, Sprint Architecture",
         "Je ne sais pas encore : parlons-en",
       ],
       message: "Message",
@@ -242,10 +242,10 @@ const fr: Dictionary = {
     title: "Apportez-nous un vrai problème. Repartez avec un plan pour le résoudre.",
     lead: "En 45 minutes d’échange, nous clarifions l’enjeu, choisissons le bon point d’entrée et calons le sprint : entrées, calendrier, livrable.",
     button: "Réserver un cadrage",
-    secondary: "Comparer les sprints",
+    secondary: "Voir les offres",
   },
   footer: {
-    tagline: "Décidez plus tôt, défendez chaque décision. Validation humaine, raisonnement traçable, aucune donnée inventée.",
+    tagline: "Décisions prouvées : voir venir, comprendre, décider — et le prouver. Validation humaine, raisonnement traçable, aucune donnée inventée.",
     location: "Paris · France",
     rights: "Tous droits réservés.",
     resources: "Entreprise",

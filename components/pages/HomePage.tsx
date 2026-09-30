@@ -2,14 +2,15 @@ import { ArrowRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
-import { productOrder, products, sprints, tr, type Detail } from "@/content/products";
+import { tr, type Detail } from "@/content/products";
 import { appUrls, articleHref, routes, type Locale } from "@/lib/i18n";
 import { whyAura } from "@/content/founder";
 import { getArticles, isCase } from "@/content/articles";
-import { ArticleCard, CtaBanner, SectionHead, ValueBlock, productIcons, zoomLabels } from "../blocks";
+import { ArticleCard, CtaBanner, SectionHead, ValueBlock, zoomLabels } from "../blocks";
 import { ProductFilm } from "../ProductFilm";
 import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
+import { ArchitectOffer } from "../ArchitectOffer";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -25,7 +26,7 @@ const copy = {
     eyebrow: "Aura Supply Chain · résilience",
     filmEyebrow: "Le film",
     filmTitle: "Aura Supply Chain en 74 secondes",
-    title: "Anticipez les ruptures. Décidez avant qu’elles ne coûtent.",
+    title: "Décisions prouvées : voir venir, comprendre, décider — et le prouver.",
     lead: "Un fournisseur qui décroche, un détroit qui se ferme, une pandémie qui déforme la demande. Aura Supply Chain repère le signal, mesure combien de temps votre chaîne tient, et vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer.",
     primary: "Réserver un cadrage",
     secondary: "Voir les offres",
@@ -71,13 +72,26 @@ const copy = {
     offersTitle: "Un périmètre court, un livrable que vous gardez.",
     offers: [
       { name: "Stress-test résilience", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par nœud", "Nœuds critiques : ceux dont le TTR dépasse le TTS", "Plans B priorisés, à valider par vos équipes"] },
-      { name: "Sprint Résilience", duration: "3 à 4 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur Décider", "Décisions tracées dans un journal"] },
+      { name: "Sprint Résilience", duration: "4 à 6 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur de décision", "Décisions tracées dans un journal"] },
     ],
     offersCta: "Détail des offres",
     casesEyebrow: "Cas",
     casesTitle: "Deux chocs, sourcés et datés.",
     credLabel: "Références de méthode",
     cred: "Aura s’appuie sur des travaux publiés : TTS/TTR et stress-test des chaînes critiques (Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
+    engineEyebrow: "Notre moteur de décision",
+    engineTitle: "Au cœur de Supply et d’Architect.",
+    engineLead: "Le même moteur évalue les options dans les deux produits. Il n’est pas vendu seul : il fait le travail de décision, vous gardez la main.",
+    engine: [
+      ["La thèse", "Une méthode issue de travaux de thèse en évaluation d’architectures : chaque option est qualifiée par son potentiel d’amélioration et son risque de dégradation, sans pondérations arbitraires."],
+      ["La preuve", "Chaque verdict garde ses critères, ses hypothèses, ses sources et la personne qui a signé. Six mois plus tard, la décision se relit et se défend."],
+      ["Le plus petit changement", "Le moteur calcule ce qu’il faudrait changer, au minimum, pour que le choix bascule. Vous savez où le verdict est fragile avant de vous engager."],
+    ],
+    archEyebrow: "Pour les DSI",
+    archTitle: "Aura Architect : transformer le SI sans perdre le fil des décisions.",
+    archLead: "Pour les DSI, les architectes et les responsables de transformation, dans tous les secteurs : cartographie, architecture cible, feuille de route et spécification, avec le même moteur de décision pour trancher les choix d’architecture.",
+    archCta: "Découvrir Aura Architect",
+    archSprint: "Sprint Architecture, 2 à 4 semaines",
     productDetails: "Voir le produit",
     openApp: "Ouvrir l’app",
   },
@@ -85,7 +99,7 @@ const copy = {
     eyebrow: "Aura Supply Chain · resilience",
     filmEyebrow: "The film",
     filmTitle: "Aura Supply Chain in 74 seconds",
-    title: "See disruptions coming. Decide before they cost you.",
+    title: "Proven decisions: see it coming, understand, decide — and prove it.",
     lead: "A supplier that slips, a strait that closes, a pandemic that distorts demand. Aura Supply Chain picks up the signal, measures how long your chain can hold, and gets you to a decision fast, on verifiable facts, with a trail you can show.",
     primary: "Book a scoping call",
     secondary: "See the offers",
@@ -131,13 +145,26 @@ const copy = {
     offersTitle: "A short scope, a deliverable you keep.",
     offers: [
       { name: "Resilience stress test", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time-to-survive (TTS) and time-to-recover (TTR) per node", "Critical nodes: those whose TTR exceeds their TTS", "Prioritised fallback plans, for your teams to validate"] },
-      { name: "Resilience Sprint", duration: "3 to 4 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the Decide engine", "Decisions traced in a log"] },
+      { name: "Resilience Sprint", duration: "4 to 6 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the decision engine", "Decisions traced in a log"] },
     ],
     offersCta: "Offer details",
     casesEyebrow: "Cases",
     casesTitle: "Two shocks, sourced and dated.",
     credLabel: "Methodological references",
     cred: "Aura builds on published work: TTS/TTR and stress tests for critical supply chains (Simchi-Levi, MIT), the resilient enterprise (Sheffi, MIT CTL), human-AI teaming (Sáenz, MIT CTL), and its founder’s doctoral research on robust decision evaluation. These are references, not partnerships.",
+    engineEyebrow: "Our decision engine",
+    engineTitle: "At the heart of Supply and Architect.",
+    engineLead: "The same engine evaluates options in both products. It is not sold on its own: it does the decision work, you stay in charge.",
+    engine: [
+      ["The research", "A method drawn from doctoral research on architecture evaluation: each option is rated by its improvement potential and its risk of degradation, with no arbitrary weights."],
+      ["The proof", "Every verdict keeps its criteria, assumptions, sources and the person who signed it. Six months later, the decision can be re-read and defended."],
+      ["The smallest change", "The engine computes the minimum change that would flip the choice. You know where the verdict is fragile before you commit."],
+    ],
+    archEyebrow: "For CIOs",
+    archTitle: "Aura Architect: transform your IT without losing track of decisions.",
+    archLead: "For CIOs, architects and transformation leads, in every industry: mapping, target architecture, roadmap and specification, with the same decision engine to settle architecture choices.",
+    archCta: "Discover Aura Architect",
+    archSprint: "Architecture Sprint, 2 to 4 weeks",
     productDetails: "See the product",
     openApp: "Open the app",
   },
@@ -208,7 +235,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
-            <h1 className="display">{c.title}</h1>
+            <h1 className="display display-promise">{c.title}</h1>
             <p className="lead lead-lg">{c.lead}</p>
             <div className="actions">
               <Link className="btn btn-ink btn-lg" href={r.contact}>
@@ -329,65 +356,16 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt" id="products">
+      <section className="section section-alt" id={locale === "fr" ? "moteur" : "engine"}>
         <div className="container">
-          <SectionHead eyebrow={c.productsEyebrow} title={c.productsTitle} />
-          <div className="grid-3 product-grid">
-            {productOrder.map((key) => {
-              const p = products[key];
-              const s = sprints[p.sprint];
-              const Icon = productIcons[key];
-              return (
-                <ZoomCard
-                  key={key}
-                  product={key}
-                  labels={labels}
-                  className="product-card"
-                  media={
-                    <figure className="media media-wide" aria-hidden>
-                      <Image src={cardImages[key]} alt="" fill sizes="(max-width: 720px) 100vw, (max-width: 980px) 50vw, 400px" />
-                    </figure>
-                  }
-                  detail={{
-                    id: key,
-                    kicker: tr(p.trigger, locale),
-                    title: tr(p.name, locale),
-                    summary: tr(p.tagline, locale),
-                    body: [tr(p.lead, locale), tr(p.question, locale)],
-                    flow: p.journey.steps.map((step) => tr(step.title, locale)),
-                    points: [
-                      `${locale === "fr" ? "Sprint associé : " : "Matching sprint: "}${tr(s.name, locale)} (${tr(s.duration, locale)})`,
-                      `${locale === "fr" ? "Livrable : " : "Deliverable: "}${tr(s.outcome, locale)}`,
-                      ...p.audience.slice(0, 2).map((a) => tr(a, locale)),
-                    ],
-                  }}
-                  panelFooter={
-                    <div className="actions">
-                      <Link className="btn btn-primary" href={r[key]}>
-                        {c.productDetails} <ArrowRight size={16} aria-hidden />
-                      </Link>
-                      <a className="btn btn-secondary" href={appUrls[key]} target="_blank" rel="noopener">
-                        {c.openApp}
-                      </a>
-                    </div>
-                  }
-                  footer={
-                    <>
-                      {p.who && <p className="card-who">{tr(p.who, locale)}</p>}
-                      <span className="product-card-icon" aria-hidden>
-                        <Icon size={20} />
-                      </span>
-                      <Link className="text-link" href={r[key]}>
-                        {c.productDetails} <ArrowRight size={15} aria-hidden />
-                      </Link>
-                      <a className="text-link text-link-muted" href={appUrls[key]} target="_blank" rel="noopener">
-                        {c.openApp}
-                      </a>
-                    </>
-                  }
-                />
-              );
-            })}
+          <SectionHead eyebrow={c.engineEyebrow} title={c.engineTitle} lead={c.engineLead} />
+          <div className="grid-3">
+            {c.engine.map(([title, text]) => (
+              <article key={title} className="offer-card">
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
           <div className="path">
             <div className="path-head">
@@ -403,6 +381,27 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-tight" id="dsi-architect" data-product="architect">
+        <div className="container arch-teaser">
+          <figure className="media media-wide hide-mobile" aria-hidden>
+            <Image src={cardImages.architect} alt="" fill sizes="(max-width: 980px) 100vw, 480px" />
+          </figure>
+          <div>
+            <SectionHead eyebrow={c.archEyebrow} title={c.archTitle} lead={c.archLead} />
+            <p className="sprint-duration mono">{c.archSprint}</p>
+            <ArchitectOffer locale={locale} />
+            <div className="actions">
+              <Link className="btn btn-primary" href={r.architect}>
+                {c.archCta} <ArrowRight size={16} aria-hidden />
+              </Link>
+              <Link className="btn btn-secondary" href={`${r.sprints}#architecture`}>
+                {c.offersCta}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

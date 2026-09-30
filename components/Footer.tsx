@@ -1,7 +1,7 @@
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { Dictionary } from "@/content/dictionary";
-import { productOrder, products, tr } from "@/content/products";
+import { siteProducts, products, tr } from "@/content/products";
 import { appUrls, contactEmail, routes, type Locale } from "@/lib/i18n";
 import { Logo } from "./Logo";
 
@@ -30,7 +30,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         <div className="footer-column">
           <p className="footer-title">{dict.nav.products}</p>
           <ul>
-            {productOrder.map((key) => (
+            {siteProducts.map((key) => (
               <li key={key} data-product={key}>
                 <Link href={r[key]}>
                   <span className="product-dot" aria-hidden />
@@ -39,6 +39,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               </li>
             ))}
             <li>
+              <Link href={r.decide}>{locale === "fr" ? "Moteur de décision" : "Decision engine"}</Link>
+            </li>
+            <li>
               <Link href={r.sprints}>{dict.nav.sprints}</Link>
             </li>
           </ul>
@@ -46,7 +49,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         <div className="footer-column">
           <p className="footer-title">{dict.footer.apps}</p>
           <ul>
-            {productOrder.map((key) => (
+            {siteProducts.map((key) => (
               <li key={key}>
                 <a href={appUrls[key]} target="_blank" rel="noopener">
                   {tr(products[key].name, locale)} <ArrowUpRight size={13} aria-hidden />

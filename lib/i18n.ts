@@ -9,9 +9,9 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
   en: {
     home: "/",
     supply: "/products/supply-chain",
-    decide: "/products/decide",
+    decide: "/#engine",
     architect: "/products/architect",
-    sprints: "/sprints",
+    sprints: "/offers",
     founder: "/founder",
     insights: "/insights",
     contact: "/contact",
@@ -19,9 +19,9 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
   fr: {
     home: "/fr",
     supply: "/fr/produits/supply-chain",
-    decide: "/fr/produits/decider",
+    decide: "/fr#moteur",
     architect: "/fr/produits/architect",
-    sprints: "/fr/sprints",
+    sprints: "/fr/offres",
     founder: "/fr/fondateur",
     insights: "/fr/perspectives",
     contact: "/fr/contact",

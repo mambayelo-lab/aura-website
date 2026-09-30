@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}${en}`, alternates: { languages: { en: `${siteUrl}${en}`, fr: `${siteUrl}${fr}` } } },
     { url: `${siteUrl}${fr}`, alternates: { languages: { en: `${siteUrl}${en}`, fr: `${siteUrl}${fr}` } } },
   ];
-  const pages = (Object.keys(routes.en) as PageKey[]).flatMap((key) => entry(routes.en[key], routes.fr[key]));
+  const pages = (Object.keys(routes.en) as PageKey[]).filter((key) => key !== "decide").flatMap((key) => entry(routes.en[key], routes.fr[key]));
   const fr = getArticles("fr");
   const articles = getArticles("en").flatMap((article, index) =>
     entry(articleHref("en", article.slug), articleHref("fr", fr[index].slug)),

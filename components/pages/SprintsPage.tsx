@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { ArrowRight, Ban, Check, Repeat, Target, Rocket, Infinity as Loop } from "lucide-react";
+import { ArrowRight, Radar, Ban, Check, Repeat, Target, Rocket, Infinity as Loop } from "lucide-react";
 import { FlowStrip } from "../FlowStrip";
+import { ArchitectOffer } from "../ArchitectOffer";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { localize, products, sprints, tr, type SprintKey } from "@/content/products";
 import { routes, type Locale } from "@/lib/i18n";
 import {
   AppLink,
-  ComparisonTable,
   CtaBanner,
   More,
   SectionHead,
@@ -22,12 +22,12 @@ import { sprintsValue } from "@/content/value";
 
 const copy = {
   fr: {
-    eyebrow: "Travailler ensemble",
-    title: "Un problème réel, quelques semaines, un résultat que vous gardez.",
-    lead: "Ni mission de conseil sans fin, ni intégration de plusieurs mois : un problème précis, un déroulé fixe, des entrées connues, un livrable qui vous appartient.",
+    eyebrow: "Offres",
+    title: "Trois portes d’entrée, un livrable que vous gardez.",
+    lead: "Deux offres pour les directeurs supply chain, une pour les DSI et les architectes. Un périmètre précis, un déroulé fixe, des entrées connues, pas de prix affiché : on le cale au cadrage. La suite naturelle est une licence Aura Supply Chain ou Aura Architect.",
     methodEyebrow: "Méthode",
     methodTitle: "D’abord comprendre le système, pour ne pas traiter le mauvais problème.",
-    methodLead: "Chaque sprint s’ouvre sur une analyse systémique du périmètre. Supply Chain et Décider évaluent ensuite les options avec une méthode issue de travaux de thèse, robuste à l’incertitude ; Architect y ajoute DDD, architecture modulaire, TOGAF, CESAMES et BPMN.",
+    methodLead: "Chaque offre s’ouvre sur une analyse systémique du périmètre. Le moteur de décision évalue ensuite les options avec une méthode issue de travaux de thèse, robuste à l’incertitude ; Architect y ajoute DDD, architecture modulaire, TOGAF, CESAMES et BPMN.",
     compareEyebrow: "Par où commencer ?",
     compareTitle: "Trois situations, trois sprints : le comparatif.",
     forWhom: "Pour qui",
@@ -43,12 +43,12 @@ const copy = {
     seeCompare: "Afficher le comparatif",
   },
   en: {
-    eyebrow: "Working together",
-    title: "One real problem, a few weeks, a result you keep.",
-    lead: "No open-ended consulting, no months-long integration: one specific problem, a fixed schedule, known inputs, a deliverable you own.",
+    eyebrow: "Offers",
+    title: "Three ways in, a deliverable you keep.",
+    lead: "Two offers for supply chain directors, one for CIOs and architects. A precise scope, a fixed schedule, known inputs, no list price: we set it during scoping. The natural next step is an Aura Supply Chain or Aura Architect licence.",
     methodEyebrow: "Method",
     methodTitle: "First understand the system, so you do not solve the wrong problem.",
-    methodLead: "Every sprint opens with a systems analysis of the scope. Supply Chain and Decide then evaluate options with a method drawn from doctoral research, robust to uncertainty; Architect adds DDD, modular architecture, TOGAF, CESAMES and BPMN.",
+    methodLead: "Every offer opens with a systems analysis of the scope. The decision engine then evaluates options with a method drawn from doctoral research, robust to uncertainty; Architect adds DDD, modular architecture, TOGAF, CESAMES and BPMN.",
     compareEyebrow: "Where to start?",
     compareTitle: "Three situations, three sprints: side by side.",
     forWhom: "Who it is for",
@@ -65,7 +65,7 @@ const copy = {
   },
 };
 
-const order: SprintKey[] = ["resilience", "decision", "architecture"];
+const order: SprintKey[] = ["resilience", "architecture"];
 
 const sprintImages: Record<string, { src: string; alt: readonly [string, string] }> = {
   resilience: {
@@ -104,6 +104,14 @@ export function SprintsPage({ locale }: { locale: Locale }) {
         <div className="container">
           <SectionHead as="h1" eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
           <nav className="sprint-nav" aria-label={c.schedule}>
+            <a href="#stress-test" data-product="supply">
+              <Radar size={18} aria-hidden />
+              <span>
+                <strong>{locale === "fr" ? "Stress-test résilience" : "Resilience stress test"}</strong>
+                <small>{locale === "fr" ? "Aura Supply Chain · environ 10 jours" : "Aura Supply Chain · about 10 days"}</small>
+              </span>
+              <ArrowRight size={16} aria-hidden />
+            </a>
             {order.map((key) => {
               const s = sprints[key];
               const Icon = productIcons[s.product];
@@ -130,29 +138,29 @@ export function SprintsPage({ locale }: { locale: Locale }) {
             const t =
               locale === "fr"
                 ? {
-                    eyebrow: "Nouvelle offre · environ 10 jours",
+                    eyebrow: "Aura Supply Chain · environ 10 jours",
                     title: "Stress-test résilience",
                     lead: "Avant d’investir, savoir où la chaîne casse. On retire chaque nœud critique, un par un, et on mesure combien de temps vous servez encore la demande. Méthode inspirée des travaux publiés de David Simchi-Levi (MIT) sur le temps de survie et le temps de reprise.",
                     blocks: [
                       ["Carte d’exposition", "Fournisseurs de rang 1 et, quand c’est possible, de rang 2, sites, routes et points de passage (détroits, ports)."],
                       ["TTS et TTR par nœud", "TTS : combien de temps vous tenez si le nœud tombe (stock, transit, sources alternatives). TTR : combien de temps il faut pour qu’il revienne à pleine capacité."],
                       ["Nœuds critiques", "Les nœuds dont le TTR dépasse le TTS, classés par impact et non par volume d’achat."],
-                      ["Plans B comparés", "Double source, stock tampon ciblé, capacité dupliquée : options comparées par le moteur Décider, décision à valider par vos équipes."],
+                      ["Plans B comparés", "Double source, stock tampon ciblé, capacité dupliquée : options comparées par le moteur de décision, décision à valider par vos équipes."],
                     ],
-                    inputs: "Entrées : liste des fournisseurs et sites, nomenclatures critiques, stocks et délais. Sortie : un rapport que vous gardez, qui peut ouvrir un Sprint Résilience.",
+                    inputs: "Pour qui : directeurs supply chain, achats et opérations. Entrées : liste des fournisseurs et sites, nomenclatures critiques, stocks et délais. Livré : la carte d’exposition, le tableau TTS/TTR, la liste des nœuds critiques et les plans B comparés, dans un rapport que vous gardez. La suite : un Sprint Résilience, puis une licence Aura Supply Chain.",
                     cta: "Réserver un cadrage",
                   }
                 : {
-                    eyebrow: "New offer · about 10 days",
+                    eyebrow: "Aura Supply Chain · about 10 days",
                     title: "Resilience stress test",
                     lead: "Before investing, find out where the chain breaks. We remove each critical node, one at a time, and measure how long you can still meet demand. Method inspired by David Simchi-Levi’s (MIT) published work on time-to-survive and time-to-recover.",
                     blocks: [
                       ["Exposure map", "Tier-1 suppliers and, where possible, tier-2, sites, routes and chokepoints (straits, ports)."],
                       ["TTS and TTR per node", "TTS: how long you hold if the node goes down (stock, transit, alternative sources). TTR: how long it takes to get back to full capacity."],
                       ["Critical nodes", "Nodes whose TTR exceeds their TTS, ranked by impact rather than spend."],
-                      ["Fallback plans compared", "Dual sourcing, targeted buffer stock, duplicated capacity: options compared by the Decide engine, decision validated by your teams."],
+                      ["Fallback plans compared", "Dual sourcing, targeted buffer stock, duplicated capacity: options compared by the decision engine, decision validated by your teams."],
                     ],
-                    inputs: "Inputs: list of suppliers and sites, critical bills of materials, stock and lead times. Output: a report you keep, which can open a Resilience Sprint.",
+                    inputs: "Who it is for: supply chain, procurement and operations directors. Inputs: list of suppliers and sites, critical bills of materials, stock and lead times. Delivered: the exposure map, the TTS/TTR table, the list of critical nodes and the compared fallback plans, in a report you keep. Next: a Resilience Sprint, then an Aura Supply Chain licence.",
                     cta: "Book a scoping call",
                   };
             return (
@@ -187,15 +195,15 @@ export function SprintsPage({ locale }: { locale: Locale }) {
               locale === "fr"
                 ? [
                     { icon: Target, title: "Votre sujet", text: "Le risque ou l’arbitrage qui coûte le plus aujourd’hui." },
-                    { icon: Rocket, title: "Le sprint", text: "2 à 4 semaines, sur vos données ou votre programme." },
+                    { icon: Rocket, title: "L’offre", text: "De 10 jours à 6 semaines, sur vos données ou votre programme." },
                     { icon: Check, title: "La preuve", text: "Une décision signée ou un dossier d’architecture exploitable." },
-                    { icon: Loop, title: "Le produit", text: "Aura s’installe dans la durée, à votre rythme." },
+                    { icon: Loop, title: "La licence", text: "Aura Supply Chain ou Aura Architect, dans la durée." },
                   ]
                 : [
                     { icon: Target, title: "Your issue", text: "The risk or trade-off that costs you most today." },
-                    { icon: Rocket, title: "The sprint", text: "2 to 4 weeks, on your data or your programme." },
+                    { icon: Rocket, title: "The offer", text: "10 days to 6 weeks, on your data or your programme." },
                     { icon: Check, title: "The proof", text: "A signed decision or a usable architecture file." },
-                    { icon: Loop, title: "The product", text: "Aura settles in for the long run, at your pace." },
+                    { icon: Loop, title: "The licence", text: "Aura Supply Chain or Aura Architect, for the long run." },
                   ]
             }
           />
@@ -214,15 +222,6 @@ export function SprintsPage({ locale }: { locale: Locale }) {
       <section className="section section-tight section-alt" id="sprint-value">
         <div className="container">
           <ValueBlock value={sprintsValue} locale={locale} id="value-block" />
-        </div>
-      </section>
-
-      <section className="section section-tight" id="compare">
-        <div className="container">
-          <SectionHead eyebrow={c.compareEyebrow} title={c.compareTitle} />
-          <More label={c.seeCompare}>
-            <ComparisonTable locale={locale} />
-          </More>
         </div>
       </section>
 
@@ -276,6 +275,7 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                 </div>
               </div>
 
+              {key === "architecture" && <ArchitectOffer locale={locale} />}
               <MethodChips keys={sprintMethods[key]} locale={locale} />
 
               <h3 className="h3">{c.schedule}</h3>

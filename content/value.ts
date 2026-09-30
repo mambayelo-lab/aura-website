@@ -114,7 +114,7 @@ export const productValue: Record<ProductKey, ValueCopy> = {
       },
     ],
     costs: [
-      ["Un sprint de 3 à 4 semaines sur un périmètre produit ou fournisseur précis.", "A 3-to-4-week sprint on a defined product or supplier scope."],
+      ["Un sprint de 4 à 6 semaines sur un périmètre produit ou fournisseur précis.", "A 4-to-6-week sprint on a defined product or supplier scope."],
       ["Aura lit vos sources existantes (ERP, EDI, fichiers) : pas d’entrepôt de données à construire.", "Aura reads your existing sources (ERP, EDI, files): no data warehouse to build."],
       ["Votre ERP et vos outils de planification restent en place.", "Your ERP and planning tools stay in place."],
     ],
@@ -190,7 +190,7 @@ export const productValue: Record<ProductKey, ValueCopy> = {
       },
     ],
     costs: [
-      ["Un sprint de 2 à 3 semaines, au démarrage ou en cours de programme.", "A 2-to-3-week sprint, at kick-off or mid-programme."],
+      ["Un sprint de 2 à 4 semaines, au démarrage ou en cours de programme.", "A 2-to-4-week sprint, at kick-off or mid-programme."],
       ["On part de votre cartographie et de vos documents existants.", "We start from your existing maps and documents."],
       ["Aucun nouveau référentiel imposé à vos équipes.", "No new repository imposed on your teams."],
     ],
