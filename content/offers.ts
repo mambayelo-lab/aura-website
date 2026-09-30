@@ -20,6 +20,8 @@ export type Offer = {
   deliverables: T[];
   good: T[];
   optional?: boolean;
+  /** Aide à la décision d’achat : pour qui, pas pour qui, cas type, premier pas. */
+  fit?: { forWho: T; notFor: T; useCase: T; firstStep: T };
 };
 
 const eu: T = [
@@ -39,31 +41,37 @@ export const offers: Offer[] = [
     name: ["Diagnostic express", "Express diagnostic"],
     format: ["Environ 2 semaines", "About 2 weeks"],
     pitch: [
-      "Vos cinq risques supply les plus coûteux, chiffrés, avec une décision recommandée pour chacun.",
-      "Your five costliest supply risks, costed, with a recommended decision for each.",
+      "En 2 semaines : branchement en lecture seule sur vos données, vos ruptures et risques majeurs mis en évidence par les règles causales d’Aura, et pour les 5 principaux une recommandation argumentée, présentée en comité.",
+      "In 2 weeks: a read-only connection to your data, your major shortages and risks surfaced by Aura’s causal rules, and for the top 5 a reasoned recommendation, presented to your committee.",
     ],
     without: [
-      ["Les risques sont connus de chacun, mais personne ne les a chiffrés ni classés.", "Everyone knows the risks, but nobody has costed or ranked them."],
+      ["Les risques sont connus de chacun, mais personne ne les a classés ni reliés à leurs causes.", "Everyone knows the risks, but nobody has ranked them or tied them to their causes."],
       ["Le comité discute sur des impressions et des tableurs qui divergent.", "The committee debates impressions and spreadsheets that disagree."],
     ],
     with: [
-      ["Cinq risques classés par montant exposé, chacun relié à la donnée qui le prouve.", "Five risks ranked by exposed amount, each tied to the data that proves it."],
-      ["Pour chaque risque, une décision recommandée, argumentée, prête à être signée.", "For each risk, a recommended, reasoned decision, ready to be signed."],
+      ["Vos risques majeurs, classés par gravité avec vos experts, avec les chiffres tels que votre SI les fournit.", "Your major risks, ranked by severity with your experts, with the figures as your systems provide them."],
+      ["Pour les 5 principaux, les options de réponse comparées et une recommandation argumentée, prête à être signée.", "For the top 5, the response options compared and a reasoned recommendation, ready to be signed."],
     ],
     steps: [
-      [["Semaine 1", "Week 1"], ["Connexion à vos données (extraction ou lac de données, ou connecteurs en lecture seule) et entretiens courts avec les équipes.", "Connect to your data (extract or data lake, or read-only connectors) and short interviews with the teams."]],
-      [["Semaine 2", "Week 2"], ["Chiffrage des risques, choix des cinq premiers, une décision recommandée par risque, puis restitution en comité.", "Cost the risks, pick the top five, one recommended decision per risk, then a committee read-out."]],
+      [["Semaine 1", "Week 1"], ["Branchement en lecture seule sur vos données (extraits, lac de données ou connecteurs) et contrôle de ce qui est disponible.", "Read-only connection to your data (extracts, data lake or connectors) and a check of what is available."]],
+      [["Semaine 2", "Week 2"], ["Les règles causales d’Aura font ressortir vos ruptures et risques majeurs, classés par gravité avec vos experts, avec les chiffres tels que votre SI les fournit. Pour les 5 principaux, les options de réponse sont comparées et une recommandation est argumentée, puis présentée en comité.", "Aura’s causal rules surface your major shortages and risks, ranked by severity with your experts, with the figures as your systems provide them. For the top 5, the response options are compared and a recommendation is reasoned, then presented to your committee."]],
     ],
     needs: [
-      ["Un accès aux données : extraction, lac de données ou connecteurs en lecture seule (stocks, commandes, fournisseurs, délais).", "Data access: an extract, a data lake or read-only connectors (stock, orders, suppliers, lead times)."],
-      ["Un sponsor et un référent supply ou achats.", "A sponsor and a supply or procurement lead."],
-      ["Quelques heures de vos équipes sur les deux semaines, et un créneau de comité pour la restitution.", "A few hours of your teams’ time over the two weeks, and a committee slot for the read-out."],
+      ["Un accès aux données : extraits, lac de données ou connecteurs en lecture seule (stocks, commandes, fournisseurs, délais).", "Data access: extracts, a data lake or read-only connectors (stock, orders, suppliers, lead times)."],
+      ["Un sponsor, un référent supply ou achats, et vos experts pour classer les risques.", "A sponsor, a supply or procurement lead, and your experts to rank the risks."],
+      ["Un créneau de comité pour la restitution.", "A committee slot for the read-out."],
     ],
     deliverables: [
-      ["Le top 5 des risques, chiffrés et sourcés", "The top 5 risks, costed and sourced"],
-      ["Une décision recommandée par risque", "One recommended decision per risk"],
-      ["La restitution en comité", "The committee read-out"],
+      ["Une carte des risques", "A risk map"],
+      ["5 fiches décision", "5 decision records"],
+      ["La liste des données manquantes", "The list of missing data"],
     ],
+    fit: {
+      forWho: ["Directions supply chain et achats qui veulent reprendre la main sur leurs ruptures, ou sécuriser une ambition : nouveau marché, service premium, réseau plus agile.", "Supply chain and procurement leaders who want to get on top of shortages, or secure an ambition: a new market, a premium service, a more agile network."],
+      notFor: ["Les entreprises qui cherchent avant tout un outil de prévision de la demande.", "Companies mainly looking for a demand forecasting tool."],
+      useCase: ["Un distributeur dépend d’un fournisseur unique passant par la mer Rouge : le diagnostic le fait ressortir, compare second fournisseur, stock tampon ou acceptation du risque, et argumente une recommandation.", "A retailer depends on a single supplier shipping through the Red Sea: the diagnostic surfaces it, compares a second supplier, a buffer stock or accepting the risk, and reasons a recommendation."],
+      firstStep: ["Un appel de 30 minutes pour vérifier les données disponibles.", "A 30-minute call to check which data is available."],
+    },
     good: [
       eu,
       ["Accès en lecture seule : Aura ne modifie rien dans vos systèmes.", "Read-only access: Aura changes nothing in your systems."],
@@ -78,20 +86,20 @@ export const offers: Offer[] = [
     name: ["Aura Supply", "Aura Supply"],
     format: ["Abonnement", "Subscription"],
     pitch: [
-      "Voir la rupture venir, savoir ce qu’elle coûte, décider et vérifier que la décision a marché.",
-      "See the shortage coming, know what it costs, decide, and check the decision worked.",
+      "Voir la rupture venir, en comprendre les causes, comparer les réponses, décider et vérifier que la décision a marché.",
+      "See the shortage coming, understand its causes, compare the responses, decide, and check the decision worked.",
     ],
     without: [
       ["La rupture se découvre en magasin ou chez le client, quand il est trop tard pour agir à bas coût.", "The shortage is found in store or at the customer, when it is too late to act cheaply."],
       ["La décision se prend par mail, et six mois plus tard personne ne sait pourquoi.", "The decision is made by email, and six months later nobody knows why."],
     ],
     with: [
-      ["Une alerte chiffrée arrive avant la rupture, avec sa chaîne de causes jusqu’à la donnée.", "A costed alert arrives before the shortage, with its chain of causes down to the data."],
-      ["Décider compare les options ; l’équipe tranche, signe, et le résultat réel est suivi.", "Decide compares the options; the team settles, signs, and the actual outcome is tracked."],
+      ["Une alerte arrive avant la rupture, avec sa chaîne de causes et les valeurs lues dans votre SI (couverture, délais, chiffre d’affaires exposé).", "An alert arrives before the shortage, with its chain of causes and the values read from your systems (coverage, lead times, revenue at risk)."],
+      ["Les options de réponse sont comparées ; l’équipe tranche, signe, et le résultat réel est suivi.", "The response options are compared; the team settles, signs, and the actual outcome is tracked."],
     ],
     steps: [
       [["Démarrage", "Start"], ["Branchement en lecture seule sur vos sources et reprise des risques du diagnostic.", "Read-only connection to your sources, starting from the diagnostic’s risks."]],
-      [["Chaque jour", "Every day"], ["Alertes causales chiffrées, décision dans Décider, travail à plusieurs sur la même fiche.", "Costed causal alerts, decision in Decide, several people working on the same record."]],
+      [["Chaque jour", "Every day"], ["Alertes issues des règles causales sur vos données, options comparées, travail à plusieurs sur la même fiche.", "Alerts from causal rules on your data, options compared, several people working on the same record."]],
       [["Chaque mois", "Every month"], ["Revue décision → résultat : ce qui a été décidé, ce qui s’est passé, ce qu’on ajuste.", "Decision → outcome review: what was decided, what happened, what to adjust."]],
     ],
     needs: [
@@ -100,11 +108,17 @@ export const offers: Offer[] = [
       ["Les personnes qui décident aujourd’hui, dans l’outil plutôt que par mail.", "The people who decide today, in the tool rather than by email."],
     ],
     deliverables: [
-      ["Alertes causales chiffrées", "Costed causal alerts"],
-      ["Décider intégré", "Decide built in"],
+      ["Alertes causales, avec les valeurs de votre SI", "Causal alerts, with your systems’ values"],
+      ["Comparaison des options et recommandation argumentée", "Options compared and a reasoned recommendation"],
       ["Suivi décision → résultat", "Decision → outcome tracking"],
       ["Collaboration sur chaque décision", "Collaboration on every decision"],
     ],
+    fit: {
+      forWho: ["Équipes supply et achats qui veulent voir venir les ruptures chaque jour et décider avec une trace.", "Supply and procurement teams who want to see shortages coming every day and decide on record."],
+      notFor: ["Les équipes qui cherchent un APS ou un outil d’exécution : Aura s’appuie sur les données de votre SI pour éclairer la décision, vos outils exécutent.", "Teams looking for an APS or an execution tool: Aura builds on the data in your systems to inform the decision; your tools execute."],
+      useCase: ["La couverture d’un article critique passe sous le délai de reprise du fournisseur : l’alerte montre la cause, les options sont comparées, l’équipe signe et suit le résultat.", "A critical item’s coverage falls below the supplier’s recovery time: the alert shows the cause, the options are compared, the team signs and tracks the outcome."],
+      firstStep: ["Le diagnostic express, puis un branchement en lecture seule.", "The express diagnostic, then a read-only connection."],
+    },
     good: [
       eu,
       ["Aura lit vos sources plutôt que de tout copier ; la conservation des données se décide avec vous.", "Aura reads your sources rather than copying everything; data retention is decided with you."],
@@ -147,6 +161,12 @@ export const offers: Offer[] = [
       ["Feuille de route", "Roadmap"],
       ["Choix argumentés et tracés", "Reasoned, traced choices"],
     ],
+    fit: {
+      forWho: ["DSI, architectes et PMO qui cadrent un programme de transformation.", "CIOs, architects and PMOs framing a transformation programme."],
+      notFor: ["Qui cherche un référentiel d’architecture de plus à alimenter à la main.", "Anyone looking for one more architecture repository to feed by hand."],
+      useCase: ["Remplacement d’un ERP : cible, écarts, context mapping des domaines, feuille de route et choix argumentés, partagés avec les métiers.", "Replacing an ERP: target, gaps, domain context mapping, roadmap and reasoned choices, shared with the business."],
+      firstStep: ["Un atelier d’une heure sur votre programme prioritaire.", "A one-hour workshop on your priority programme."],
+    },
     good: [
       eu,
       ["Aucun accès en écriture à vos systèmes : on part de vos documents.", "No write access to your systems: we start from your documents."],

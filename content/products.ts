@@ -78,8 +78,8 @@ const supply: Product = {
   name: ["Aura Supply Chain", "Aura Supply Chain"],
   short: ["Supply Chain", "Supply Chain"],
   tagline: [
-    "Repérez la rupture dans vos données, comprenez sa cause, décidez avant l’impact client.",
-    "Spot the shortage in your data, understand its cause, decide before your customers feel it.",
+    "Aura s’appuie sur les données de votre SI : repérez la rupture, comprenez sa cause, décidez avant l’impact client.",
+    "Aura builds on the data in your systems: spot the shortage, understand its cause, decide before your customers feel it.",
   ],
   trigger: ["Un risque vu trop tard", "A risk spotted too late"],
   question: [
@@ -813,8 +813,8 @@ const architect: Product = {
   name: ["Aura Architect", "Aura Architect"],
   short: ["Architect", "Architect"],
   tagline: [
-    "Le copilote des architectes, DSI et PMO : de la demande à une architecture cohérente et à une décision prouvée.",
-    "The copilot for architects, CIOs and PMOs: from a request to a consistent architecture and a proven decision.",
+    "Pas un logiciel de référentiel d’architecture classique : une sorte de jumeau numérique de l’architecte, qui raisonne et échange avec les acteurs de la transformation.",
+    "Not a classic architecture repository tool: a kind of digital twin of the architect, which reasons and works with the people driving the transformation.",
   ],
   trigger: ["Un programme de transformation à cadrer", "A transformation programme to frame"],
   question: [
@@ -826,8 +826,8 @@ const architect: Product = {
     "Describe your request: Aura frames it with you, builds a single model, derives consistent views, estimates the changes and helps you decide. Weeks of diagrams, down to one conversation.",
   ],
   lead: [
-    "Cadrage conversationnel, modèle unique et vues cohérentes (capacités, applicatif, BPMN, fonctionnel, données), estimation des changements, décision avec le moteur Bora, exports vers vos outils et mémoire des études : une architecture cohérente dès le départ, donc moins de reprises.",
-    "Conversational framing, a single model and consistent views (capabilities, applications, BPMN, functional, data), change estimation, decisions with the Bora engine, exports to your tools and a memory of every study: an architecture that is consistent from the start, so less rework.",
+    "Aides à la réflexion stratégique (cohérence, oublis, pistes), context mapping DDD, couche d’échanges avec les acteurs du programme, cadrage conversationnel, modèle unique et vues cohérentes (capacités, applicatif, BPMN, fonctionnel, données), estimation des changements, options comparées et choix expliqué, exports vers vos outils et mémoire des études : une architecture cohérente dès le départ, donc moins de reprises.",
+    "Strategic thinking aids (consistency, gaps, leads), DDD context mapping, an exchange layer with the programme’s people, conversational framing, a single model and consistent views (capabilities, applications, BPMN, functional, data), change estimation, options compared and the choice explained, exports to your tools and a memory of every study: an architecture that is consistent from the start, so less rework.",
   ],
   image: {
     src: "/images/aura/architecture-workshop.webp",
@@ -1127,8 +1127,8 @@ const resilience: Sprint = {
   name: ["Diagnostic express", "Express diagnostic"],
   duration: ["Environ 2 semaines", "About 2 weeks"],
   promise: [
-    "Vos cinq risques supply les plus coûteux, chiffrés, avec une décision recommandée pour chacun, restitués en comité.",
-    "Your five costliest supply risks, costed, with a recommended decision for each, presented to your committee.",
+    "Vos risques supply majeurs mis en évidence par les règles causales, et pour les 5 principaux une recommandation argumentée, restituée en comité.",
+    "Your major supply risks surfaced by causal rules, and for the top 5 a reasoned recommendation, presented to your committee.",
   ],
   trigger: [
     "Un risque récurrent que vous découvrez trop tard : ruptures, retards fournisseurs, couverture de stock qui fond.",
@@ -1235,7 +1235,7 @@ const resilience: Sprint = {
     "Licence Aura Supply Chain : vous étendez à d’autres risques, sources et sites, et le cockpit entre dans le quotidien des équipes.",
     "Aura Supply Chain licence: you extend to more risks, sources and sites, and the cockpit becomes part of your teams’ daily routine.",
   ],
-  outcome: ["Top 5 des risques chiffrés, une décision recommandée par risque, restitution en comité", "Top 5 costed risks, one recommended decision per risk, committee read-out"],
+  outcome: ["Carte des risques, 5 fiches décision, liste des données manquantes, restitution en comité", "Risk map, 5 decision records, list of missing data, committee read-out"],
 };
 
 const decision: Sprint = {

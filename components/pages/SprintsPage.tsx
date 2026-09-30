@@ -13,7 +13,7 @@ const copy = {
   fr: {
     eyebrow: "Offres",
     title: "Un problème, une offre, un résultat.",
-    lead: "Commencez par un diagnostic de deux semaines. Continuez avec Aura Supply, ou cadrez votre transformation avec un Sprint Architecture.",
+    lead: "Qu’il s’agisse de résoudre des ruptures ou de porter une ambition (croissance, nouveaux marchés, réseau plus agile, service premium, durabilité et CSRD), commencez par un diagnostic de deux semaines. Continuez avec Aura Supply, ou cadrez votre transformation avec un Sprint Architecture.",
     without: "Sans Aura",
     with: "Avec Aura",
     how: "Comment ça se passe",
@@ -23,6 +23,17 @@ const copy = {
     optional: "En option",
     cta: "Réserver un diagnostic",
     talk: "En parler",
+    forWho: "Pour qui",
+    notFor: "Pas pour qui",
+    useCase: "Cas type",
+    firstStep: "Premier pas",
+    faqTitle: "Questions fréquentes",
+    faq: [
+      ["Mes données sont-elles en sécurité ?", "Accès en lecture seule, hébergement dans l’Union européenne (Vercel Paris, Supabase UE, Mistral UE). Aura ne modifie rien dans vos systèmes."],
+      ["Combien de temps avant un premier résultat ?", "Environ deux semaines avec le diagnostic express."],
+      ["De quelles données avez-vous besoin ?", "Stocks, commandes, fournisseurs et délais : extraits, lac de données ou connecteurs en lecture seule. Ce qui manque est listé."],
+      ["Sur quoi s’appuie Aura, et où s’arrête-t-il ?", "Aura s’appuie sur les données de votre SI (couverture, délais, chiffre d’affaires exposé…), raisonne par règles causales et compare les options. Vos équipes décident ; vos outils exécutent."],
+    ],
     methodTitle: "La méthode, pour ceux qui veulent le détail",
     archFigure: "Un grand programme SI dépasse son budget de 45 % en moyenne.",
     archSource: "McKinsey et Université d’Oxford",
@@ -30,7 +41,7 @@ const copy = {
   en: {
     eyebrow: "Offers",
     title: "One problem, one offer, one result.",
-    lead: "Start with a two-week diagnostic. Carry on with Aura Supply, or frame your transformation with an Architecture Sprint.",
+    lead: "Whether you need to solve shortages or deliver an ambition (growth, new markets, a more agile network, premium service, sustainability and CSRD), start with a two-week diagnostic. Carry on with Aura Supply, or frame your transformation with an Architecture Sprint.",
     without: "Without Aura",
     with: "With Aura",
     how: "How it works",
@@ -40,6 +51,17 @@ const copy = {
     optional: "Optional",
     cta: "Book a diagnostic",
     talk: "Talk it through",
+    forWho: "For whom",
+    notFor: "Not for",
+    useCase: "Typical case",
+    firstStep: "First step",
+    faqTitle: "Frequently asked questions",
+    faq: [
+      ["Is my data safe?", "Read-only access, hosted in the European Union (Vercel Paris, Supabase EU, Mistral EU). Aura changes nothing in your systems."],
+      ["How long until a first result?", "About two weeks with the express diagnostic."],
+      ["What data do you need?", "Stock, orders, suppliers and lead times: extracts, a data lake or read-only connectors. Whatever is missing is listed."],
+      ["What does Aura rely on, and where does it stop?", "Aura builds on the data in your systems (coverage, lead times, revenue at risk…), reasons with causal rules and compares the options. Your teams decide; your tools execute."],
+    ],
     methodTitle: "The method, for those who want the detail",
     archFigure: "A large IT programme runs 45% over budget on average.",
     archSource: "McKinsey and University of Oxford",
@@ -123,6 +145,17 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                   </div>
                 </div>
 
+                {o.fit && (
+                  <dl className="offer-fit">
+                    {([["forWho", c.forWho], ["notFor", c.notFor], ["useCase", c.useCase], ["firstStep", c.firstStep]] as const).map(([k, label]) => (
+                      <div key={k}>
+                        <dt>{label}</dt>
+                        <dd>{l(o.fit![k])}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
                 <h3 className="h3">{c.how}</h3>
                 <ol className="offer-steps">
                   {o.steps.map(([when, what]) => (
@@ -187,6 +220,25 @@ export function SprintsPage({ locale }: { locale: Locale }) {
           </section>
         );
       })}
+
+      <section className="section section-tight" id="faq">
+        <div className="container">
+          <SectionHead eyebrow="FAQ" title={c.faqTitle} />
+          <dl className="faq-list">
+            {c.faq.map(([q, r]) => (
+              <div key={q}>
+                <dt>{q}</dt>
+                <dd>{r}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="actions">
+            <Link className="btn btn-primary" href={contact}>
+              {c.cta} <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <CostTiles locale={locale} />
 

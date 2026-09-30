@@ -6,7 +6,7 @@ export function QuickCards({ locale }: { locale: Locale }) {
   const r = routes[locale];
   const fr = locale === "fr";
   const cards = [
-    { icon: Radar, product: "supply", href: r.supply, who: fr ? "Directeurs supply chain" : "Supply chain directors", title: "Aura Supply Chain", text: fr ? "Le problème : la rupture vue trop tard. Aura l’annonce, la chiffre et vous aide à décider." : "The problem: shortages seen too late. Aura flags them, costs them and helps you decide." },
+    { icon: Radar, product: "supply", href: r.supply, who: fr ? "Directeurs supply chain" : "Supply chain directors", title: "Aura Supply Chain", text: fr ? "Le problème : la rupture vue trop tard. Aura la repère dans vos données, en montre les causes et vous aide à décider." : "The problem: shortages seen too late. Aura spots them in your data, shows the causes and helps you decide." },
     { icon: Boxes, product: "architect", href: r.architect, who: fr ? "DSI et architectes" : "CIOs and architects", title: "Aura Architect", text: fr ? "Le problème : une transformation difficile à défendre. Aura en fait un dossier argumenté." : "The problem: a transformation hard to defend. Aura turns it into a reasoned case." },
     { icon: ClipboardList, product: undefined, href: r.founder, who: fr ? "Qui est derrière" : "Who is behind it", title: fr ? "Le fondateur" : "The founder", text: fr ? "Pourquoi Aura existe, et la méthode sur laquelle elle s’appuie." : "Why Aura exists, and the method it builds on." },
   ];

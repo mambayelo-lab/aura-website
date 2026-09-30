@@ -11,37 +11,42 @@ import { ProductFilm } from "../ProductFilm";
 import { HeroSignal } from "../HeroSignal";
 import { ArchitectOffer } from "../ArchitectOffer";
 import { CostTiles } from "../CostTiles";
-import { QuickCards } from "../QuickCards";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 
 const copy = {
   fr: {
-    eyebrow: "Decision intelligence · supply chain",
-    title: "Voir la rupture venir. Décider à temps.",
-    lead: "Aura repère le risque dans vos données, chiffre ce qu’il coûte et vous aide à trancher, avec une trace que vous pouvez montrer en comité.",
+    eyebrow: "Decision intelligence · supply chain · transformation",
+    title: "Maîtriser les ruptures, avant qu’elles ne coûtent.",
+    lead: "Aura repère la rupture dans vos données, compare les options et recommande la meilleure réponse, en expliquant pourquoi. Vos équipes décident, avec une trace à montrer en comité.",
+    three: [
+      ["Pour qui", "Directions supply chain, achats, DSI et programmes de transformation."],
+      ["L’enjeu", "Tenir le service malgré les ruptures, et réussir vos ambitions : croissance, nouveaux marchés, réseau plus agile, RSE, transformation."],
+      ["Le résultat", "Une réponse choisie plus tôt, expliquée, tracée et validée par un humain."],
+    ],
     primary: "Réserver un diagnostic",
     secondary: "Voir les offres",
     trust: ["L’IA prépare", "Un humain décide", "Chaque décision est tracée"],
     filmEyebrow: "Le film",
     filmTitle: "Aura Supply en une minute",
-    howEyebrow: "Comment Aura résout le problème",
-    howTitle: "De l’alerte à la décision signée.",
+    howEyebrow: "Trois plans",
+    howTitle: "Du quotidien aux grands choix, jusqu’à la transformation.",
     how: [
-      ["Le problème", "La rupture se découvre trop tard, et la décision se prend par mail, sans trace."],
-      ["Ce qu’Aura fait", "Une alerte chiffrée avant la rupture, sa chaîne de causes, puis les options comparées dans Décider."],
-      ["Le résultat", "Votre équipe tranche plus tôt, signe, et suit ce que la décision a vraiment changé."],
+      ["Supply · opérationnel", "Les ruptures du quotidien : repérées tôt dans vos données, avec la réponse recommandée et son pourquoi."],
+      ["Supply · stratégique", "Réseau, sourcing, stocks : arbitrer les grands choix en comparant les options sur les mêmes critères."],
+      ["Programmes de transformation", "Aura Architect industrialise le cadrage : un agent architecte qui raisonne, pour accélérer et dé-risquer le programme."],
     ],
+    sustain: ["Durabilité", "Réduire l’empreinte CO2 du transport, fiabiliser le reporting CSRD, maîtriser les risques ESG et le devoir de vigilance chez vos fournisseurs : ces critères entrent dans chaque décision, à côté du coût, du service et du risque."],
     offersEyebrow: "Offres",
     offersTitle: "Commencez par un diagnostic de deux semaines.",
     offersCta: "Détail des offres",
-    engineEyebrow: "Décider, le moteur de décision",
+    engineEyebrow: "Le moteur de décision",
     engineTitle: "Un arbitrage que l’on peut relire et défendre.",
-    engineLead: "Problème : les grands arbitrages se jouent sur la meilleure présentation. Décider compare les options sur les mêmes critères, Bora explique la recommandation, un humain signe.",
+    engineLead: "Problème : les grands arbitrages se jouent sur la meilleure présentation. Aura compare les options sur les mêmes critères, choisit la meilleure réponse en expliquant pourquoi, et un humain signe.",
     engine: [
       ["Comparer", "Chaque option est évaluée sur son potentiel de gain et son risque de dégradation, sans pondérations arbitraires."],
       ["Prouver", "Chaque verdict garde ses critères, ses hypothèses, ses sources et la personne qui a signé."],
-      ["Voir où ça bascule", "Le moteur calcule le plus petit changement qui ferait basculer le choix."],
+      ["Voir où ça bascule", "Le moteur trouve le plus petit changement qui ferait basculer le choix."],
     ],
     diMore: "Ce que dit Gartner de la decision intelligence",
     diFacts: [
@@ -52,7 +57,7 @@ const copy = {
     diArticle: "Où se situe Aura",
     archEyebrow: "Pour les DSI",
     archTitle: "Une transformation du SI à défendre en comité.",
-    archLead: "Problème : des semaines de schémas qui se contredisent. Aura Architect tient l’existant et la cible dans un seul modèle, Décider tranche les choix. Résultat : un dossier défendable.",
+    archLead: "Aura Architect n’est pas un logiciel de référentiel d’architecture classique : c’est une sorte de jumeau numérique de l’architecte, qui raisonne et échange avec les acteurs de la transformation. Résultat : un cadrage industrialisé, un programme accéléré et dé-risqué.",
     archImpact: "Un grand programme SI dépasse son budget de 45 % en moyenne (McKinsey et Université d’Oxford).",
     archCta: "Découvrir Aura Architect",
     trustEyebrow: "Confiance",
@@ -63,31 +68,37 @@ const copy = {
     cred: "Aura s’appuie sur des travaux publiés : temps de survie et de reprise (TTS/TTR, Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
   },
   en: {
-    eyebrow: "Decision intelligence · supply chain",
-    title: "See the shortage coming. Decide in time.",
-    lead: "Aura spots the risk in your data, costs it, and helps you decide, with a record you can show your board.",
+    eyebrow: "Decision intelligence · supply chain · transformation",
+    title: "Master disruptions, before they cost you.",
+    lead: "Aura spots the disruption in your data, compares the options and recommends the best response, explaining why. Your teams decide, with a record to show the board.",
+    three: [
+      ["For whom", "Supply chain, procurement, IT and transformation programme leaders."],
+      ["The stakes", "Keep service up despite disruptions, and deliver your ambitions: growth, new markets, a more agile network, CSR, transformation."],
+      ["The result", "A response chosen earlier, explained, on record and validated by a person."],
+    ],
     primary: "Book a diagnostic",
     secondary: "See the offers",
     trust: ["AI prepares", "A person decides", "Every decision is on record"],
     filmEyebrow: "The film",
     filmTitle: "Aura Supply in one minute",
-    howEyebrow: "How Aura solves the problem",
-    howTitle: "From the alert to the signed decision.",
+    howEyebrow: "Three levels",
+    howTitle: "From day-to-day to big choices, through to transformation.",
     how: [
-      ["The problem", "The shortage is found too late, and the decision is made by email, with no record."],
-      ["What Aura does", "A costed alert before the shortage, its chain of causes, then the options compared in Decide."],
-      ["The result", "Your team settles earlier, signs, and tracks what the decision actually changed."],
+      ["Supply · operational", "Day-to-day shortages: spotted early in your data, with the recommended response and its reasons."],
+      ["Supply · strategic", "Network, sourcing, stock: settle the big choices by comparing options on the same criteria."],
+      ["Transformation programmes", "Aura Architect industrialises scoping: an architect agent that reasons, to speed up and de-risk the programme."],
     ],
+    sustain: ["Sustainability", "Cutting transport CO2, making CSRD reporting reliable, managing ESG risk and supplier due diligence: these criteria are part of every decision, alongside cost, service and risk."],
     offersEyebrow: "Offers",
     offersTitle: "Start with a two-week diagnostic.",
     offersCta: "Offer details",
-    engineEyebrow: "Decide, the decision engine",
+    engineEyebrow: "The decision engine",
     engineTitle: "A trade-off you can re-read and defend.",
-    engineLead: "Problem: big trade-offs are won by the best slide deck. Decide compares options on the same criteria, Bora explains the recommendation, a person signs.",
+    engineLead: "Problem: big trade-offs are won by the best slide deck. Aura compares options on the same criteria, picks the best response and explains why, and a person signs.",
     engine: [
       ["Compare", "Each option is rated on its upside and its risk of degradation, with no arbitrary weights."],
       ["Prove", "Every verdict keeps its criteria, assumptions, sources and the person who signed it."],
-      ["See where it flips", "The engine computes the smallest change that would flip the choice."],
+      ["See where it flips", "The engine finds the smallest change that would flip the choice."],
     ],
     diMore: "What Gartner says about decision intelligence",
     diFacts: [
@@ -98,7 +109,7 @@ const copy = {
     diArticle: "Where Aura stands",
     archEyebrow: "For CIOs",
     archTitle: "An IT transformation to defend before the board.",
-    archLead: "Problem: weeks of diagrams that contradict each other. Aura Architect holds the current and target state in one model, Decide settles the choices. Result: a case you can defend.",
+    archLead: "Aura Architect is not a classic architecture repository tool: it is a kind of digital twin of the architect, which reasons and works with the people driving the transformation. Result: scoping industrialised, a programme accelerated and de-risked.",
     archImpact: "A large IT programme runs 45% over budget on average (McKinsey and University of Oxford).",
     archCta: "Discover Aura Architect",
     trustEyebrow: "Trust",
@@ -178,6 +189,14 @@ export function HomePage({ locale }: { locale: Locale }) {
             <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
             <h1 className="display display-promise">{c.title}</h1>
             <p className="lead hero-lead">{c.lead}</p>
+            <dl className="hero-three">
+              {c.three.map(([k, v]) => (
+                <div key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
             <div className="actions">
               <Link className="btn btn-ink btn-lg" href={r.contact}>
                 {c.primary} <ArrowRight size={17} aria-hidden />
@@ -210,6 +229,9 @@ export function HomePage({ locale }: { locale: Locale }) {
               </article>
             ))}
           </div>
+          <p className="impact-line">
+            <strong>{c.sustain[0]}.</strong> {c.sustain[1]}
+          </p>
         </div>
       </section>
 
@@ -250,7 +272,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <QuickCards locale={locale} />
 
       <section className="section section-alt" id={locale === "fr" ? "moteur" : "engine"}>
         <div className="container">

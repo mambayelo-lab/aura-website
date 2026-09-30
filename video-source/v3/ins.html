@@ -44,9 +44,9 @@ for(const s of SPEC.scenes){const e=document.createElement('div');e.className='s
  R.appendChild(e);els.push({e,s,t0:T});T+=s.dur;}
 window.TOTAL=T;
 window.render=t=>{
- for(const {e,s,t0} of els){const lt=t-t0;const d=s.dur;const X=0.35;
-  let o=lt<0||lt>d?0:Math.min(1,lt/X,(d-lt)/X);
-  if(t0===0&&lt<X)o=lt/X; e.style.opacity=Math.max(0,o);
+ for(const {e,s,t0} of els){const lt=t-t0;const d=s.dur;const X=0.5;
+  // fondu enchaîné : chaque scène apparaît par-dessus la précédente, qui reste visible jusqu'à la fin du fondu
+  let o=lt<0||lt>d+X?0:(t0===0?1:Math.min(1,lt/X)); e.style.opacity=Math.max(0,o);
   if(s.type==='photo'){const z=1+0.06*(lt/d);const im=e.querySelector('img');im.style.transform=`translate(-50%,-50%) scale(${z}) translateX(${(s.pan||0)*lt/d}px)`;
    const c=e.querySelector('.cap');const k=eo((lt-0.25)/0.6);c.style.opacity=k;c.style.transform=`translateY(${(1-k)*30}px)`;}
   if(s.type==='carton'){const st=e.querySelectorAll('.st');st.forEach((x,i)=>{const k=eo((lt-0.3-i*0.45)/0.5);x.style.opacity=k;x.style.transform=`translateY(${(1-k)*40}px)`;

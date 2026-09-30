@@ -34,7 +34,7 @@ export function ProductFilm({ locale, film = "supply", impacts = true }: { local
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const base = `/video/aura-${film}-${locale}`;
-  const secs = film === "supply" ? 67 : 65;
+  const secs = film === "supply" ? 53 : 48;
   const label = `${film === "supply" ? "Aura Supply" : "Aura Architect"} · ${secs} s`;
 
   const start = () => {
