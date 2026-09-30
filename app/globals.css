@@ -3660,13 +3660,9 @@ a:hover .media img,
 .col-short { display: none; }
 @media (max-width: 720px) { .tools-table .col-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .tools-table .col-short { display: inline; } }
 
-/* Pain videos */
-.pain-video { margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.pain-video video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: #0b0c2a; border: 1px solid var(--mist); }
-.pain-video figcaption { display: flex; flex-direction: column; gap: 4px; font-size: .95rem; }
-.pain-video figcaption span { color: var(--slate); }
+/* Supply news */
 .supply-news { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; padding: 0; list-style: none; margin: 24px 0 0; }
 .supply-news li { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; }
 .supply-news strong { display: block; }
 .supply-news span { color: var(--slate); font-size: .95rem; }
-@media (max-width: 980px) { .pain-videos { grid-template-columns: 1fr; } .supply-news { grid-template-columns: 1fr; } }
+@media (max-width: 980px) { .supply-news { grid-template-columns: 1fr; } }

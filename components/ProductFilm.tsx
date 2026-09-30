@@ -34,7 +34,7 @@ export function ProductFilm({ locale, film = "supply", impacts = true }: { local
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const base = `/video/aura-${film}-${locale}`;
-  const secs = film === "supply" ? 74 : 70;
+  const secs = film === "supply" ? 100 : 74;
   const label = `${film === "supply" ? "Aura Supply Chain" : "Aura Architect"} · ${secs} s`;
 
   const start = () => {
@@ -59,7 +59,6 @@ export function ProductFilm({ locale, film = "supply", impacts = true }: { local
           aria-label={label}
           lang={locale}
         >
-          <source src={`${base}.webm`} type="video/webm" />
           <source src={`${base}.mp4`} type="video/mp4" />
         </video>
         {!started && (

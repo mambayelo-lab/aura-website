@@ -12,7 +12,6 @@ import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
 import { ArchitectOffer } from "../ArchitectOffer";
 import { CostTiles } from "../CostTiles";
-import { PainVideos } from "../PainVideos";
 import { QuickCards } from "../QuickCards";
 import { CompareTools } from "../CompareTools";
 import { ZoomCard } from "../zoom/ZoomCard";
@@ -29,7 +28,7 @@ const copy = {
   fr: {
     eyebrow: "Decision intelligence · résilience",
     filmEyebrow: "Le film",
-    filmTitle: "Aura Supply Chain en 74 secondes",
+    filmTitle: "Aura Supply Chain en 100 secondes",
     title: "Décisions prouvées : voir venir, comprendre, décider — et le prouver.",
     lead: "Un fournisseur qui décroche, un détroit qui se ferme, une pandémie qui déforme la demande. Aura Supply Chain repère le signal, mesure combien de temps votre chaîne tient, et vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer.",
     three: [
@@ -108,7 +107,7 @@ const copy = {
   en: {
     eyebrow: "Decision intelligence · resilience",
     filmEyebrow: "The film",
-    filmTitle: "Aura Supply Chain in 74 seconds",
+    filmTitle: "Aura Supply Chain in 100 seconds",
     title: "Proven decisions: see it coming, understand, decide — and prove it.",
     lead: "A supplier that slips, a strait that closes, a pandemic that distorts demand. Aura Supply Chain picks up the signal, measures how long your chain can hold, and gets you to a decision fast, on verifiable facts, with a trail you can show.",
     three: [
@@ -291,7 +290,6 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <CostTiles locale={locale} />
-      <PainVideos locale={locale} />
 
       <section className="section section-tight section-alt" id="offers">
         <div className="container">
