@@ -27,8 +27,6 @@ const copy = {
     primary: "Réserver un diagnostic",
     secondary: "Voir les offres",
     trust: ["L’IA prépare", "Un humain décide", "Chaque décision est tracée"],
-    filmEyebrow: "Le film",
-    filmTitle: "Aura Supply en une minute",
     howEyebrow: "Trois plans",
     howTitle: "Du quotidien aux grands choix, jusqu’à la transformation.",
     how: [
@@ -79,8 +77,6 @@ const copy = {
     primary: "Book a diagnostic",
     secondary: "See the offers",
     trust: ["AI prepares", "A person decides", "Every decision is on record"],
-    filmEyebrow: "The film",
-    filmTitle: "Aura Supply in one minute",
     howEyebrow: "Three levels",
     howTitle: "From day-to-day to big choices, through to transformation.",
     how: [
@@ -188,6 +184,9 @@ export function HomePage({ locale }: { locale: Locale }) {
           <div className="hero-copy">
             <p className="eyebrow eyebrow-pill">{c.eyebrow}</p>
             <h1 className="display display-promise">{c.title}</h1>
+            <div className="hero-film" id="film">
+              <ProductFilm locale={locale} film="brand" impacts={false} />
+            </div>
             <p className="lead hero-lead">{c.lead}</p>
             <dl className="hero-three">
               {c.three.map(([k, v]) => (
@@ -235,12 +234,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-tight film-section" id="film">
-        <div className="container">
-          <SectionHead eyebrow={c.filmEyebrow} title={c.filmTitle} />
-          <ProductFilm locale={locale} film="supply" impacts={false} />
-        </div>
-      </section>
 
       <CostTiles locale={locale} alt />
 

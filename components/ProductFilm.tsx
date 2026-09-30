@@ -29,13 +29,14 @@ const copy = {
  * Product film: elegant poster with a large play button. A click starts the
  * video WITH sound (volume 1). No muted autoplay; mute stays in the controls.
  */
-export function ProductFilm({ locale, film = "supply", impacts = true }: { locale: Locale; film?: "supply" | "architect"; impacts?: boolean }) {
+export function ProductFilm({ locale, film = "supply", impacts = true }: { locale: Locale; film?: "supply" | "architect" | "brand"; impacts?: boolean }) {
   const c = copy[locale];
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const base = `/video/aura-${film}-${locale}`;
-  const secs = film === "supply" ? 53 : 48;
-  const label = `${film === "supply" ? "Aura Supply" : "Aura Architect"} · ${secs} s`;
+  const secs = film === "supply" ? 53 : film === "brand" ? 53 : 48;
+  const name = film === "supply" ? "Aura Supply" : film === "brand" ? (locale === "fr" ? "Le film Aura" : "The Aura film") : "Aura Architect";
+  const label = `${name} · ${secs} s`;
 
   const start = () => {
     const v = ref.current;

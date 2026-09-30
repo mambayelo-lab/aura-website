@@ -26,3 +26,31 @@ Captures réelles d'Aura Supply (aura-decision-zen.vercel.app), démo Maison Luc
 
 ## Musique
 Aucune nouvelle musique : la piste d'origine de chaque film (composition originale, voir `LICENCE-MUSIQUE.md`) est reprise depuis son début, avec un fondu de sortie.
+
+# Film de marque (accueil, 30/09/2026)
+
+`public/video/aura-brand-{fr,en}.mp4` : 53 s, 1080p, H.264 + AAC, ~17 Mo, lecture au clic. Montage : `brand/build.mjs` (`node build.mjs fr|en`), cartons `brand/work/ins.html` (repris de v3), captures recadrées dans `brand/caps/`.
+Histoire : ambition (port) → tension (navire retardé, conteneurs à quai) → l'équipe voit venir (open space, captures Cockpit et Causes) → compare (réunion, capture options) → choisit (comité) → agit (camion) → résultat (livraison, route dans la verdure) → carton final.
+
+## Vidéos (Mixkit Stock Video Free License : usage commercial libre, sans attribution, https://mixkit.co/license/#videoFree)
+Licence vérifiée sur chaque page le 30/09/2026 (les clips « Mixkit Restricted License » ont été écartés). Fichiers sources hors dépôt (`brand/clips/`, ignoré par git), à retélécharger via `https://assets.mixkit.co/videos/<id>/<id>-1080.mp4`.
+
+| Id | Sujet | Page |
+|---|---|---|
+| 4012 | Portiques et porte-conteneurs à quai | https://mixkit.co/free-stock-video/cranes-working-on-unloading-dock-4012/ |
+| 4011 | Porte-conteneurs (cadré haut : aucun marquage lisible) | https://mixkit.co/free-stock-video/cargo-ship-full-of-containers-4011/ |
+| 4445 | Port à conteneurs vu d'en haut | https://mixkit.co/free-stock-video/top-view-of-tokyo-cargo-port-4445/ |
+| 918 | Open space, équipe devant écrans | https://mixkit.co/free-stock-video/busy-office-space-918/ |
+| 4547 | Réunion d'équipe autour d'une table | https://mixkit.co/free-stock-video/people-having-a-work-meeting-around-a-table-4547/ |
+| 42666 | Présentation en comité | https://mixkit.co/free-stock-video/presentation-during-a-work-team-meeting-42666/ |
+| 44284 | Camion sur une route | https://mixkit.co/free-stock-video/cars-and-trucks-crossing-on-a-highway-in-nature-44284/ |
+| 31346 | Livreur préparant des colis | https://mixkit.co/free-stock-video/courier-worker-preparing-boxes-on-a-loading-truck-31346/ |
+| 41389 | Route dans la nature (vue aérienne) | https://mixkit.co/free-stock-video/aerial-view-of-a-road-that-crosses-through-nature-41389/ |
+
+Pas de logo de marque lisible ni de visage en gros plan (plans d'ensemble ou mi-distance).
+
+## Musique
+« Motivating Mornings », Ahjay Stelino, Mixkit (https://assets.mixkit.co/music/33/33.mp3), Mixkit Stock Music Free License (https://mixkit.co/license/#musicFree) : usage commercial libre, sans attribution. ≈123 BPM ; coupes sur la mesure (1,951 s, premier temps à 0,464 s), fondus d'un temps ; introduction calme pour la tension, entrée de la rythmique à 12 s sur « Voir venir ». Normalisée -16 LUFS, fondu de sortie 3 s.
+
+## Captures
+Aura Supply, démo Maison Lucie (données fictives, signalé à l'écran), FR et EN : Cockpit recadré (sans montant ni bouton d'action), fiche Causes, tableau des options.

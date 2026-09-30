@@ -1,0 +1,60 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Sora;font-weight:400;src:url(file:///root/.fonts/sora-400.ttf)}
+@font-face{font-family:Sora;font-weight:600;src:url(file:///root/.fonts/sora-600.ttf)}
+@font-face{font-family:Sora;font-weight:700;src:url(file:///root/.fonts/sora-700.ttf)}
+@font-face{font-family:Lexend;font-weight:400;src:url(file:///root/.fonts/lexend-400.ttf)}
+:root{--indigo:#4743e6;--indigo3:#a5a8ff;--navy:#151d52;--black:#0a0b1e}
+*{margin:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;background:#0a0b2e;font-family:Lexend,sans-serif;color:#fff}
+.sc{position:absolute;inset:0;opacity:0}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#2e2aa8 0%,#161a5c 45%,#0a0b2e 100%)}
+.photo img{position:absolute;left:50%;top:50%;width:2040px;height:1147px;object-fit:cover;transform-origin:50% 50%}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,46,0) 45%,rgba(10,11,46,.85) 100%)}
+.cap{position:absolute;left:110px;bottom:110px;max-width:1150px;border-left:6px solid var(--indigo);padding:18px 30px;background:rgba(21,29,82,.78);border-radius:0 16px 16px 0;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.eb{font-family:Sora;font-weight:600;font-size:22px;letter-spacing:.22em;text-transform:uppercase;color:var(--indigo3)}
+.tx{font-family:Sora;font-weight:600;font-size:46px;line-height:1.22;margin-top:10px}
+.cr{position:absolute;right:28px;bottom:22px;font-size:17px;color:rgba(255,255,255,.75)}
+.logo{position:absolute;right:70px;top:56px;width:190px;opacity:.95}
+.ct{position:absolute;left:0;right:0;top:170px;text-align:center}
+.ct .tt{font-family:Sora;font-weight:700;font-size:64px;margin-top:14px}
+.steps{position:absolute;left:170px;right:170px;top:470px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.st{background:rgba(255,255,255,.07);border:1px solid rgba(165,168,255,.35);border-radius:22px;padding:34px 30px;text-align:left;transition:none}
+.st .n{width:52px;height:52px;border-radius:14px;background:var(--indigo);display:grid;place-items:center;font-family:Sora;font-weight:700;font-size:24px;box-shadow:0 0 26px rgba(71,67,230,.9)}
+.st b{display:block;font-family:Sora;font-weight:700;font-size:40px;margin-top:22px}
+.st span{display:block;font-size:26px;color:#c9cbf0;margin-top:10px;line-height:1.3}
+.line{position:absolute;left:230px;top:500px;height:4px;background:linear-gradient(90deg,var(--indigo),var(--indigo3));box-shadow:0 0 18px var(--indigo)}
+.shot .frame{position:absolute;left:560px;top:140px;width:1260px;height:709px;border-radius:14px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5),0 0 0 1px rgba(165,168,255,.5),0 0 50px rgba(71,67,230,.35)}
+.shot .frame img{width:100%;height:100%;object-fit:cover}
+.shot .side{position:absolute;left:100px;top:330px;width:420px}
+.chip{display:inline-block;font-family:Sora;font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;background:var(--indigo);padding:10px 18px;border-radius:999px;box-shadow:0 0 24px rgba(71,67,230,.8)}
+.shot .tx{font-size:42px;margin-top:26px}
+.ti .ct{top:340px}.ti .sub{font-size:40px;color:#c9cbf0;margin:26px auto 0;max-width:1300px;line-height:1.3}
+.en .ct{top:360px}.en .lg{width:420px}.en .pill{display:inline-block;margin-top:50px;background:#fff;color:#151d52;font-family:Sora;font-weight:700;font-size:38px;padding:22px 48px;border-radius:999px;box-shadow:0 0 40px rgba(165,168,255,.6)}.en .url{margin-top:26px;font-size:26px;color:#c9cbf0}
+.shot .note{margin-top:22px;font-size:20px;color:#b9bce6}
+</style></head><body><div id="root"></div><script>
+const q=new URLSearchParams(location.search);const SPEC=JSON.parse(decodeURIComponent(q.get('s')));
+const R=document.getElementById('root');const els=[];let T=0;
+const eo=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);
+for(const s of SPEC.scenes){const e=document.createElement('div');e.className='sc '+s.type;
+ if(s.type==='photo')e.innerHTML=`<img src="${s.img}"><div class="shade"></div><div class="cap"><div class="eb">${s.eb}</div><div class="tx">${s.text}</div></div><img class="logo" src="logo-white.png" style="position:absolute;left:auto;top:56px;width:170px;height:auto;transform:none"><div class="cr">${s.credit}</div>`;
+ if(s.type==='carton')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="ct"><div class="eb">${s.eb}</div><div class="tt">${s.title}</div></div><div class="line"></div><div class="steps">${s.steps.map((x,i)=>`<div class="st"><div class="n">${i+1}</div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`;
+ if(s.type==='shot')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="side"><span class="chip">${s.chip}</span><div class="tx">${s.text}</div><div class="note">${s.note}</div></div><div class="frame"><img src="${s.img}"></div>`;
+ if(s.type==='ti')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="ct"><div class="eb">${s.eb}</div><div class="tt">${s.title}</div><div class="sub">${s.text||''}</div></div>`;
+ if(s.type==='en')e.innerHTML=`<div class="bg"></div><div class="ct"><img class="lg" src="logo-white.png"><div class="eb" style="margin-top:18px">${s.eb}</div><div class="pill">${s.cta}</div><div class="url">aura-website-one.vercel.app</div></div>`;
+ R.appendChild(e);els.push({e,s,t0:T});T+=s.dur;}
+window.TOTAL=T;
+window.render=t=>{
+ for(const {e,s,t0} of els){const lt=t-t0;const d=s.dur;const X=0.5;
+  // fondu enchaîné : chaque scène apparaît par-dessus la précédente, qui reste visible jusqu'à la fin du fondu
+  let o=lt<0||lt>d+X?0:(t0===0?1:Math.min(1,lt/X)); e.style.opacity=Math.max(0,o);
+  if(s.type==='photo'){const z=1+0.06*(lt/d);const im=e.querySelector('img');im.style.transform=`translate(-50%,-50%) scale(${z}) translateX(${(s.pan||0)*lt/d}px)`;
+   const c=e.querySelector('.cap');const k=eo((lt-0.25)/0.6);c.style.opacity=k;c.style.transform=`translateY(${(1-k)*30}px)`;}
+  if(s.type==='carton'){const st=e.querySelectorAll('.st');st.forEach((x,i)=>{const k=eo((lt-0.3-i*0.45)/0.5);x.style.opacity=k;x.style.transform=`translateY(${(1-k)*40}px)`;
+    const act=Math.min(3,Math.floor(Math.max(0,lt-2.1)/0.45));const on=lt>2.1&&i<=act;x.style.borderColor=on?'#a5a8ff':'rgba(165,168,255,.35)';x.style.background=on?'rgba(71,67,230,.28)':'rgba(255,255,255,.07)'});
+   const ln=e.querySelector('.line');ln.style.width=Math.max(0,1460*eo((lt-0.3)/2.0))+'px';ln.style.top='440px';ln.style.opacity=.9;
+   const ct=e.querySelector('.ct');ct.style.opacity=eo(lt/0.5);}
+  if(s.type==='ti'||s.type==='en'){const k=eo((lt-0.1)/0.7);const ct=e.querySelector('.ct');ct.style.opacity=k;ct.style.transform=`translateY(${(1-k)*30}px)`;}
+  if(s.type==='shot'){const k=eo((lt)/0.7);const f=e.querySelector('.frame');f.style.transform=`translateX(${(1-k)*60}px) scale(${0.96+0.04*k+0.02*lt/d})`;const sd=e.querySelector('.side');const k2=eo((lt-0.2)/0.6);sd.style.opacity=k2;sd.style.transform=`translateY(${(1-k2)*24}px)`;}
+ }};
+window.ready=true;
+</script></body></html>
