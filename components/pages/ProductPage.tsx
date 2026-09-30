@@ -235,7 +235,7 @@ export function ProductPage({
       {(key === "supply" || key === "architect") && (
         <section className="section section-tight film-section" id="film">
           <div className="container">
-            <ProductFilm locale={locale} film={key === "architect" ? "architect-brand" : key} impacts={false} />
+            <ProductFilm locale={locale} film={key} impacts={false} />
           </div>
         </section>
       )}
