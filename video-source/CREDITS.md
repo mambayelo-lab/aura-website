@@ -54,3 +54,25 @@ Pas de logo de marque lisible ni de visage en gros plan (plans d'ensemble ou mi-
 
 ## Captures
 Aura Supply, démo Maison Lucie (données fictives, signalé à l'écran), FR et EN : Cockpit recadré (sans montant ni bouton d'action), fiche Causes, tableau des options.
+
+# Film de marque Aura Architect (page Architect, 30/09/2026)
+
+`public/video/aura-architect-brand-{fr,en}.mp4` : 49 s, 1080p, H.264 + AAC, lecture au clic. Montage : `brand/build-architect.mjs` (`node build-architect.mjs fr|en`), mêmes cartons (`brand/work/ins.html`), même musique et mêmes coupes sur la mesure que le film de marque.
+Message : le jumeau numérique de l'architecte, qui raisonne et dialogue avec les acteurs de la transformation.
+Histoire : open space → équipe projet → présentation → dialogue (capture) → cible dessinée (capture) → échange → analyse d'impact (capture) → comité → vérification ou carte des capacités (capture) → équipe → carton final.
+
+## Vidéos ajoutées (Mixkit Stock Video Free License, vérifiée sur chaque page le 30/09/2026)
+Plus 918, 4547 (voir ci-dessus). Fichiers hors dépôt (`brand/clips/`), à retélécharger via `https://assets.mixkit.co/videos/<id>/<id>-1080.mp4`.
+
+| Id | Sujet | Page |
+|---|---|---|
+| 914 | Open space vu d'en haut | https://mixkit.co/free-stock-video/open-office-space-914/ |
+| 4809 | Équipe au travail autour d'une table, vue du dessus | https://mixkit.co/free-stock-video/business-people-at-work-meeting-4809/ |
+| 42643 | Présentation sur écran en salle de réunion | https://mixkit.co/free-stock-video/presentation-in-a-business-meeting-room-42643/ |
+| 4813 | Deux collègues échangent devant un ordinateur | https://mixkit.co/free-stock-video/business-partners-meeting-4813/ |
+| 42644 | Réunion en salle, écrans | https://mixkit.co/free-stock-video/business-meeting-in-a-meeting-room-42644/ |
+
+## Captures
+Aura Architect (https://aura-architect-seven.vercel.app, FR et `?lang=en`), prises le 30/09/2026 : cadrage par questions, schéma inter-applicatif, analyse d'impact « et si on retire l'ERP ? », aides à la réflexion (FR) ou carte des capacités (EN). Démo sans données réelles, signalé à l'écran. `brand/caps/arch-*`.
+
+Les miniatures de repérage (`brand/sheet/`, dont un clip à licence restreinte) ont été retirées.
