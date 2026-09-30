@@ -2723,6 +2723,27 @@ a:hover .media img,
   }
 }
 
+/* Cibles tactiles >= 44 px sur mobile */
+@media (max-width: 720px) {
+  .text-link,
+  .footer-column a,
+  .footer-contact a,
+  .footer-brand a,
+  .footer-bottom a,
+  .contact-direct a,
+  small a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .footer-column ul {
+    gap: 0;
+  }
+  .footer-bottom {
+    gap: 0 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

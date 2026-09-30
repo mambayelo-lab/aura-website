@@ -164,7 +164,7 @@ export const offers: Offer[] = [
     fit: {
       forWho: ["DSI, architectes et PMO qui cadrent un programme de transformation.", "CIOs, architects and PMOs framing a transformation programme."],
       notFor: ["Qui cherche un référentiel d’architecture de plus à alimenter à la main.", "Anyone looking for one more architecture repository to feed by hand."],
-      useCase: ["Remplacement d’un ERP : cible, écarts, context mapping des domaines, feuille de route et choix argumentés, partagés avec les métiers.", "Replacing an ERP: target, gaps, domain context mapping, roadmap and reasoned choices, shared with the business."],
+      useCase: ["Remplacement d’un ERP : cible, écarts, cartographie des contextes par domaine, feuille de route et choix argumentés, partagés avec les métiers.", "Replacing an ERP: target, gaps, domain context mapping, roadmap and reasoned choices, shared with the business."],
       firstStep: ["Un atelier d’une heure sur votre programme prioritaire.", "A one-hour workshop on your priority programme."],
     },
     good: [
@@ -179,7 +179,7 @@ export const offers: Offer[] = [
     key: "decide",
     product: "decide",
     optional: true,
-    name: ["Décider seul", "Decide on its own"],
+    name: ["Décider en option", "Decide as an option"],
     format: ["En option", "Optional"],
     pitch: [
       "Pour une décision ponctuelle de comité : options comparées, recommandation expliquée, trace signée.",
@@ -189,7 +189,7 @@ export const offers: Offer[] = [
       ["Un arbitrage important se joue sur la meilleure présentation, pas sur les faits.", "A major trade-off is won by the best slide deck, not the facts."],
     ],
     with: [
-      ["Les options sont comparées sur les mêmes critères ; Bora explique la recommandation, le comité signe.", "Options are compared on the same criteria; Bora explains the recommendation, the board signs."],
+      ["Les options sont comparées sur les mêmes critères ; la recommandation est argumentée, le comité tranche.", "Options are compared on the same criteria; the recommendation is argued in full, and the board decides."],
     ],
     steps: [
       [["Étape 1", "Step 1"], ["La question est posée clairement, avec les options et les critères.", "The question is set out clearly, with the options and criteria."]],

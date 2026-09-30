@@ -198,7 +198,7 @@ const supply: Product = {
       kicker: ["Studio", "Studio"],
       title: ["Un lignage de bout en bout", "End-to-end lineage"],
       summary: ["Chaque indicateur remonte au champ source qui l’alimente : plus de chiffre sans origine.", "Every indicator traces back to the source field that feeds it: no more figures without an origin."],
-      body: [["Le mapping proposé par Aura est validé par vos équipes. Le lignage montre, pour chaque chiffre, d’où il vient et ce qu’il touche.", "The mapping Aura proposes is validated by your teams. Lineage shows, for each figure, where it comes from and what it affects."]],
+      body: [["La correspondance proposée par Aura est validée par vos équipes. Le lignage montre, pour chaque chiffre, d’où il vient et ce qu’il touche.", "The mapping Aura proposes is validated by your teams. Lineage shows, for each figure, where it comes from and what it affects."]],
       flow: [["Champ source", "Source field"], ["Objet", "Object"], ["Indicateur", "Indicator"]],
     },
     {
@@ -314,7 +314,7 @@ const supply: Product = {
       },
       {
         name: ["Studio", "Studio"],
-        items: [["Connecteurs", "Connectors"], ["Mapping sémantique", "Semantic mapping"], ["Ontologie", "Ontology"], ["Règles causales", "Causal rules"]],
+        items: [["Connecteurs", "Connectors"], ["Correspondance sémantique", "Semantic mapping"], ["Ontologie", "Ontology"], ["Règles causales", "Causal rules"]],
       },
       {
         name: ["Moteur", "Engine"],
@@ -358,7 +358,7 @@ const supply: Product = {
     {
       id: "g-human",
       title: ["Validation humaine", "Human validation"],
-      summary: ["Mapping, règles et décisions sont validés par une personne.", "Mapping, rules and decisions are validated by a person."],
+      summary: ["Correspondances, règles et décisions sont validées par une personne.", "Mapping, rules and decisions are validated by a person."],
       body: [
         [
           "Chaque suggestion de l’IA reste en attente jusqu’à validation. Chaque décision est signée par son responsable.",
@@ -418,8 +418,8 @@ const supply: Product = {
     {
       q: ["Faut-il connecter tout notre SI pour commencer ?", "Do we need to connect our whole landscape before we start?"],
       a: [
-        "Non. Deux ou trois sources qui portent votre risque prioritaire suffisent pour une première alerte utile. C’est précisément l’objet du Sprint Résilience.",
-        "No. Two or three sources that carry your priority risk are enough for a first useful alert. That is exactly what the Resilience Sprint is for.",
+        "Non. Deux ou trois sources qui portent votre risque prioritaire suffisent pour une première alerte utile. C’est précisément l’objet du Diagnostic express.",
+        "No. Two or three sources that carry your priority risk are enough for a first useful alert. That is exactly what the Express diagnostic is for.",
       ],
     },
     {
@@ -870,8 +870,8 @@ const architect: Product = {
       src: "/images/product/architect-bora.webp",
       width: 1440,
       height: 900,
-      alt: ["Moteur Bora : classement des scénarios en attitude pessimiste et plus petit changement pour faire basculer la décision.", "Bora engine: scenario ranking under a pessimistic attitude and the smallest change that would flip the decision."],
-      caption: ["La décision : le classement Bora et le plus petit changement.", "The decision: the Bora ranking and the smallest change."],
+      alt: ["Décision : classement des scénarios en attitude prudente et plus petit changement qui ferait basculer la décision.", "Decision: scenario ranking under a cautious stance and the smallest change that would flip the decision."],
+      caption: ["La décision : le classement des scénarios et le plus petit changement.", "The decision: the scenario ranking and the smallest change."],
     },
     {
       src: "/images/product/architect-adr.webp",
@@ -944,9 +944,9 @@ const architect: Product = {
     {
       id: "bora",
       kicker: ["Décision", "Decision"],
-      title: ["Une décision Bora, prouvée", "A proven Bora decision"],
+      title: ["Une décision argumentée", "A well-argued decision"],
       summary: ["Les scénarios sont classés par risque, puis Aura trouve le plus petit changement qui ferait basculer la décision.", "Scenarios are ranked by risk, then Aura finds the smallest change that would flip the decision."],
-      body: [["Le moteur Bora explore toutes les combinaisons et génère une note de décision (ADR) : contexte, alternatives, conséquences. Une décision qu’on n’a pas à refaire.", "The Bora engine explores every combination and generates a decision record (ADR): context, alternatives, consequences. A decision you won’t have to make twice."]],
+      body: [["Les scénarios sont comparés sur les mêmes critères, puis consignés dans une note de décision (ADR) : contexte, alternatives, conséquences. Une décision que l’on n’a pas à refaire.", "Scenarios are compared on the same criteria, then recorded in a decision note (ADR): context, alternatives, consequences. A decision you won’t have to make twice."]],
       flow: [["Scénarios", "Scenarios"], ["Classement", "Ranking"], ["ADR", "ADR"]],
     },
     {
@@ -992,8 +992,8 @@ const architect: Product = {
       {
         id: "a-decide",
         title: ["Décider", "Decide"],
-        summary: ["Classement Bora et ADR.", "Bora ranking and ADR."],
-        body: [["Classement Bora et ADR.", "Bora ranking and ADR."]],
+        summary: ["Classement des scénarios et ADR.", "Scenario ranking and ADR."],
+        body: [["Classement des scénarios et ADR.", "Scenario ranking and ADR."]],
       },
       {
         id: "a-export",
@@ -1241,7 +1241,7 @@ const resilience: Sprint = {
 const decision: Sprint = {
   key: "decision",
   product: "decide",
-  name: ["Decision Sprint", "Decision Sprint"],
+  name: ["Décider en option", "Decide as an option"],
   duration: ["5 jours à 2 semaines", "5 days to 2 weeks"],
   promise: [
     "Votre décision à fort enjeu tranchée en quelques jours, et consignée dans une note que vous pouvez défendre.",

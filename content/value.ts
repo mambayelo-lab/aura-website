@@ -114,7 +114,7 @@ export const productValue: Record<ProductKey, ValueCopy> = {
       },
     ],
     costs: [
-      ["Un sprint de 4 à 6 semaines sur un périmètre produit ou fournisseur précis.", "A 4-to-6-week sprint on a defined product or supplier scope."],
+      ["Un diagnostic express d’environ 2 semaines, puis un abonnement sur un périmètre produit ou fournisseur précis.", "An express diagnostic of about 2 weeks, then a subscription on a defined product or supplier scope."],
       ["Aura lit vos sources existantes (ERP, EDI, fichiers) : pas d’entrepôt de données à construire.", "Aura reads your existing sources (ERP, EDI, files): no data warehouse to build."],
       ["Votre ERP et vos outils de planification restent en place.", "Your ERP and planning tools stay in place."],
     ],
@@ -152,7 +152,7 @@ export const productValue: Record<ProductKey, ValueCopy> = {
       },
     ],
     costs: [
-      ["Un sprint de 5 jours à 2 semaines, sur une décision réelle.", "A sprint of 5 days to 2 weeks, on a real decision."],
+      ["Une option de 5 jours à 2 semaines, sur une décision réelle.", "An option of 5 days to 2 weeks, on a real decision."],
       ["Pas besoin de données chiffrées parfaites : l’évaluation qualitative suffit à départager.", "No need for perfect numbers: a qualitative evaluation is enough to separate the options."],
       ["Rien à installer ni à intégrer dans votre SI.", "Nothing to install or integrate into your systems."],
     ],
@@ -190,7 +190,7 @@ export const productValue: Record<ProductKey, ValueCopy> = {
       },
     ],
     costs: [
-      ["Un sprint de 2 à 4 semaines, au démarrage ou en cours de programme.", "A 2-to-4-week sprint, at kick-off or mid-programme."],
+      ["Un sprint de 4 à 6 semaines, au démarrage ou en cours de programme.", "A 4-to-6-week sprint, at kick-off or mid-programme."],
       ["On part de votre cartographie et de vos documents existants.", "We start from your existing maps and documents."],
       ["Aucun nouveau référentiel imposé à vos équipes.", "No new repository imposed on your teams."],
     ],
@@ -230,7 +230,7 @@ export const sprintsValue: ValueCopy = {
     },
   ],
   costs: [
-    ["D’environ 10 jours à 6 semaines selon l’offre.", "From about 10 days to 6 weeks, depending on the offer."],
+    ["De quelques jours à 6 semaines selon l’offre.", "From a few days to 6 weeks, depending on the offer."],
     ["Quelques heures de vos experts, à des moments prévus.", "A few hours of your experts’ time, at scheduled points."],
     ["Aucun outil remplacé, aucune donnée déplacée hors de votre contrôle.", "No tool replaced, no data moved out of your control."],
   ],

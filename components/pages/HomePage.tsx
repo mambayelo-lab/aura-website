@@ -16,9 +16,9 @@ import { localize } from "@/content/products";
 
 const copy = {
   fr: {
-    eyebrow: "Decision intelligence · supply chain · transformation",
-    title: "Maîtriser les ruptures, avant qu’elles ne coûtent.",
-    lead: "Aura repère la rupture dans vos données, compare les options et recommande la meilleure réponse, en expliquant pourquoi. Vos équipes décident, avec une trace à montrer en comité.",
+    eyebrow: "Aide à la décision · supply chain · transformation",
+    title: "Voir venir les ruptures, décider à temps.",
+    lead: "Aura s’appuie sur les données de votre SI pour repérer la rupture, en comprendre les causes, comparer les options et argumenter une recommandation. Vos équipes décident, avec une trace à présenter en comité.",
     three: [
       ["Pour qui", "Directions supply chain, achats, DSI et programmes de transformation."],
       ["L’enjeu", "Tenir le service malgré les ruptures, et réussir vos ambitions : croissance, nouveaux marchés, réseau plus agile, RSE, transformation."],
@@ -27,12 +27,12 @@ const copy = {
     primary: "Réserver un diagnostic",
     secondary: "Voir les offres",
     trust: ["L’IA prépare", "Un humain décide", "Chaque décision est tracée"],
-    howEyebrow: "Trois plans",
+    howEyebrow: "Trois niveaux",
     howTitle: "Du quotidien aux grands choix, jusqu’à la transformation.",
     how: [
       ["Supply · opérationnel", "Les ruptures du quotidien : repérées tôt dans vos données, avec la réponse recommandée et son pourquoi."],
       ["Supply · stratégique", "Réseau, sourcing, stocks : arbitrer les grands choix en comparant les options sur les mêmes critères."],
-      ["Programmes de transformation", "Aura Architect industrialise le cadrage : un agent architecte qui raisonne, pour accélérer et dé-risquer le programme."],
+      ["Programmes de transformation", "Aura Architect industrialise le cadrage : le jumeau numérique de l’architecte, qui raisonne et dialogue, pour accélérer et sécuriser le programme."],
     ],
     sustain: ["Durabilité", "Réduire l’empreinte CO2 du transport, fiabiliser le reporting CSRD, maîtriser les risques ESG et le devoir de vigilance chez vos fournisseurs : ces critères entrent dans chaque décision, à côté du coût, du service et du risque."],
     offersEyebrow: "Offres",
@@ -40,13 +40,13 @@ const copy = {
     offersCta: "Détail des offres",
     engineEyebrow: "Le moteur de décision",
     engineTitle: "Un arbitrage que l’on peut relire et défendre.",
-    engineLead: "Problème : les grands arbitrages se jouent sur la meilleure présentation. Aura compare les options sur les mêmes critères, choisit la meilleure réponse en expliquant pourquoi, et un humain signe.",
+    engineLead: "Problème : les grands arbitrages se jouent sur la meilleure présentation. Aura compare les options sur les mêmes critères, recommande la meilleure réponse en expliquant pourquoi, et un humain signe.",
     engine: [
       ["Comparer", "Chaque option est évaluée sur son potentiel de gain et son risque de dégradation, sans pondérations arbitraires."],
       ["Prouver", "Chaque verdict garde ses critères, ses hypothèses, ses sources et la personne qui a signé."],
       ["Voir où ça bascule", "Le moteur trouve le plus petit changement qui ferait basculer le choix."],
     ],
-    diMore: "Ce que dit Gartner de la decision intelligence",
+    diMore: "Ce que dit Gartner de l’aide à la décision",
     diFacts: [
       ["50 %", "des décisions métier assistées ou automatisées par des agents d’IA d’ici 2027, selon Gartner.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
       ["40 %+", "des projets d’IA agentique abandonnés d’ici fin 2027 : coûts, valeur floue, risques mal maîtrisés.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
@@ -55,7 +55,7 @@ const copy = {
     diArticle: "Où se situe Aura",
     archEyebrow: "Pour les DSI",
     archTitle: "Une transformation du SI à défendre en comité.",
-    archLead: "Aura Architect n’est pas un logiciel de référentiel d’architecture classique : c’est une sorte de jumeau numérique de l’architecte, qui raisonne et échange avec les acteurs de la transformation. Résultat : un cadrage industrialisé, un programme accéléré et dé-risqué.",
+    archLead: "Aura Architect n’est pas un logiciel de référentiel d’architecture classique : c’est une sorte de jumeau numérique de l’architecte, qui raisonne et échange avec les acteurs de la transformation. Résultat : un cadrage industrialisé, un programme accéléré et sécurisé.",
     archImpact: "Un grand programme SI dépasse son budget de 45 % en moyenne (McKinsey et Université d’Oxford).",
     archCta: "Découvrir Aura Architect",
     trustEyebrow: "Confiance",
@@ -67,8 +67,8 @@ const copy = {
   },
   en: {
     eyebrow: "Decision intelligence · supply chain · transformation",
-    title: "Master disruptions, before they cost you.",
-    lead: "Aura spots the disruption in your data, compares the options and recommends the best response, explaining why. Your teams decide, with a record to show the board.",
+    title: "See disruptions coming, decide in time.",
+    lead: "Aura builds on the data in your systems to spot the disruption, understand its causes, compare the options and argue a recommendation. Your teams decide, with a record to put before the board.",
     three: [
       ["For whom", "Supply chain, procurement, IT and transformation programme leaders."],
       ["The stakes", "Keep service up despite disruptions, and deliver your ambitions: growth, new markets, a more agile network, CSR, transformation."],
@@ -82,7 +82,7 @@ const copy = {
     how: [
       ["Supply · operational", "Day-to-day shortages: spotted early in your data, with the recommended response and its reasons."],
       ["Supply · strategic", "Network, sourcing, stock: settle the big choices by comparing options on the same criteria."],
-      ["Transformation programmes", "Aura Architect industrialises scoping: an architect agent that reasons, to speed up and de-risk the programme."],
+      ["Transformation programmes", "Aura Architect industrialises scoping: a digital twin of the architect that reasons and engages in dialogue, to speed up and de-risk the programme."],
     ],
     sustain: ["Sustainability", "Cutting transport CO2, making CSRD reporting reliable, managing ESG risk and supplier due diligence: these criteria are part of every decision, alongside cost, service and risk."],
     offersEyebrow: "Offers",
@@ -90,7 +90,7 @@ const copy = {
     offersCta: "Offer details",
     engineEyebrow: "The decision engine",
     engineTitle: "A trade-off you can re-read and defend.",
-    engineLead: "Problem: big trade-offs are won by the best slide deck. Aura compares options on the same criteria, picks the best response and explains why, and a person signs.",
+    engineLead: "Problem: big trade-offs are won by the best slide deck. Aura compares options on the same criteria, recommends the best response and explains why, and a person signs.",
     engine: [
       ["Compare", "Each option is rated on its upside and its risk of degradation, with no arbitrary weights."],
       ["Prove", "Every verdict keeps its criteria, assumptions, sources and the person who signed it."],
