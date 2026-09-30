@@ -1124,11 +1124,11 @@ export const siteProducts: ProductKey[] = ["supply", "architect"];
 const resilience: Sprint = {
   key: "resilience",
   product: "supply",
-  name: ["Sprint Résilience", "Resilience Sprint"],
-  duration: ["4 à 6 semaines", "4 to 6 weeks"],
+  name: ["Diagnostic express", "Express diagnostic"],
+  duration: ["Environ 2 semaines", "About 2 weeks"],
   promise: [
-    "En quelques semaines, votre risque prioritaire est surveillé sur vos propres données, et la première alerte réelle devient une décision signée.",
-    "Within weeks, your priority risk is monitored on your own data, and the first real alert becomes a signed decision.",
+    "Vos cinq risques supply les plus coûteux, chiffrés, avec une décision recommandée pour chacun, restitués en comité.",
+    "Your five costliest supply risks, costed, with a recommended decision for each, presented to your committee.",
   ],
   trigger: [
     "Un risque récurrent que vous découvrez trop tard : ruptures, retards fournisseurs, couverture de stock qui fond.",
@@ -1235,7 +1235,7 @@ const resilience: Sprint = {
     "Licence Aura Supply Chain : vous étendez à d’autres risques, sources et sites, et le cockpit entre dans le quotidien des équipes.",
     "Aura Supply Chain licence: you extend to more risks, sources and sites, and the cockpit becomes part of your teams’ daily routine.",
   ],
-  outcome: ["Cockpit vivant sur votre SI", "Live cockpit on your systems"],
+  outcome: ["Top 5 des risques chiffrés, une décision recommandée par risque, restitution en comité", "Top 5 costed risks, one recommended decision per risk, committee read-out"],
 };
 
 const decision: Sprint = {
@@ -1341,7 +1341,7 @@ const architecture: Sprint = {
   key: "architecture",
   product: "architect",
   name: ["Sprint Architecture", "Architecture Sprint"],
-  duration: ["2 à 4 semaines", "2 to 4 weeks"],
+  duration: ["4 à 6 semaines", "4 to 6 weeks"],
   promise: [
     "Votre programme cadré avant d’engager le budget : une cible, une trajectoire et un dossier d’architecture dont vos équipes et vos intégrateurs peuvent partir.",
     "Your programme framed before the budget is committed: a target, a roadmap and an architecture file your teams and integrators can work from.",
@@ -1419,7 +1419,7 @@ const architecture: Sprint = {
     "Licence Aura Architect pour tenir le modèle, les dossiers et la trajectoire à jour pendant tout le programme.",
     "Aura Architect licence to keep the model, files and roadmap current throughout the programme.",
   ],
-  outcome: ["Cartographie, cible, feuille de route et spécification", "Map, target, roadmap and specification"],
+  outcome: ["Dossier d’architecture : cible, écarts, feuille de route, choix argumentés", "Architecture case: target, gaps, roadmap, reasoned choices"],
 };
 
 export const sprints: Record<SprintKey, Sprint> = { resilience, decision, architecture };

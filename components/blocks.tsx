@@ -15,7 +15,8 @@ export function zoomLabels(dict: Dictionary): ZoomLabels {
 }
 
 export function sprintHref(locale: Locale, product: ProductKey) {
-  return `${routes[locale].sprints}#${products[product].sprint}`;
+  const anchor = { resilience: "diagnostic", decision: "decide", architecture: "architecture" }[products[product].sprint];
+  return `${routes[locale].sprints}#${anchor}`;
 }
 
 export function SectionHead({

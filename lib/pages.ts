@@ -18,11 +18,11 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
     decide: product("decide"),
     architect: product("architect"),
     sprints: {
-      title: locale === "fr" ? "Offres résilience et decision intelligence" : "Resilience and decision intelligence offers",
+      title: locale === "fr" ? "Offres : diagnostic, Aura Supply, Sprint Architecture" : "Offers: diagnostic, Aura Supply, Architecture Sprint",
       description:
         locale === "fr"
-          ? "Decision intelligence et résilience : Stress-test résilience, Sprint Résilience, Sprint Architecture. Une décision explicable et traçable, un livrable qui vous appartient."
-          : "Decision intelligence and resilience: Resilience stress test, Resilience Sprint, Architecture Sprint. Explainable, traceable decisions, a deliverable you own.",
+          ? "Decision intelligence et résilience : Diagnostic express, Aura Supply, Sprint Architecture et Décider. Une décision explicable et traçable, un livrable qui vous appartient."
+          : "Decision intelligence and resilience: Express diagnostic, Aura Supply, Architecture Sprint and Decide. Explainable, traceable decisions, a deliverable you own.",
     },
     founder: {
       title: locale === "fr" ? "Le fondateur — pourquoi Aura" : "The founder — why Aura",

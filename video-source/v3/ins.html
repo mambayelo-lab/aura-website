@@ -28,6 +28,8 @@ body{width:1920px;height:1080px;overflow:hidden;background:#0a0b2e;font-family:L
 .shot .side{position:absolute;left:100px;top:330px;width:420px}
 .chip{display:inline-block;font-family:Sora;font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;background:var(--indigo);padding:10px 18px;border-radius:999px;box-shadow:0 0 24px rgba(71,67,230,.8)}
 .shot .tx{font-size:42px;margin-top:26px}
+.ti .ct{top:340px}.ti .sub{font-size:40px;color:#c9cbf0;margin:26px auto 0;max-width:1300px;line-height:1.3}
+.en .ct{top:360px}.en .lg{width:420px}.en .pill{display:inline-block;margin-top:50px;background:#fff;color:#151d52;font-family:Sora;font-weight:700;font-size:38px;padding:22px 48px;border-radius:999px;box-shadow:0 0 40px rgba(165,168,255,.6)}.en .url{margin-top:26px;font-size:26px;color:#c9cbf0}
 .shot .note{margin-top:22px;font-size:20px;color:#b9bce6}
 </style></head><body><div id="root"></div><script>
 const q=new URLSearchParams(location.search);const SPEC=JSON.parse(decodeURIComponent(q.get('s')));
@@ -37,6 +39,8 @@ for(const s of SPEC.scenes){const e=document.createElement('div');e.className='s
  if(s.type==='photo')e.innerHTML=`<img src="${s.img}"><div class="shade"></div><div class="cap"><div class="eb">${s.eb}</div><div class="tx">${s.text}</div></div><img class="logo" src="logo-white.png" style="position:absolute;left:auto;top:56px;width:170px;height:auto;transform:none"><div class="cr">${s.credit}</div>`;
  if(s.type==='carton')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="ct"><div class="eb">${s.eb}</div><div class="tt">${s.title}</div></div><div class="line"></div><div class="steps">${s.steps.map((x,i)=>`<div class="st"><div class="n">${i+1}</div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`;
  if(s.type==='shot')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="side"><span class="chip">${s.chip}</span><div class="tx">${s.text}</div><div class="note">${s.note}</div></div><div class="frame"><img src="${s.img}"></div>`;
+ if(s.type==='ti')e.innerHTML=`<div class="bg"></div><img class="logo" src="logo-white.png"><div class="ct"><div class="eb">${s.eb}</div><div class="tt">${s.title}</div><div class="sub">${s.text||''}</div></div>`;
+ if(s.type==='en')e.innerHTML=`<div class="bg"></div><div class="ct"><img class="lg" src="logo-white.png"><div class="eb" style="margin-top:18px">${s.eb}</div><div class="pill">${s.cta}</div><div class="url">aura-website-one.vercel.app</div></div>`;
  R.appendChild(e);els.push({e,s,t0:T});T+=s.dur;}
 window.TOTAL=T;
 window.render=t=>{
@@ -49,6 +53,7 @@ window.render=t=>{
     const act=Math.min(3,Math.floor(Math.max(0,lt-2.1)/0.45));const on=lt>2.1&&i<=act;x.style.borderColor=on?'#a5a8ff':'rgba(165,168,255,.35)';x.style.background=on?'rgba(71,67,230,.28)':'rgba(255,255,255,.07)'});
    const ln=e.querySelector('.line');ln.style.width=Math.max(0,1460*eo((lt-0.3)/2.0))+'px';ln.style.top='440px';ln.style.opacity=.9;
    const ct=e.querySelector('.ct');ct.style.opacity=eo(lt/0.5);}
+  if(s.type==='ti'||s.type==='en'){const k=eo((lt-0.1)/0.7);const ct=e.querySelector('.ct');ct.style.opacity=k;ct.style.transform=`translateY(${(1-k)*30}px)`;}
   if(s.type==='shot'){const k=eo((lt)/0.7);const f=e.querySelector('.frame');f.style.transform=`translateX(${(1-k)*60}px) scale(${0.96+0.04*k+0.02*lt/d})`;const sd=e.querySelector('.side');const k2=eo((lt-0.2)/0.6);sd.style.opacity=k2;sd.style.transform=`translateY(${(1-k2)*24}px)`;}
  }};
 window.ready=true;

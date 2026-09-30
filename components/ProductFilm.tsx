@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 const copy = {
   fr: {
     play: "Lire le film, avec son :",
-    label: "Film Aura · 89 s",
+    label: "Film Aura",
     impacts: [
       ["Supply", "Chaque rupture anticipée, c’est un coût évité."],
       ["Architect", "Des semaines de schémas ramenées à une conversation."],
@@ -16,7 +16,7 @@ const copy = {
   },
   en: {
     play: "Play the film, with sound:",
-    label: "Aura film · 89 s",
+    label: "Aura film",
     impacts: [
       ["Supply", "Every shortage anticipated is a cost avoided."],
       ["Architect", "Weeks of diagrams, down to one conversation."],
@@ -34,8 +34,8 @@ export function ProductFilm({ locale, film = "supply", impacts = true }: { local
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const base = `/video/aura-${film}-${locale}`;
-  const secs = film === "supply" ? 100 : 74;
-  const label = `${film === "supply" ? "Aura Supply Chain" : "Aura Architect"} · ${secs} s`;
+  const secs = film === "supply" ? 67 : 65;
+  const label = `${film === "supply" ? "Aura Supply" : "Aura Architect"} · ${secs} s`;
 
   const start = () => {
     const v = ref.current;

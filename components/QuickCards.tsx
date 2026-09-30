@@ -6,9 +6,9 @@ export function QuickCards({ locale }: { locale: Locale }) {
   const r = routes[locale];
   const fr = locale === "fr";
   const cards = [
-    { icon: Radar, product: "supply", href: r.supply, who: fr ? "Directeurs supply chain" : "Supply chain directors", title: "Aura Supply Chain", text: fr ? "Voir venir une rupture, savoir combien de jours vous tenez, choisir la parade et garder la preuve." : "See a disruption coming, know how many days you can hold, choose the response and keep the proof." },
-    { icon: Boxes, product: "architect", href: r.architect, who: fr ? "DSI et architectes" : "CIOs and architects", title: "Aura Architect", text: fr ? "Cadrer ou redresser une transformation du SI : existant, cible, feuille de route, choix justifiés." : "Frame or rescue an IT transformation: current state, target, roadmap, justified choices." },
-    { icon: ClipboardList, product: undefined, href: r.sprints, who: fr ? "Pour démarrer" : "To get started", title: fr ? "Offres" : "Offers", text: fr ? "Trois formats courts, de 10 jours à 6 semaines, sur votre problème réel, avec un livrable que vous gardez." : "Three short formats, from 10 days to 6 weeks, on your real problem, with a deliverable you keep." },
+    { icon: Radar, product: "supply", href: r.supply, who: fr ? "Directeurs supply chain" : "Supply chain directors", title: "Aura Supply Chain", text: fr ? "Le problème : la rupture vue trop tard. Aura l’annonce, la chiffre et vous aide à décider." : "The problem: shortages seen too late. Aura flags them, costs them and helps you decide." },
+    { icon: Boxes, product: "architect", href: r.architect, who: fr ? "DSI et architectes" : "CIOs and architects", title: "Aura Architect", text: fr ? "Le problème : une transformation difficile à défendre. Aura en fait un dossier argumenté." : "The problem: a transformation hard to defend. Aura turns it into a reasoned case." },
+    { icon: ClipboardList, product: undefined, href: r.founder, who: fr ? "Qui est derrière" : "Who is behind it", title: fr ? "Le fondateur" : "The founder", text: fr ? "Pourquoi Aura existe, et la méthode sur laquelle elle s’appuie." : "Why Aura exists, and the method it builds on." },
   ];
   return (
     <section className="section section-tight" aria-label={fr ? "Ce que nous faisons" : "What we do"}>

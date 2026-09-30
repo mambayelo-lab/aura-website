@@ -67,7 +67,7 @@ const en: Dictionary = {
   meta: {
     title: "AURA — Decision intelligence for supply chain resilience",
     description:
-      "Decision intelligence for supply chain resilience and IT transformation: explainable, traceable decisions. AI agents prepare the trade-off, a human decides, every decision comes with proof. Resilience stress test, Resilience Sprint, Architecture Sprint.",
+      "Decision intelligence for supply chain resilience and IT transformation: explainable, traceable decisions. AI agents prepare the trade-off, a human decides, every decision comes with proof. Express diagnostic, Aura Supply, Architecture Sprint.",
   },
   nav: {
     home: "AURA home",
@@ -77,7 +77,7 @@ const en: Dictionary = {
     insights: "Insights",
     contact: "Contact",
     applications: "Applications",
-    cta: "Book a scoping call",
+    cta: "Book a diagnostic",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     language: "Language",
@@ -107,7 +107,7 @@ const en: Dictionary = {
   contact: {
     eyebrow: "Contact",
     title: "Tell us what is holding you back.",
-    lead: "A risk you see too late, a decision that drags on, a programme that drifts: a few lines are enough. We get back to you with a first read of the problem, the right entry point and a sprint proposal.",
+    lead: "A risk you see too late, a decision that drags on, a programme that drifts: a few lines are enough. We get back to you with a first read of the problem, the right entry point and a proposal.",
     includeTitle: "Helpful to include",
     include: [
       "The problem, and what it is costing you today",
@@ -122,8 +122,8 @@ const en: Dictionary = {
       company: "Company",
       interest: "Which entry point?",
       interests: [
-        "Risks spotted too late: Aura Supply Chain, Resilience Sprint",
-        "A first measure of exposure: Resilience stress test",
+        "My costliest supply risks, costed: Express diagnostic",
+        "Risks spotted too late, every day: Aura Supply",
         "A transformation to frame: Aura Architect, Architecture Sprint",
         "Not sure yet: let’s talk it through",
       ],
@@ -142,8 +142,8 @@ const en: Dictionary = {
   cta: {
     eyebrow: "Next step",
     title: "Bring us a real problem. Leave with a plan to solve it.",
-    lead: "In a 45-minute call, we clarify what is at stake, choose the right entry point and set the sprint: inputs, schedule, deliverable.",
-    button: "Book a scoping call",
+    lead: "In a 45-minute call, we clarify what is at stake, choose the right entry point and set the offer: inputs, schedule, deliverable.",
+    button: "Book a diagnostic",
     secondary: "See the offers",
   },
   footer: {
@@ -165,7 +165,7 @@ const fr: Dictionary = {
   meta: {
     title: "AURA — Decision intelligence et résilience supply chain",
     description:
-      "Decision intelligence pour la résilience supply chain et la transformation du SI : une décision explicable et traçable. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision. Stress-test résilience, Sprint Résilience, Sprint Architecture.",
+      "Decision intelligence pour la résilience supply chain et la transformation du SI : une décision explicable et traçable. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision. Diagnostic express, Aura Supply, Sprint Architecture.",
   },
   nav: {
     home: "Accueil AURA",
@@ -175,7 +175,7 @@ const fr: Dictionary = {
     insights: "Perspectives",
     contact: "Contact",
     applications: "Applications",
-    cta: "Réserver un cadrage",
+    cta: "Réserver un diagnostic",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
     language: "Langue",
@@ -205,7 +205,7 @@ const fr: Dictionary = {
   contact: {
     eyebrow: "Contact",
     title: "Dites-nous ce qui vous freine.",
-    lead: "Un risque vu trop tard, une décision qui traîne, un programme qui dérive : quelques lignes suffisent. Nous revenons vers vous avec une première lecture du problème, le bon point d’entrée et une proposition de sprint.",
+    lead: "Un risque vu trop tard, une décision qui traîne, un programme qui dérive : quelques lignes suffisent. Nous revenons vers vous avec une première lecture du problème, le bon point d’entrée et une proposition.",
     includeTitle: "Utile à préciser",
     include: [
       "Le problème, et ce qu’il vous coûte aujourd’hui",
@@ -220,8 +220,8 @@ const fr: Dictionary = {
       company: "Entreprise",
       interest: "Quel point d’entrée ?",
       interests: [
-        "Risques vus trop tard : Aura Supply Chain, Sprint Résilience",
-        "Une première mesure de l’exposition : Stress-test résilience",
+        "Mes risques supply les plus coûteux, chiffrés : Diagnostic express",
+        "Des risques vus trop tard, au quotidien : Aura Supply",
         "Une transformation à cadrer : Aura Architect, Sprint Architecture",
         "Je ne sais pas encore : parlons-en",
       ],
@@ -240,8 +240,8 @@ const fr: Dictionary = {
   cta: {
     eyebrow: "Prochaine étape",
     title: "Apportez-nous un vrai problème. Repartez avec un plan pour le résoudre.",
-    lead: "En 45 minutes d’échange, nous clarifions l’enjeu, choisissons le bon point d’entrée et calons le sprint : entrées, calendrier, livrable.",
-    button: "Réserver un cadrage",
+    lead: "En 45 minutes d’échange, nous clarifions l’enjeu, choisissons le bon point d’entrée et calons l’offre : entrées, calendrier, livrable.",
+    button: "Réserver un diagnostic",
     secondary: "Voir les offres",
   },
   footer: {
