@@ -104,7 +104,7 @@ export const articlesFr: Article[] = [
   {
     slug: "control-tower-decision-operating-system",
     category: "Supply Chain",
-    title: "De la Control Tower au Decision Operating System",
+    title: "Des alertes aux décisions : le Decision Operating System",
     standfirst: "Votre tour de contrôle signale le retard fournisseur, et la suite se joue encore dans Excel, par e-mail et en réunion. Une alerte n’a de valeur que si elle conduit à un arbitrage, une action et un apprentissage.",
     readTime: "7 min",
     body: [

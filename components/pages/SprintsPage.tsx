@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight, Radar, Ban, Check, Repeat, Target, Rocket, Infinity as Loop } from "lucide-react";
 import { FlowStrip } from "../FlowStrip";
 import { ArchitectOffer } from "../ArchitectOffer";
+import { CostTiles } from "../CostTiles";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { localize, products, sprints, tr, type SprintKey } from "@/content/products";
@@ -132,6 +133,8 @@ export function SprintsPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <CostTiles locale={locale} alt />
+
       <section className="section section-tight" id="stress-test" data-product="supply">
         <div className="container">
           {(() => {
@@ -139,7 +142,7 @@ export function SprintsPage({ locale }: { locale: Locale }) {
               locale === "fr"
                 ? {
                     eyebrow: "Aura Supply Chain · environ 10 jours",
-                    title: "Stress-test résilience",
+                    title: "Stress-test résilience : combien de jours tenez-vous ?",
                     lead: "Avant d’investir, savoir où la chaîne casse. On retire chaque nœud critique, un par un, et on mesure combien de temps vous servez encore la demande. Méthode inspirée des travaux publiés de David Simchi-Levi (MIT) sur le temps de survie et le temps de reprise.",
                     blocks: [
                       ["Carte d’exposition", "Fournisseurs de rang 1 et, quand c’est possible, de rang 2, sites, routes et points de passage (détroits, ports)."],
@@ -152,7 +155,7 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                   }
                 : {
                     eyebrow: "Aura Supply Chain · about 10 days",
-                    title: "Resilience stress test",
+                    title: "Resilience stress test: how many days can you hold?",
                     lead: "Before investing, find out where the chain breaks. We remove each critical node, one at a time, and measure how long you can still meet demand. Method inspired by David Simchi-Levi’s (MIT) published work on time-to-survive and time-to-recover.",
                     blocks: [
                       ["Exposure map", "Tier-1 suppliers and, where possible, tier-2, sites, routes and chokepoints (straits, ports)."],
@@ -166,6 +169,9 @@ export function SprintsPage({ locale }: { locale: Locale }) {
             return (
               <>
                 <SectionHead eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
+                <p className="impact-line" style={{ marginBottom: 24 }}>
+                  {locale === "fr" ? "Sachez combien de jours vous tenez si un fournisseur, un site ou une route tombe." : "Know how many days you can hold if a supplier, a site or a route goes down."}
+                </p>
                 <div className="grid-4">
                   {t.blocks.map(([title, text]) => (
                     <div key={title} className="offer-card">
@@ -240,6 +246,15 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                   <h2 className="h2">{l(s.name)}</h2>
                   <p className="sprint-duration mono">{l(s.duration)}</p>
                   <p className="lead">{l(s.promise)}</p>
+                  <p className="impact-line">
+                    {key === "resilience"
+                      ? locale === "fr"
+                        ? "Quand la chaîne casse, vous perdez de l’argent tant qu’il n’y a pas de décision. Aura transforme l’alerte en arbitrage justifiable en quelques minutes, pas en quelques réunions."
+                        : "When the chain breaks, you lose money for as long as no decision is made. Aura turns the alert into a defensible trade-off in minutes, not in meetings."
+                      : locale === "fr"
+                        ? "Un grand programme SI dépasse son budget de 45 % en moyenne (McKinsey et Université d’Oxford). Aura rend visibles l’impact, les interfaces et les décisions avant l’engagement du budget, pas après."
+                        : "A large IT programme runs 45% over budget on average (McKinsey and University of Oxford). Aura makes the impact, interfaces and decisions visible before the budget is committed, not after."}
+                  </p>
                 </div>
                 <figure className="media sprint-media hide-mobile">
                   <Image src={sprintImages[key].src} alt={l(sprintImages[key].alt)} fill sizes="(max-width: 980px) 100vw, 480px" />

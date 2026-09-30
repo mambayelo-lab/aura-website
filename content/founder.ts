@@ -47,7 +47,7 @@ export const whyAura: { id: string; title: T; short: T; long: T }[] = [
   },
   {
     id: "why-towers",
-    title: ["Votre tour de contrôle affiche des alertes, pas des décisions", "Your control tower shows alerts, not decisions"],
+    title: ["Vos alertes arrivent, les décisions ne suivent pas", "Your alerts arrive, your decisions do not follow"],
     short: [
       "Aura n’en ajoute pas une de plus : c’est la couche qui transforme une alerte venue de SAP, Kinaxis, o9 ou de votre SI industriel en décision explicable, validée, exécutable et mémorisée, sans remplacer ces outils.",
       "Aura does not add yet another one: it is the layer that turns an alert from SAP, Kinaxis, o9 or your industrial systems into a decision that is explainable, validated, actionable and remembered, without replacing those tools.",

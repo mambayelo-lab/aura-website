@@ -11,6 +11,7 @@ import { ProductFilm } from "../ProductFilm";
 import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
 import { ArchitectOffer } from "../ArchitectOffer";
+import { CostTiles } from "../CostTiles";
 import { ZoomCard } from "../zoom/ZoomCard";
 import { localize } from "@/content/products";
 import { homeValue } from "@/content/value";
@@ -23,14 +24,14 @@ const cardImages = {
 
 const copy = {
   fr: {
-    eyebrow: "Aura Supply Chain · résilience",
+    eyebrow: "Decision intelligence · résilience",
     filmEyebrow: "Le film",
     filmTitle: "Aura Supply Chain en 74 secondes",
     title: "Décisions prouvées : voir venir, comprendre, décider — et le prouver.",
     lead: "Un fournisseur qui décroche, un détroit qui se ferme, une pandémie qui déforme la demande. Aura Supply Chain repère le signal, mesure combien de temps votre chaîne tient, et vous fait trancher vite, sur des faits vérifiables, avec une trace à montrer.",
     primary: "Réserver un cadrage",
     secondary: "Voir les offres",
-    trust: ["Validation humaine", "Aucune donnée inventée", "Raisonnement traçable"],
+    trust: ["Des agents IA qui préparent l’arbitrage", "Un humain qui décide", "Une preuve à chaque décision"],
     thesisEyebrow: "Ce qui bloque vos décisions",
     thesisTitle: "Vous avez les données. Il vous manque le chemin jusqu’à la décision.",
     diEyebrow: "Decision Intelligence · repères Gartner",
@@ -38,7 +39,7 @@ const copy = {
     diFacts: [
       ["50 %", "des décisions métier assistées ou automatisées par des agents d’IA d’ici 2027, selon Gartner.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
       ["40 %+", "des projets d’IA agentique abandonnés d’ici fin 2027 : coûts, valeur floue, risques mal maîtrisés.", "Gartner, juin 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
-      ["5 %", "des organisations prendront au moins 10 % de leurs décisions de planification supply chain en autonomie d’ici 2030.", "Gartner, sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
+      ["5 %", "des organisations prendront au moins 10 % de leurs décisions de planification supply chain sans intervention humaine d’ici 2030.", "Gartner, sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
     ],
     diMore: "Ce que dit Gartner, et où se situe Aura",
     founderName: "Mambaye Lo, fondateur",
@@ -71,8 +72,8 @@ const copy = {
     offersEyebrow: "Deux façons de démarrer",
     offersTitle: "Un périmètre court, un livrable que vous gardez.",
     offers: [
-      { name: "Stress-test résilience", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par nœud", "Nœuds critiques : ceux dont le TTR dépasse le TTS", "Plans B priorisés, à valider par vos équipes"] },
-      { name: "Sprint Résilience", duration: "4 à 6 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur de décision", "Décisions tracées dans un journal"] },
+      { name: "Stress-test résilience", impact: "Sachez combien de jours vous tenez si un fournisseur, un site ou une route tombe.", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par nœud", "Nœuds critiques : ceux dont le TTR dépasse le TTS", "Plans B priorisés, à valider par vos équipes"] },
+      { name: "Sprint Résilience", impact: "Quand la chaîne casse, vous perdez de l’argent tant qu’il n’y a pas de décision. Aura transforme l’alerte en arbitrage justifiable en quelques minutes, pas en quelques réunions.", duration: "4 à 6 semaines", question: "Des alertes causales sur vos données et des décisions signées.", points: ["Signaux et règles branchés sur vos flux", "Alertes qui annoncent l’impact avant la rupture", "Options comparées par le moteur de décision", "Décisions tracées dans un journal"] },
     ],
     offersCta: "Détail des offres",
     casesEyebrow: "Cas",
@@ -80,8 +81,8 @@ const copy = {
     credLabel: "Références de méthode",
     cred: "Aura s’appuie sur des travaux publiés : TTS/TTR et stress-test des chaînes critiques (Simchi-Levi, MIT), entreprise résiliente (Sheffi, MIT CTL), équipes humain-IA (Sáenz, MIT CTL), et la thèse de son fondateur sur l’évaluation robuste de décisions. Ce sont des références, pas des partenariats.",
     engineEyebrow: "Notre moteur de décision",
-    engineTitle: "Au cœur de Supply et d’Architect.",
-    engineLead: "Le même moteur évalue les options dans les deux produits. Il n’est pas vendu seul : il fait le travail de décision, vous gardez la main.",
+    engineTitle: "Une décision explicable et traçable, au cœur de Supply et d’Architect.",
+    engineLead: "Le même moteur évalue les options dans les deux produits. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision.",
     engine: [
       ["La thèse", "Une méthode issue de travaux de thèse en évaluation d’architectures : chaque option est qualifiée par son potentiel d’amélioration et son risque de dégradation, sans pondérations arbitraires."],
       ["La preuve", "Chaque verdict garde ses critères, ses hypothèses, ses sources et la personne qui a signé. Six mois plus tard, la décision se relit et se défend."],
@@ -92,18 +93,19 @@ const copy = {
     archLead: "Pour les DSI, les architectes et les responsables de transformation, dans tous les secteurs : cartographie, architecture cible, feuille de route et spécification, avec le même moteur de décision pour trancher les choix d’architecture.",
     archCta: "Découvrir Aura Architect",
     archSprint: "Sprint Architecture, 2 à 4 semaines",
+    archImpact: "Un grand programme SI dépasse son budget de 45 % en moyenne (McKinsey et Université d’Oxford). Aura rend visibles l’impact, les interfaces et les décisions avant l’engagement du budget, pas après.",
     productDetails: "Voir le produit",
     openApp: "Ouvrir l’app",
   },
   en: {
-    eyebrow: "Aura Supply Chain · resilience",
+    eyebrow: "Decision intelligence · resilience",
     filmEyebrow: "The film",
     filmTitle: "Aura Supply Chain in 74 seconds",
     title: "Proven decisions: see it coming, understand, decide — and prove it.",
     lead: "A supplier that slips, a strait that closes, a pandemic that distorts demand. Aura Supply Chain picks up the signal, measures how long your chain can hold, and gets you to a decision fast, on verifiable facts, with a trail you can show.",
     primary: "Book a scoping call",
     secondary: "See the offers",
-    trust: ["Human validation", "No invented data", "Traceable reasoning"],
+    trust: ["AI agents that prepare the trade-off", "A human who decides", "Proof for every decision"],
     thesisEyebrow: "What holds your decisions back",
     thesisTitle: "You have the data. What you lack is the path to a decision.",
     diEyebrow: "Decision Intelligence · Gartner benchmarks",
@@ -111,7 +113,7 @@ const copy = {
     diFacts: [
       ["50%", "of business decisions augmented or automated by AI agents by 2027, according to Gartner.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-17-gartner-announces-top-data-and-analytics-predictions"],
       ["40%+", "of agentic AI projects canceled by the end of 2027: costs, unclear value, inadequate risk controls.", "Gartner, June 2025", "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],
-      ["5%", "of organizations will make at least 10% of their supply chain planning decisions autonomously by 2030.", "Gartner, Sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
+      ["5%", "of organizations will make at least 10% of their supply chain planning decisions without human intervention by 2030.", "Gartner, Sept. 2026", "https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030"],
     ],
     diMore: "What Gartner says, and where Aura stands",
     founderName: "Mambaye Lo, founder",
@@ -144,8 +146,8 @@ const copy = {
     offersEyebrow: "Two ways to start",
     offersTitle: "A short scope, a deliverable you keep.",
     offers: [
-      { name: "Resilience stress test", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time-to-survive (TTS) and time-to-recover (TTR) per node", "Critical nodes: those whose TTR exceeds their TTS", "Prioritised fallback plans, for your teams to validate"] },
-      { name: "Resilience Sprint", duration: "4 to 6 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the decision engine", "Decisions traced in a log"] },
+      { name: "Resilience stress test", impact: "Know how many days you can hold if a supplier, a site or a route goes down.", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time-to-survive (TTS) and time-to-recover (TTR) per node", "Critical nodes: those whose TTR exceeds their TTS", "Prioritised fallback plans, for your teams to validate"] },
+      { name: "Resilience Sprint", impact: "When the chain breaks, you lose money for as long as no decision is made. Aura turns the alert into a defensible trade-off in minutes, not in meetings.", duration: "4 to 6 weeks", question: "Causal alerts on your data and signed decisions.", points: ["Signals and rules wired to your flows", "Alerts that show the impact before the shortage", "Options compared by the decision engine", "Decisions traced in a log"] },
     ],
     offersCta: "Offer details",
     casesEyebrow: "Cases",
@@ -153,8 +155,8 @@ const copy = {
     credLabel: "Methodological references",
     cred: "Aura builds on published work: TTS/TTR and stress tests for critical supply chains (Simchi-Levi, MIT), the resilient enterprise (Sheffi, MIT CTL), human-AI teaming (Sáenz, MIT CTL), and its founder’s doctoral research on robust decision evaluation. These are references, not partnerships.",
     engineEyebrow: "Our decision engine",
-    engineTitle: "At the heart of Supply and Architect.",
-    engineLead: "The same engine evaluates options in both products. It is not sold on its own: it does the decision work, you stay in charge.",
+    engineTitle: "Explainable, traceable decisions, at the heart of Supply and Architect.",
+    engineLead: "The same engine evaluates options in both products. AI agents prepare the trade-off, a human decides, every decision comes with proof.",
     engine: [
       ["The research", "A method drawn from doctoral research on architecture evaluation: each option is rated by its improvement potential and its risk of degradation, with no arbitrary weights."],
       ["The proof", "Every verdict keeps its criteria, assumptions, sources and the person who signed it. Six months later, the decision can be re-read and defended."],
@@ -165,6 +167,7 @@ const copy = {
     archLead: "For CIOs, architects and transformation leads, in every industry: mapping, target architecture, roadmap and specification, with the same decision engine to settle architecture choices.",
     archCta: "Discover Aura Architect",
     archSprint: "Architecture Sprint, 2 to 4 weeks",
+    archImpact: "A large IT programme runs 45% over budget on average (McKinsey and University of Oxford). Aura makes the impact, interfaces and decisions visible before the budget is committed, not after.",
     productDetails: "See the product",
     openApp: "Open the app",
   },
@@ -265,6 +268,8 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <CostTiles locale={locale} />
+
       <section className="section section-tight section-alt" id="offers">
         <div className="container">
           <SectionHead eyebrow={c.offersEyebrow} title={c.offersTitle} />
@@ -274,6 +279,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <p className="sprint-duration mono">{offer.duration}</p>
                 <h3>{offer.name}</h3>
                 <p className="lead">{offer.question}</p>
+                <p className="impact-line">{offer.impact}</p>
                 <ul className="check-list">
                   {offer.points.map((point) => (
                     <li key={point}>
@@ -393,6 +399,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <div>
             <SectionHead eyebrow={c.archEyebrow} title={c.archTitle} lead={c.archLead} />
             <p className="sprint-duration mono">{c.archSprint}</p>
+            <p className="impact-line">{c.archImpact}</p>
             <ArchitectOffer locale={locale} />
             <div className="actions">
               <Link className="btn btn-primary" href={r.architect}>

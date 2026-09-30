@@ -104,7 +104,7 @@ export const articlesEn: Article[] = [
   {
     slug: "control-tower-to-decision-operating-system",
     category: "Supply Chain",
-    title: "From Control Tower to Decision Operating System",
+    title: "From alerts to decisions: the Decision Operating System",
     standfirst: "Your control tower flags the late supplier, and the rest still plays out in spreadsheets, email and meetings. An alert only creates value when it leads to a trade-off, an action and a lesson learned.",
     readTime: "7 min",
     body: [

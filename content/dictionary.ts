@@ -65,9 +65,9 @@ export type Dictionary = {
 
 const en: Dictionary = {
   meta: {
-    title: "AURA — Decide earlier, defend every decision",
+    title: "AURA — Decision intelligence for supply chain resilience",
     description:
-      "Risks spotted too late, strategic questions that drag on, transformation programmes that drift: Aura Supply Chain and Aura Architect, driven by the same decision engine, turn them into traceable decisions, starting with a short sprint on your real problem.",
+      "Decision intelligence for supply chain resilience and IT transformation: explainable, traceable decisions. AI agents prepare the trade-off, a human decides, every decision comes with proof. Resilience stress test, Resilience Sprint, Architecture Sprint.",
   },
   nav: {
     home: "AURA home",
@@ -163,9 +163,9 @@ const en: Dictionary = {
 
 const fr: Dictionary = {
   meta: {
-    title: "AURA — Décidez plus tôt, défendez chaque décision",
+    title: "AURA — Decision intelligence et résilience supply chain",
     description:
-      "Risques vus trop tard, décisions stratégiques qui traînent, transformations qui dérivent : Aura Supply Chain et Aura Architect, portés par le même moteur de décision, les transforment en décisions traçables, en commençant par un sprint court sur votre problème réel.",
+      "Decision intelligence pour la résilience supply chain et la transformation du SI : une décision explicable et traçable. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision. Stress-test résilience, Sprint Résilience, Sprint Architecture.",
   },
   nav: {
     home: "Accueil AURA",
