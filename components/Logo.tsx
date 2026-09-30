@@ -6,8 +6,8 @@ export function Logo({ variant = "dark", className }: { variant?: "dark" | "ligh
       className={className}
       src={variant === "light" ? "/brand/logo-white.png" : "/brand/logo.png"}
       alt="AURA"
-      width={402}
-      height={120}
+      width={201}
+      height={60}
       priority
     />
   );

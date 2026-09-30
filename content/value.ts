@@ -230,7 +230,7 @@ export const sprintsValue: ValueCopy = {
     },
   ],
   costs: [
-    ["De 5 jours à 4 semaines selon le sprint.", "From 5 days to 4 weeks, depending on the sprint."],
+    ["D’environ 10 jours à 6 semaines selon l’offre.", "From about 10 days to 6 weeks, depending on the offer."],
     ["Quelques heures de vos experts, à des moments prévus.", "A few hours of your experts’ time, at scheduled points."],
     ["Aucun outil remplacé, aucune donnée déplacée hors de votre contrôle.", "No tool replaced, no data moved out of your control."],
   ],

@@ -1,6 +1,8 @@
 import { FlowStrip } from "../FlowStrip";
 import { DsiSection } from "../DsiSection";
 import { ProductFilm } from "../ProductFilm";
+import { PainVideos } from "../PainVideos";
+import { SupplyNews } from "../SupplyNews";
 import { BellRing, Search, Scale, LineChart, MessageSquare, Boxes, LayoutGrid } from "lucide-react";
 import { ArrowRight, ArrowUpRight, Ban, Check, Quote } from "lucide-react";
 import Image from "next/image";
@@ -251,6 +253,8 @@ export function ProductPage({
         </section>
       )}
 
+      {key === "supply" && <SupplyNews locale={locale} />}
+      {key === "supply" && <PainVideos locale={locale} alt />}
       {key === "supply" && <DsiSection locale={locale} />}
 
       {heroShot && screensSection}

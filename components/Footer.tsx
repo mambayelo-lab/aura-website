@@ -56,6 +56,16 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 </a>
               </li>
             ))}
+            <li>
+              <a href={appUrls.decide} target="_blank" rel="noopener">
+                Aura {locale === "fr" ? "Décider" : "Decide"} <ArrowUpRight size={13} aria-hidden />
+              </a>
+            </li>
+            <li>
+              <a href="https://maison-lucie-si.vercel.app" target="_blank" rel="noopener">
+                {locale === "fr" ? "Démo SI Maison Lucie" : "Maison Lucie demo system"} <ArrowUpRight size={13} aria-hidden />
+              </a>
+            </li>
           </ul>
           <p className="footer-note">{dict.footer.appsNote}</p>
         </div>
@@ -64,7 +74,11 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <ul>
             <li>
               <Link href={r.founder}>{dict.nav.founder}</Link>
-              <a href="https://fr.linkedin.com/in/mambaye-lo" target="_blank" rel="noopener">LinkedIn</a>
+            </li>
+            <li>
+              <a href="https://fr.linkedin.com/in/mambaye-lo" target="_blank" rel="noopener">
+                LinkedIn <ArrowUpRight size={13} aria-hidden />
+              </a>
             </li>
             <li>
               <Link href={r.insights}>{dict.nav.insights}</Link>

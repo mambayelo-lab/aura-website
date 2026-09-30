@@ -12,6 +12,7 @@ import { HeroSignal } from "../HeroSignal";
 import { DsiSection } from "../DsiSection";
 import { ArchitectOffer } from "../ArchitectOffer";
 import { CostTiles } from "../CostTiles";
+import { PainVideos } from "../PainVideos";
 import { QuickCards } from "../QuickCards";
 import { CompareTools } from "../CompareTools";
 import { ZoomCard } from "../zoom/ZoomCard";
@@ -76,7 +77,7 @@ const copy = {
       ["Décision", "Fiche préremplie : contexte, chiffres, options (réallocation, transport express, second fournisseur). L’équipe complète, choisit et signe."],
     ],
     scenarioCta: "Parcourir la démo Maison Lucie",
-    offersEyebrow: "Deux façons de démarrer",
+    offersEyebrow: "Supply chain : deux façons de démarrer",
     offersTitle: "Un périmètre court, un livrable que vous gardez.",
     offers: [
       { name: "Stress-test résilience", impact: "Sachez combien de jours vous tenez si un fournisseur, un site ou une route tombe.", duration: "Environ 10 jours", question: "Combien de temps votre chaîne tient-elle si un nœud tombe ?", points: ["Carte d’exposition : fournisseurs, sites et routes", "Temps de survie (TTS) et temps de reprise (TTR) par fournisseur, site ou route", "Points critiques : ceux qui mettent plus de temps à repartir que vous ne pouvez tenir", "Plans B priorisés, à valider par vos équipes"] },
@@ -155,7 +156,7 @@ const copy = {
       ["Decision", "Pre-filled form: context, figures, options (reallocation, expedited freight, second source). The team completes it, chooses and signs."],
     ],
     scenarioCta: "Walk through the Maison Lucie demo",
-    offersEyebrow: "Two ways to start",
+    offersEyebrow: "Supply chain: two ways to start",
     offersTitle: "A short scope, a deliverable you keep.",
     offers: [
       { name: "Resilience stress test", impact: "Know how many days you can hold if a supplier, a site or a route goes down.", duration: "About 10 days", question: "How long can your chain hold if a node goes down?", points: ["Exposure map: suppliers, sites and routes", "Time to survive (TTS) and time to recover (TTR) per supplier, site or route", "Critical points: those that take longer to recover than you can hold", "Prioritised fallback plans, for your teams to validate"] },
@@ -223,11 +224,11 @@ const trust: Detail[] = [
   {
     id: "t-sovereign",
     title: ["Souveraineté", "Sovereignty"],
-    summary: ["Hébergement et modèle d’IA décidés avec vous, options européennes comprises.", "Hosting and AI model decided with you, European options included."],
+    summary: ["Hébergement dans l’UE : Vercel à Paris, Supabase en UE, modèle Mistral en UE.", "Hosted in the EU: Vercel in Paris, Supabase in the EU, Mistral model in the EU."],
     body: [
       [
-        "Aura lit vos sources plutôt que de tout copier. Le lieu d’hébergement, le modèle de langage utilisé et la conservation des données sont décidés avec vous, y compris des options souveraines européennes.",
-        "Aura reads your sources rather than copying everything. Hosting location, language model and data retention are decided with you, including European sovereign options.",
+        "Aura lit vos sources plutôt que de tout copier. Par défaut, tout est hébergé dans l’Union européenne : l’application sur Vercel à Paris (cdg1), la base Supabase en UE, le modèle de langage Mistral en UE. La conservation des données se décide avec vous.",
+        "Aura reads your sources rather than copying everything. By default everything is hosted in the European Union: the application on Vercel in Paris (cdg1), the Supabase database in the EU, the Mistral language model in the EU. Data retention is decided with you.",
       ],
     ],
   },
@@ -290,6 +291,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <CostTiles locale={locale} />
+      <PainVideos locale={locale} />
 
       <section className="section section-tight section-alt" id="offers">
         <div className="container">
