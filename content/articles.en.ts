@@ -145,5 +145,29 @@ export const articlesEn: Article[] = [
       "This discipline saves you time from the very first decision while gradually building a lasting asset. Data changes and systems are replaced, but objectives, decisions, constraints and evidence remain organised."
     ],
     takeaways: ["Start with the decision", "Qualify data as decision facts", "Connect progressively", "Preserve memory independently of applications"]
+  },
+  {
+    slug: "case-maritime-strait-disruption",
+    category: "Case",
+    title: "Case: a strait closes, what happens to your Asia → Europe flow?",
+    standfirst: "Illustrative scenario, built from published and dated facts (research as of 29 September 2026). It takes no political position and does not predict how the situation will evolve.",
+    readTime: "4 min",
+    body: [
+      "Bab el-Mandeb, the Red Sea and the Suez Canal on one side, the Strait of Hormuz on the other: a few kilometres of sea shape a large share of trade between Asia and Europe. On 6 August 2026 Lloyd’s List Intelligence reported a 24% drop in traffic through Bab el-Mandeb, mostly tankers, then on 3 September 290 weekly transits in the northern Red Sea, 36% below normal, with the threat level still high.",
+      "Costs follow. The Drewry index stood at $4,465 per 40-foot container on 3 September 2026. In the Gulf, several insurers cancelled war-risk cover from 5 March 2026 (gCaptain). Rerouting via the Cape of Good Hope adds about 5,800 nautical miles between the Far East and the Mediterranean; Xeneta measured a 63% rise in emissions on those voyages in 2024. And since 2026, the EU Emissions Trading System covers a growing share of shipping emissions (EMSA).",
+      "There is no single right answer, but several levers to combine: rerouting via the Cape, sea-air or sea-rail multimodal transport, safety stock, dual sourcing or nearshoring, freight contracts with guaranteed capacity, insurance and force majeure clauses. Each one improves some indicators and degrades others: lead time, freight cost, service level, CO2, stock tied up.",
+      "Aura handles this case in three ways. In Aura Decide, it is offered as an illustrated case, without data. In Aura Supply Chain, a predefined evaluation opens the Understand step with a sourced PESTEL, without waiting for an alert. And when the company’s data show late shipments on a route through Suez, the alert opens this model directly, prefilled with the observed facts.",
+      "The engine does not tell you what to think about the geopolitical situation. It shows, option by option, what improves, what degrades and which blocking point keeps an option from being acceptable. Effects remain assumptions for your teams to confirm."
+    ],
+    takeaways: ["Illustrative scenario, sourced and dated facts", "Five families of levers to combine", "Lead time, freight, service, CO2 and stock assessed together", "Available in Decide and Supply Chain, with or without an alert"],
+    references: [
+      { label: "Lloyd’s List Intelligence, Red Sea Brief (06/08/2026)", href: "https://www.lloydslistintelligence.com/resources/blog/red-sea-brief-6-august-2026" },
+      { label: "Lloyd’s List Intelligence, Red Sea Brief (03/09/2026)", href: "https://www.lloydslistintelligence.com/resources/blog/red-sea-brief-3-september-2026" },
+      { label: "Drewry World Container Index, via DCN (03/09/2026)", href: "https://www.thedcn.com.au/news/world-container-index-3-september-2026" },
+      { label: "gCaptain, marine insurers cancel war risk cover (02/03/2026)", href: "https://gcaptain.com/marine-insurers-cancel-war-risk-iran-hormuz/" },
+      { label: "FreightWaves, Xeneta: diversions fuel spike in carbon emissions (26/04/2024)", href: "https://www.freightwaves.com/news/xeneta-finds-supply-chain-diversions-fuel-spike-in-carbon-emissions" },
+      { label: "EMSA, extension of the EU ETS to maritime transport (consulted 29/09/2026)", href: "https://www.emsa.europa.eu/reducing-emissions/extension-ets.html" },
+      { label: "MIT Sloan Executive Education, Supply Chain Strategy and Management", href: "https://executive.mit.edu/course/supply-chain-strategy-and-management/a056g00000URaN6AAL.html" }
+    ]
   }
 ];

@@ -56,7 +56,14 @@ const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string>
     topic: "architecture",
     image: img("legacy-modern", "Des baies de serveurs anciennes reliées par un faisceau de lumière à des services cloud modernes", "Legacy server racks linked by a beam of light to modern cloud services"),
   },
+  {
+    topic: "supply-chain",
+    image: img("port-night", "Porte-conteneurs à quai de nuit : un flux Asie → Europe exposé à la perturbation d’un détroit", "Container ships at the quay at night: an Asia → Europe flow exposed to a strait disruption"),
+  },
 ];
+
+/** Articles of the « Cas » / « Case » section. */
+export const isCase = (article: Article) => article.category === "Cas" || article.category === "Case";
 
 export type ArticleEntry = Article & {
   index: number;

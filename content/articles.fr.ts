@@ -145,5 +145,29 @@ export const articlesFr: Article[] = [
       "Cette discipline vous fait gagner du temps dès la première décision et construit progressivement un actif durable. Les données changent, les systèmes sont remplacés, mais les objectifs, les décisions, les contraintes et leur preuve restent organisés."
     ],
     takeaways: ["Commencer par la décision", "Qualifier les données comme faits", "Connecter progressivement", "Conserver une mémoire indépendante des applications"]
+  },
+  {
+    slug: "cas-perturbation-detroit-maritime",
+    category: "Cas",
+    title: "Cas : un détroit se ferme, que fait votre flux Asie → Europe ?",
+    standfirst: "Scénario illustratif, construit à partir de faits publiés et datés (recherche du 29 septembre 2026). Il ne prend aucune position politique et ne prédit pas l’évolution de la situation.",
+    readTime: "4 min",
+    body: [
+      "Bab el-Mandeb, la mer Rouge et le canal de Suez d’un côté, le détroit d’Ormuz de l’autre : quelques kilomètres de mer conditionnent une grande partie des flux entre l’Asie et l’Europe. Lloyd’s List Intelligence relevait le 6 août 2026 une baisse de 24 % du trafic à Bab el-Mandeb, surtout pour les pétroliers, puis le 3 septembre 290 passages hebdomadaires au nord de la mer Rouge, 36 % sous le niveau normal, avec un niveau de menace toujours élevé.",
+      "Les coûts suivent. L’indice Drewry s’établissait à 4 465 $ par conteneur de 40 pieds le 3 septembre 2026. Dans le Golfe, plusieurs assureurs ont annulé la couverture risque de guerre à compter du 5 mars 2026 (gCaptain). Contourner par le cap de Bonne-Espérance ajoute environ 5 800 milles nautiques entre l’Extrême-Orient et la Méditerranée ; Xeneta mesurait en 2024 une hausse de 63 % des émissions sur ces trajets. Et depuis 2026, le système européen d’échange de quotas couvre une part croissante des émissions maritimes (EMSA).",
+      "Face à cela, il n’y a pas une bonne réponse mais plusieurs leviers à combiner : reroutage par le cap, multimodal mer-air ou mer-rail, stock de sécurité, double sourcing ou nearshoring, contrats de fret à capacité garantie, assurance et clauses de force majeure. Chacun améliore certains indicateurs et en dégrade d’autres : délai, coût de fret, taux de service, CO2, immobilisation de stock.",
+      "Aura traite ce cas de trois façons. Dans Aura Décider, il est proposé comme cas illustré, sans données. Dans Aura Supply Chain, une évaluation prédéfinie ouvre l’étape Comprendre avec un PESTEL sourcé, sans attendre d’alerte. Enfin, quand les données de l’entreprise montrent des expéditions en retard sur une route qui passe par Suez, l’alerte ouvre directement ce modèle, prérempli avec les faits observés.",
+      "Le moteur ne dit pas ce qu’il faut penser de la situation géopolitique. Il montre, option par option, ce qui s’améliore, ce qui se dégrade et quel point bloquant empêche une option d’être acceptable. Les effets restent des hypothèses à confirmer par vos équipes."
+    ],
+    takeaways: ["Scénario illustratif, faits sourcés et datés", "Cinq familles de leviers, à combiner", "Délai, fret, service, CO2 et stock évalués ensemble", "Disponible dans Décider et dans Supply Chain, avec ou sans alerte"],
+    references: [
+      { label: "Lloyd’s List Intelligence, Red Sea Brief (06/08/2026)", href: "https://www.lloydslistintelligence.com/resources/blog/red-sea-brief-6-august-2026" },
+      { label: "Lloyd’s List Intelligence, Red Sea Brief (03/09/2026)", href: "https://www.lloydslistintelligence.com/resources/blog/red-sea-brief-3-september-2026" },
+      { label: "Drewry World Container Index, via DCN (03/09/2026)", href: "https://www.thedcn.com.au/news/world-container-index-3-september-2026" },
+      { label: "gCaptain, marine insurers cancel war risk cover (02/03/2026)", href: "https://gcaptain.com/marine-insurers-cancel-war-risk-iran-hormuz/" },
+      { label: "FreightWaves, Xeneta: diversions fuel spike in carbon emissions (26/04/2024)", href: "https://www.freightwaves.com/news/xeneta-finds-supply-chain-diversions-fuel-spike-in-carbon-emissions" },
+      { label: "EMSA, extension of the EU ETS to maritime transport (consulted 29/09/2026)", href: "https://www.emsa.europa.eu/reducing-emissions/extension-ets.html" },
+      { label: "MIT Sloan Executive Education, Supply Chain Strategy and Management", href: "https://executive.mit.edu/course/supply-chain-strategy-and-management/a056g00000URaN6AAL.html" }
+    ]
   }
 ];
