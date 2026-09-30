@@ -3709,5 +3709,5 @@ a:hover .media img,
 .display-promise { font-size: clamp(2rem, 3.6vw, 3.1rem); }
 
 /* Film de marque sous le titre de l'accueil : sobre, largeur limitée */
-.hero-film{max-width:560px;margin:1.25rem 0 1.5rem}
+.hero-film{width:100%;max-width:560px;margin:1.25rem 0 1.5rem}
 .hero-film .film-play-label{font-size:.9rem}
