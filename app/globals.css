@@ -3732,3 +3732,14 @@ a:hover .media img,
 /* Film de marque sous le titre de l'accueil : sobre, largeur limitée */
 .hero-film{width:100%;max-width:560px;margin:1.25rem 0 1.5rem}
 .hero-film .film-play-label{font-size:.9rem}
+
+/* Architect showcase */
+.showcase .price-grid,.showcase .price-extras{margin-top:1.5rem}
+.showcase .price-card{display:flex;flex-direction:column;gap:.75rem}
+.showcase .price-card .btn{margin-top:auto;align-self:flex-start}
+.showcase .price-featured{outline:2px solid currentColor;outline-offset:-2px}
+.showcase .price{font-size:1rem;margin:0}
+.showcase .price strong{font-size:1.75rem}
+.showcase .price-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.showcase .price-list li{display:flex;justify-content:space-between;gap:1rem}
+.showcase .price-note{margin-top:1rem}

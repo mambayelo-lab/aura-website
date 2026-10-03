@@ -1,8 +1,8 @@
-import { ProductPage } from "@/components/pages/ProductPage";
+import { ArchitectShowcase } from "@/components/pages/ArchitectShowcase";
 import { metadataFor } from "@/lib/pages";
 
 export const metadata = metadataFor("en", "architect");
 
 export default function Page() {
-  return <ProductPage locale="en" product="architect" />;
+  return <ArchitectShowcase locale="en" />;
 }
