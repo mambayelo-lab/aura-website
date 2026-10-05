@@ -3743,3 +3743,37 @@ a:hover .media img,
 .showcase .price-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
 .showcase .price-list li{display:flex;justify-content:space-between;gap:1rem}
 .showcase .price-note{margin-top:1rem}
+
+/* ---------------------------------- Platform ---------------------------------- */
+.platform { position: relative; overflow: hidden; background: #fff; }
+.platform-hero { padding-top: clamp(88px, 12vw, 140px); }
+.platform-glow {
+  position: absolute; inset: -40% -20% auto; height: 70%; pointer-events: none;
+  background:
+    radial-gradient(42% 55% at 20% 40%, var(--indigo-a10), transparent 70%),
+    radial-gradient(38% 50% at 80% 30%, rgba(21, 29, 82, 0.08), transparent 70%);
+}
+.platform .container { position: relative; }
+.platform-head { max-width: 760px; margin-bottom: 40px; }
+.platform-head .lead { margin-top: 16px; }
+.platform-doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.platform-door { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, #fff, var(--indigo-50)); }
+.platform-door::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 18px 0 0 18px; background: linear-gradient(180deg, var(--indigo-600), #151d52); }
+.platform-door h3 { display: flex; align-items: center; gap: 10px; font-size: 1.35rem; }
+.platform-door h3 svg { color: var(--indigo-600); }
+.platform-door .trust-list { margin: 0; }
+.platform-door .actions { margin-top: auto; }
+.platform-engine { display: grid; grid-template-columns: 56px 1fr; gap: 18px; align-items: start; margin-top: 28px; padding: 24px 28px; border-radius: 18px; color: #fff; background: linear-gradient(120deg, #151d52, var(--indigo-700)); }
+.platform-engine .eyebrow { color: var(--indigo-300); }
+.platform-engine h3 { margin: 4px 0 6px; font-size: 1.4rem; }
+.platform-engine p:last-child { margin: 0; color: rgba(255, 255, 255, 0.85); }
+.platform-engine-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); }
+.platform-principles { margin-top: 40px; }
+.platform-principles .eyebrow { margin-bottom: 14px; }
+.platform-principle { padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.platform-principle h4 { margin: 0 0 6px; font-size: 1.05rem; color: #151d52; }
+.platform-principle p { margin: 0; color: var(--ink-2); }
+@media (max-width: 900px) {
+  .platform-doors { grid-template-columns: 1fr; }
+  .platform-engine { grid-template-columns: 1fr; }
+}

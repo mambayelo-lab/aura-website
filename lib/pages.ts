@@ -14,6 +14,13 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
   });
   const content: Record<PageKey, { title?: string; description?: string }> = {
     home: {},
+    platform: {
+      title: locale === "fr" ? "Plateforme Aura : une plateforme, deux portes, un moteur" : "Aura Platform: one platform, two doors, one engine",
+      description:
+        locale === "fr"
+          ? "Aura Architect pour cadrer et architecturer, Aura Control Tower pour piloter et arbitrer, un moteur de décision commun. Aucune hallucination, traçable de bout en bout, simple."
+          : "Aura Architect to scope and architect, Aura Control Tower to steer and arbitrate, one shared decision engine. No hallucination, traceable end to end, simple.",
+    },
     supply: product("supply"),
     decide: product("decide"),
     architect: product("architect"),

@@ -2,12 +2,13 @@ export const locales = ["en", "fr"] as const;
 export type Locale = (typeof locales)[number];
 
 export type ProductKey = "supply" | "decide" | "architect";
-export type PageKey = "home" | ProductKey | "sprints" | "founder" | "insights" | "contact";
+export type PageKey = "home" | "platform" | ProductKey | "sprints" | "founder" | "insights" | "contact";
 
 /** Public URL of every page, per language. English is served at the root. */
 export const routes: Record<Locale, Record<PageKey, string>> = {
   en: {
     home: "/",
+    platform: "/platform",
     supply: "/products/supply-chain",
     decide: "/#engine",
     architect: "/products/architect",
@@ -18,6 +19,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
   },
   fr: {
     home: "/fr",
+    platform: "/fr/plateforme",
     supply: "/fr/produits/supply-chain",
     decide: "/fr#moteur",
     architect: "/fr/produits/architect",
@@ -33,7 +35,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
  * the applications never link to each other.
  */
 export const appUrls: Record<ProductKey, string> = {
-  supply: "https://aura-decision-zen.vercel.app/cockpit/resilience?section=cockpit",
+  supply: "https://aura-decision-zen.vercel.app",
   decide: "https://aura-decider.vercel.app/cockpit/atelier",
   architect: "https://aura-architect-seven.vercel.app",
 };

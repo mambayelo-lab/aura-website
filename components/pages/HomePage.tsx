@@ -12,6 +12,7 @@ import { HeroSignal } from "../HeroSignal";
 import { ArchitectOffer } from "../ArchitectOffer";
 import { CostTiles } from "../CostTiles";
 import { ZoomCard } from "../zoom/ZoomCard";
+import { PlatformSection } from "./PlatformPage";
 import { localize } from "@/content/products";
 
 const copy = {
@@ -30,8 +31,8 @@ const copy = {
     howEyebrow: "Trois niveaux",
     howTitle: "Du quotidien aux grands choix, jusqu’à la transformation.",
     how: [
-      ["Supply · opérationnel", "Les ruptures du quotidien : repérées tôt dans vos données, avec la réponse recommandée et son pourquoi."],
-      ["Supply · stratégique", "Réseau, sourcing, stocks : arbitrer les grands choix en comparant les options sur les mêmes critères."],
+      ["Control Tower · opérationnel", "Les ruptures du quotidien : repérées tôt dans vos données par des règles causales, avec la réponse recommandée et son pourquoi. Packs Supply, Énergie, …"],
+      ["Décider · stratégique", "Réseau, sourcing, stocks : arbitrer les grands choix en comparant les options sur les mêmes critères, dans les deux applications."],
       ["Programmes de transformation", "Aura Architect industrialise le cadrage : le jumeau numérique de l’architecte, qui raisonne et dialogue, pour accélérer et sécuriser le programme."],
     ],
     sustain: ["Durabilité", "Réduire l’empreinte CO2 du transport, fiabiliser le reporting CSRD, maîtriser les risques ESG et le devoir de vigilance chez vos fournisseurs : ces critères entrent dans chaque décision, à côté du coût, du service et du risque."],
@@ -80,8 +81,8 @@ const copy = {
     howEyebrow: "Three levels",
     howTitle: "From day-to-day to big choices, through to transformation.",
     how: [
-      ["Supply · operational", "Day-to-day shortages: spotted early in your data, with the recommended response and its reasons."],
-      ["Supply · strategic", "Network, sourcing, stock: settle the big choices by comparing options on the same criteria."],
+      ["Control Tower · operational", "Day-to-day shortages: spotted early in your data by causal rules, with the recommended response and its reasons. Supply, Energy packs and more."],
+      ["Decide · strategic", "Network, sourcing, stock: settle the big choices by comparing options on the same criteria, in both applications."],
       ["Transformation programmes", "Aura Architect industrialises scoping: a digital twin of the architect that reasons and engages in dialogue, to speed up and de-risk the programme."],
     ],
     sustain: ["Sustainability", "Cutting transport CO2, making CSRD reporting reliable, managing ESG risk and supplier due diligence: these criteria are part of every decision, alongside cost, service and risk."],
@@ -216,6 +217,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           <HeroSignal locale={locale} />
         </div>
       </section>
+
+      <PlatformSection locale={locale} />
 
       <section className="section section-tight" id="how">
         <div className="container">

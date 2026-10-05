@@ -14,6 +14,7 @@ export function Header({
 }) {
   const r = routes[locale];
   const groups: NavGroup[] = [
+    { label: locale === "fr" ? "Plateforme" : "Platform", href: r.platform },
     {
       label: dict.nav.products,
       items: siteProducts.map((key) => ({

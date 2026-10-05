@@ -75,11 +75,11 @@ export type Sprint = {
 const supply: Product = {
   key: "supply",
   who: ["Pour : directions supply chain, approvisionnements, achats, planification · sponsors DAF et COMEX", "For: supply chain, procurement, buying and planning leaders · sponsored by the CFO and executive committee"],
-  name: ["Aura Supply Chain", "Aura Supply Chain"],
-  short: ["Supply Chain", "Supply Chain"],
+  name: ["Aura Control Tower", "Aura Control Tower"],
+  short: ["Control Tower", "Control Tower"],
   tagline: [
-    "Aura s’appuie sur les données de votre SI : repérez la rupture, comprenez sa cause, décidez avant l’impact client.",
-    "Aura builds on the data in your systems: spot the shortage, understand its cause, decide before your customers feel it.",
+    "La tour de contrôle décisionnelle : elle lit votre SI, applique des règles causales traçables, et chaque alerte ouvre une décision. Packs Supply, Énergie, …",
+    "The decision control tower: it reads your systems, applies traceable causal rules, and every alert opens a decision. Supply, Energy packs and more.",
   ],
   trigger: ["Un risque vu trop tard", "A risk spotted too late"],
   question: [

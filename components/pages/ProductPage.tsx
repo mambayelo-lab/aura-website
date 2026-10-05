@@ -191,7 +191,7 @@ export function ProductPage({
             <div className="actions">
               <AppLink
                 product={key}
-                label={dict.common.openApp}
+                label={key === "architect" ? (locale === "fr" ? "Ouvrir Architect" : "Open Architect") : key === "supply" ? (locale === "fr" ? "Ouvrir Control Tower" : "Open Control Tower") : dict.common.openApp}
                 className="btn btn-ink btn-lg"
               />
               <Link
