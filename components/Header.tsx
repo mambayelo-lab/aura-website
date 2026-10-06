@@ -1,6 +1,8 @@
 import type { Dictionary } from "@/content/dictionary";
 import { siteProducts, products, tr } from "@/content/products";
 import { routes, type Locale } from "@/lib/i18n";
+import { selfServe } from "@/content/architect-extra";
+import { PRICING } from "@/content/home-architect";
 import { HeaderClient, type NavGroup } from "./HeaderClient";
 
 export function Header({
@@ -35,12 +37,12 @@ export function Header({
     <HeaderClient
       locale={locale}
       homeHref={r.home}
-      contactHref={r.contact}
+      contactHref={PRICING}
       groups={groups}
       alternates={alternates}
       labels={{
         home: dict.nav.home,
-        cta: dict.nav.cta,
+        cta: selfServe[locale].trial,
         openMenu: dict.nav.openMenu,
         closeMenu: dict.nav.closeMenu,
         language: dict.nav.language,

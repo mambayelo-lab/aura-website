@@ -2,20 +2,21 @@ export const locales = ["en", "fr"] as const;
 export type Locale = (typeof locales)[number];
 
 export type ProductKey = "supply" | "decide" | "architect";
-export type PageKey = "home" | "platform" | ProductKey | "sprints" | "founder" | "insights" | "contact";
+export type PageKey = "home" | "platform" | ProductKey | "sprints" | "resources" | "founder" | "insights" | "contact";
 
-/** Public URL of every page, per language. English is served at the root. */
+/** Public URL of every page, per language. English is the default language, served under /en (the root redirects there). */
 export const routes: Record<Locale, Record<PageKey, string>> = {
   en: {
-    home: "/",
-    platform: "/platform",
-    supply: "/products/supply-chain",
-    decide: "/#engine",
-    architect: "/products/architect",
-    sprints: "/offers",
-    founder: "/founder",
-    insights: "/insights",
-    contact: "/contact",
+    home: "/en",
+    platform: "/en/platform",
+    supply: "/en/products/supply-chain",
+    decide: "/en#engine",
+    architect: "/en/products/architect",
+    sprints: "/en/offers",
+    resources: "/en/products/architect/resources",
+    founder: "/en/founder",
+    insights: "/en/insights",
+    contact: "/en/contact",
   },
   fr: {
     home: "/fr",
@@ -24,6 +25,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
     decide: "/fr#moteur",
     architect: "/fr/produits/architect",
     sprints: "/fr/offres",
+    resources: "/fr/produits/architect/ressources",
     founder: "/fr/fondateur",
     insights: "/fr/perspectives",
     contact: "/fr/contact",

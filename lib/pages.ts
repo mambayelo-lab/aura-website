@@ -31,6 +31,13 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
           ? "Decision intelligence et résilience : Diagnostic express, Aura Supply, Sprint Architecture et Décider. Une décision explicable et traçable, un livrable qui vous appartient."
           : "Decision intelligence and resilience: Express diagnostic, Aura Supply, Architecture Sprint and Decide. Explainable, traceable decisions, a deliverable you own.",
     },
+    resources: {
+      title: locale === "fr" ? "Ressources Aura Architect : notes de méthode" : "Aura Architect resources: method notes",
+      description:
+        locale === "fr"
+          ? "Des parties prenantes aux capacités ; les règles d’abord, le modèle de langage là où il faut du discernement ; des options aux OKR."
+          : "From stakeholders to capabilities; rules first, language models where judgment is needed; from options to OKRs.",
+    },
     founder: {
       title: locale === "fr" ? "Le fondateur — pourquoi Aura" : "The founder — why Aura",
       description:

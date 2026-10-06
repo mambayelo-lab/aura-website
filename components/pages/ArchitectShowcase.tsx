@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
-import { appUrls, routes, type Locale } from "@/lib/i18n";
+import { routes, type Locale } from "@/lib/i18n";
 import { Faq, SectionHead } from "../blocks";
+import { PlacementSection, ResourcesSection, SelfServeBanner } from "../ArchitectExtras";
+import { APP, PRICING } from "@/content/home-architect";
+import { selfServe } from "@/content/architect-extra";
 
 const T = {
   fr: {
@@ -112,6 +115,7 @@ const T = {
 export function ArchitectShowcase({ locale }: { locale: Locale }) {
   const t = T[locale];
   const contact = routes[locale].contact;
+  const s = selfServe[locale];
   return (
     <div data-product="architect" className="showcase">
       <section className="hero hero-product dark">
@@ -122,12 +126,13 @@ export function ArchitectShowcase({ locale }: { locale: Locale }) {
             <h1 className="display">{t.h1}</h1>
             <p className="hero-sub">{t.sub}</p>
             <div className="actions">
-              <a className="btn btn-ink btn-lg" href={appUrls.architect} target="_blank" rel="noopener">
-                {t.try} <ArrowUpRight size={16} aria-hidden />
+              <a className="btn btn-ink btn-lg" href={PRICING}>
+                {s.trial} <ArrowUpRight size={16} aria-hidden />
               </a>
-              <Link className="btn btn-secondary btn-lg" href={`${contact}?partner=1`}>
-                {t.partner}
-              </Link>
+              <a className="btn btn-secondary btn-lg" href={PRICING}>
+                {s.subscribe}
+              </a>
+              <a className="text-link" href={APP}>{s.platform}</a>
               <a className="text-link" href="#tarifs">{t.seePricing}</a>
             </div>
           </div>
@@ -172,7 +177,13 @@ export function ArchitectShowcase({ locale }: { locale: Locale }) {
                 <ul className="check-list">
                   {p.items.map((i) => <li key={i}><Check size={15} aria-hidden />{i}</li>)}
                 </ul>
-                <a className="btn btn-primary" href={appUrls.architect} target="_blank" rel="noopener">{t.try}</a>
+                {p.name === "Solo" ? (
+                  <a className="btn btn-primary" href={PRICING}>{s.trial}</a>
+                ) : "featured" in p && p.featured ? (
+                  <a className="btn btn-primary" href={PRICING}>{s.subscribe}</a>
+                ) : (
+                  <Link className="btn btn-secondary" href={contact}>{s.contact}</Link>
+                )}
               </article>
             ))}
           </div>
@@ -194,7 +205,9 @@ export function ArchitectShowcase({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section section-alt">
+      <PlacementSection locale={locale} alt />
+
+      <section className="section">
         <div className="container">
           <SectionHead eyebrow={t.partnerEyebrow} title={t.partnerTitle} lead={t.partnerLead} />
           <ul className="check-list">
@@ -206,15 +219,19 @@ export function ArchitectShowcase({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section" id="faq">
+      <section className="section section-alt" id="faq">
         <div className="container container-narrow">
           <SectionHead eyebrow="FAQ" title={t.faqTitle} />
           <Faq items={[...t.faq]} />
           <p className="section-foot">
-            <a className="btn btn-primary" href={appUrls.architect} target="_blank" rel="noopener">{t.try} <ArrowUpRight size={15} aria-hidden /></a>
+            <a className="btn btn-primary" href={PRICING}>{s.trial} <ArrowUpRight size={15} aria-hidden /></a>
           </p>
         </div>
       </section>
+
+      <ResourcesSection locale={locale} />
+
+      <SelfServeBanner locale={locale} />
     </div>
   );
 }

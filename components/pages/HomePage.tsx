@@ -1,15 +1,14 @@
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getDictionary } from "@/content/dictionary";
 import { routes, type Locale } from "@/lib/i18n";
-import { CtaBanner, SectionHead } from "../blocks";
+import { SectionHead } from "../blocks";
+import { PlacementSection, ResourcesSection, SelfServeBanner } from "../ArchitectExtras";
 import { ModelWeave } from "../ModelWeave";
 import { home, sectors, plans, APP, PRICING } from "@/content/home-architect";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const c = home[locale];
-  const dict = getDictionary(locale);
   const r = routes[locale];
   const L = locale === "fr" ? 0 : 1;
   const shot = (n: string) => `/images/product/architect-v2-${n}-${locale}.webp`;
@@ -135,6 +134,8 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <PlacementSection locale={locale} alt />
+
       {/* Tous secteurs */}
       <section className="section dark ax-dark" id={locale === "fr" ? "secteurs" : "sectors"}>
         <div className="container">
@@ -224,7 +225,9 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <CtaBanner locale={locale} dict={dict} />
+      <ResourcesSection locale={locale} />
+
+      <SelfServeBanner locale={locale} />
     </>
   );
 }

@@ -16,7 +16,7 @@ export default function GlobalNotFound() {
       <body>
         <main className="not-found">
           <div className="hero-backdrop" aria-hidden />
-          <Link href="/" aria-label="AURA">
+          <Link href="/en" aria-label="AURA">
             <Logo className="not-found-logo" />
           </Link>
           <p className="not-found-code">404</p>
@@ -26,7 +26,7 @@ export default function GlobalNotFound() {
             {fr.text}
           </p>
           <div className="hero-actions">
-            <Link className="btn btn-primary" href="/">
+            <Link className="btn btn-primary" href="/en">
               {en.home}
             </Link>
             <Link className="btn btn-secondary" href="/fr" lang="fr">

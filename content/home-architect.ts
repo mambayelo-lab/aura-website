@@ -16,9 +16,9 @@ export const home = {
     eyebrow: "Aura Architect",
     title: "Le jumeau numérique de l’architecte : il apporte les idées, vous les validez d’un clic.",
     lead: "Des besoins des parties prenantes à la décision, Aura construit un modèle d’architecture complet, cohérent et traçable. Testez vos idées et leur cohérence systémique avant d’engager le programme.",
-    trial: "Essayer 14 jours",
+    trial: "Démarrer l’essai de 14 jours",
     seeDemo: "Voir l’application",
-    trialNote: "Offre Solo : essai de 14 jours, annulable en un clic. Hébergement dans l’Union européenne.",
+    trialNote: "En libre-service, sans installation ni rendez-vous. Offre Solo : essai de 14 jours, annulable en un clic. Hébergement dans l’Union européenne.",
     weave: { chains: "Chaînes de valeur", caps: "Capacités", apps: "Applications" },
     heroShotAlt: "Carte des capacités d’Aura Architect sur l’étude démo d’un assureur",
     heroShotCaption: "Carte des capacités générée sur l’étude démo (assureur, hors ligne) : complétude 100 %, éléments « à confirmer » signalés.",
@@ -96,9 +96,9 @@ export const home = {
     eyebrow: "Aura Architect",
     title: "The architect’s digital twin: it brings the ideas, you validate them in one click.",
     lead: "From stakeholder needs to the decision, Aura builds a complete, consistent and traceable architecture model. Test your ideas and their system-wide coherence before committing the programme.",
-    trial: "Try 14 days",
+    trial: "Start 14-day trial",
     seeDemo: "See the application",
-    trialNote: "Solo plan: 14-day trial, cancel in one click. Hosted in the European Union.",
+    trialNote: "Self-service, no installation, no meeting first. Solo plan: 14-day trial, cancel in one click. Hosted in the European Union.",
     weave: { chains: "Value chains", caps: "Capabilities", apps: "Applications" },
     heroShotAlt: "Aura Architect capability map on the insurer demo study",
     heroShotCaption: "Capability map generated on the demo study (insurer, offline): 100% completeness, items “to be confirmed” flagged.",
@@ -192,13 +192,13 @@ type Plan = { name: string; for: string; price: string; unit: string; items: str
 
 export const plans: Record<Locale, Plan[]> = {
   fr: [
-    { name: "Solo", for: "Architecte indépendant, consultant", price: "79 €", unit: "HT / mois", items: ["Essai 14 jours, annulable en 1 clic", "1 utilisateur", "Stratégie, capacités, fonctionnelle, inter-applicatif, BPMN", "1 000 crédits d’analyse / mois"], cta: "Essayer 14 jours", href: PRICING },
+    { name: "Solo", for: "Architecte indépendant, consultant", price: "79 €", unit: "HT / mois", items: ["Essai 14 jours, annulable en 1 clic", "1 utilisateur", "Stratégie, capacités, fonctionnelle, inter-applicatif, BPMN", "1 000 crédits d’analyse / mois"], cta: "Démarrer l’essai de 14 jours", href: PRICING },
     { name: "Socle (Équipe)", for: "Équipe d’architecture, DSI", price: "129 €", unit: "HT / utilisateur / mois", items: ["Organisation, membres et rôles", "Collaboration et revue", "Tout le périmètre Solo", "1 000 crédits d’analyse / utilisateur / mois"], cta: "Souscrire", href: PRICING, featured: true },
     { name: "Entreprise", for: "Groupe, cabinet, secteur public", price: "129 €", unit: "HT / utilisateur / mois + forfait dès 6 000 € HT / an", items: ["Toutes les options incluses", "Connecteurs au choix", "Accompagnement méthode", "Conditions contractuelles sur devis"], cta: "Nous contacter", href: "/fr/contact" },
   ],
   en: [
-    { name: "Solo", for: "Independent architect, consultant", price: "€79", unit: "excl. VAT / month", items: ["14-day trial, cancel in 1 click", "1 user", "Strategy, capabilities, functional, integration, BPMN", "1,000 analysis credits / month"], cta: "Try 14 days", href: PRICING },
+    { name: "Solo", for: "Independent architect, consultant", price: "€79", unit: "excl. VAT / month", items: ["14-day trial, cancel in 1 click", "1 user", "Strategy, capabilities, functional, integration, BPMN", "1,000 analysis credits / month"], cta: "Start 14-day trial", href: PRICING },
     { name: "Core (Team)", for: "Architecture team, IT department", price: "€129", unit: "excl. VAT / user / month", items: ["Organisation, members and roles", "Collaboration and review", "Everything in Solo", "1,000 analysis credits / user / month"], cta: "Subscribe", href: PRICING, featured: true },
-    { name: "Enterprise", for: "Group, consulting firm, public sector", price: "€129", unit: "excl. VAT / user / month + platform fee from €6,000 / year", items: ["All options included", "Connectors of your choice", "Method support", "Contract terms on quotation"], cta: "Contact us", href: "/contact" },
+    { name: "Enterprise", for: "Group, consulting firm, public sector", price: "€129", unit: "excl. VAT / user / month + platform fee from €6,000 / year", items: ["All options included", "Connectors of your choice", "Method support", "Contract terms on quotation"], cta: "Contact us", href: "/en/contact" },
   ],
 };

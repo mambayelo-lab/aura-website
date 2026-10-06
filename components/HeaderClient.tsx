@@ -55,7 +55,7 @@ export function HeaderClient({
   }, [open]);
 
   const other: Locale = locale === "en" ? "fr" : "en";
-  const alternateHref = alternates[pathname] ?? (other === "en" ? "/" : "/fr");
+  const alternateHref = alternates[pathname] ?? (other === "en" ? "/en" : "/fr");
   const isActive = (href: string) => (href === homeHref ? pathname === href : pathname.startsWith(href));
 
   const languageSwitch = (
@@ -124,9 +124,9 @@ export function HeaderClient({
           <a className="header-login" href="https://aura-architect-seven.vercel.app">
             {locale === "fr" ? "Se connecter" : "Sign in"}
           </a>
-          <Link className="btn btn-ink btn-sm header-cta" href={contactHref}>
+          <a className="btn btn-ink btn-sm header-cta" href={contactHref}>
             {labels.cta}
-          </Link>
+          </a>
           <button
             type="button"
             className="menu-toggle"
@@ -164,9 +164,9 @@ export function HeaderClient({
             <a className="btn btn-secondary" href="https://aura-architect-seven.vercel.app">
               {locale === "fr" ? "Se connecter" : "Sign in"}
             </a>
-            <Link className="btn btn-primary" href={contactHref}>
+            <a className="btn btn-primary" href={contactHref}>
               {labels.cta} <ArrowRight size={16} aria-hidden />
-            </Link>
+            </a>
           </div>
         </nav>
       </div>
