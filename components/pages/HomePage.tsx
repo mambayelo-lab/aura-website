@@ -77,6 +77,11 @@ export function HomePage({ locale }: { locale: Locale }) {
               </article>
             ))}
           </div>
+          <p className="section-foot">
+            <Link className="text-link" href={r.audiences}>
+              {locale === "fr" ? "Pour qui ? Voir les cinq profils" : "Who it's for: see the five profiles"} <ArrowRight size={15} aria-hidden />
+            </Link>
+          </p>
         </div>
       </section>
 

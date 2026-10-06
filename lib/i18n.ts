@@ -2,7 +2,7 @@ export const locales = ["en", "fr"] as const;
 export type Locale = (typeof locales)[number];
 
 export type ProductKey = "supply" | "decide" | "architect";
-export type PageKey = "home" | "platform" | ProductKey | "sprints" | "resources" | "founder" | "insights" | "contact";
+export type PageKey = "home" | "platform" | ProductKey | "sprints" | "audiences" | "resources" | "founder" | "insights" | "contact";
 
 /** Public URL of every page, per language. English is the default language, served under /en (the root redirects there). */
 export const routes: Record<Locale, Record<PageKey, string>> = {
@@ -13,6 +13,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
     decide: "/en#engine",
     architect: "/en/products/architect",
     sprints: "/en/offers",
+    audiences: "/en/who-its-for",
     resources: "/en/products/architect/resources",
     founder: "/en/founder",
     insights: "/en/insights",
@@ -25,6 +26,7 @@ export const routes: Record<Locale, Record<PageKey, string>> = {
     decide: "/fr#moteur",
     architect: "/fr/produits/architect",
     sprints: "/fr/offres",
+    audiences: "/fr/pour-qui",
     resources: "/fr/produits/architect/ressources",
     founder: "/fr/fondateur",
     insights: "/fr/perspectives",

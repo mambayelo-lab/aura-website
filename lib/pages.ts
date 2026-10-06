@@ -31,6 +31,13 @@ export function metadataFor(locale: Locale, key: PageKey): Metadata {
           ? "Decision intelligence et résilience : Diagnostic express, Aura Supply, Sprint Architecture et Décider. Une décision explicable et traçable, un livrable qui vous appartient."
           : "Decision intelligence and resilience: Express diagnostic, Aura Supply, Architecture Sprint and Decide. Explainable, traceable decisions, a deliverable you own.",
     },
+    audiences: {
+      title: locale === "fr" ? "Pour qui ? Architectes, DSI, transformation, déploiement, cabinets" : "Who it's for: architects, CIOs, transformation, deployment, firms",
+      description:
+        locale === "fr"
+          ? "Cinq profils, pour chacun le problème, ce qu’Aura apporte, le résultat et l’offre adaptée."
+          : "Five profiles, each with the problem, what Aura brings, the result and the plan that fits.",
+    },
     resources: {
       title: locale === "fr" ? "Ressources Aura Architect : notes de méthode" : "Aura Architect resources: method notes",
       description:
