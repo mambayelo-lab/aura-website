@@ -121,6 +121,9 @@ export function HeaderClient({
 
         <div className="header-actions">
           {languageSwitch}
+          <a className="header-login" href="https://aura-architect-seven.vercel.app">
+            {locale === "fr" ? "Se connecter" : "Sign in"}
+          </a>
           <Link className="btn btn-ink btn-sm header-cta" href={contactHref}>
             {labels.cta}
           </Link>
@@ -158,6 +161,9 @@ export function HeaderClient({
           )}
           <div className="mobile-footer">
             {languageSwitch}
+            <a className="btn btn-secondary" href="https://aura-architect-seven.vercel.app">
+              {locale === "fr" ? "Se connecter" : "Sign in"}
+            </a>
             <Link className="btn btn-primary" href={contactHref}>
               {labels.cta} <ArrowRight size={16} aria-hidden />
             </Link>
