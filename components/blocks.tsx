@@ -1,3 +1,4 @@
+import { PRICING } from "@/content/home-architect";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Boxes, Plus, Radar, Scale } from "lucide-react";
 import Link from "next/link";
@@ -232,9 +233,9 @@ export function CtaBanner({ locale, dict }: { locale: Locale; dict: Dictionary }
             <p className="lead">{dict.cta.lead}</p>
           </div>
           <div className="cta-actions">
-            <Link className="btn btn-primary btn-lg" href={routes[locale].contact}>
+            <a className="btn btn-primary btn-lg" href={PRICING}>
               {dict.cta.button} <ArrowRight size={17} aria-hidden />
-            </Link>
+            </a>
             <Link className="btn btn-secondary btn-lg" href={routes[locale].sprints}>
               {dict.cta.secondary}
             </Link>

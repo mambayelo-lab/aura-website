@@ -1,3 +1,4 @@
+import { PRICING } from "@/content/home-architect";
 import { ArrowRight, Ban, Check, CircleCheck, Info, Users } from "lucide-react";
 import Link from "next/link";
 import { CostTiles } from "../CostTiles";
@@ -21,7 +22,7 @@ const copy = {
     deliverables: "Livrables",
     good: "À savoir",
     optional: "En option",
-    cta: "Réserver un diagnostic",
+    cta: "Démarrer l’essai de 14 jours",
     talk: "En parler",
     forWho: "Pour qui",
     notFor: "Pas pour qui",
@@ -49,7 +50,7 @@ const copy = {
     deliverables: "Deliverables",
     good: "Good to know",
     optional: "Optional",
-    cta: "Book a diagnostic",
+    cta: "Start 14-day trial",
     talk: "Talk it through",
     forWho: "For whom",
     notFor: "Not for",
@@ -74,7 +75,6 @@ export function SprintsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   const dict = getDictionary(locale);
   const l = (v: readonly [string, string]) => tr(v, locale);
-  const contact = routes[locale].contact;
 
   return (
     <>
@@ -206,9 +206,9 @@ export function SprintsPage({ locale }: { locale: Locale }) {
                 </div>
 
                 <div className="actions">
-                  <Link className="btn btn-primary" href={contact}>
-                    {o.key === "diagnostic" ? c.cta : c.talk} <ArrowRight size={16} aria-hidden />
-                  </Link>
+                  <a className="btn btn-primary" href={PRICING}>
+                    {c.cta} <ArrowRight size={16} aria-hidden />
+                  </a>
                   {o.product !== "decide" && (
                     <Link className="btn btn-secondary" href={routes[locale][o.product]}>
                       {locale === "fr" ? "Voir le produit" : "See the product"}
@@ -233,9 +233,9 @@ export function SprintsPage({ locale }: { locale: Locale }) {
             ))}
           </dl>
           <div className="actions">
-            <Link className="btn btn-primary" href={contact}>
+            <a className="btn btn-primary" href={PRICING}>
               {c.cta} <ArrowRight size={16} aria-hidden />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

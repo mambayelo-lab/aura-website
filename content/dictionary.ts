@@ -77,7 +77,7 @@ const en: Dictionary = {
     insights: "Insights",
     contact: "Contact",
     applications: "Applications",
-    cta: "Book a diagnostic",
+    cta: "Start 14-day trial",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     language: "Language",
@@ -141,9 +141,9 @@ const en: Dictionary = {
   },
   cta: {
     eyebrow: "Next step",
-    title: "Bring us a real problem. Leave with a plan to solve it.",
-    lead: "In a 45-minute call, we clarify what is at stake, choose the right entry point and set the offer: inputs, schedule, deliverable.",
-    button: "Book a diagnostic",
+    title: "Bring a real problem. Work it on the platform.",
+    lead: "Start the 14-day trial, connect your sources and follow every decision with its proof. Subscribe when you are ready.",
+    button: "Start 14-day trial",
     secondary: "See the offers",
   },
   footer: {
@@ -175,7 +175,7 @@ const fr: Dictionary = {
     insights: "Perspectives",
     contact: "Contact",
     applications: "Applications",
-    cta: "Réserver un diagnostic",
+    cta: "Démarrer l’essai de 14 jours",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
     language: "Langue",
@@ -239,9 +239,9 @@ const fr: Dictionary = {
   },
   cta: {
     eyebrow: "Prochaine étape",
-    title: "Apportez-nous un vrai problème. Repartez avec un plan pour le résoudre.",
+    title: "Apportez un vrai problème. Traitez-le sur la plateforme.",
     lead: "En 45 minutes d’échange, nous clarifions l’enjeu, choisissons le bon point d’entrée et calons l’offre : entrées, calendrier, livrable.",
-    button: "Réserver un diagnostic",
+    button: "Démarrer l’essai de 14 jours",
     secondary: "Voir les offres",
   },
   footer: {
