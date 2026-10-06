@@ -28,7 +28,7 @@ export const home = {
       ["Situation", "Chaque programme exige de relier besoins, capacités, applications, flux et exigences, puis de choisir une trajectoire."],
       ["Complication", "Ce travail est manuel, dispersé entre ateliers, tableurs et schémas. Les incohérences apparaissent tard, quand elles coûtent cher."],
       ["Question", "Comment tester une idée, et ses effets sur tout le système, avant d’engager budget et équipes ?"],
-      ["Réponse", "Un modèle unique, généré à partir de votre demande, vérifié par des règles, où chaque élément dit pourquoi il existe. L’IA propose ; vous validez."],
+      ["Réponse", "Un modèle unique, généré à partir de votre demande, vérifié par des règles, où chaque élément dit pourquoi il existe. Aura propose ; vous validez."],
     ] as Pair[],
     benefitsEyebrow: "Ce que cela vous apporte",
     benefitsTitle: "Chacun y trouve sa réponse, dans son vocabulaire.",
@@ -49,7 +49,7 @@ export const home = {
       ["Décision et plan d’action", "Leviers, options ✦, arbre d’indicateurs, scénarios comparés, OKR et plan d’action."],
     ] as Pair[],
     uniqueEyebrow: "Ce qui rend Aura unique",
-    uniqueTitle: "Une IA qui propose, des règles qui vérifient, un humain qui décide.",
+    uniqueTitle: "Aura propose, des règles vérifient, un humain décide.",
     unique: [
       ["Rien d’inventé", "Ce que la demande n’atteste pas est marqué « à confirmer », jamais présenté comme acquis."],
       ["Complétude mesurée", "Un indicateur de complétude, avec la liste de ce qui reste à confirmer. 100 % sur l’étude démo."],
@@ -73,7 +73,7 @@ export const home = {
     sectorsEyebrow: "Tous secteurs",
     sectorsTitle: "Le même procédé, dans tous les secteurs.",
     sectorsLead: "Pour chaque secteur : un extrait de chaîne de valeur et une idée ✦ proposés par Architect à partir d’une demande type.",
-    sectorsNote: "Exemples produits par la génération hors ligne d’Architect (sans IA générative), sur des demandes types. Les idées ✦ restent « à confirmer ».",
+    sectorsNote: "Exemples produits par la génération hors ligne d’Architect (sans modèle de langage), sur des demandes types. Les idées ✦ restent « à confirmer ».",
     decideEyebrow: "Décider, intégré",
     decideTitle: "La décision est dans le modèle, pas à côté.",
     decideLead: "La force de décision d’Aura est intégrée à Architect : chaque choix d’architecture se compare sur les mêmes critères, et la décision retenue met le modèle à jour.",
@@ -87,7 +87,7 @@ export const home = {
     extras: [
       ["Options", "Data +30 € · Infra & technique +30 € · Backlog & delivery +40 € (HT / utilisateur / mois)"],
       ["Connecteurs", "1 500 € HT / an chacun"],
-      ["Crédits IA", "5 000 crédits : 49 € HT · 25 000 crédits : 199 € HT"],
+      ["Crédits d’analyse", "5 000 crédits : 49 € HT · 25 000 crédits : 199 € HT"],
     ] as Pair[],
     priceNote: "Déjà abonné ?",
     access: "Accéder à la plateforme",
@@ -108,7 +108,7 @@ export const home = {
       ["Situation", "Every programme must link needs, capabilities, applications, flows and requirements, then choose a trajectory."],
       ["Complication", "This work is manual, scattered across workshops, spreadsheets and diagrams. Inconsistencies surface late, when they are expensive."],
       ["Question", "How do you test an idea, and its effects on the whole system, before committing budget and teams?"],
-      ["Answer", "A single model, generated from your request, checked by rules, where every element says why it exists. AI proposes; you validate."],
+      ["Answer", "A single model, generated from your request, checked by rules, where every element says why it exists. Aura proposes; you validate."],
     ] as Pair[],
     benefitsEyebrow: "What you get",
     benefitsTitle: "Everyone finds their answer, in their own words.",
@@ -129,7 +129,7 @@ export const home = {
       ["Decision and action plan", "Levers, ✦ options, KPI tree, compared scenarios, OKRs and action plan."],
     ] as Pair[],
     uniqueEyebrow: "What makes Aura different",
-    uniqueTitle: "AI that proposes, rules that check, a person who decides.",
+    uniqueTitle: "Aura proposes, rules check, a person decides.",
     unique: [
       ["Nothing invented", "Whatever the request does not attest is marked “to be confirmed”, never presented as fact."],
       ["Measured completeness", "A completeness indicator, with the list of what remains to confirm. 100% on the demo study."],
@@ -153,7 +153,7 @@ export const home = {
     sectorsEyebrow: "Every sector",
     sectorsTitle: "One process, across every sector.",
     sectorsLead: "For each sector: an excerpt of the value chain and a ✦ idea proposed by Architect from a typical request.",
-    sectorsNote: "Examples produced by Architect’s offline generation (no generative AI) on typical requests, generated in French and translated here. ✦ ideas remain “to be confirmed”.",
+    sectorsNote: "Examples produced by Architect’s offline generation (no language model) on typical requests, generated in French and translated here. ✦ ideas remain “to be confirmed”.",
     decideEyebrow: "Decide, built in",
     decideTitle: "The decision lives in the model, not beside it.",
     decideLead: "Aura’s decision engine is built into Architect: every architecture choice is compared on the same criteria, and the chosen decision updates the model.",
@@ -167,7 +167,7 @@ export const home = {
     extras: [
       ["Options", "Data +€30 · Infra & technical +€30 · Backlog & delivery +€40 (per user / month)"],
       ["Connectors", "€1,500 / year each"],
-      ["AI credits", "5,000 credits: €49 · 25,000 credits: €199"],
+      ["Analysis credits", "5,000 credits: €49 · 25,000 credits: €199"],
     ] as Pair[],
     priceNote: "Already subscribed?",
     access: "Go to the platform",
@@ -192,13 +192,13 @@ type Plan = { name: string; for: string; price: string; unit: string; items: str
 
 export const plans: Record<Locale, Plan[]> = {
   fr: [
-    { name: "Solo", for: "Architecte indépendant, consultant", price: "79 €", unit: "HT / mois", items: ["Essai 14 jours, annulable en 1 clic", "1 utilisateur", "Stratégie, capacités, fonctionnelle, inter-applicatif, BPMN", "1 000 crédits IA / mois"], cta: "Essayer 14 jours", href: PRICING },
-    { name: "Socle (Équipe)", for: "Équipe d’architecture, DSI", price: "129 €", unit: "HT / utilisateur / mois", items: ["Organisation, membres et rôles", "Collaboration et revue", "Tout le périmètre Solo", "1 000 crédits IA / utilisateur / mois"], cta: "Souscrire", href: PRICING, featured: true },
+    { name: "Solo", for: "Architecte indépendant, consultant", price: "79 €", unit: "HT / mois", items: ["Essai 14 jours, annulable en 1 clic", "1 utilisateur", "Stratégie, capacités, fonctionnelle, inter-applicatif, BPMN", "1 000 crédits d’analyse / mois"], cta: "Essayer 14 jours", href: PRICING },
+    { name: "Socle (Équipe)", for: "Équipe d’architecture, DSI", price: "129 €", unit: "HT / utilisateur / mois", items: ["Organisation, membres et rôles", "Collaboration et revue", "Tout le périmètre Solo", "1 000 crédits d’analyse / utilisateur / mois"], cta: "Souscrire", href: PRICING, featured: true },
     { name: "Entreprise", for: "Groupe, cabinet, secteur public", price: "129 €", unit: "HT / utilisateur / mois + forfait dès 6 000 € HT / an", items: ["Toutes les options incluses", "Connecteurs au choix", "Accompagnement méthode", "Conditions contractuelles sur devis"], cta: "Nous contacter", href: "/fr/contact" },
   ],
   en: [
-    { name: "Solo", for: "Independent architect, consultant", price: "€79", unit: "excl. VAT / month", items: ["14-day trial, cancel in 1 click", "1 user", "Strategy, capabilities, functional, integration, BPMN", "1,000 AI credits / month"], cta: "Try 14 days", href: PRICING },
-    { name: "Core (Team)", for: "Architecture team, IT department", price: "€129", unit: "excl. VAT / user / month", items: ["Organisation, members and roles", "Collaboration and review", "Everything in Solo", "1,000 AI credits / user / month"], cta: "Subscribe", href: PRICING, featured: true },
+    { name: "Solo", for: "Independent architect, consultant", price: "€79", unit: "excl. VAT / month", items: ["14-day trial, cancel in 1 click", "1 user", "Strategy, capabilities, functional, integration, BPMN", "1,000 analysis credits / month"], cta: "Try 14 days", href: PRICING },
+    { name: "Core (Team)", for: "Architecture team, IT department", price: "€129", unit: "excl. VAT / user / month", items: ["Organisation, members and roles", "Collaboration and review", "Everything in Solo", "1,000 analysis credits / user / month"], cta: "Subscribe", href: PRICING, featured: true },
     { name: "Enterprise", for: "Group, consulting firm, public sector", price: "€129", unit: "excl. VAT / user / month + platform fee from €6,000 / year", items: ["All options included", "Connectors of your choice", "Method support", "Contract terms on quotation"], cta: "Contact us", href: "/contact" },
   ],
 };

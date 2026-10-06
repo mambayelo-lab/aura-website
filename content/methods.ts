@@ -9,8 +9,8 @@ export const methods: Record<MethodKey, Detail> = {
     kicker: ["Toujours en ouverture", "Always first"],
     title: ["Analyse systémique", "Systems analysis"],
     summary: [
-      "Acteurs, flux, contraintes et boucles de rétroaction avant toute solution.",
-      "Actors, flows, constraints and feedback loops before any solution.",
+      "Acteurs, flux, contraintes et boucles de rétroaction avant toute réponse.",
+      "Actors, flows, constraints and feedback loops before any answer.",
     ],
     body: [
       [

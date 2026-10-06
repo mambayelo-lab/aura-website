@@ -175,7 +175,7 @@ const supply: Product = {
     why: [
       ["Les tours de contrôle affichent des alertes, mais ne disent ni la cause, ni les options, ni qui décide ; et rien ne relie la décision à la transformation du SI.", "Control towers display alerts, but not the cause, the options or who decides; and nothing links the decision to how your systems evolve."],
       ["Leur branchement au SI réel est long et coûteux ; elles risquent de finir en tableau de bord de plus.", "Wiring them into your real systems is slow and costly; they risk becoming one more dashboard."],
-      ["Une IA générative seule peut produire un chiffre plausible et faux : inacceptable pour engager un fournisseur.", "Generative AI on its own can produce a plausible but wrong figure: not acceptable when you commit a supplier."],
+      ["Un modèle de langage seul peut produire un chiffre plausible et faux : inacceptable pour engager un fournisseur.", "A language model on its own can produce a plausible but wrong figure: not acceptable when you commit a supplier."],
     ],
     gain: [
       ["Le risque repéré dans vos données réelles, avec sa cause et les références touchées.", "The risk spotted in your real data, with its cause and the items affected."],
@@ -361,8 +361,8 @@ const supply: Product = {
       summary: ["Correspondances, règles et décisions sont validées par une personne.", "Mapping, rules and decisions are validated by a person."],
       body: [
         [
-          "Chaque suggestion de l’IA reste en attente jusqu’à validation. Chaque décision est signée par son responsable.",
-          "Every AI suggestion stays pending until validated. Every decision is signed by its owner.",
+          "Chaque suggestion d’Aura reste en attente jusqu’à validation. Chaque décision est signée par son responsable.",
+          "Every Aura suggestion stays pending until validated. Every decision is signed by its owner.",
         ],
       ],
     },
@@ -423,7 +423,7 @@ const supply: Product = {
       ],
     },
     {
-      q: ["L’IA peut-elle déclencher une alerte à tort ?", "Can the AI raise a false alert on its own?"],
+      q: ["Aura peut-elle déclencher une alerte à tort ?", "Can Aura raise a false alert on its own?"],
       a: [
         "Non. Les alertes viennent exclusivement de règles causales évaluées sur vos données réelles. Le modèle de langage aide à relier vos champs au modèle (sous validation humaine) et à expliquer ; il ne crée ni alerte ni chiffre.",
         "No. Alerts come exclusively from causal rules evaluated on your real data. The language model helps map your fields (under human validation) and explain; it creates neither alerts nor figures.",
@@ -453,8 +453,8 @@ const supply: Product = {
   ],
   sprint: "resilience",
   diAnchor: [
-    "Gartner prévoit que des agents d’IA exécuteront de plus en plus de décisions supply chain. Avant de leur en confier, Aura Supply Chain pose des règles causales explicites et une validation humaine tracée.",
-    "Gartner expects AI agents to execute more and more supply chain decisions. Before you hand any over, Aura Supply Chain puts explicit causal rules and traced human validation in place.",
+    "Gartner prévoit que des agents automatiques exécuteront de plus en plus de décisions supply chain. Avant de leur en confier, Aura Supply Chain pose des règles causales explicites et une validation humaine tracée.",
+    "Gartner expects automated agents to execute more and more supply chain decisions. Before you hand any over, Aura Supply Chain puts explicit causal rules and traced human validation in place.",
   ],
 };
 
@@ -481,8 +481,8 @@ const decide: Product = {
     "Your committee debates, postpones, then reopens the file. Aura Decide turns an open question into a reasoned, signed decision you can revisit.",
   ],
   lead: [
-    "Sans donnée préalable ni connexion au SI, Aura Décider conduit votre comité de la question initiale à une décision enregistrée, en cinq étapes : Comprendre, Impacter, Composer, Arbitrer, Suivre. L’IA prépare ; vos décideurs valident chaque étape et signent le verdict.",
-    "With no prior data and no system connection, Aura Decide takes your committee from the initial question to a recorded decision in five steps: Understand, Impact, Compose, Arbitrate, Track. AI prepares; your decision-makers validate each step and sign the verdict.",
+    "Sans donnée préalable ni connexion au SI, Aura Décider conduit votre comité de la question initiale à une décision enregistrée, en cinq étapes : Comprendre, Impacter, Composer, Arbitrer, Suivre. Aura prépare ; vos décideurs valident chaque étape et signent le verdict.",
+    "With no prior data and no system connection, Aura Decide takes your committee from the initial question to a recorded decision in five steps: Understand, Impact, Compose, Arbitrate, Track. Aura prepares; your decision-makers validate each step and sign the verdict.",
   ],
   image: {
     src: "/images/aura/exec-meeting.webp",
@@ -552,8 +552,8 @@ const decide: Product = {
           "Many bad decisions answer the wrong question. The workspace forces you to write down the decision, what is out of scope, who decides, who is consulted and by when.",
         ],
         [
-          "L’IA aide à reformuler et à repérer les angles morts ; elle ne tranche pas.",
-          "AI helps reframe and spot blind spots; it does not decide.",
+          "Aura aide à reformuler et à repérer les angles morts ; elle ne tranche pas.",
+          "Aura helps reframe and spot blind spots; it does not decide.",
         ],
       ],
       example: [
@@ -673,7 +673,7 @@ const decide: Product = {
       },
       {
         name: ["Assistance", "Assistance"],
-        items: [["IA de préparation", "Preparation AI"], ["Arbitrage déterministe", "Deterministic arbitration"]],
+        items: [["Préparation assistée", "Assisted preparation"], ["Arbitrage déterministe", "Deterministic arbitration"]],
       },
       {
         name: ["Registre", "Record"],
@@ -698,11 +698,11 @@ const decide: Product = {
     {
       id: "d-human",
       title: ["Les humains décident", "Humans decide"],
-      summary: ["L’IA prépare ; les décideurs tranchent et signent.", "AI prepares; decision-makers decide and sign."],
+      summary: ["Aura prépare ; les décideurs tranchent et signent.", "Aura prepares; decision-makers decide and sign."],
       body: [
         [
-          "L’IA extrait, reformule et signale les manques. Le verdict et la signature restent humains.",
-          "AI extracts, reframes and flags gaps. The verdict and signature remain human.",
+          "Aura extrait, reformule et signale les manques. Le verdict et la signature restent humains.",
+          "Aura extracts, reframes and flags gaps. The verdict and signature remain human.",
         ],
       ],
     },
@@ -781,7 +781,7 @@ const decide: Product = {
       ],
     },
     {
-      q: ["Quel rôle joue l’IA ?", "What role does AI play?"],
+      q: ["Quel rôle joue le modèle de langage ?", "What role does the language model play?"],
       a: [
         "Elle prépare : reformulation, extraction de faits, repérage des manques. L’arbitrage est explicite et la décision est prise par des personnes.",
         "It prepares: reframing, fact extraction, gap spotting. Arbitration is explicit and the decision is made by people.",
@@ -1035,7 +1035,7 @@ const architect: Product = {
     {
       id: "ar-human",
       title: ["Architectes aux commandes", "Architects in control"],
-      summary: ["L’IA propose, les architectes valident.", "AI proposes, architects validate."],
+      summary: ["Aura propose, les architectes valident.", "Aura proposes, architects validate."],
       body: [["Suggestions de rattachement et de rédaction soumises à validation.", "Linking and drafting suggestions submitted for validation."]],
     },
     {

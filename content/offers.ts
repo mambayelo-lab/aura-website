@@ -29,8 +29,8 @@ const eu: T = [
   "Hosted in the European Union: application on Vercel in Paris, Supabase database in the EU, Mistral model in the EU.",
 ];
 const human: T = [
-  "L’IA prépare, un humain identifié valide et signe chaque décision.",
-  "AI prepares; a named person validates and signs every decision.",
+  "Aura prépare, un humain identifié valide et signe chaque décision.",
+  "Aura prepares; a named person validates and signs every decision.",
 ];
 const price: T = ["Sur devis, fixé après un premier échange.", "On quotation, set after a first call."];
 

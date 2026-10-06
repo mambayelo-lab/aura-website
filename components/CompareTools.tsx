@@ -13,7 +13,7 @@ const rows: { fr: string; en: string; marks: Mark[] }[] = [
   { fr: "Explorer toutes les combinaisons de leviers", en: "Explore every combination of levers", marks: ["no", "no", "yes", "yes"] },
   { fr: "Dire quel plus petit changement ferait basculer la décision", en: "Say which smallest change would flip the decision", marks: ["no", "no", "partial", "yes"] },
   { fr: "Expliquer et tracer chaque décision (exigence de contrôle humain de l’AI Act)", en: "Explain and trace every decision (AI Act human-oversight requirement)", marks: ["no", "no", "no", "yes"] },
-  { fr: "Combiner règles causales, données et IA générative, avec un humain qui décide", en: "Combine causal rules, data and generative AI, with a human who decides", marks: ["no", "partial", "no", "yes"] },
+  { fr: "Combiner règles causales, données et modèle de langage, avec un humain qui décide", en: "Combine causal rules, data and a language model, with a human who decides", marks: ["no", "partial", "no", "yes"] },
 ];
 
 const icon = { yes: Check, partial: Minus, no: X };
@@ -26,7 +26,7 @@ export function CompareTools({ locale }: { locale: Locale }) {
       <div className="container">
         <SectionHead
           eyebrow={fr ? "Ce qu’un outil classique ne sait pas faire" : "What a classic tool cannot do"}
-          title={fr ? "Une IA agentique multi-méthodes, avec un humain qui décide." : "Multi-method agentic AI, with a human who decides."}
+          title={fr ? "Plusieurs méthodes combinées, un humain qui décide." : "Several methods combined, a human who decides."}
           lead={
             fr
               ? "Aura combine des agents de décision, des règles causales, vos données et un modèle de langage. Les agents préparent l’arbitrage ; une personne identifiée le valide et le signe."
@@ -66,8 +66,8 @@ export function CompareTools({ locale }: { locale: Locale }) {
         </div>
         <p className="cred-line">
           {fr
-            ? "« En partie » : un algorithme d’optimisation parcourt les combinaisons et propose des analyses de sensibilité, mais sur des poids chiffrés fixés à l’avance ; une BI applique des règles à des données, sans IA générative ni décision signée."
-            : "“Partly”: an optimisation algorithm searches combinations and offers sensitivity analysis, but on numeric weights set in advance; BI applies rules to data, without generative AI or a signed decision."}
+            ? "« En partie » : un algorithme d’optimisation parcourt les combinaisons et propose des analyses de sensibilité, mais sur des poids chiffrés fixés à l’avance ; une BI applique des règles à des données, sans modèle de langage ni décision signée."
+            : "“Partly”: an optimisation algorithm searches combinations and offers sensitivity analysis, but on numeric weights set in advance; BI applies rules to data, without a language model or a signed decision."}
         </p>
       </div>
     </section>

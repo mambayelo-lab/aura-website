@@ -72,8 +72,8 @@ export const homeValue: ValueCopy = {
   source: {
     figure: ["40 %+", "40%+"],
     text: [
-      "des projets d’IA agentique seront abandonnés d’ici fin 2027, faute de valeur claire ou de coûts maîtrisés. D’où un démarrage court, sur un problème mesurable.",
-      "of agentic AI projects will be canceled by the end of 2027 for lack of clear value or controlled costs. Hence a short start, on a measurable problem.",
+      "des projets d’agents autonomes seront abandonnés d’ici fin 2027, faute de valeur claire ou de coûts maîtrisés. D’où un démarrage court, sur un problème mesurable.",
+      "of autonomous-agent projects will be cancelled by the end of 2027 for lack of clear value or controlled costs. Hence a short start, on a measurable problem.",
     ],
     label: ["Gartner, juin 2025", "Gartner, June 2025"],
     href: "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",

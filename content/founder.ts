@@ -59,14 +59,14 @@ export const whyAura: { id: string; title: T; short: T; long: T }[] = [
   },
   {
     id: "why-ontology",
-    title: ["Vos agents d’IA décideraient sans cadre ni garde-fou", "Your AI agents would decide without a frame or guardrails"],
+    title: ["Vos agents automatiques décideraient sans cadre ni garde-fou", "Your automated agents would decide without a frame or guardrails"],
     short: [
-      "Aura pose d’abord un modèle explicite de votre SI et des règles causales : l’IA agit dans un cadre sûr, sous validation humaine.",
-      "Aura first lays down an explicit model of your systems and causal rules: AI acts within a safe frame, under human validation.",
+      "Aura pose d’abord un modèle explicite de votre SI et des règles causales : les agents agissent dans un cadre sûr, sous validation humaine.",
+      "Aura first lays down an explicit model of your systems and causal rules: agents act within a safe frame, under human validation.",
     ],
     long: [
-      "Brancher des agents d’IA sur un SI que personne ne sait décrire, c’est automatiser l’opacité. Chez Aura, le travail d’architecture précède l’outil. Une ontologie décrit les objets de l’entreprise et leurs relations ; elle simplifie nettement la connexion aux sources existantes. Associée à des règles causales explicites (tel événement, dans tel contexte, produit tel effet), elle donne aux agents d’IA un cadre sûr : l’entreprise peut confier davantage à l’IA sans perdre la maîtrise de ses décisions.",
-      "Plugging AI agents into systems nobody can describe simply automates opacity. At Aura, architecture work comes before the tool. An ontology describes the company’s objects and their relationships; it makes connecting to existing sources far simpler. Combined with explicit causal rules (this event, in this context, produces this effect), it gives AI agents a safe frame: the company can hand more to AI without losing control of its decisions.",
+      "Brancher des agents automatiques sur un SI que personne ne sait décrire, c’est automatiser l’opacité. Chez Aura, le travail d’architecture précède l’outil. Une ontologie décrit les objets de l’entreprise et leurs relations ; elle simplifie nettement la connexion aux sources existantes. Associée à des règles causales explicites (tel événement, dans tel contexte, produit tel effet), elle donne aux agents automatiques un cadre sûr : l’entreprise peut confier davantage à le modèle de langage sans perdre la maîtrise de ses décisions.",
+      "Plugging automated agents into systems nobody can describe simply automates opacity. At Aura, architecture work comes before the tool. An ontology describes the company’s objects and their relationships; it makes connecting to existing sources far simpler. Combined with explicit causal rules (this event, in this context, produces this effect), it gives automated agents a safe frame: the company can hand more to AI without losing control of its decisions.",
     ],
   },
   {

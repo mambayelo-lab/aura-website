@@ -67,7 +67,7 @@ const en: Dictionary = {
   meta: {
     title: "AURA — Decision intelligence for supply chain resilience",
     description:
-      "Decision intelligence for supply chain resilience and IT transformation: explainable, traceable decisions. AI agents prepare the trade-off, a human decides, every decision comes with proof. Express diagnostic, Aura Supply, Architecture Sprint.",
+      "Decision intelligence for supply chain resilience and IT transformation: explainable, traceable decisions. Aura prepares the trade-off, a human decides, every decision comes with proof. Express diagnostic, Aura Supply, Architecture Sprint.",
   },
   nav: {
     home: "AURA home",
@@ -102,7 +102,7 @@ const en: Dictionary = {
   insightsPage: {
     eyebrow: "AURA Perspectives",
     title: "The questions leaders ask before a hard decision.",
-    lead: "Why alerts do not turn into decisions, how to arbitrate under uncertainty, what to demand from AI: practical answers on decision method, supply chain resilience and transformation architecture.",
+    lead: "Why alerts do not turn into decisions, how to arbitrate under uncertainty, what to demand from automated decisions: practical answers on decision method, supply chain resilience and transformation architecture.",
   },
   contact: {
     eyebrow: "Contact",
@@ -165,7 +165,7 @@ const fr: Dictionary = {
   meta: {
     title: "AURA — Decision intelligence et résilience supply chain",
     description:
-      "Decision intelligence pour la résilience supply chain et la transformation du SI : une décision explicable et traçable. Des agents IA qui préparent l’arbitrage, un humain qui décide, une preuve à chaque décision. Diagnostic express, Aura Supply, Sprint Architecture.",
+      "Decision intelligence pour la résilience supply chain et la transformation du SI : une décision explicable et traçable. Aura prépare l’arbitrage, un humain qui décide, une preuve à chaque décision. Diagnostic express, Aura Supply, Sprint Architecture.",
   },
   nav: {
     home: "Accueil AURA",
@@ -200,7 +200,7 @@ const fr: Dictionary = {
   insightsPage: {
     eyebrow: "AURA Perspectives",
     title: "Les questions que se posent les dirigeants avant une décision difficile.",
-    lead: "Pourquoi les alertes ne deviennent pas des décisions, comment arbitrer dans l’incertitude, que demander à l’IA : des réponses concrètes sur la méthode de décision, la résilience supply chain et l’architecture de transformation.",
+    lead: "Pourquoi les alertes ne deviennent pas des décisions, comment arbitrer dans l’incertitude, que demander à un système automatisé : des réponses concrètes sur la méthode de décision, la résilience supply chain et l’architecture de transformation.",
   },
   contact: {
     eyebrow: "Contact",

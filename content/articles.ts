@@ -26,7 +26,7 @@ const shared: { topic: Topic; image?: { src: string; alt: Record<Locale, string>
   },
   {
     topic: "decision",
-    image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : l’IA prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: AI prepares, people decide"),
+    image: img("ai-cadrage", "Cerveau lumineux fait de points reliés, suspendu au-dessus d’un pupitre de contrôle : Aura prépare, l’humain décide", "Glowing brain made of linked dots hovering above a control desk: Aura prepares, people decide"),
   },
   {
     topic: "decision",
