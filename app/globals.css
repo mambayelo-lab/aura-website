@@ -3867,3 +3867,32 @@ a:hover .media img,
   .ax-steps, .ax-scq-list, .ax-card-hero .check-list { grid-template-columns: 1fr; }
 }
 .ax-card-hero .check-list li { color: var(--white); }
+
+/* Passe « futuriste » : sections sombres alternées, verre dépoli, lueurs */
+.ax-dark::after { content: ""; position: absolute; z-index: -1; pointer-events: none; width: 520px; height: 520px; right: -120px; top: -160px; border-radius: 50%; background: radial-gradient(closest-side, rgba(99,102,241,0.35), transparent); filter: blur(10px); }
+.ax-dark .section-head .lead, .ax-dark .lead { color: var(--mist); }
+.ax-dark .ax-card, .ax-dark .ax-sector, .ax-dark .ax-plan, .ax-dark .ax-extras div {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--lilac-a22); color: var(--white);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.ax-dark .ax-card .eyebrow { color: var(--indigo-300); }
+.ax-dark .check-list li { color: var(--mist); }
+.ax-dark .check-list svg { color: var(--indigo-300); }
+.ax-dark .ax-card-hero { background: linear-gradient(135deg, rgba(71,67,230,0.55), rgba(21,29,82,0.6)); border-color: var(--lilac-a45); box-shadow: 0 0 80px -30px var(--indigo-a45); }
+.ax-dark .ax-card-hero .check-list li { color: var(--white); }
+.ax-dark .ax-chain { color: var(--mist); }
+.ax-dark .ax-trend { background: rgba(165,168,255,0.16); color: #dcdcff; border: 1px solid var(--lilac-a22); }
+.ax-dark .ax-fine-dark { color: var(--indigo-300); }
+.ax-dark .ax-plan-for, .ax-dark .ax-price small, .ax-dark .ax-extras dd { color: var(--mist); }
+.ax-dark .ax-plan.is-featured { border: 1px solid var(--indigo-300); background: rgba(71,67,230,0.22); box-shadow: 0 0 70px -20px var(--indigo-a45); }
+.ax-dark .ax-plan.is-featured .btn-primary { background: var(--indigo-600); color: var(--white); }
+.ax-dark .ax-price { font-size: 2.6rem; background: linear-gradient(90deg, #fff, #c7c9ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ax-dark .text-link { color: #c7c9ff; }
+.ax-frame { box-shadow: 0 0 0 1px var(--indigo-a18), 0 30px 70px -40px rgba(10,11,30,0.45), 0 0 60px -30px var(--indigo-a45); }
+.dark .ax-frame { box-shadow: 0 0 0 1px var(--lilac-a22), 0 0 100px -30px rgba(99,102,241,0.6); }
+.ax-light, .ax-scq, #methode, #method, #captures, #screens { background: radial-gradient(60% 50% at 100% 0%, var(--indigo-a06), transparent 70%), var(--white); }
+.ax-scq .h2, #methode .h2, #method .h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
+.ax-scq-list li.is-answer { background: linear-gradient(135deg, var(--indigo-600), var(--navy)); box-shadow: 0 20px 50px -24px var(--indigo-a45); font-size: 1.05rem; }
+.ax-step-n { width: 44px; height: 44px; font-size: 1.15rem; background: linear-gradient(135deg, var(--indigo-400), var(--indigo-700)); }
+.ax-dark .h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); }

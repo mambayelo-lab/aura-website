@@ -59,7 +59,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Ce que cela vous apporte */}
-      <section className="section section-alt" id={locale === "fr" ? "benefices" : "benefits"}>
+      <section className="section dark ax-dark" id={locale === "fr" ? "benefices" : "benefits"}>
         <div className="container">
           <SectionHead eyebrow={c.benefitsEyebrow} title={c.benefitsTitle} lead={c.benefitsLead} />
           <div className="ax-aud">
@@ -100,7 +100,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Ce qui rend Aura unique, avec la preuve */}
-      <section className="section dark" id={locale === "fr" ? "unique" : "different"}>
+      <section className="section dark ax-dark" id={locale === "fr" ? "unique" : "different"}>
         <div className="container">
           <SectionHead eyebrow={c.uniqueEyebrow} title={c.uniqueTitle} />
           <div className="ax-unique">
@@ -136,7 +136,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Tous secteurs */}
-      <section className="section section-alt" id={locale === "fr" ? "secteurs" : "sectors"}>
+      <section className="section dark ax-dark" id={locale === "fr" ? "secteurs" : "sectors"}>
         <div className="container">
           <SectionHead eyebrow={c.sectorsEyebrow} title={c.sectorsTitle} lead={c.sectorsLead} />
           <div className="ax-sectors">
@@ -155,7 +155,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Decide intégré, Supply en vitrine */}
-      <section className="section">
+      <section className="section ax-light">
         <div className="container ax-split">
           <div>
             <SectionHead eyebrow={c.decideEyebrow} title={c.decideTitle} lead={c.decideLead} />
@@ -182,7 +182,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Offres */}
-      <section className="section section-alt" id={locale === "fr" ? "tarifs" : "pricing"}>
+      <section className="section dark ax-dark" id={locale === "fr" ? "tarifs" : "pricing"}>
         <div className="container">
           <SectionHead eyebrow={c.priceEyebrow} title={c.priceTitle} lead={c.priceLead} />
           <div className="ax-plans">
