@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { Illus } from "../Illus";
 import Link from "next/link";
 import { routes, type Locale } from "@/lib/i18n";
 import { SectionHead } from "../blocks";
@@ -13,6 +14,15 @@ export function HomePage({ locale }: { locale: Locale }) {
   const r = routes[locale];
   const L = locale === "fr" ? 0 : 1;
   const shot = (n: string) => `/images/product/architect-v2-${n}-${locale}.webp`;
+  const v3 = (n: string) => `/images/product/v3/${n}-${locale}.webp`;
+  // Hero capability map: wide crop on desktop, tighter crop on phones (art direction).
+  const common = { alt: c.heroShotAlt, priority: true, sizes: "(max-width: 1240px) 100vw, 1180px" };
+  const { props: { srcSet: heroMobile } } = getImageProps({ ...common, src: v3("arch-capacites-m"), width: 800, height: 651 });
+  const { props: heroDesktop } = getImageProps({ ...common, src: v3("arch-capacites"), width: 1600, height: 598 });
+  const gallery: [string, string, number, number][] =
+    locale === "fr"
+      ? [[v3("arch-applicatif"), "Inter-applicatif, niveau exécutif : parties prenantes, canaux, applications et données maîtres", 1600, 1029], [v3("arch-bpmn"), "Processus BPMN 2.0 dérivé des scénarios, avec passerelles et cas d’erreur", 1600, 935], ["/images/product/v3/arch-executif-fr.webp", "Vue exécutive : demande au comité, conditions, budget et délai déduits du modèle", 1200, 1027], [shot("trace"), c.shots[1][1], 1600, 1000]]
+      : [[v3("arch-applicatif"), "Executive-level integration view: stakeholders, channels, applications and master data", 1600, 1188], [v3("arch-bpmn"), "BPMN 2.0 process derived from the scenarios, with gateways and error paths", 1600, 935], [shot("trace"), c.shots[1][1], 1600, 1000], [shot("decider"), c.shots[3][1], 1600, 1000]];
 
   return (
     <>
@@ -37,7 +47,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
         <div className="container" id="demo">
           <figure className="ax-frame">
-            <Image src={shot("capacites")} alt={c.heroShotAlt} width={1600} height={1000} priority sizes="(max-width: 1240px) 100vw, 1180px" />
+            <picture>
+              <source media="(max-width: 640px)" srcSet={heroMobile} />
+              {/* eslint-disable-next-line jsx-a11y/alt-text -- alt is provided through getImageProps */}
+              <img {...heroDesktop} style={{ width: "100%", height: "auto" }} />
+            </picture>
             <figcaption>{c.heroShotCaption}</figcaption>
           </figure>
         </div>
@@ -46,7 +60,10 @@ export function HomePage({ locale }: { locale: Locale }) {
       {/* Situation → complication → question → réponse */}
       <section className="section ax-scq">
         <div className="container">
-          <SectionHead eyebrow={c.scqEyebrow} title={c.scqTitle} />
+          <div className="illus-head">
+            <SectionHead eyebrow={c.scqEyebrow} title={c.scqTitle} />
+            <Illus name="chain" locale={locale} />
+          </div>
           <ol className="ax-scq-list">
             {c.scq.map(([k, v], i) => (
               <li key={k} className={i === 3 ? "is-answer" : undefined}>
@@ -89,7 +106,10 @@ export function HomePage({ locale }: { locale: Locale }) {
       {/* Comment ça marche, 5 temps */}
       <section className="section" id={locale === "fr" ? "methode" : "method"}>
         <div className="container">
-          <SectionHead eyebrow={c.howEyebrow} title={c.howTitle} />
+          <div className="illus-head">
+            <SectionHead eyebrow={c.howEyebrow} title={c.howTitle} />
+            <Illus name="ideaPlan" locale={locale} />
+          </div>
           <ol className="ax-steps">
             {c.steps.map(([t, d], i) => (
               <li key={t}>
@@ -130,9 +150,9 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container">
           <SectionHead eyebrow={c.shotsEyebrow} title={c.shotsTitle} lead={c.shotsLead} />
           <div className="ax-gallery">
-            {c.shots.map(([n, cap]) => (
-              <figure key={n} className="ax-frame">
-                <Image src={shot(n)} alt={cap} width={1600} height={1000} sizes="(max-width: 980px) 100vw, 580px" />
+            {gallery.map(([src, cap, w, h]) => (
+              <figure key={src} className="ax-frame">
+                <Image src={src} alt={cap} width={w} height={h} sizes="(max-width: 980px) 100vw, 580px" />
                 <figcaption>{cap}</figcaption>
               </figure>
             ))}
@@ -184,8 +204,8 @@ export function HomePage({ locale }: { locale: Locale }) {
             </p>
           </div>
           <figure className="ax-frame">
-            <Image src={shot("decider")} alt={c.decideAlt} width={1600} height={1000} sizes="(max-width: 980px) 100vw, 580px" />
-            <figcaption>{c.decideAlt}</figcaption>
+            <Image src={v3("ct-decider")} alt={c.decideAlt} width={1600} height={1002} sizes="(max-width: 980px) 100vw, 580px" />
+            <figcaption>{locale === "fr" ? "Control Tower, Décider : comprendre, impacter, explorer, suivre, avec la bibliothèque de modèles" : "Control Tower, Decide: understand, impact, explore, follow up, with the model library"}</figcaption>
           </figure>
         </div>
       </section>

@@ -118,6 +118,11 @@ export function ProductPage({
     supply: "/images/product/supply-cockpit.webp",
   };
   const heroScreen = p.screens.find((screen) => screen.src === heroShots[key]);
+  // Fresh captures of the live applications (demo data), per language.
+  const heroFresh: Partial<Record<typeof key, [string, number, number, string]>> = {
+    architect: [`/images/product/v3/arch-applicatif-${locale}.webp`, 1600, locale === "fr" ? 1029 : 1188, locale === "fr" ? "Schéma inter-applicatif au niveau exécutif : parties prenantes, canaux, applications et données maîtres, généré depuis le modèle unique" : "Executive-level integration diagram: stakeholders, channels, applications and master data, generated from the single model"],
+    supply: [`/images/product/v3/ct-cockpit-${locale}.webp`, 1600, 911, locale === "fr" ? "Cockpit Control Tower : « Décision requise : 5 alertes au seuil critique » et alertes prioritaires classées par gravité (données de démonstration)" : "Control Tower cockpit: “Decision required: 5 alerts at critical threshold” and priority alerts ranked by severity (demo data)"],
+  };
   const heroShot = Boolean(heroShots[key]);
   const flows = {
     supply: [
@@ -207,10 +212,10 @@ export function ProductPage({
             <figure className="hero-shot">
               <span className="hero-shot-bar" aria-hidden><i /><i /><i /><span>{host}</span></span>
               <Image
-                src={heroShots[key]!}
-                alt={heroScreen ? l(heroScreen.alt) : ""}
-                width={1440}
-                height={900}
+                src={heroFresh[key]?.[0] ?? heroShots[key]!}
+                alt={heroFresh[key]?.[3] ?? (heroScreen ? l(heroScreen.alt) : "")}
+                width={heroFresh[key]?.[1] ?? 1440}
+                height={heroFresh[key]?.[2] ?? 900}
                 sizes="(max-width: 980px) 100vw, 45vw"
                 priority
               />

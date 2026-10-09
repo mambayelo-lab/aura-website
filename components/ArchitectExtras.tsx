@@ -4,6 +4,7 @@ import { routes, type Locale } from "@/lib/i18n";
 import { APP, PRICING } from "@/content/home-architect";
 import { placement, resources, resourcesIntro, selfServe } from "@/content/architect-extra";
 import { SectionHead } from "./blocks";
+import { Illus, Thumb } from "./Illus";
 
 /** Where automation, language models and people each belong. */
 export function PlacementSection({ locale, alt = false }: { locale: Locale; alt?: boolean }) {
@@ -11,7 +12,10 @@ export function PlacementSection({ locale, alt = false }: { locale: Locale; alt?
   return (
     <section className={`section${alt ? " section-alt" : ""}`} id={locale === "fr" ? "repartition" : "placement"}>
       <div className="container">
-        <SectionHead eyebrow={p.eyebrow} title={p.title} lead={p.lead} />
+        <div className="illus-head">
+          <SectionHead eyebrow={p.eyebrow} title={p.title} lead={p.lead} />
+          <Illus name="placement" locale={locale} />
+        </div>
         <div className="grid-3">
           {p.kinds.map((k) => (
             <article key={k.name} className="offer-card" data-product="architect">
@@ -38,8 +42,9 @@ export function ResourcesSection({ locale, alt = false }: { locale: Locale; alt?
       <div className="container">
         <SectionHead eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
         <div className="grid-3">
-          {resources[locale].map((r) => (
+          {resources[locale].map((r, i) => (
             <article key={r.slug} className="offer-card" data-product="architect">
+              <Thumb src={`/images/illustrations/${i === 0 ? "chain" : i === 1 ? "placement" : "idea-plan"}.svg`} alt="" />
               <h3>{r.title}</h3>
               <p>{r.standfirst}</p>
               <Link className="text-link" href={`${base}#${r.slug}`}>
@@ -111,9 +116,10 @@ export function ResourcesPage({ locale }: { locale: Locale }) {
           </div>
         </header>
         <div className="container container-narrow article-body">
-          {resources[locale].map((r) => (
+          {resources[locale].map((r, ri) => (
             <section key={r.slug} id={r.slug} style={{ scrollMarginTop: "6rem" }}>
               <h2 className="h2">{r.title}</h2>
+              <Illus name={(["chain", "placement", "ideaPlan"] as const)[ri % 3]} locale={locale} className="illus-article" />
               <p>
                 <strong>{r.standfirst}</strong>
               </p>

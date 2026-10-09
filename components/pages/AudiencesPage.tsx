@@ -3,6 +3,16 @@ import Link from "next/link";
 import { getDictionary } from "@/content/dictionary";
 import { routes, type Locale } from "@/lib/i18n";
 import { CtaBanner } from "../blocks";
+import { Thumb } from "../Illus";
+
+/* One thumbnail per profile: the screen that matters most to that reader (demo data). */
+const thumbs: [string, number, number, string, string][] = [
+  ["arch-capacites-m", 800, 651, "Capability map", "Carte des capacités"],
+  ["arch-applicatif", 1600, 1100, "Integration view, executive level", "Inter-applicatif, niveau exécutif"],
+  ["ct-decider", 1600, 1002, "Decide: the four-step journey", "Décider : le parcours en quatre temps"],
+  ["ct-studio", 1200, 542, "Studio: add a file or connect sources", "Studio : ajouter un fichier ou connecter les sources"],
+  ["arch-bpmn", 1600, 935, "BPMN process derived from scenarios", "Processus BPMN dérivé des scénarios"],
+];
 
 type Profile = { id: string; who: string; title: string; problem: string[]; brings: string[]; result: string[]; offer: string; note?: string };
 
@@ -146,7 +156,10 @@ export function AudiencesPage({ locale }: { locale: Locale }) {
         <section key={p.id} id={p.id} className={`section section-tight${i % 2 ? " section-alt" : ""}`}>
           <div className="container">
             <p className="eyebrow">{p.who}</p>
-            <h2 className="aud-title">{p.title}</h2>
+            <div className="aud-head">
+              <h2 className="aud-title">{p.title}</h2>
+              <Thumb src={`/images/product/v3/${thumbs[i % 5][0]}-${locale}.webp`} alt={thumbs[i % 5][locale === "fr" ? 4 : 3]} width={thumbs[i % 5][1]} height={thumbs[i % 5][2]} />
+            </div>
             <div className="aud-grid">
               {[p.problem, p.brings, p.result].map((list, k) => (
                 <div key={c.labels[k]} className={`aud-cell${k === 2 ? " is-result" : ""}`}>

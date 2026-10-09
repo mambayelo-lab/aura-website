@@ -2,6 +2,7 @@ import { ArrowRight, Calculator, FileText, Network, PenLine } from "lucide-react
 import Link from "next/link";
 import { routes, type Locale } from "@/lib/i18n";
 import { FlowStrip } from "./FlowStrip";
+import { Illus, Thumb } from "./Illus";
 
 /* Key messages of the Decisions Control Tower engine (EN/FR). */
 const copy = {
@@ -68,9 +69,14 @@ export function DecisionEngine({ locale }: { locale: Locale }) {
   return (
     <section className="section de-section" id={locale === "fr" ? "moteur" : "engine"}>
       <div className="container">
-        <p className="eyebrow">{c.eyebrow}</p>
-        <h2 className="h2 de-title">{c.title}</h2>
-        <p className="lead de-lead">{c.lead}</p>
+        <div className="illus-head">
+          <div>
+            <p className="eyebrow">{c.eyebrow}</p>
+            <h2 className="h2 de-title">{c.title}</h2>
+            <p className="lead de-lead">{c.lead}</p>
+          </div>
+          <Illus name="decision" locale={locale} />
+        </div>
         <FlowStrip label={c.flowLabel} steps={c.steps.map(([icon, title, text]) => ({ icon, title, text }))} />
         <ul className="de-proofs">
           {c.proofs.map((p) => (
@@ -79,7 +85,10 @@ export function DecisionEngine({ locale }: { locale: Locale }) {
         </ul>
         <div className="de-lib">
           <p className="eyebrow">{c.libEyebrow}</p>
-          <h3 className="de-lib-title">{c.libTitle}</h3>
+          <div className="de-lib-head">
+            <h3 className="de-lib-title">{c.libTitle}</h3>
+            <Thumb src={`/images/product/v3/ct-models-${locale}.webp`} alt={locale === "fr" ? "Bibliothèque de modèles de décision dans Control Tower (données de démonstration)" : "Decision model library in Control Tower (demo data)"} width={1200} height={590} />
+          </div>
           {c.groups.map(([group, models]) => (
             <div key={group} className="de-group">
               <p className="de-group-name">{group}</p>
