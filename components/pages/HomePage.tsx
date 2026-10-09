@@ -5,6 +5,7 @@ import { routes, type Locale } from "@/lib/i18n";
 import { SectionHead } from "../blocks";
 import { PlacementSection, ResourcesSection, SelfServeBanner } from "../ArchitectExtras";
 import { ModelWeave } from "../ModelWeave";
+import { DecisionEngineReminder } from "../DecisionEngine";
 import { home, sectors, plans, APP, PRICING } from "@/content/home-architect";
 
 export function HomePage({ locale }: { locale: Locale }) {
@@ -159,6 +160,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           <p className="ax-fine ax-fine-dark">{c.sectorsNote}</p>
         </div>
       </section>
+
+      <DecisionEngineReminder locale={locale} />
 
       {/* Decide intégré, Supply en vitrine */}
       <section className="section ax-light">

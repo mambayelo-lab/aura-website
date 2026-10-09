@@ -2,6 +2,7 @@ import { FlowStrip } from "../FlowStrip";
 import { DsiSection } from "../DsiSection";
 import { ProductFilm } from "../ProductFilm";
 import { SupplyNews } from "../SupplyNews";
+import { DecisionEngine } from "../DecisionEngine";
 import { BellRing, Search, Scale, LineChart, MessageSquare, Boxes, LayoutGrid } from "lucide-react";
 import { ArrowRight, ArrowUpRight, Ban, Check, Quote } from "lucide-react";
 import Image from "next/image";
@@ -252,6 +253,7 @@ export function ProductPage({
         </section>
       )}
 
+      {key === "supply" && <DecisionEngine locale={locale} />}
       {key === "supply" && <SupplyNews locale={locale} />}
       {key === "supply" && <DsiSection locale={locale} />}
 
